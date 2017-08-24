@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">CafeMoa</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="facebook_app_id">1224243417701535</string>
+    <string name="sign_up"><u>회원가입 하기</u></string>
+    <string name="action_settings">Settings</string>
+        <string-array name="shots_array">
+            <item>1샷</item>
+            <item>2샷</item>
+            <item>3샷</item>
+            <item>4샷</item>
+        </string-array>
+
+</resources>

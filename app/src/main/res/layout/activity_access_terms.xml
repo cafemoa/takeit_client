@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#e9e9e9"
+    android:orientation="vertical"
+    android:weightSum="12">
+
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/access_term_app_bar_border">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="약관동의"
+            android:textColor="#010101"
+            android:layout_centerInParent="true"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="취소"
+            android:textColor="#010101"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/sv_all"
+        android:descendantFocusability="afterDescendants"
+        android:layout_weight="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp">
+
+    <LinearLayout
+        android:id="@+id/ly_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/access_term_border"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+
+            <CheckBox
+                android:id="@+id/cb_all"
+                android:layout_width="35dp"
+                android:layout_height="35dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="19sp"
+                android:textColor="#010101"
+                android:textStyle="bold"
+                android:text="TakeIt! 이용약관 전체 동의"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/access_term_border"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/access_term_size"
+                android:layout_marginTop="13dp"
+                android:paddingLeft="10dp"
+                >
+
+                <CheckBox
+                    android:id="@+id/cb_checkbox2"
+                    android:layout_width="25dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/cb_checkbox2"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="14sp"
+                    android:textColor="#010101"
+                    android:layout_centerVertical="true"
+                    android:text="전자금융거래 기본약관 동의"/>
+
+                <ImageView
+                    android:id="@+id/iv_financial_access_term"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="right"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/right_arrow_gray"/>
+
+            </RelativeLayout>
+
+            <ScrollView
+                android:id="@+id/sv_financial_access_term"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:background="@drawable/access_term_border"
+                >
+
+                <TextView
+                    android:id="@+id/tv_financial_access_term"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"/>
+
+            </ScrollView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/access_term_size"
+                android:paddingLeft="10dp"
+                >
+
+                <CheckBox
+                    android:id="@+id/cb_checkbox3"
+                    android:layout_width="25dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/cb_checkbox3"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="14sp"
+                    android:textColor="#010101"
+                    android:layout_centerVertical="true"
+                    android:text="모바일뱅킹 서비스 이용약관 동의"/>
+
+                <ImageView
+                    android:id="@+id/iv_mobile_access_term"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/right_arrow_gray"/>
+
+            </RelativeLayout>
+
+            <ScrollView
+                android:id="@+id/sv_mobile_access_term"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_mobile_access_term"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"/>
+
+            </ScrollView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/access_term_size"
+                android:paddingLeft="10dp"
+                >
+
+                <CheckBox
+                    android:id="@+id/cb_checkbox4"
+                    android:layout_width="25dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/cb_checkbox4"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="14sp"
+                    android:textColor="#010101"
+                    android:layout_centerVertical="true"
+                    android:text="알림 서비스 이용약관 동의"/>
+
+                <ImageView
+                    android:id="@+id/iv_alarm_access_term"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/right_arrow_gray"/>
+
+            </RelativeLayout>
+
+            <ScrollView
+                android:id="@+id/sv_alarm_access_term"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_alarm_access_term"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"/>
+
+            </ScrollView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/access_term_size"
+                android:paddingLeft="10dp"
+                >
+
+                <CheckBox
+                    android:id="@+id/cb_checkbox5"
+                    android:layout_width="25dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/cb_checkbox5"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="14sp"
+                    android:textColor="#010101"
+                    android:layout_centerVertical="true"
+                    android:text="위치기반 서비스 이용약관 동의"/>
+
+                <ImageView
+                    android:id="@+id/iv_gps_access_term"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/right_arrow_gray"/>
+
+            </RelativeLayout>
+
+            <ScrollView
+                android:id="@+id/sv_gps_access_term"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_gps_access_term"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"/>
+
+            </ScrollView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/access_term_size"
+                android:paddingLeft="10dp"
+                >
+
+                <CheckBox
+                    android:id="@+id/cb_checkbox6"
+                    android:layout_width="25dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/cb_checkbox6"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="14sp"
+                    android:textColor="#010101"
+                    android:layout_centerVertical="true"
+                    android:text="개인정보 수집 이용 동의"/>
+
+                <ImageView
+                    android:id="@+id/iv_indiv_access_term"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/right_arrow_gray"/>
+
+            </RelativeLayout>
+
+            <ScrollView
+                android:id="@+id/sv_indiv_access_term"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_individual_access_term"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"/>
+
+            </ScrollView>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="시작하기"
+        android:layout_gravity="bottom"/>
+
+</LinearLayout>
