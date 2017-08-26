@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">CafeMoa</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="facebook_app_id">1224243417701535</string>
+    <string name="sign_up"><u>회원가입 하기</u></string>
+    <string name="action_settings">Settings</string>
+<<<<<<< HEAD
+    <string-array name="shots_array">
+        <item>1샷</item>
+        <item>2샷</item>
+        <item>3샷</item>
+        <item>4샷</item>
+    </string-array>
+
+    <string-array name="basket_option_array">
+        <item>수정</item>
+        <item>삭제</item>
+    </string-array>
+=======
+        <string-array name="shots_array">
+            <item>1샷</item>
+            <item>2샷</item>
+            <item>3샷</item>
+            <item>4샷</item>
+        </string-array>
+>>>>>>> 9acca1f7a03bd96caa1b2c9ace33e865aa98f6cc
+
+</resources>

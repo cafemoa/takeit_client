@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="15dp"
+    android:paddingTop="15dp">
+
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:id="@+id/cv"
+        >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <Spinner
+                android:id="@+id/spinner_option"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/arrow_down"
+                android:layout_gravity="right"
+                />
+
+
+            <ImageView
+                android:id="@+id/iv_content"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@mipmap/ic_launcher"/>
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="#0c0c0c"
+                android:text="아이스 아메리카노 외 1잔"/>
+
+            <TextView
+                android:id="@+id/tv_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="#0c0c0c"
+                android:text="M"/>
+
+            <TextView
+                android:id="@+id/tv_is_whipping"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="#0c0c0c"
+                android:text="휘핑 X"/>
+
+            <TextView
+                android:id="@+id/tv_is_cold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="#0c0c0c"
+                android:text="ICE"/>
+
+            <TextView
+                android:id="@+id/tv_shots"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="#0c0c0c"
+                android:text="2샷"/>
+
+            <TextView
+                android:id="@+id/tv_cafe_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="#0c0c0c"
+                android:text="카페이름"/>
+
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="#0c0c0c"
+                android:text="가격"/>
+
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
