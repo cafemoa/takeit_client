@@ -1,5 +1,6 @@
 package mkworld29.mobile.com.cafemoa;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import com.astuetz.PagerSlidingTabStrip;
 import java.util.ArrayList;
 import java.util.List;
 
+import mkworld29.mobile.com.cafemoa.entity.CoffeeOption;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
 import mkworld29.mobile.com.cafemoa.fragment.CafeFragment;
@@ -77,7 +79,9 @@ public class ReservationActivity extends AppCompatActivity implements View.OnCli
                         Menu[] menu = new Menu[menu_num];
                         for(int j=0; j<menu_num; j++){
                             RetrofitConnection.Beverage now_menu=now_cafe.beverages.get(j);
-                            menu[j] = new Menu(now_menu.name, now_menu.price, RetrofitInstance.getApiUrl()+now_menu.image, 1000);
+
+                            menu[j] = new Menu(now_menu.name, now_menu.price, RetrofitInstance.getApiUrl()+now_menu.image, 1000, now_menu.pk);
+
                         }
                         for (int j = 0; j < menu_num; j++)
                             menus.add(j, menu[j]);
@@ -129,6 +133,9 @@ public class ReservationActivity extends AppCompatActivity implements View.OnCli
                 btn_click.setBackground(getResources().getDrawable(R.drawable.arrow_up));
                 sv.setVisibility(View.VISIBLE);
                 is_cafe_gone = !is_cafe_gone;
+
+                Intent intent = new Intent(this, CoffeeOptionActivity.class);
+                startActivity(intent);
             } else {
                 btn_click.setBackground(getResources().getDrawable(R.drawable.arrow_down));
                 sv.setVisibility(View.GONE);

@@ -18,41 +18,34 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"></activity>
 
-
-        </activity>
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
         <activity android:name=".LoginActivity">
 
-
+        </activity>
+        <activity android:name=".SignUpAcitivity" />
+        <activity android:name=".ReservationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
+            
         </activity>
-        <activity android:name=".SignUpAcitivity" />
-        <activity android:name=".ReservationActivity" >
-
-        </activity>
-        <activity android:name=".CouponActivity"></activity>
+        
+        <activity android:name=".CouponActivity" />
         <activity android:name=".PaymentActivity" />
         <activity android:name=".CouponDetailActivity" />
-        <activity android:name=".AccessTermsActivity" >
-
-
-        </activity>
-        <activity android:name=".OptionActivity" >
-
-        </activity>
+        <activity android:name=".AccessTermsActivity"></activity>
+        <activity android:name=".OptionActivity"></activity>
         <activity android:name=".CoffeeOptionActivity">
 
+        </activity>
+        <activity android:name=".BaskitActivity">
 
         </activity>
     </application>
