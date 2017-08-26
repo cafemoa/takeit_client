@@ -35,11 +35,7 @@ public class RetrofitConnection {
     public class Beverage{
         public String image;
         public String name;
-<<<<<<< HEAD
         public String price;
-=======
-        public int price;
->>>>>>> 9acca1f7a03bd96caa1b2c9ace33e865aa98f6cc
         public int pk;
     }
 
@@ -96,8 +92,6 @@ public class RetrofitConnection {
         @GET("recent_payment_list_by_id/")
         Call<List<Recent_payment>> repoContributors();
     }
-<<<<<<< HEAD
-
     public interface signup{
         @FormUrlEncoded
         @POST("user-manage/")
@@ -113,6 +107,4 @@ public class RetrofitConnection {
                 @Field("gender") boolean gender
         );
     }
-=======
->>>>>>> 9acca1f7a03bd96caa1b2c9ace33e865aa98f6cc
 }

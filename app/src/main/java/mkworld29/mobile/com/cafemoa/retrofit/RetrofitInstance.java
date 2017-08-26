@@ -17,11 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitInstance {
     private static Retrofit retrofit=null;
-<<<<<<< HEAD
     private static final String API_URL = "http://takeitnow.kr/";
-=======
-    private static final String API_URL = "http://chmod777.kr/";
->>>>>>> 9acca1f7a03bd96caa1b2c9ace33e865aa98f6cc
     static public  Retrofit getInstance(Context context){
         if(retrofit==null){
             final SharedPreference preference=SharedPreference.getInstance(context);
