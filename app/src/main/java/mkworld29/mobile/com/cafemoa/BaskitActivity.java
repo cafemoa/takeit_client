@@ -1,5 +1,6 @@
 package mkworld29.mobile.com.cafemoa;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.graphics.Rect;
@@ -9,11 +10,13 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,18 +29,24 @@ import mkworld29.mobile.com.cafemoa.item.CardItem;
 import mkworld29.mobile.com.cafemoa.prefs.BasketPref;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class BaskitActivity extends AppCompatActivity implements View.OnClickListener{
 
     public static int mWidthPixels, mHeightPixels;
 
     private Button btn_submit;
-
+    private Retrofit retrofit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baskit);
 
+        retrofit=RetrofitInstance.getInstance(getApplicationContext());
         WindowManager w = getWindowManager();
         Display d = w.getDefaultDisplay();
         DisplayMetrics metrics = new DisplayMetrics();
@@ -71,9 +80,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
         rv.setHasFixedSize(true);
         rv.setLayoutManager(mLayoutManager);
 
-
         String ids[] = BasketPref.getInstance(this).getSplitPrefsCurrentStorage();
-
         BasketItem[] item = new BasketItem[ids.length];
 
         List<BasketItem> items = new ArrayList<BasketItem>();
@@ -90,7 +97,35 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         if(view.getId() == btn_submit.getId())
         {
-            
+            List<RetrofitConnection.Order_option> options = new ArrayList<RetrofitConnection.Order_option>();
+            String ids[] = BasketPref.getInstance(this).getSplitPrefsCurrentStorage();
+            for(int i=0; i<ids.length; i++){
+                BasketItem item=BasketPref.getInstance(this).getBasket(ids[i]);
+                CoffeeOption option=item.getOption();
+                int beverage=Integer.parseInt(item.getId());
+                int shots=option.getShots();
+                int size=option.getSize();
+                boolean is_ice=option.is_cold();
+                boolean is_whipping=option.is_whipping();
+                options.add(new RetrofitConnection.Order_option(beverage,is_whipping,is_ice,size,shots));
+            }
+            RetrofitConnection.payment_beverages service = retrofit.create(RetrofitConnection.payment_beverages.class);
+            final Call<ResponseBody> repos = service.repoContributors(0,options);
+            repos.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if (response.code() == 200) {
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "에러가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Log.d("TAG", t.getLocalizedMessage());
+                }
+            });
         }
     }
 

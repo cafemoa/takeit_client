@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -110,16 +111,18 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
         if(view.getId() == btn_submit.getId())
         {
             // 여기서 서버처리
-            String size, shots, content, image, cafe_name, price;
+            String content, image, cafe_name, price;
+            int shots;
+            int size;
             boolean is_whipping, is_cold;
             
             
             if(rg_size.getCheckedRadioButtonId()==rb_M.getId())
-                size = "M";
+                size = 0;
             else if(rg_size.getCheckedRadioButtonId()==rb_L.getId())
-                size = "L";
+                size = 1;
             else
-                size = "XL";
+                size = 2;
             
             if(rg_whipping.getCheckedRadioButtonId()==rb_whipping_true.getId())
                 is_whipping = true;
@@ -129,14 +132,15 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
                 is_cold = true;
             else is_cold = false;
             
-            shots = String.valueOf(spinner_shots.getSelectedItem());
+            String shotss = String.valueOf(spinner_shots.getSelectedItem());
+            Log.d("TAG", shotss);
             
             content = String.valueOf(tv_content.getText());
             image = "http://cfile208.uf.daum.net/image/2265AB49563AC29E183589";
             cafe_name = String.valueOf(tv_cafe_name.getText());
             price = String.valueOf(tv_price.getText());
             
-            CoffeeOption option = new CoffeeOption(shots,size,is_cold,is_whipping);
+            CoffeeOption option = new CoffeeOption(1,size,is_cold,is_whipping);
             
             BasketItem item = new BasketItem(image,cafe_name,content,price,option);
             

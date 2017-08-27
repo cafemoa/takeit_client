@@ -55,6 +55,21 @@ public class RetrofitConnection {
         public String orderer_username;
         public int beverage_pk;
     }
+    public static class Order_option{
+        int beverage;
+        boolean is_whipping;
+        boolean is_ice;
+        int size;
+        int shot_num;
+
+        public Order_option(int beverage, boolean is_whipping,boolean is_ice,int size, int shot_num) {
+            this.beverage = beverage;
+            this.is_whipping = is_whipping;
+            this.is_ice = is_ice;
+            this.size = size;
+            this.shot_num = shot_num;
+        }
+    }
 
     public class Token{
         public String token;
@@ -105,6 +120,14 @@ public class RetrofitConnection {
                 @Field("birth_month") int birth_month,
                 @Field("birth_day") int birth_day,
                 @Field("gender") boolean gender
+        );
+    }
+    public interface payment_beverages{
+        @FormUrlEncoded
+        @POST("order_beverage/")
+        Call<ResponseBody> repoContributors(
+                @Field("payment_type") int payment_type,
+                @Field("options") List<Order_option> options
         );
     }
 }

@@ -6,12 +6,12 @@ package mkworld29.mobile.com.cafemoa.entity;
 
 public class CoffeeOption {
 
-    private String  shots;
-    private String  size;
+    private int  shots;
+    private int  size;
     private boolean is_cold;
     private boolean is_whipping;
 
-    public CoffeeOption(String shots, String size, boolean is_cold, boolean is_whipping)
+    public CoffeeOption(int shots, int size, boolean is_cold, boolean is_whipping)
     {
         this.shots = shots;
         this.size = size;
@@ -19,19 +19,19 @@ public class CoffeeOption {
         this.is_whipping = is_whipping;
     }
 
-    public String getShots() {
+    public int getShots() {
         return shots;
     }
 
-    public void setShots(String shots) {
+    public void setShots(int shots) {
         this.shots = shots;
     }
 
-    public String getSize() {
+    public int getSize() {
         return size;
     }
 
-    public void setSize(String size) {
+    public void setSize(int size) {
         this.size = size;
     }
 
