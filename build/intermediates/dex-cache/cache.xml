@@ -3,21 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\ABCla\Desktop\takeit_client\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="5ab9c8c7622a31c5119efa51a9c3590ca6829453">
-        <dex dex="C:\Users\ABCla\Desktop\takeit_client\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_a4e88787aeb23742257309680dbeab5db0ffabea\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\ABCla\Desktop\takeit_client\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="/Users/parkjaemin/Desktop/TakeIt/takeit_client/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="C:\Users\ABCla\Desktop\takeit_client\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_c95b6580d3d8bff5f343e351b7bef927292ce88c\classes.dex" />
+        <dex dex="/Users/parkjaemin/Desktop/TakeIt/takeit_client/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_61a4fce9f3b5d684ad96fa9cacac0621f3dad5cf/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/parkjaemin/Desktop/TakeIt/takeit_client/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="bb70206e288a98c0614773b0b90348af70de8fe7">
+        <dex dex="/Users/parkjaemin/Desktop/TakeIt/takeit_client/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_e27b756f56f3982230eeea98a59aa56426aa3de1/classes.dex" />
     </item>
 
 </items>

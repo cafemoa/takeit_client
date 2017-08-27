@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import mkworld29.mobile.com.cafemoa.item.BasketItem;
 import mkworld29.mobile.com.cafemoa.retrofit.SharedPreference;
 
@@ -72,16 +75,18 @@ public class BasketPref {
         if(item == null)
             return ;
 
-        Gson gson = new Gson();
-        String basket_json = gson.toJson(item);
 
         String id = String.valueOf(Integer.valueOf(settings.getString(PREFS_PROGRESS,"0"))+1);
 
         item.setId(id);
 
+        Gson gson = new Gson();
+        String basket_json = gson.toJson(item);
+
+
         editor.putString(id, basket_json);
         editor.putString(PREFS_PROGRESS, id);
-        editor.putString(PREFS_CURRENT_STORAGE, settings.getString(PREFS_CURRENT_STORAGE,"")+"_"+id);
+        editor.putString(PREFS_CURRENT_STORAGE, settings.getString(PREFS_CURRENT_STORAGE,"")+id+"_");
         editor.commit();
 
     }
@@ -94,7 +99,7 @@ public class BasketPref {
 
         String current_storage = settings.getString(PREFS_CURRENT_STORAGE,"");
 
-        String[] split_storage = current_storage.split("_");
+        String[] split_storage = getSplitPrefsCurrentStorage();
 
         String new_current_storage = "";
 
@@ -131,6 +136,25 @@ public class BasketPref {
 
     public String[] getSplitPrefsCurrentStorage()
     {
-        return settings.getString(PREFS_CURRENT_STORAGE,"").split("_");
+        String[] a =  settings.getString(PREFS_CURRENT_STORAGE,"").split("_");
+
+        List<String> list = new ArrayList<String>();
+
+        for(int i=0;i<a.length;i++)
+        {
+            if(a[i] != null )
+                list.add(a[i]);
+        }
+
+        Object[] temp = list.toArray();
+
+        String[] new_string = new String[temp.length];
+
+        int i= 0;
+
+        for(Object o : temp)
+            new_string[i++] = (String)o;
+
+        return new_string;
     }
 }

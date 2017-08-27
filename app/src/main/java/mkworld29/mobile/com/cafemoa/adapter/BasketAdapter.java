@@ -67,10 +67,10 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
         holder.tv_content.setText(basketList.get(position).getContent());
         holder.tv_content.setTag(CONTENT_TAG_ID,basketList.get(position).getId());
         holder.tv_price.setText(String.valueOf(basketList.get(position).getPrice()) + "원");
-        holder.tv_shots.setText(option.getShots());
+        holder.tv_shots.setText(String.valueOf(option.getShots()));
         holder.tv_is_cold.setText(String.valueOf(option.is_cold()));
         holder.tv_is_whipping.setText(String.valueOf(option.is_whipping()));
-        holder.tv_size.setText(option.getSize());
+        holder.tv_size.setText(String.valueOf(option.getSize()));
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(holder._v.getContext(),
                 R.array.basket_option_array, android.R.layout.simple_spinner_item);
