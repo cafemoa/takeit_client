@@ -8,10 +8,10 @@ public class CardItem {
     String image;
     String cafe_name;
     String content;
-    int price;
+    String price;
 
 
-    public CardItem(String image, String cafe_name,String content,int price) {
+    public CardItem(String image, String cafe_name,String content,String price) {
         this.image = image;
         this.cafe_name = cafe_name;
         this.content = content;
@@ -43,11 +43,11 @@ public class CardItem {
         this.content = content;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 }

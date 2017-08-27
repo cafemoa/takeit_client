@@ -68,7 +68,7 @@ public class PaymentListViewAdapter extends BaseAdapter {
 
     }
 
-    public void addItem(String content, int price, String time)
+    public void addItem(String content, String price, String time)
     {
         PaymentListViewItem item = new PaymentListViewItem(content,price,time);
 

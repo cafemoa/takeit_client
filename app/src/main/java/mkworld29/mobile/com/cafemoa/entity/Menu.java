@@ -1,5 +1,7 @@
 package mkworld29.mobile.com.cafemoa.entity;
 
+import android.util.Log;
+
 /**
  * Created by chmod777 on 2017. 6. 24..
  */
@@ -14,10 +16,10 @@ public class Menu {
 
     public Menu(String name,String price, String image, int limit, int pk)
     {
-        this.name = null;
-        this.image = null;
-        this.price  = "0";
-        this.limit = 0;
+        this.name = name;
+        this.image = image;
+        this.price  =price;
+        this.limit = limit;
         this.pk = pk;
     }
 

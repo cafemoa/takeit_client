@@ -1,5 +1,7 @@
 package mkworld29.mobile.com.cafemoa.entity;
 
+import android.util.Log;
+
 import java.util.List;
 
 /**

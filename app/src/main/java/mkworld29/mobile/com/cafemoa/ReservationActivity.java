@@ -79,13 +79,9 @@ public class ReservationActivity extends AppCompatActivity implements View.OnCli
                         Menu[] menu = new Menu[menu_num];
                         for(int j=0; j<menu_num; j++){
                             RetrofitConnection.Beverage now_menu=now_cafe.beverages.get(j);
-
                             menu[j] = new Menu(now_menu.name, now_menu.price, RetrofitInstance.getApiUrl()+now_menu.image, 1000, now_menu.pk);
-
-                        }
-                        for (int j = 0; j < menu_num; j++)
                             menus.add(j, menu[j]);
-
+                        }
                         cafe[i] = new Cafe(name, menu_num, menus);
                     }
 

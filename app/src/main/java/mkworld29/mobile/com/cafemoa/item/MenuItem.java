@@ -7,7 +7,7 @@ package mkworld29.mobile.com.cafemoa.item;
 public class MenuItem {
     int image;
     String title;
-    int price;
+    String price;
 
     public int getImage() {
         return this.image;
@@ -17,9 +17,9 @@ public class MenuItem {
         return this.title;
     }
 
-    public int getPrice(){return this.price;}
+    public String getPrice(){return this.price;}
 
-    public MenuItem(int image, String title,int price) {
+    public MenuItem(int image, String title,String price) {
         this.image = image;
         this.title = title;
         this.price = price;

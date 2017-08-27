@@ -47,7 +47,7 @@ public class RetrofitConnection {
 
     public class Recent_payment {
         public String cafe_name;
-        public int price;
+        public String price;
         public String order_time;
         public String menu_name;
         public String image_url;

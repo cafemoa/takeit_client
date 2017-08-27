@@ -6,11 +6,12 @@ package mkworld29.mobile.com.cafemoa.item;
 
 public class PaymentListViewItem {
     private String content;
-    private int price;
+    private String price;
     private String time;
 
-    public PaymentListViewItem(String content, int price, String time)
+    public PaymentListViewItem(String content, String price, String time)
     {
+
         this.content = content;
         this.price = price;
         this.time = time;
@@ -25,11 +26,11 @@ public class PaymentListViewItem {
         this.content = content;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
