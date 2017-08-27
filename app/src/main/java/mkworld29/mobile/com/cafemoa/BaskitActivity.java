@@ -13,6 +13,7 @@ import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,9 +27,11 @@ import mkworld29.mobile.com.cafemoa.prefs.BasketPref;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
 
-public class BaskitActivity extends AppCompatActivity {
+public class BaskitActivity extends AppCompatActivity implements View.OnClickListener{
 
     public static int mWidthPixels, mHeightPixels;
+
+    private Button btn_submit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,9 @@ public class BaskitActivity extends AppCompatActivity {
         // since SDK_INT = 1;
         mWidthPixels = metrics.widthPixels;
         mHeightPixels = metrics.heightPixels;
+
+        btn_submit = (Button) findViewById(R.id.btn_submit);
+        btn_submit.setOnClickListener(this);
 
         // 상태바와 메뉴바의 크기를 포함해서 재계산
         if (Build.VERSION.SDK_INT >= 14 && Build.VERSION.SDK_INT < 17)
@@ -78,6 +84,14 @@ public class BaskitActivity extends AppCompatActivity {
         }
         rv.addItemDecoration(new BaskitActivity.GridSpacingItemDecoration(2, dpToPx(10), true));
         rv.setAdapter(new BasketAdapter(getApplicationContext(), items));
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == btn_submit.getId())
+        {
+            
+        }
     }
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
