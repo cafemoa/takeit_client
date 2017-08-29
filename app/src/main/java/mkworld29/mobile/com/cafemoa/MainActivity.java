@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity
         startRecyclerView();
         startFlipper();
         startNavigation();
+
     }
 
     private void establishView()

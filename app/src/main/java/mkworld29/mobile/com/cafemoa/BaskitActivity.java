@@ -66,7 +66,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
             } catch (Exception ignored) {
             }
         // 상태바와 메뉴바의 크기를 포함
-        if (Build.VERSION.SDK_INT >= 17)
+        if (Build.VERSION.SDK_INT >= 17) {
             try {
                 Point realSize = new Point();
                 Display.class.getMethod("getRealSize", Point.class).invoke(d, realSize);
@@ -74,6 +74,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
                 mHeightPixels = realSize.y;
             } catch (Exception ignored) {
             }
+        }
 
         RecyclerView rv = (RecyclerView)findViewById(R.id.rv_basket_card);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(BaskitActivity.this, 1);
@@ -81,17 +82,23 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
         rv.setLayoutManager(mLayoutManager);
 
         String ids[] = BasketPref.getInstance(this).getSplitPrefsCurrentStorage();
-        BasketItem[] item = new BasketItem[ids.length];
 
-        List<BasketItem> items = new ArrayList<BasketItem>();
+        Log.d("mkWorld29.com.cafemoa", ""+ids.length);
 
-        for(int i=0; i<ids.length; i++){
-            item[i] = BasketPref.getInstance(this).getBasket(ids[i]);
-            items.add(item[i]);
+        if(ids.length != 0) {
+            BasketItem[] item = new BasketItem[ids.length];
+
+            List<BasketItem> items = new ArrayList<BasketItem>();
+
+            for (int i = 0; i < ids.length; i++) {
+                item[i] = BasketPref.getInstance(this).getBasket(ids[i]);
+                items.add(item[i]);
+            }
+            rv.addItemDecoration(new BaskitActivity.GridSpacingItemDecoration(2, dpToPx(10), true));
+            rv.setAdapter(new BasketAdapter(getApplicationContext(), items));
         }
-        rv.addItemDecoration(new BaskitActivity.GridSpacingItemDecoration(2, dpToPx(10), true));
-        rv.setAdapter(new BasketAdapter(getApplicationContext(), items));
     }
+
 
     @Override
     public void onClick(View view) {

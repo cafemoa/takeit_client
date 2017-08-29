@@ -68,6 +68,8 @@ public class BasketPref {
 
         if(settings.getString(PREFS_CURRENT_STORAGE,"").equals(""))
             editor.putString(PREFS_CURRENT_STORAGE,"");
+
+        removeAllBasket();
     }
 
     public void addBasket(BasketItem item)
@@ -142,7 +144,7 @@ public class BasketPref {
 
         for(int i=0;i<a.length;i++)
         {
-            if(a[i] != null )
+            if(a[i] != null && !a[i].equals(""))
                 list.add(a[i]);
         }
 
@@ -157,4 +159,13 @@ public class BasketPref {
 
         return new_string;
     }
+
+    public void removeAllBasket()
+    {
+        String[] ids = getSplitPrefsCurrentStorage();
+
+        for(int i=0;i<ids.length;i++)
+            deleteBasket(ids[i]);
+    }
+
 }

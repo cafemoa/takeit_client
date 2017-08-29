@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:background="#dddddd">
 
-    <include layout="@layout/toolbar" />
+    <include layout="@layout/reservation_toolbar" />
 
     <com.astuetz.PagerSlidingTabStrip
         android:layout_marginTop="60dp"

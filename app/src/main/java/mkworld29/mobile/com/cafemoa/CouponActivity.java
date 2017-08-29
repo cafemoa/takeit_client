@@ -124,13 +124,7 @@ public class CouponActivity extends AppCompatActivity {
                                    RecyclerView parasent, RecyclerView.State state) {
             outRect.right = space;
             outRect.bottom = space;
-//
-//            // Add top margin only for the first item to avoid double space between items
-//            if (parent.getChildLayoutPosition(view) == 0) {
-//                outRect.top = space;
-//            } else {
-//                outRect.top = 0;
-//            }
+
         }
     }
 

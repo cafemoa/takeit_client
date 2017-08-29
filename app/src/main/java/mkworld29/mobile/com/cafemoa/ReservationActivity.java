@@ -38,6 +38,7 @@ public class ReservationActivity extends AppCompatActivity implements View.OnCli
 
     private Button btn_click;
     private Button btn_click2;
+    private Button btn_reservation;
     private HorizontalScrollView sv;
     private HorizontalScrollView sv2;
     private ViewPager vp;
@@ -117,6 +118,9 @@ public class ReservationActivity extends AppCompatActivity implements View.OnCli
         btn_click2 = (Button) findViewById(R.id.btn_near_cafe);
         btn_click2.setOnClickListener(this);
 
+        btn_reservation = (Button) findViewById(R.id.btn_reservation);
+        btn_reservation.setOnClickListener(this);
+
         sv = (HorizontalScrollView) findViewById(R.id.sv);
         sv2 = (HorizontalScrollView) findViewById(R.id.sv2);
     }
@@ -149,6 +153,11 @@ public class ReservationActivity extends AppCompatActivity implements View.OnCli
                 sv2.setVisibility(View.GONE);
                 is_near_gone = !is_near_gone;
             }
+        }
+        else if(v.getId() == btn_reservation.getId())
+        {
+            Intent intent = new Intent(this, BaskitActivity.class);
+            startActivity(intent);
         }
     }
 

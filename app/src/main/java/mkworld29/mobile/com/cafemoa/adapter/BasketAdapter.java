@@ -55,6 +55,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_basket,null);
         return new ViewHolder(v);
     }
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     /** 정보 및 이벤트 처리는 이 메소드에서 구현 **/
 
@@ -62,15 +63,40 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         if(basketList.get(position) == null)
             return;
+
         CoffeeOption option = basketList.get(position).getOption();
+
         holder.tv_cafe_name.setText(basketList.get(position).getCafe_name());
         holder.tv_content.setText(basketList.get(position).getContent());
-        holder.tv_content.setTag(CONTENT_TAG_ID,basketList.get(position).getId());
-        holder.tv_price.setText(String.valueOf(basketList.get(position).getPrice()) + "원");
-        holder.tv_shots.setText(String.valueOf(option.getShots()));
+        holder.tv_price.setText(String.valueOf(basketList.get(position).getPrice()));
         holder.tv_is_cold.setText(String.valueOf(option.is_cold()));
-        holder.tv_is_whipping.setText(String.valueOf(option.is_whipping()));
-        holder.tv_size.setText(String.valueOf(option.getSize()));
+
+        holder.tv_shots.setText(String.valueOf(option.getShots())+"샷");
+
+        if(option.is_whipping())
+            holder.tv_is_whipping.setText(String.valueOf("휘핑 O"));
+        else
+            holder.tv_is_whipping.setText(String.valueOf("휘핑 X"));
+
+
+        if(option.is_cold())
+            holder.tv_is_cold.setText(String.valueOf("ICE"));
+        else
+            holder.tv_is_cold.setText(String.valueOf("HOT"));
+
+        switch(option.getSize())
+        {
+            case 0:
+                holder.tv_size.setText("M");
+                break;
+            case 1:
+                holder.tv_size.setText("L");
+                break;
+            case 2:
+                holder.tv_size.setText("XL");
+                break;
+
+        }
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(holder._v.getContext(),
                 R.array.basket_option_array, android.R.layout.simple_spinner_item);
@@ -160,7 +186,6 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
 
                 }
             });
-
 
             tv_cafe_name    = (TextView) v.findViewById(R.id.tv_cafe_name);
             tv_content      = (TextView) v.findViewById(R.id.tv_content);

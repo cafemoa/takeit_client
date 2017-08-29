@@ -2,11 +2,13 @@ package mkworld29.mobile.com.cafemoa;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,9 +22,10 @@ public class AccessTermsActivity extends Activity implements View.OnClickListene
     private LinearLayout ly_all;
     private ImageView   iv_financial, iv_mobile, iv_alarm, iv_gps, iv_indiv;
     private ScrollView  sv_financial, sv_mobile, sv_alarm, sv_gps, sv_indiv;
-    private TextView    tv_financial, tv_mobile, tv_alarm, tv_gps, tv_indiv;
+    private TextView    tv_financial, tv_mobile, tv_alarm, tv_gps, tv_indiv, tv_cancel;
     private boolean     is_financial, is_mobile, is_alarm, is_gps, is_indiv;
     private CheckBox    cb_all, cb_financial, cb_mobile, cb_alarm, cb_gps, cb_indiv;
+    private Button      btn_next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +34,6 @@ public class AccessTermsActivity extends Activity implements View.OnClickListene
 
         initView();
         setContent();
-
-        ly_all.setFocusable(true);
     }
 
     protected void initView()
@@ -54,6 +55,7 @@ public class AccessTermsActivity extends Activity implements View.OnClickListene
         tv_alarm        =   (TextView) findViewById(R.id.tv_alarm_access_term);
         tv_gps          =   (TextView) findViewById(R.id.tv_gps_access_term);
         tv_indiv        =   (TextView) findViewById(R.id.tv_individual_access_term);
+        tv_cancel       =   (TextView) findViewById(R.id.tv_cancel);
 
         cb_all          =   (CheckBox) findViewById(R.id.cb_all);
         cb_financial    =   (CheckBox) findViewById(R.id.cb_checkbox2);
@@ -61,6 +63,8 @@ public class AccessTermsActivity extends Activity implements View.OnClickListene
         cb_alarm        =   (CheckBox) findViewById(R.id.cb_checkbox4);
         cb_gps          =   (CheckBox) findViewById(R.id.cb_checkbox5);
         cb_indiv        =   (CheckBox) findViewById(R.id.cb_checkbox6);
+
+        btn_next        =   (Button) findViewById(R.id.btn_next);
 
         ly_all          =   (LinearLayout)  findViewById(R.id.ly_all);
 
@@ -70,6 +74,8 @@ public class AccessTermsActivity extends Activity implements View.OnClickListene
         iv_gps.setOnClickListener(this);
         iv_indiv.setOnClickListener(this);
         cb_all.setOnClickListener(this);
+        tv_cancel.setOnClickListener(this);
+        btn_next.setOnClickListener(this);
     }
 
     protected void setContent()
@@ -209,6 +215,16 @@ public class AccessTermsActivity extends Activity implements View.OnClickListene
                 cb_alarm.setChecked(true);
                 cb_gps.setChecked(true);
             }
+        }
+        else if(view.getId() == tv_cancel.getId())
+        {
+            finish();
+        }
+        else if(view.getId() == btn_next.getId())
+        {
+            Intent intent = new Intent(this, SignUpAcitivity.class);
+            startActivity(intent);
+            finish();
         }
 
     }

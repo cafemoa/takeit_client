@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -22,7 +23,8 @@ import android.os.Bundle;
 
 import mkworld29.mobile.com.cafemoa.R;
 
-public class SignUpAcitivity extends AppCompatActivity {
+public class SignUpAcitivity extends AppCompatActivity implements View.OnClickListener{
+
     Retrofit retrofit;
     EditText sign_id;
     EditText sign_pwd;
@@ -30,6 +32,7 @@ public class SignUpAcitivity extends AppCompatActivity {
     EditText sign_name;
     EditText sign_email;
     EditText sign_tel;
+    Button btn_submit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +45,10 @@ public class SignUpAcitivity extends AppCompatActivity {
         sign_name=(EditText) findViewById(R.id.sign_name);
         sign_email=(EditText) findViewById(R.id.sign_email);
         sign_tel=(EditText) findViewById(R.id.sign_tel);
+        btn_submit = (Button) findViewById(R.id.btn_submit);
 
         retrofit=RetrofitInstance.getInstance(getApplicationContext());
+        btn_submit.setOnClickListener(this);
 
     }
 
@@ -67,8 +72,6 @@ public class SignUpAcitivity extends AppCompatActivity {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.code() == 201) {
                     Toast.makeText(getApplicationContext(), "가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
-                    Intent i=new Intent(SignUpAcitivity.this, LoginActivity.class);
-                    startActivity(i);
                     finish();
                 }
                 else{

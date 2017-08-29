@@ -110,41 +110,8 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         if(view.getId() == btn_submit.getId())
         {
-            // 여기서 서버처리
-            String content, image, cafe_name, price;
-            int shots;
-            int size;
-            boolean is_whipping, is_cold;
-            
-            
-            if(rg_size.getCheckedRadioButtonId()==rb_M.getId())
-                size = 0;
-            else if(rg_size.getCheckedRadioButtonId()==rb_L.getId())
-                size = 1;
-            else
-                size = 2;
-            
-            if(rg_whipping.getCheckedRadioButtonId()==rb_whipping_true.getId())
-                is_whipping = true;
-            else is_whipping = false;
-            
-            if(rg_temp.getCheckedRadioButtonId() == rb_temp_cold.getId())
-                is_cold = true;
-            else is_cold = false;
-            
-            String shotss = String.valueOf(spinner_shots.getSelectedItem());
-            Log.d("TAG", shotss);
-            
-            content = String.valueOf(tv_content.getText());
-            image = "http://cfile208.uf.daum.net/image/2265AB49563AC29E183589";
-            cafe_name = String.valueOf(tv_cafe_name.getText());
-            price = String.valueOf(tv_price.getText());
-            
-            CoffeeOption option = new CoffeeOption(1,size,is_cold,is_whipping);
-            
-            BasketItem item = new BasketItem(image,cafe_name,content,price,option);
-            
-            BasketPref.getInstance(this).addBasket(item);
+            saveBasketItem();
+
             
             Intent intent = new Intent(this, BaskitActivity.class);
             startActivity(intent);
@@ -154,6 +121,7 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
         }
         else if(view.getId() == btn_add_basket.getId())
         {
+            saveBasketItem();
             finish();
         }
 
@@ -163,6 +131,44 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
     public void finish() {
         super.finish();
         this.overridePendingTransition(R.anim.basket_end_start, R.anim.basket_end_exit);
+    }
+
+    private void saveBasketItem()
+    {
+        String content, image, cafe_name, price;
+        int shots;
+        int size;
+        boolean is_whipping, is_cold;
+
+
+        if(rg_size.getCheckedRadioButtonId()==rb_M.getId())
+            size = 0;
+        else if(rg_size.getCheckedRadioButtonId()==rb_L.getId())
+            size = 1;
+        else
+            size = 2;
+
+        if(rg_whipping.getCheckedRadioButtonId()==rb_whipping_true.getId())
+            is_whipping = true;
+        else is_whipping = false;
+
+        if(rg_temp.getCheckedRadioButtonId() == rb_temp_cold.getId())
+            is_cold = true;
+        else is_cold = false;
+
+
+        shots = Integer.parseInt(""+String.valueOf(spinner_shots.getSelectedItem()).charAt(0));
+
+        content = String.valueOf(tv_content.getText());
+        image = "http://cfile208.uf.daum.net/image/2265AB49563AC29E183589";
+        cafe_name = String.valueOf(tv_cafe_name.getText());
+        price = String.valueOf(tv_price.getText());
+
+        CoffeeOption option = new CoffeeOption(shots,size,is_cold,is_whipping);
+
+        BasketItem item = new BasketItem(image,cafe_name,content,price,option);
+
+        BasketPref.getInstance(this).addBasket(item);
     }
     
 }
