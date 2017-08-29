@@ -68,6 +68,8 @@ public class BasketPref {
 
         if(settings.getString(PREFS_CURRENT_STORAGE,"").equals(""))
             editor.putString(PREFS_CURRENT_STORAGE,"");
+
+
     }
 
     public void addBasket(BasketItem item)
@@ -156,5 +158,11 @@ public class BasketPref {
             new_string[i++] = (String)o;
 
         return new_string;
+    }
+
+    public void removeBasketItems()
+    {
+        editor.clear();
+        editor.commit();
     }
 }

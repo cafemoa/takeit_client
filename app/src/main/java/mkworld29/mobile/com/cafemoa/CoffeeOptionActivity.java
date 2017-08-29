@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.tsengvn.typekit.TypekitContextWrapper;
 
 import mkworld29.mobile.com.cafemoa.entity.CoffeeOption;
@@ -39,7 +40,11 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
     private ImageView iv_content;
     private Spinner spinner_shots;
     Activity activity;
-
+    private int pk;
+    private int cafe_pk;
+    String menu_name = null;
+    String price=null;
+    String image_url=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,20 +54,16 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
 
         Intent intent = getIntent();
 
-        String menu_name = null;
-        String price;
-        String image;
-
         // 옵션 추가를 위해 온 경우
         if(intent != null)
         {
             menu_name = intent.getStringExtra("menu_name");
             price = intent.getStringExtra("menu_price");
-            image = intent.getStringExtra("image_url");
+            image_url = intent.getStringExtra("image_url");
+            pk = intent.getIntExtra("menu_pk",0);
+            cafe_pk = intent.getIntExtra("cafe_pk",0);
         }
 
-        if(menu_name != null)
-            Toast.makeText(this, menu_name,Toast.LENGTH_SHORT).show();
 
         iv_content          = (ImageView)   findViewById(R.id.iv_content);
 
@@ -88,14 +89,20 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
         btn_submit.setOnClickListener(this);
         btn_add_basket.setOnClickListener(this);
 
+        tv_content.setText(menu_name);
+        tv_price.setText(price);
+        Glide.with(getApplicationContext())
+                .load(image_url)
+                .placeholder(R.mipmap.ic_launcher)
+                .error(R.mipmap.ic_launcher)
+                .into(iv_content);
+
         spinner_shots = (Spinner) findViewById(R.id.shots_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.shots_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_shots.setAdapter(adapter);
-        
-        if(menu_name != null)
-            Toast.makeText(this, menu_name,Toast.LENGTH_SHORT).show();
+
 
 
     }
@@ -132,24 +139,23 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
                 is_cold = true;
             else is_cold = false;
             
-            String shotss = String.valueOf(spinner_shots.getSelectedItem());
-            Log.d("TAG", shotss);
-            
+            shots = Integer.parseInt(""+String.valueOf(spinner_shots.getSelectedItem()).charAt(0));
+
             content = String.valueOf(tv_content.getText());
-            image = "http://cfile208.uf.daum.net/image/2265AB49563AC29E183589";
+            image = image_url;
             cafe_name = String.valueOf(tv_cafe_name.getText());
             price = String.valueOf(tv_price.getText());
             
-            CoffeeOption option = new CoffeeOption(1,size,is_cold,is_whipping);
+            CoffeeOption option = new CoffeeOption(shots,size,is_cold,is_whipping, pk);
             
             BasketItem item = new BasketItem(image,cafe_name,content,price,option);
             
             BasketPref.getInstance(this).addBasket(item);
             
             Intent intent = new Intent(this, BaskitActivity.class);
+            intent.putExtra("cafe_pk", cafe_pk);
             startActivity(intent);
             finish();
-            // 여기서 서버처리
             Animation anim = AnimationUtils.loadAnimation(this,R.anim.basket_enter_start);
         }
         else if(view.getId() == btn_add_basket.getId())

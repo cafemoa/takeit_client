@@ -46,7 +46,11 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.tv_title.setText(noticeList.get(position).getName());
         holder.tv_price.setText(String.valueOf(noticeList.get(position).getPrice()));
+        holder.pk = noticeList.get(position).getPk();
+        holder.cafe_pk = noticeList.get(position).getCafe_pk();
+        holder.image_url = noticeList.get(position).getImage();
         ImageView target=holder.iv_profile;
+
         Glide.with(context)
                 .load(noticeList.get(position).getImage())
                 .placeholder(R.mipmap.ic_launcher)
@@ -66,6 +70,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         TextView tv_price;
         ImageView iv_profile;
         CardView cv;
+        String image_url;
+        int pk;
+        int cafe_pk;
         View _v;
 
         public ViewHolder(View v) {
@@ -87,6 +94,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
                             Intent intent = new Intent(v.getContext(), CoffeeOptionActivity.class);
                             intent.putExtra("menu_name",tv_title.getText());
                             intent.putExtra("menu_price",tv_price.getText());
+                            intent.putExtra("menu_pk", pk);
+                            intent.putExtra("image_url", image_url);
+                            intent.putExtra("cafe_pk", cafe_pk);
                             v.getContext().startActivity(intent);
 
                         }

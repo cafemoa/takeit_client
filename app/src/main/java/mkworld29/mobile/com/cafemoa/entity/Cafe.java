@@ -13,17 +13,18 @@ public class Cafe {
     private String cafe_name;
     private int menu_size;
     private List<Menu> menus;
-
+    private int pk;
     public Cafe()
     {
-        this(null,0,null);
+        this(null,0,null,0);
     }
 
-    public Cafe(String cafe_name, int menu_size, List<Menu> menus)
+    public Cafe(String cafe_name, int menu_size, List<Menu> menus, int pk)
     {
         this.cafe_name = cafe_name;
         this.menu_size = menu_size;
         this.menus = menus;
+        this.pk=pk;
     }
 
     public void setCafe_name(String cafe_name) {
@@ -49,4 +50,10 @@ public class Cafe {
     public List<Menu> getMenus() {
         return menus;
     }
+
+    public void setPk(int pk) { this.pk = pk; }
+
+    public int getPk() {return pk;}
+
+
 }

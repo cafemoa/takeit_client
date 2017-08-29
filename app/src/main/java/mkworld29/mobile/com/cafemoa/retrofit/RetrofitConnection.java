@@ -4,14 +4,22 @@ package mkworld29.mobile.com.cafemoa.retrofit;
  * Created by 이은서 on 2017-04-02.
  */
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -57,17 +65,26 @@ public class RetrofitConnection {
     }
     public static class Order_option{
         int beverage;
-        boolean is_whipping;
+        boolean whipping_cream;
         boolean is_ice;
         int size;
         int shot_num;
 
-        public Order_option(int beverage, boolean is_whipping,boolean is_ice,int size, int shot_num) {
+        public Order_option(int beverage, boolean whipping_cream,boolean is_ice,int size, int shot_num) {
             this.beverage = beverage;
-            this.is_whipping = is_whipping;
+            this.whipping_cream = whipping_cream;
             this.is_ice = is_ice;
             this.size = size;
             this.shot_num = shot_num;
+        }
+    }
+
+    public static class Order_Info{
+        int payment_type;
+        Order_option[] options;
+        public Order_Info(int payment_type, Order_option[] options){
+            this.payment_type=payment_type;
+            this.options=options;
         }
     }
 
@@ -122,12 +139,14 @@ public class RetrofitConnection {
                 @Field("gender") boolean gender
         );
     }
+
     public interface payment_beverages{
-        @FormUrlEncoded
-        @POST("order_beverage/")
+        //@FormUrlEncoded
+        @POST("order_beverage/{PK}")
         Call<ResponseBody> repoContributors(
-                @Field("payment_type") int payment_type,
-                @Field("options") List<Order_option> options
+                @Path("PK") int pk,
+                @Body RequestBody body
         );
     }
+
 }
