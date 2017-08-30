@@ -19,6 +19,7 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.tsengvn.typekit.TypekitContextWrapper;
 
 import org.json.JSONObject;
@@ -49,6 +50,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        FirebaseInstanceId.getInstance().getToken();
+
+        String token = FirebaseInstanceId.getInstance().getToken();
 
         FacebookSdk.setAutoLogAppEventsEnabled(true);
         FacebookSdk.setApplicationId("1224243417701535");

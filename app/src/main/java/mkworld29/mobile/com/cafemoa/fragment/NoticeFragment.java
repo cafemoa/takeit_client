@@ -50,7 +50,6 @@ public class NoticeFragment extends Fragment{
         rv.setHasFixedSize(true);
         rv.setLayoutManager(mLinearLayoutManager);
 
-
         return view;
     }
 

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "338063257572",
+    "firebase_url": "https://cafemoa-570c4.firebaseio.com",
+    "project_id": "cafemoa-570c4",
+    "storage_bucket": "cafemoa-570c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338063257572:android:7bb3113cca592411",
+        "android_client_info": {
+          "package_name": "mkworld29.mobile.com.cafemoa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "338063257572-coak0l3v71as3sjralqet6qfcl3o3e6b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFYzAn7twd0HYi-ZK7L0c0TH_ysMtdkP8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
