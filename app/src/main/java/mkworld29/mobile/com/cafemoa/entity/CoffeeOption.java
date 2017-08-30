@@ -10,13 +10,18 @@ public class CoffeeOption {
     private int  size;
     private boolean is_cold;
     private boolean is_whipping;
+    private int pk;
+    private String image_url;
 
-    public CoffeeOption(int shots, int size, boolean is_cold, boolean is_whipping)
+    public CoffeeOption(int shots, int size, boolean is_cold, boolean is_whipping, int pk)
     {
+
         this.shots = shots;
         this.size = size;
         this.is_cold = is_cold;
         this.is_whipping = is_whipping;
+        this.pk=pk;
+
     }
 
     public int getShots() {
@@ -49,5 +54,13 @@ public class CoffeeOption {
 
     public void setIs_whipping(boolean is_whipping) {
         this.is_whipping = is_whipping;
+    }
+
+    public int getPk() {
+        return pk;
+    }
+
+    public void setPk(int pk) {
+        this.pk = pk;
     }
 }

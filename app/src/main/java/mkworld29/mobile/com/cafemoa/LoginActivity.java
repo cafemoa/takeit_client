@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onResponse(Call<RetrofitConnection.Token> call, Response<RetrofitConnection.Token> response) {
                         if (response.code() == 200) {
-                            Log.d("TAG", response.body().token);
+
                             sp.put("Authorization", response.body().token);
                             Intent i=new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(i);

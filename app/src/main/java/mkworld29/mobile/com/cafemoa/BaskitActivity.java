@@ -18,6 +18,11 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +34,8 @@ import mkworld29.mobile.com.cafemoa.item.CardItem;
 import mkworld29.mobile.com.cafemoa.prefs.BasketPref;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,11 +48,14 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
 
     private Button btn_submit;
     private Retrofit retrofit;
+    private int cafe_pk;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baskit);
 
+        Intent intent = getIntent();
+        cafe_pk=intent.getIntExtra("cafe_pk", 0);
         retrofit=RetrofitInstance.getInstance(getApplicationContext());
         WindowManager w = getWindowManager();
         Display d = w.getDefaultDisplay();
@@ -104,24 +114,33 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         if(view.getId() == btn_submit.getId())
         {
-            List<RetrofitConnection.Order_option> options = new ArrayList<RetrofitConnection.Order_option>();
             String ids[] = BasketPref.getInstance(this).getSplitPrefsCurrentStorage();
+            RetrofitConnection.Order_option[] options = new RetrofitConnection.Order_option[ids.length];
             for(int i=0; i<ids.length; i++){
                 BasketItem item=BasketPref.getInstance(this).getBasket(ids[i]);
                 CoffeeOption option=item.getOption();
-                int beverage=Integer.parseInt(item.getId());
+
                 int shots=option.getShots();
                 int size=option.getSize();
                 boolean is_ice=option.is_cold();
                 boolean is_whipping=option.is_whipping();
-                options.add(new RetrofitConnection.Order_option(beverage,is_whipping,is_ice,size,shots));
+                int beverage=option.getPk();
+                options[i]=new RetrofitConnection.Order_option(beverage,is_whipping,is_ice,size,shots);
             }
+            RetrofitConnection.Order_Info info=new RetrofitConnection.Order_Info(0,options);
+            Gson gson = new Gson();
+            String option_json = gson.toJson(info);
+
             RetrofitConnection.payment_beverages service = retrofit.create(RetrofitConnection.payment_beverages.class);
-            final Call<ResponseBody> repos = service.repoContributors(0,options);
+            RequestBody body = RequestBody.create(MediaType.parse("application/json"), option_json);
+            final Call<ResponseBody> repos = service.repoContributors(cafe_pk,body);
             repos.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    if (response.code() == 200) {
+                    if (response.code() == 201) {
+                        Toast.makeText(getApplicationContext(), "주문이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                        BasketPref.getInstance(getApplicationContext()).removeAllBasket();
+                        finish();
                     }
                     else{
                         Toast.makeText(getApplicationContext(), "에러가 발생하였습니다.", Toast.LENGTH_SHORT).show();

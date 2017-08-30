@@ -14,7 +14,7 @@ import mkworld29.mobile.com.cafemoa.entity.CoffeeOption;
 
 public class BasketItem {
     String id;
-    String image;
+    String image_url;
     String cafe_name;
     String content;
     String price;
@@ -25,21 +25,11 @@ public class BasketItem {
                       String content,
                       String price,
                       CoffeeOption option) {
-        this.image = image;
+        this.image_url = image;
         this.cafe_name = cafe_name;
         this.content = content;
         this.price = price;
         this.option = option;
-
-    }
-
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public String getCafe_name() {
@@ -66,7 +56,6 @@ public class BasketItem {
         this.price = price;
     }
 
-
     public CoffeeOption getOption() {
         return option;
     }
@@ -81,6 +70,14 @@ public class BasketItem {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 
 }

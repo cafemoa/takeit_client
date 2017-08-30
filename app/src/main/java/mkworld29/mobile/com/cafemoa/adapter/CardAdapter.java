@@ -44,7 +44,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.tv_cafe_name.setText(noticeList.get(position).getCafe_name()); //?쒕ぉ
-        holder.tv_content.setText(noticeList.get(position).getContent());
+        holder.tv_content.setText(noticeList.get(position).getCafe_name());
         holder.tv_price.setText(String.valueOf(noticeList.get(position).getPrice()) + "원");
 
         ImageView target=holder.iv_profile;

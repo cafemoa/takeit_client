@@ -3,6 +3,7 @@ package mkworld29.mobile.com.cafemoa.adapter;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Point;
+import android.media.Image;
 import android.os.Build;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
@@ -69,7 +70,11 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
         holder.tv_cafe_name.setText(basketList.get(position).getCafe_name());
         holder.tv_content.setText(basketList.get(position).getContent());
         holder.tv_price.setText(String.valueOf(basketList.get(position).getPrice()));
-        holder.tv_is_cold.setText(String.valueOf(option.is_cold()));
+        Glide.with(context)
+                .load(basketList.get(position).getImage_url())
+                .placeholder(R.mipmap.ic_launcher)
+                .error(R.mipmap.ic_launcher)
+                .into(holder.iv_content);
 
         holder.tv_shots.setText(String.valueOf(option.getShots())+"샷");
 
@@ -177,6 +182,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
         View _v;
         Spinner spinner;
         CardView cv;
+        String image_url;
 
         public ViewHolder(View v) {
             super(v);
@@ -196,10 +202,11 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
             tv_size         = (TextView) v.findViewById(R.id.tv_size);
             spinner         = (Spinner)  v.findViewById(R.id.spinner_option);
             cv              = (CardView) v.findViewById(R.id.cv);
-
+            iv_content     = (ImageView) v.findViewById(R.id.iv_content);
             _v = v;
 
         }
     }
 }
+
 

@@ -27,7 +27,7 @@ public class RetrofitInstance {
                 @Override
                 public Response intercept(Chain chain) throws IOException {
                     String token=preference.get("Authorization");
-                    Log.d("TAG", token);
+                    //Log.d("TAG", token);
                     Request.Builder  requestBuilder = chain.request().newBuilder();
 
                     if(!token.equals("")){
