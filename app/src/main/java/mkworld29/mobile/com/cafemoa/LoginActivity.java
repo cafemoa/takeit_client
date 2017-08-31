@@ -2,8 +2,10 @@ package mkworld29.mobile.com.cafemoa;
 
 import android.content.Context;
 import android.content.Intent;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -75,15 +77,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 repos.enqueue(new Callback<RetrofitConnection.Token>() {
                     @Override
                     public void onResponse(Call<RetrofitConnection.Token> call, Response<RetrofitConnection.Token> response) {
-                        if (response.code() == 200) {
-
+                        if (response.code() == 200){
                             sp.put("Authorization", response.body().token);
-                            Intent i=new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(i);
-                            finish();
+                            send_fcmtoken();
                         }
                         else{
-
                             Toast.makeText(getApplicationContext(), "아이디와 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -154,5 +152,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
+    }
+    public void send_fcmtoken(){
+        RetrofitConnection.fcm_register service = retrofit.create(RetrofitConnection.fcm_register.class);
+        final String deviceID = android.provider.Settings.Secure.getString(getBaseContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        final String fcm_token=sp.get("FCM_TOKEN");
+        final Call<ResponseBody> repos=service.repoContributors(deviceID,fcm_token,true);
+        repos.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Intent i=new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.d("TAG", t.getLocalizedMessage());
+            }
+        });
     }
 }

@@ -141,7 +141,6 @@ public class RetrofitConnection {
     }
 
     public interface payment_beverages{
-        //@FormUrlEncoded
         @POST("order_beverage/{PK}")
         Call<ResponseBody> repoContributors(
                 @Path("PK") int pk,
@@ -149,4 +148,13 @@ public class RetrofitConnection {
         );
     }
 
+    public interface fcm_register{
+        @FormUrlEncoded
+        @POST("fcm/devices/")
+        Call<ResponseBody> repoContributors(
+                @Field("dev_id") String device_id,
+                @Field("reg_id") String token,
+                @Field("is_active") boolean is_active
+        );
+    }
 }
