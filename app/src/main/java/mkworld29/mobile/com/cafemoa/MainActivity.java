@@ -30,20 +30,26 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.zoyi.channel.plugin.android.ChannelException;
+import com.zoyi.channel.plugin.android.ChannelPlugin;
+import com.zoyi.channel.plugin.android.OnChannelPluginChangedListener;
+import com.zoyi.channel.plugin.android.OnCheckInListener;
+import com.zoyi.channel.plugin.android.push.ChannelPushClient;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import mkworld29.mobile.com.cafemoa.item.CardItem;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
 import mkworld29.mobile.com.cafemoa.adapter.CardAdapter;
-import mkworld29.mobile.com.cafemoa.item.CardItem;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnTouchListener ,View.OnClickListener{
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnTouchListener ,View.OnClickListener, OnChannelPluginChangedListener{
 
     private ViewFlipper flipper;
     private float initialX;
@@ -87,7 +93,9 @@ public class MainActivity extends AppCompatActivity
                     rv.setHasFixedSize(true);
                     rv.setLayoutManager(mLayoutManager);
                     List<RetrofitConnection.Recent_payment> info=response.body();
-                    List<CardItem> items = new ArrayList<>();
+                    if(info.size() == 0)
+                        return;
+                    List<CardItem> items = new ArrayList<CardItem>();
                     CardItem[] item = new CardItem[info.size()];
                     for(int i=0; i<info.size(); i++){
                         RetrofitConnection.Recent_payment now_payment=info.get(i);
@@ -100,7 +108,6 @@ public class MainActivity extends AppCompatActivity
                     Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_LONG).show();
                 }
             }
-
 
             @Override
             public void onFailure(Call<List<RetrofitConnection.Recent_payment>> call, Throwable t) {
@@ -204,6 +211,8 @@ public class MainActivity extends AppCompatActivity
             intent = new Intent(this, ReservationActivity.class);
         } else if (id == R.id.nav_settings) {
             intent = new Intent(this, ReservationActivity.class);
+        } else if (id == R.id.nav_talk){
+            checkInVeil();
         }
 
         if(intent !=null)
@@ -252,6 +261,11 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    private void checkInVeil() {
+                Intent intent = new Intent(MainActivity.this, VeilActivity.class);
+                startActivity(intent);
+    }
+
     @Override
     public void onClick(View v) {
         if(v.getId() == btn_reservation.getId())
@@ -265,6 +279,18 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         }
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        ChannelPlugin.removeOnChannelPluginChangedListener(this);
+        ChannelPlugin.checkOut();
+        super.onDestroy();
+    }
+
+    @Override
+    public void badgeChanged(int count) {
+        Log.i("Badge Changed", count + "");
     }
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
@@ -301,6 +327,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
+
 
     /**
      * Converting dp to pixel

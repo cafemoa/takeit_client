@@ -18,66 +18,61 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"></activity>
-
+            android:label="@string/app_name" />
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
-
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".SignUpAcitivity" />
-
-        <activity android:name=".ReservationActivity">
-        </activity>
-
+        <activity android:name=".ReservationActivity"></activity>
         <activity android:name=".CouponActivity" />
-
         <activity android:name=".PaymentActivity" />
-
         <activity android:name=".CouponDetailActivity" />
+        <activity android:name=".AccessTermsActivity" />
+        <activity android:name=".OptionActivity" />
+        <activity android:name=".CoffeeOptionActivity"></activity>
+        <activity android:name=".BaskitActivity"></activity>
 
-        <activity android:name=".AccessTermsActivity"></activity>
-
-        <activity android:name=".OptionActivity"></activity>
-
-        <activity android:name=".CoffeeOptionActivity">
-
-        </activity>
-
-        <activity android:name=".BaskitActivity">
-
-        </activity>
-
-        <service
-            android:name=".MyFirebaseMessagingService">
+        <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
-        <service
-            android:name=".MyFirebaseInstanceIDService">
+        <service android:name=".MyFirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@mipmap/ic_launcher" />
-        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <!--
+             Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
 
+        <provider
+            android:name="com.zoyi.channel.plugin.android.global.ChannelFileProvider"
+            android:authorities="mkworld29.mobile.com.cafemoa"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/ch_file_paths" />
+        </provider>
+
+        <activity android:name=".VeilActivity"></activity>
     </application>
 
 </manifest>
