@@ -24,6 +24,10 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.tsengvn.typekit.TypekitContextWrapper;
+import com.zoyi.channel.plugin.android.ChannelException;
+import com.zoyi.channel.plugin.android.ChannelPlugin;
+import com.zoyi.channel.plugin.android.CheckIn;
+import com.zoyi.channel.plugin.android.OnCheckInListener;
 
 import org.json.JSONObject;
 
@@ -82,6 +86,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onResponse(Call<RetrofitConnection.Token> call, Response<RetrofitConnection.Token> response) {
                         if (response.code() == 200){
                             sp.put("Authorization", response.body().token);
+                            
+                            CheckIn checkIn = CheckIn.create();
+
+                            ChannelPlugin.checkIn(checkIn, new OnCheckInListener() {
+                                @Override
+                                public void onSuccessed() {
+                                    Intent i=new Intent(LoginActivity.this, MainActivity.class);
+                                    startActivity(i);
+                                    finish();
+                                }
+                                @Override
+                                public void onFailed(ChannelException exception) {
+                                    Toast.makeText(LoginActivity.this,"Check In Failed", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
                             send_fcmtoken();
                         }
                         else{
@@ -118,6 +138,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 parameters.putString("fields", "id,name,email,gender,birthday");
                 graphRequest.setParameters(parameters);
                 graphRequest.executeAsync();
+
+
             }
 
             @Override

@@ -20,4 +20,7 @@
         <item>삭제</item>
     </string-array>
 
+    <string name="notification_title">TakeIt!</string>
+
+
 </resources>
