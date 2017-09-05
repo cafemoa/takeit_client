@@ -1,5 +1,6 @@
 package mkworld29.mobile.com.cafemoa;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Point;
@@ -114,6 +115,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         if(view.getId() == btn_submit.getId())
         {
+            final ProgressDialog pd = ProgressDialog.show(BaskitActivity.this, "주문중", "주문중 입니다.");
             String ids[] = BasketPref.getInstance(this).getSplitPrefsCurrentStorage();
             RetrofitConnection.Order_option[] options = new RetrofitConnection.Order_option[ids.length];
             for(int i=0; i<ids.length; i++){
@@ -145,6 +147,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
                     else{
                         Toast.makeText(getApplicationContext(), "에러가 발생하였습니다.", Toast.LENGTH_SHORT).show();
                     }
+                    pd.dismiss();
                 }
 
                 @Override
