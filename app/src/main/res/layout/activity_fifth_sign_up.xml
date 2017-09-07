@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="mkworld29.mobile.com.cafemoa.FirstSignUpActivity"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:src="@drawable/sign_up_app_bar"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="계정 만들기"
+        android:textSize="40sp"
+        android:textColor="#0c0c0c"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#0c0c0c"
+                android:textSize="20sp"
+                android:text="본인의 성별"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#0c0c0c"
+                android:textSize="20sp"
+                android:text="을 택해주세요."/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:layout_marginRight="25dp"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/btn_man"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:background="#e5e5e5"
+                android:layout_weight="1"
+                android:textColor="#fcfcfc"
+                android:textSize="18sp"
+                android:text="남"/>
+
+
+            <Button
+                android:id="@+id/btn_woman"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:background="#e5e5e5"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:textColor="#fcfcfc"
+                android:textSize="18sp"
+                android:text="여"/>
+
+            </LinearLayout>
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="100dp"
+            android:layout_height="55dp"
+            android:background="@drawable/btn_sign_up"
+            android:textColor="#fcfcfc"
+            android:textSize="25sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="다음"/>
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

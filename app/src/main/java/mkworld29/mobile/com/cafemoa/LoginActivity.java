@@ -21,6 +21,7 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.felipecsl.gifimageview.library.GifImageView;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.tsengvn.typekit.TypekitContextWrapper;
 import com.zoyi.channel.plugin.android.ChannelException;
@@ -28,9 +29,11 @@ import com.zoyi.channel.plugin.android.ChannelPlugin;
 import com.zoyi.channel.plugin.android.CheckIn;
 import com.zoyi.channel.plugin.android.OnCheckInListener;
 
+import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
@@ -42,31 +45,26 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
 
     Retrofit retrofit;
     EditText id;
     EditText pw;
     Button login;
-    TextView tv_sign_up;
     SharedPreference sp;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
 
         FirebaseInstanceId.getInstance().getToken();
 
         String token = FirebaseInstanceId.getInstance().getToken();
 
-        FacebookSdk.setAutoLogAppEventsEnabled(true);
-        FacebookSdk.setApplicationId("1224243417701535");
-        FacebookSdk.sdkInitialize(this.getApplicationContext());
-        setContentView(R.layout.activity_login);
-
-        tv_sign_up = (TextView)findViewById(R.id.tv_sign_up);
-        tv_sign_up.setOnClickListener(this);
 
         id=(EditText)findViewById(R.id.login_id);
         pw=(EditText)findViewById(R.id.login_pwd);
@@ -83,7 +81,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onResponse(Call<RetrofitConnection.Token> call, Response<RetrofitConnection.Token> response) {
                         if (response.code() == 200){
                             sp.put("Authorization", response.body().token);
-                            
+
                             CheckIn checkIn = CheckIn.create();
 
                             ChannelPlugin.checkIn(checkIn, new OnCheckInListener() {
@@ -114,41 +112,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
-        callbackManager = CallbackManager.Factory.create();
-
-        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
-        loginButton.setReadPermissions(Arrays.asList("public_profile", "email"));
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                GraphRequest graphRequest = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
-                    @Override
-                    public void onCompleted(JSONObject object, GraphResponse response) {
-                        Log.v("result",object.toString());
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                    }
-                });
-
-                Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,name,email,gender,birthday");
-                graphRequest.setParameters(parameters);
-                graphRequest.executeAsync();
-
-
-            }
-
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.e("LoginErr",error.toString());
-            }
-        });
-
         retrofit= RetrofitInstance.getInstance(getApplicationContext());
         sp=SharedPreference.getInstance(getApplicationContext());
     }
@@ -157,18 +120,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
-    }
-
-    @Override
-    public void onClick(View view) {
-
-        Intent intent = null;
-
-        if(view.getId()==tv_sign_up.getId())
-        {
-            intent = new Intent(this, AccessTermsActivity.class);
-        }
-        startActivity(intent);
     }
 
     @Override

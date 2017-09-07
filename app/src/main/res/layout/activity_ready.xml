@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000"
+    tools:context="mkworld29.mobile.com.cafemoa.LoginActivity"
+    >
+
+
+    <com.felipecsl.gifimageview.library.GifImageView
+        android:id="@+id/gifImageView"
+        android:scaleType="centerCrop"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:src="@drawable/login_main_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="bottom"
+        android:background="#00000000"
+        android:weightSum="10"
+        android:layout_marginBottom="180dp">
+
+
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="#00000000"
+            android:orientation="vertical"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            android:layout_weight="5">
+
+
+            <com.facebook.login.widget.LoginButton
+                xmlns:facebook="schemas.android.com/apk/res-auto"
+                android:id="@+id/login_button"
+                android:layout_width="match_parent"
+                android:layout_height="33dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:scaleType="centerInside"
+                facebook:login_text="Facebook으로 가입/로그인"
+                facebook:logout_text="Facebook 로그아웃"
+                />
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:background="#00000000"
+                android:weightSum="3">
+
+
+                <TextView
+                    android:id="@+id/tv_sign_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:textColor="#fcfcfc"
+                    android:textStyle="bold"
+                    android:text="이메일로 가입하기"/>
+
+
+                <TextView
+                    android:id="@+id/tv_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:textColor="#fcfcfc"
+                    android:textStyle="bold"
+                    android:text="로그인"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

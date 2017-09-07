@@ -5,9 +5,7 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="#ffffff"
-    app:theme="@style/ThemeOverlay.AppCompat.Light"
-    app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
+    android:background="@drawable/app_bar"
     app:layout_scrollFlags="scroll|enterAlways"
     app:layout_collapseMode="pin">
 
@@ -16,9 +14,15 @@
         android:layout_height="match_parent">
 
         <!-- This is a centered logo -->
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/menu_bar"
+            android:layout_gravity="left|center_vertical" />
         <ImageView
             android:id="@+id/toolbar_logo"
-            android:src="@drawable/banner"
+            android:src="@drawable/app_bar_logo"
             android:padding="13dp"
             android:layout_width="220dp"
             android:layout_height="fill_parent"
@@ -26,6 +30,14 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
             android:layout_gravity="center"/>
+
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/alarm"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="20dp"/>
 
         <!-- This is a centered title -->
         <!--

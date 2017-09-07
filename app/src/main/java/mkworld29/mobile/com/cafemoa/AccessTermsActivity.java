@@ -222,7 +222,7 @@ public class AccessTermsActivity extends Activity implements View.OnClickListene
         }
         else if(view.getId() == btn_next.getId())
         {
-            Intent intent = new Intent(this, SignUpAcitivity.class);
+            Intent intent = new Intent(this, FirstSignUpActivity.class);
             startActivity(intent);
             finish();
         }
