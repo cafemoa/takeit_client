@@ -1,5 +1,6 @@
 package mkworld29.mobile.com.cafemoa;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.Settings;
@@ -53,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText pw;
     Button login;
     SharedPreference sp;
+    ProgressDialog pd;
 
 
 
@@ -72,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pd = ProgressDialog.show(LoginActivity.this, "로그인중", "로그인중 입니다.");
                 RetrofitConnection.login service = retrofit.create(RetrofitConnection.login.class);
                 String id_str=id.getText().toString();
                 String pw_str=pw.getText().toString();
@@ -102,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                         else{
                             Toast.makeText(getApplicationContext(), "아이디와 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
                         }
+                        pd.dismiss();
                     }
 
                     @Override
@@ -134,6 +138,7 @@ public class LoginActivity extends AppCompatActivity {
         repos.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
                 Intent i=new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();

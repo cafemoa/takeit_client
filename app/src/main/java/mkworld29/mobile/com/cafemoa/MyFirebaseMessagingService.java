@@ -54,7 +54,7 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
 
-        msg = remoteMessage.getNotification().getBody();
+        msg = remoteMessage.getData().get("message");
 
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated. See sendNotification method below.
@@ -68,7 +68,8 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
                 new Intent(this, MainActivity.class), 0);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this).setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("FCM")
+                .setContentTitle("Take It!")
+                .setContentIntent(contentIntent)
                 .setContentText(msg)
                 .setAutoCancel(true)
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
