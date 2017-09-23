@@ -72,6 +72,17 @@ public class BasketPref {
         removeAllBasket();
     }
 
+    public void addString(String key, String add)
+    {
+        editor.putString(key,add);
+        editor.commit();
+    }
+
+    public String getString(String target)
+    {
+        return settings.getString(target,"");
+    }
+
     public void addBasket(BasketItem item)
     {
         if(item == null)

@@ -6,6 +6,9 @@
     android:background="#f5f5f5"
     android:layout_height="wrap_content">
 <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -13,44 +16,87 @@
     tools:showIn="@layout/app_bar_main"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp">
+
     <ViewFlipper
-        android:layout_marginTop="5dp"
         android:id="@+id/main_flipper"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="160dp">
 
     </ViewFlipper>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal">
+        <Button
+            android:id="@+id/imb_prev"
+            android:layout_width="30dp"
+            android:layout_height="33dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/login_arrow"
+            android:layout_marginLeft="5dp" />
 
         <Button
-            android:id="@+id/btn_reservation"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@drawable/btn_reservation"
-            android:layout_marginRight="2px"
-            android:textSize="30sp"/>
+            android:id="@+id/imb_next"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"/>
 
-        <Button
-            android:id="@+id/btn_coupon"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="30sp"
-            android:layout_marginLeft="2px"
-            android:background="@drawable/btn_coupon" />
+    </RelativeLayout>
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<Button-->
+            <!--android:id="@+id/btn_reservation"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@drawable/btn_reservation"-->
+            <!--android:layout_marginRight="2px"-->
+            <!--android:textSize="30sp"/>-->
+
+        <!--<Button-->
+            <!--android:id="@+id/btn_coupon"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:textSize="30sp"-->
+            <!--android:layout_marginLeft="2px"-->
+            <!--android:background="@drawable/btn_coupon" />-->
 
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+
+
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/recyclerView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"/>-->
+
+
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/anictae"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/areumdaun_sesang"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/evisu"/>
 
 
 </LinearLayout>

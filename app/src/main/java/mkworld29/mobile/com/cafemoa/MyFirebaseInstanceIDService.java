@@ -16,6 +16,7 @@ package mkworld29.mobile.com.cafemoa;
  * limitations under the License.
  */
 
+import mkworld29.mobile.com.cafemoa.prefs.BasketPref;
 import mkworld29.mobile.com.cafemoa.retrofit.SharedPreference;
 import android.util.Log;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -23,7 +24,6 @@ import com.google.firebase.iid.FirebaseInstanceIdService;
 
 
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
-    SharedPreference sp;
     private static final String TAG = "MyFirebaseIIDService";
 
     /**
@@ -36,8 +36,8 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     public void onTokenRefresh() {
         // Get updated InstanceID token.
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-        Log.d(TAG, "Refreshed token: " + refreshedToken);
-        sp=SharedPreference.getInstance();
+        Log.d(TAG, "JAEMIN Refreshed token: " + refreshedToken);
+        BasketPref.getInstance(null).addString("FCM_TOKEN",refreshedToken);
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
         // Instance ID token to your app server.
@@ -55,6 +55,6 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
      */
     private void sendRegistrationToServer(String token) {
         // TODO: Implement this method to send token to your app server.
-        sp.put("FCM_TOKEN", token);
+        Log.d("MyFirebaseInstance",token);
     }
 }

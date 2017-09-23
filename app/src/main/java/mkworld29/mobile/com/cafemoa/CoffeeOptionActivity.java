@@ -27,6 +27,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.tsengvn.typekit.TypekitContextWrapper;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import mkworld29.mobile.com.cafemoa.entity.CoffeeOption;
 import mkworld29.mobile.com.cafemoa.item.BasketItem;
 import mkworld29.mobile.com.cafemoa.prefs.BasketPref;
@@ -141,7 +145,7 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
 
     private void saveBasketItem()
     {
-        String content, image, cafe_name, price;
+        String content, image, cafe_name, price, time;
         int shots;
         int size;
         boolean is_whipping, is_cold;
@@ -162,6 +166,10 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
             is_cold = true;
         else is_cold = false;
 
+        DateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm:ss");
+        Date date = new Date();
+        time = dateFormat.format(date);
+
 
         shots = Integer.parseInt(""+String.valueOf(spinner_shots.getSelectedItem()).charAt(0));
 
@@ -172,7 +180,7 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
 
         CoffeeOption option = new CoffeeOption(shots,size,is_cold,is_whipping,pk);
 
-        BasketItem item = new BasketItem(image,cafe_name,content,price,option);
+        BasketItem item = new BasketItem(image,cafe_name,content,price,time, 1,option);
 
         BasketPref.getInstance(this).addBasket(item);
     }

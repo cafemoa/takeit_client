@@ -32,10 +32,30 @@
 
     </android.support.v7.widget.RecyclerView>
 
-    <Button
-        android:id="@+id/btn_submit"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="주문하기"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/btn_order"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/baskit_orange_box"
+            android:text="주문하기"/>
+
+
+        <Button
+            android:id="@+id/btn_add_order"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/baskit_yellow_box"
+            android:text="주문하기"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>

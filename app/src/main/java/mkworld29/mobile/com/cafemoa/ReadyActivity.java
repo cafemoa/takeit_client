@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 
+import mkworld29.mobile.com.cafemoa.prefs.BasketPref;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
 import mkworld29.mobile.com.cafemoa.retrofit.SharedPreference;
@@ -61,6 +62,8 @@ public class ReadyActivity extends AppCompatActivity implements View.OnClickList
         FacebookSdk.setAutoLogAppEventsEnabled(true);
         FacebookSdk.setApplicationId("1224243417701535");
         FacebookSdk.sdkInitialize(this.getApplicationContext());
+
+        BasketPref.getInstance(getApplicationContext());
 
         callbackManager = CallbackManager.Factory.create();
 

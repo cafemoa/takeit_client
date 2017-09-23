@@ -25,6 +25,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import mkworld29.mobile.com.cafemoa.BaskitActivity;
@@ -70,18 +72,27 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
         holder.tv_cafe_name.setText(basketList.get(position).getCafe_name());
         holder.tv_content.setText(basketList.get(position).getContent());
         holder.tv_price.setText(String.valueOf(basketList.get(position).getPrice()));
+        holder.tv_time.setText(basketList.get(position).getTime());
         Glide.with(context)
                 .load(basketList.get(position).getImage_url())
                 .placeholder(R.mipmap.ic_launcher)
                 .error(R.mipmap.ic_launcher)
                 .into(holder.iv_content);
 
-        holder.tv_shots.setText(String.valueOf(option.getShots())+"샷");
+        if(basketList.get(position).getAmount() == 1)
+            holder.tv_amount.setVisibility(View.GONE);
+        else
+            holder.tv_amount.setText("수량 " + basketList.get(position).getAmount() + "잔");
+
+        if(option.getShots() == 0)
+            holder.tv_shots.setText("샷 추가 없음");
+        else holder.tv_shots.setText(String.valueOf(option.getShots())+"샷");
 
         if(option.is_whipping())
-            holder.tv_is_whipping.setText(String.valueOf("휘핑 O"));
-        else
-            holder.tv_is_whipping.setText(String.valueOf("휘핑 X"));
+            holder.tv_is_whipping.setText(String.valueOf("휘핑 추가"));
+        else {
+            holder.tv_is_whipping.setVisibility(View.GONE);
+        }
 
 
         if(option.is_cold())
@@ -92,13 +103,13 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
         switch(option.getSize())
         {
             case 0:
-                holder.tv_size.setText("M");
+                holder.tv_size.setText("( M )");
                 break;
             case 1:
-                holder.tv_size.setText("L");
+                holder.tv_size.setText("( L )");
                 break;
             case 2:
-                holder.tv_size.setText("XL");
+                holder.tv_size.setText("( XL )");
                 break;
 
         }
@@ -177,7 +188,9 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
                 tv_is_whipping,
                 tv_is_cold,
                 tv_price,
-                tv_size;
+                tv_size,
+                tv_time,
+                tv_amount;
         ImageView iv_content;
         View _v;
         Spinner spinner;
@@ -200,6 +213,8 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
             tv_is_whipping  = (TextView) v.findViewById(R.id.tv_is_whipping);
             tv_shots        = (TextView) v.findViewById(R.id.tv_shots);
             tv_size         = (TextView) v.findViewById(R.id.tv_size);
+            tv_time         = (TextView) v.findViewById(R.id.tv_time);
+            tv_amount       = (TextView) v.findViewById(R.id.tv_amount);
             spinner         = (Spinner)  v.findViewById(R.id.spinner_option);
             cv              = (CardView) v.findViewById(R.id.cv);
             iv_content     = (ImageView) v.findViewById(R.id.iv_content);

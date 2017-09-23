@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
 import mkworld29.mobile.com.cafemoa.item.CardItem;
+
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +24,7 @@ import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -42,12 +44,16 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnTouchListener ,View.OnClickListener, OnChannelPluginChangedListener{
+        implements NavigationView.OnNavigationItemSelectedListener,
+        View.OnTouchListener ,
+        View.OnClickListener,
+        OnChannelPluginChangedListener,
+        ViewFlipperAction.ViewFlipperCallback{
 
     private ViewFlipper flipper;
     private float initialX;
     private Retrofit retrofit;
-    private Button btn_reservation, btn_coupon;
+    private Button imb_prev, imb_next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +62,7 @@ public class MainActivity extends AppCompatActivity
 
         retrofit = RetrofitInstance.getInstance(getApplicationContext());
         establishView();
-        startRecyclerView();
+        //startRecyclerView();
         startFlipper();
         startNavigation();
 
@@ -64,11 +70,11 @@ public class MainActivity extends AppCompatActivity
 
     private void establishView()
     {
-        btn_reservation = (Button)findViewById(R.id.btn_reservation);
-        btn_reservation.setOnClickListener(this);
+        imb_next = (Button) findViewById(R.id.imb_next);
+        imb_prev = (Button) findViewById(R.id.imb_prev);
 
-        btn_coupon = (Button)findViewById(R.id.btn_coupon);
-        btn_coupon.setOnClickListener(this);
+        imb_next.setOnClickListener(this);
+        imb_prev.setOnClickListener(this);
     }
 
     private void startRecyclerView()
@@ -98,7 +104,7 @@ public class MainActivity extends AppCompatActivity
                     rv.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
                     rv.setAdapter(new CardAdapter(getApplicationContext(), items));
                 }else{
-                    Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -112,17 +118,20 @@ public class MainActivity extends AppCompatActivity
     private void startNavigation()
     {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.getMenu().close();
         setSupportActionBar(toolbar);
 
         final ActionBar ab = getSupportActionBar();
-        ab.setDisplayShowHomeEnabled(true);
-        ab.setDisplayHomeAsUpEnabled(true);
-        ab.setDisplayShowCustomEnabled(true);
-        ab.setDisplayShowTitleEnabled(true);
+        ab.setDisplayShowHomeEnabled(false);
+        ab.setDisplayHomeAsUpEnabled(false);
+        ab.setDisplayShowCustomEnabled(false);
+        ab.setDisplayShowTitleEnabled(false);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //drawer.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.menu_bar,getTheme()));
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -181,7 +190,13 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_alarm) {
+            // Display Alarm Layout
+            return true;
+        }
+        else if(id==R.id.action_basket){
+            Intent intent = new Intent(this, BaskitActivity.class);
+            startActivity(intent);
             return true;
         }
 
@@ -248,6 +263,7 @@ public class MainActivity extends AppCompatActivity
 
                     Log.d("TOUCH TAGGG!!!!","show,Prev");
                     flipper.showPrevious();
+
                 }
                 break;
         }
@@ -261,15 +277,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == btn_reservation.getId())
+        if(v.getId() == imb_next.getId())
         {
-            Intent intent = new Intent(this, ReservationActivity.class);
-            startActivity(intent);
+            flipper.showNext();
         }
-        else if(v.getId() == btn_coupon.getId())
+        else if(v.getId() == imb_prev.getId())
         {
-            Intent intent = new Intent(this, CouponActivity.class);
-            startActivity(intent);
+            flipper.showPrevious();
         }
 
     }
@@ -328,5 +342,11 @@ public class MainActivity extends AppCompatActivity
     private int dpToPx(int dp) {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+    }
+
+    @Override
+    public void onFlipperActionCallback(int position)
+    {
+
     }
 }

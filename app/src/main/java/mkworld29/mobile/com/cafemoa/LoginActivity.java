@@ -37,6 +37,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 
+import mkworld29.mobile.com.cafemoa.prefs.BasketPref;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
 import mkworld29.mobile.com.cafemoa.retrofit.SharedPreference;
@@ -47,7 +48,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class LoginActivity extends AppCompatActivity {
-    private CallbackManager callbackManager;
 
     Retrofit retrofit;
     EditText id;
@@ -67,6 +67,8 @@ public class LoginActivity extends AppCompatActivity {
 
         String token = FirebaseInstanceId.getInstance().getToken();
 
+        final String fcm_token= BasketPref.getInstance(getApplicationContext()).getString("FCM_TOKEN");
+        Log.d("TAG", ","+fcm_token);
 
         id=(EditText)findViewById(R.id.login_id);
         pw=(EditText)findViewById(R.id.login_pwd);
@@ -90,9 +92,10 @@ public class LoginActivity extends AppCompatActivity {
                             ChannelPlugin.checkIn(checkIn, new OnCheckInListener() {
                                 @Override
                                 public void onSuccessed() {
-                                    Intent i=new Intent(LoginActivity.this, MainActivity.class);
-                                    startActivity(i);
-                                    finish();
+                                    send_fcmtoken();
+//                                    Intent i=new Intent(LoginActivity.this, MainActivity.class);
+//                                    startActivity(i);
+//                                    finish();
                                 }
                                 @Override
                                 public void onFailed(ChannelException exception) {
@@ -100,7 +103,6 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             });
 
-                            send_fcmtoken();
                         }
                         else{
                             Toast.makeText(getApplicationContext(), "아이디와 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
@@ -117,13 +119,12 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         retrofit= RetrofitInstance.getInstance(getApplicationContext());
-        sp=SharedPreference.getInstance(getApplicationContext());
+        sp=SharedPreference.getInstance();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -133,7 +134,8 @@ public class LoginActivity extends AppCompatActivity {
     public void send_fcmtoken(){
         RetrofitConnection.fcm_register service = retrofit.create(RetrofitConnection.fcm_register.class);
         final String deviceID = android.provider.Settings.Secure.getString(getBaseContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-        final String fcm_token=sp.get("FCM_TOKEN");
+        final String fcm_token= BasketPref.getInstance(getApplicationContext()).getString("FCM_TOKEN");
+        Log.d("TAG", deviceID+","+fcm_token);
         final Call<ResponseBody> repos=service.repoContributors(deviceID,fcm_token,true);
         repos.enqueue(new Callback<ResponseBody>() {
             @Override

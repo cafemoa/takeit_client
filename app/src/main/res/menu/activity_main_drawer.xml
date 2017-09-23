@@ -4,25 +4,25 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_reservation"
-            android:icon="@drawable/nav_graph"
-            android:title="사용 내역 조회" />
+            android:icon="@drawable/side_bar_profile"
+            android:title="프로필설정" />
         <item
             android:id="@+id/nav_coupon"
-            android:icon="@drawable/nav_store"
-            android:title="나의 매장" />
+            android:icon="@drawable/side_bar_coupon"
+            android:title="쿠폰" />
     <item
         android:id="@+id/nav_event"
-        android:icon="@drawable/nav_calendar"
-        android:title="이벤트" />
+        android:icon="@drawable/side_bar_order"
+        android:title="최근주문내역" />
     <item
         android:id="@+id/nav_settings"
-        android:icon="@drawable/nav_settings"
-        android:title="설정" />
+        android:icon="@drawable/side_bar_card"
+        android:title="결제카드" />
 
         <item
             android:id="@+id/nav_talk"
-            android:icon="@drawable/nav_graph"
-            android:title="문의채팅"/>
+            android:icon="@drawable/side_bar_chat"
+            android:title="고객센터"/>
 </group>
 <!--
     <item android:title="Communicate">

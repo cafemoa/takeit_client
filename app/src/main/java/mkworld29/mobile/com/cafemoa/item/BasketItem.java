@@ -18,18 +18,32 @@ public class BasketItem {
     String cafe_name;
     String content;
     String price;
+    String time;
+    int amount;
     CoffeeOption option;
 
     public BasketItem(String image,
                       String cafe_name,
                       String content,
                       String price,
+                      String time,
+                      int amount,
                       CoffeeOption option) {
         this.image_url = image;
         this.cafe_name = cafe_name;
         this.content = content;
         this.price = price;
+        this.time = time;
+        this.amount = amount;
         this.option = option;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public String getCafe_name() {
@@ -50,6 +64,14 @@ public class BasketItem {
 
     public String getPrice() {
         return price;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public void setPrice(String price) {
