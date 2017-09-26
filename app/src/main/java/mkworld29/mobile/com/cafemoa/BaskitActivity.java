@@ -17,6 +17,7 @@ import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -47,9 +48,11 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
 
     public static int mWidthPixels, mHeightPixels;
 
-    private Button btn_submit;
+    private TextView tv_title;
+    private Button btn_order, btn_add_order;
     private Retrofit retrofit;
     private int cafe_pk;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +69,13 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
         mWidthPixels = metrics.widthPixels;
         mHeightPixels = metrics.heightPixels;
 
-        btn_submit = (Button) findViewById(R.id.btn_submit);
-        btn_submit.setOnClickListener(this);
+        btn_order = (Button) findViewById(R.id.btn_order);
+        btn_add_order = (Button) findViewById(R.id.btn_add_order);
+        btn_order.setOnClickListener(this);
+        btn_add_order.setOnClickListener(this);
+
+        tv_title = (TextView) findViewById(R.id.tv_title);
+        tv_title.setText("장바구니");
 
         // 상태바와 메뉴바의 크기를 포함해서 재계산
         if (Build.VERSION.SDK_INT >= 14 && Build.VERSION.SDK_INT < 17)
@@ -113,7 +121,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == btn_submit.getId())
+        if(view.getId() == btn_order.getId())
         {
             final ProgressDialog pd = ProgressDialog.show(BaskitActivity.this, "주문중", "주문중 입니다.");
             String ids[] = BasketPref.getInstance(this).getSplitPrefsCurrentStorage();
