@@ -34,25 +34,19 @@ public class OrderPagerAdapter extends PagerAdapter {
         View v = null;
         if(position==0){
             v = mInflater.inflate(R.layout.order_inflate_one, null);
-            TextView tv_test = (TextView) v.findViewById(R.id.tv_test);
-            tv_test.setText("INflate One");
         }
         else if(position==1){
             v = mInflater.inflate(R.layout.order_inflate_one, null);
-            TextView tv_test = (TextView) v.findViewById(R.id.tv_test);
-            tv_test.setText("INflate Two");
+
         }else if(position==2){
             v = mInflater.inflate(R.layout.order_inflate_one, null);
-            TextView tv_test = (TextView) v.findViewById(R.id.tv_test);
-            tv_test.setText("INflate Three");
+
         }else if(position==3){
             v = mInflater.inflate(R.layout.order_inflate_one, null);
-            TextView tv_test = (TextView) v.findViewById(R.id.tv_test);
-            tv_test.setText("INflate Four");
+
         }else if(position==4){
             v = mInflater.inflate(R.layout.order_inflate_one, null);
-            TextView tv_test = (TextView) v.findViewById(R.id.tv_test);
-            tv_test.setText("INflate Five");
+
         }
 
         ((ViewPager)pager).addView(v, 0);
