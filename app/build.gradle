@@ -13,10 +13,11 @@ android {
     defaultConfig {
         applicationId "mkworld29.mobile.com.cafemoa"
         minSdkVersion 16
-        targetSdkVersion 19
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
