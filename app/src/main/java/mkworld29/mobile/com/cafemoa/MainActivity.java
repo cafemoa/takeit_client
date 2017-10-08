@@ -29,15 +29,21 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.zoyi.channel.plugin.android.ChannelPlugin;
 import com.zoyi.channel.plugin.android.OnChannelPluginChangedListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import mkworld29.mobile.com.cafemoa.item.MainCafeItem;
+import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity
@@ -68,14 +74,35 @@ public class MainActivity extends AppCompatActivity
     }
     private void setCafeList(){
         recyclerView = (RecyclerView)findViewById(R.id.main_recyclerView);
+
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-        data.add(new MainCafeItem("아름다운 세상","숭실대학교 학생회관 4층", "#요거바라 #그린티프라프치노", R.drawable.main_picture1, true));
-        data.add(new MainCafeItem("에비수","숭실대학교 형남공학관 지하1층", "#요거바라 #그린티프라프치노", R.drawable.main_picture2, false));
-        data.add(new MainCafeItem("아름다운 세상","숭실대학교 학생회관 4층", "#요거바라 #그린티프라프치노", R.drawable.main_picture1, false));
 
-        recyclerView.setAdapter(new MainCafeAdapter(getApplicationContext(),data,R.layout.activity_main));
+        RetrofitConnection.get_cafes service = retrofit.create(RetrofitConnection.get_cafes.class);
+        final Call<List<RetrofitConnection.Cafe>> repos = service.repoContributors();
+        repos.enqueue(new Callback<List<RetrofitConnection.Cafe>>() {
+            @Override
+            public void onResponse(Call<List<RetrofitConnection.Cafe>> call, Response<List<RetrofitConnection.Cafe>> response) {
+                if(response.code()==200){
+                    for(int i=0; i<response.body().size(); i++) {
+                        RetrofitConnection.Cafe cafe=response.body().get(i);
+                        //Log.d("TAG",cafe.cafe_image);
+                        data.add(new MainCafeItem(cafe.pk,cafe.name, cafe.locationString, cafe.tag, "http://rest.takeitnow.kr"+cafe.cafe_image, true));
+                    }
+                    recyclerView.setAdapter(new MainCafeAdapter(getApplicationContext(), data, R.layout.activity_main));
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<RetrofitConnection.Cafe>> call, Throwable t) {
+                Log.d("TAG",t.getLocalizedMessage());
+            }
+        });
+
     }
 
     private void establishView()
@@ -350,7 +377,8 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-/*
+
+    /*
     private void startRecyclerView()
     {
         RetrofitConnection.recent_payment_list_by_id service = retrofit.create(RetrofitConnection.recent_payment_list_by_id.class);
@@ -387,6 +415,6 @@ public class MainActivity extends AppCompatActivity
                 Log.d("TAG",t.getLocalizedMessage());
             }
         });
-    }
-    */
+    }*/
+
 }

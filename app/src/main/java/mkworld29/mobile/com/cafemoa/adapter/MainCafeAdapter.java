@@ -5,11 +5,14 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +42,13 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
     @Override
     public void onBindViewHolder(MainCafeAdapter.ViewHolder holder, int position) {
         final MainCafeItem item = items.get(position);
-        Drawable drawable = ContextCompat.getDrawable(context, item.getImage());
-        holder.image.setBackground(drawable);
+        Log.d("TAG",item.getImage());
+        Glide.with(context)
+                .load(item.getImage())
+                .placeholder(R.mipmap.ic_launcher)
+
+                .error(R.mipmap.ic_launcher)
+                .into(holder.image);
         //holder.image.setImageResource(item.getImage());
         holder.name.setText(item.getName());
         holder.tag.setText(item.getTag());
