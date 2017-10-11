@@ -1,6 +1,7 @@
 package mkworld29.mobile.com.cafemoa.adapter;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +55,11 @@ public class AlertAdapter extends BaseAdapter{
 
         TextView content=(TextView)convertView.findViewById(R.id.alert_content);
         content.setText(item.getContent());
+
+        ImageView alert_image=(ImageView) convertView.findViewById(R.id.alert_event_image);
+        if(item.getIs_event()) alert_image.setImageResource(R.drawable.alarm_event1);
+        else alert_image.setImageResource(R.drawable.alarm_megaphone);
+
 
         return convertView;
     }

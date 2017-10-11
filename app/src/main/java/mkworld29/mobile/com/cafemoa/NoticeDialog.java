@@ -6,16 +6,27 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import mkworld29.mobile.com.cafemoa.adapter.AlertAdapter;
+import mkworld29.mobile.com.cafemoa.adapter.MainCafeAdapter;
 import mkworld29.mobile.com.cafemoa.item.AlertItem;
+import mkworld29.mobile.com.cafemoa.item.MainCafeItem;
+import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
+import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by ABCla on 2017-10-08.
@@ -26,6 +37,7 @@ public class NoticeDialog extends Dialog {
     AlertAdapter alertAdapter;
     ListView listView;
     Button back;
+    Retrofit retrofit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,18 +53,41 @@ public class NoticeDialog extends Dialog {
         });
         listView=(ListView)findViewById(R.id.listview);
 
-        ArrayList<AlertItem> data= new ArrayList<>();
+       data= new ArrayList<>();
 
-        data.add(new AlertItem("형남공학과 2층 에비수", "3시~5시까지 전제품 10퍼센트 할인행사중!"));
-        data.add(new AlertItem("학생회관 4층 아름다운세상", "신메뉴 요거바라 출시! 많은 관심 부탁드려요~"));
+        retrofit= RetrofitInstance.getInstance(getContext());
+
+        RetrofitConnection.get_alerts service = retrofit.create(RetrofitConnection.get_alerts.class);
+        final Call<List<RetrofitConnection.Alert>> repos = service.repoContributors();
+        repos.enqueue(new Callback<List<RetrofitConnection.Alert>>() {
+            @Override
+            public void onResponse(Call<List<RetrofitConnection.Alert>> call, Response<List<RetrofitConnection.Alert>> response) {
+                if(response.code()==200){
+                    for(int i=0; i<response.body().size(); i++) {
+                        RetrofitConnection.Alert item=response.body().get(i);
+                        data.add(new AlertItem(item.cafe_name, item.content,item.is_event));
+                    }
+                    alertAdapter=new AlertAdapter(getContext(),R.layout.item_alert,data);
+                    listView.setAdapter(alertAdapter);
+                }
+                else{
+                    Toast.makeText(getContext(), "Error : "+ response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<RetrofitConnection.Alert>> call, Throwable t) {
+                Log.d("TAG",t.getLocalizedMessage());
+            }
+        });
+
+
 
         //WindowManager.LayoutParams lpWindow = new WindowManager.LayoutParams();
         //lpWindow.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         //lpWindow.dimAmount = 0.5f;
         //getWindow().setAttributes(lpWindow);
 
-        alertAdapter=new AlertAdapter(getContext(),R.layout.item_alert,data);
-        listView.setAdapter(alertAdapter);
         listView.setHeaderDividersEnabled(false);
         listView.setFooterDividersEnabled(false);
 

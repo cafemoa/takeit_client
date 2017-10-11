@@ -54,7 +54,7 @@ public class CouponActivity extends AppCompatActivity {
 
         tv_cafe_address = (TextView)findViewById(R.id.tv_cafe_address);
         tv_cafe_name = (TextView)findViewById(R.id.tv_cafe_name);
-        iv_cafe_logo = (ImageView) findViewById(R.id.iv_cafe_logo);
+        //iv_cafe_logo = (ImageView) findViewById(R.id.iv_cafe_logo);
         gv = (GridView)findViewById(R.id.gv);
         gv.setNumColumns(5);
 
@@ -84,7 +84,7 @@ public class CouponActivity extends AppCompatActivity {
 
                     tv_cafe_address.setText(item[0].getCafe_address());
                     tv_cafe_name.setText(item[0].getCafe_name());
-                    iv_cafe_logo.setImageResource(item[0].getCafe_logo());
+                    //iv_cafe_logo.setImageResource(item[0].getCafe_logo());
 
                     StampAdapter stampAdapter = new StampAdapter(
                             getApplicationContext(),
