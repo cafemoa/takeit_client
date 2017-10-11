@@ -32,6 +32,7 @@ import retrofit2.http.Url;
 public class RetrofitConnection {
 
     public class Cafe{
+        public String tag;
         public String cafe_image;
         public String name;
         public String locationString;
@@ -101,7 +102,12 @@ public class RetrofitConnection {
         );
     }
     public interface reservation {
-        @GET("reservation_page/")
+        @GET("get_cafes/")
+        Call<List<Cafe>> repoContributors();
+    }
+
+    public interface get_cafes {
+        @GET("get_cafes/")
         Call<List<Cafe>> repoContributors();
     }
 

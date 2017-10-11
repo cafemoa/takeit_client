@@ -3,11 +3,14 @@ package mkworld29.mobile.com.cafemoa;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import mkworld29.mobile.com.cafemoa.item.CardItem;
 
+import mkworld29.mobile.com.cafemoa.adapter.MainCafeAdapter;
+
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.TypedValue;
@@ -21,10 +24,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -35,9 +38,9 @@ import com.zoyi.channel.plugin.android.OnChannelPluginChangedListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import mkworld29.mobile.com.cafemoa.item.MainCafeItem;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
-import mkworld29.mobile.com.cafemoa.adapter.CardAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -54,6 +57,8 @@ public class MainActivity extends AppCompatActivity
     private float initialX;
     private Retrofit retrofit;
     private Button imb_prev, imb_next;
+    private RecyclerView recyclerView;
+    private ArrayList<MainCafeItem> data=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +70,38 @@ public class MainActivity extends AppCompatActivity
         //startRecyclerView();
         startFlipper();
         startNavigation();
+        setCafeList();
+    }
+    private void setCafeList(){
+        recyclerView = (RecyclerView)findViewById(R.id.main_recyclerView);
+
+        LinearLayoutManager layoutManager=new LinearLayoutManager(this);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
+
+        RetrofitConnection.get_cafes service = retrofit.create(RetrofitConnection.get_cafes.class);
+        final Call<List<RetrofitConnection.Cafe>> repos = service.repoContributors();
+        repos.enqueue(new Callback<List<RetrofitConnection.Cafe>>() {
+            @Override
+            public void onResponse(Call<List<RetrofitConnection.Cafe>> call, Response<List<RetrofitConnection.Cafe>> response) {
+                if(response.code()==200){
+                    for(int i=0; i<response.body().size(); i++) {
+                        RetrofitConnection.Cafe cafe=response.body().get(i);
+                        //Log.d("TAG",cafe.cafe_image);
+                        data.add(new MainCafeItem(cafe.pk,cafe.name, cafe.locationString, cafe.tag, "http://rest.takeitnow.kr"+cafe.cafe_image, true));
+                    }
+                    recyclerView.setAdapter(new MainCafeAdapter(getApplicationContext(), data, R.layout.activity_main));
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<RetrofitConnection.Cafe>> call, Throwable t) {
+                Log.d("TAG",t.getLocalizedMessage());
+            }
+        });
 
     }
 
@@ -73,47 +110,10 @@ public class MainActivity extends AppCompatActivity
         imb_next = (Button) findViewById(R.id.imb_next);
         imb_prev = (Button) findViewById(R.id.imb_prev);
 
-        imb_next.setOnClickListener(this);
-        imb_prev.setOnClickListener(this);
+        //imb_next.setOnClickListener(this);
+        //imb_prev.setOnClickListener(this);
     }
 
-    private void startRecyclerView()
-    {
-        RetrofitConnection.recent_payment_list_by_id service = retrofit.create(RetrofitConnection.recent_payment_list_by_id.class);
-
-        final Call<List<RetrofitConnection.Recent_payment>> repos = service.repoContributors();
-
-        repos.enqueue(new Callback<List<RetrofitConnection.Recent_payment>>() {
-            @Override
-            public void onResponse(Call<List<RetrofitConnection.Recent_payment>> call, Response<List<RetrofitConnection.Recent_payment>> response) {
-                if(response.code()==200){
-                    RecyclerView rv = (RecyclerView)findViewById(R.id.recyclerView);
-                    RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(MainActivity.this, 2);
-                    rv.setHasFixedSize(true);
-                    rv.setLayoutManager(mLayoutManager);
-                    List<RetrofitConnection.Recent_payment> info=response.body();
-                    if(info.size() == 0)
-                        return;
-                    List<CardItem> items = new ArrayList<CardItem>();
-                    CardItem[] item = new CardItem[info.size()];
-                    for(int i=0; i<info.size(); i++){
-                        RetrofitConnection.Recent_payment now_payment=info.get(i);
-                        item[i] = new CardItem(RetrofitInstance.getApiUrl()+info.get(i).image_url,info.get(i).cafe_name,info.get(i).menu_name,info.get(i).price);
-                        items.add(item[i]);
-                    }
-                    rv.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
-                    rv.setAdapter(new CardAdapter(getApplicationContext(), items));
-                }else{
-                    Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<RetrofitConnection.Recent_payment>> call, Throwable t) {
-                Log.d("TAG",t.getLocalizedMessage());
-            }
-        });
-    }
 
     private void startNavigation()
     {
@@ -145,10 +145,11 @@ public class MainActivity extends AppCompatActivity
 
         // add ImageView to ViewFlipper
 
-        for(int i=0;i<7;i++)
+        for(int i=0;i<1;i++)
         {
             ImageView img = new ImageView(this);
-            img.setImageResource(R.mipmap.ic_launcher);
+            Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.drawable.main_banner);
+            img.setBackground(drawable);
             flipper.addView(img);
         }
 
@@ -157,12 +158,12 @@ public class MainActivity extends AppCompatActivity
 
         flipper.setOutAnimation(this,android.R.anim.slide_out_right);
 
-        flipper.setFlipInterval(6000);
-        flipper.startFlipping();
-        flipper.setFocusable(true);
-        flipper.setAutoStart(true);
+        //flipper.setFlipInterval(6000);
+        //flipper.startFlipping();
+        //flipper.setFocusable(true);
+        //flipper.setAutoStart(true);
 
-        flipper.setOnTouchListener(this);
+        //flipper.setOnTouchListener(this);
     }
 
     @Override
@@ -192,7 +193,33 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_alarm) {
             // Display Alarm Layout
-            return true;
+            //Intent intent = new Intent(getApplicationContext(), NoticeDialog.class);
+            //startActivity(intent);
+            /*
+            Dialog dialog = new Dialog(this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.notice_dialog);
+            WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
+
+
+            ArrayList<AlertItem> data= new ArrayList<>();
+
+            data.add(new AlertItem("형남공학과 2층 에비수", "3시~5시까지 전제품 10퍼센트 할인행사중!"));
+            data.add(new AlertItem("학생회관 4층 아름다운세상", "신메뉴 요거바라 출시! 많은 관심 부탁드려요~"));
+
+            AlertAdapter adapter=new AlertAdapter(getApplicationContext(),R.layout.item_alert,data);
+
+            dialog.getWindow().setAttributes(params);
+            dialog.show();
+            */
+            //Intent intent = new Intent(this, NoticeDialog.class);
+            //startActivity(intent);
+            NoticeDialog nd=new NoticeDialog(this);
+            WindowManager.LayoutParams wm = new WindowManager.LayoutParams();
+            wm.copyFrom(nd.getWindow().getAttributes());
+            wm.width=500;
+            wm.height=650;
+            nd.show();
         }
         else if(id==R.id.action_basket){
             Intent intent = new Intent(this, BaskitActivity.class);
@@ -349,4 +376,45 @@ public class MainActivity extends AppCompatActivity
     {
 
     }
+
+
+    /*
+    private void startRecyclerView()
+    {
+        RetrofitConnection.recent_payment_list_by_id service = retrofit.create(RetrofitConnection.recent_payment_list_by_id.class);
+
+        final Call<List<RetrofitConnection.Recent_payment>> repos = service.repoContributors();
+
+        repos.enqueue(new Callback<List<RetrofitConnection.Recent_payment>>() {
+            @Override
+            public void onResponse(Call<List<RetrofitConnection.Recent_payment>> call, Response<List<RetrofitConnection.Recent_payment>> response) {
+                if(response.code()==200){
+                    RecyclerView rv = (RecyclerView)findViewById(R.id.recyclerView);
+                    RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(MainActivity.this, 2);
+                    rv.setHasFixedSize(true);
+                    rv.setLayoutManager(mLayoutManager);
+                    List<RetrofitConnection.Recent_payment> info=response.body();
+                    if(info.size() == 0)
+                        return;
+                    List<CardItem> items = new ArrayList<CardItem>();
+                    CardItem[] item = new CardItem[info.size()];
+                    for(int i=0; i<info.size(); i++){
+                        RetrofitConnection.Recent_payment now_payment=info.get(i);
+                        item[i] = new CardItem(RetrofitInstance.getApiUrl()+info.get(i).image_url,info.get(i).cafe_name,info.get(i).menu_name,info.get(i).price);
+                        items.add(item[i]);
+                    }
+                    rv.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+                    rv.setAdapter(new CardAdapter(getApplicationContext(), items));
+                }else{
+                    Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<RetrofitConnection.Recent_payment>> call, Throwable t) {
+                Log.d("TAG",t.getLocalizedMessage());
+            }
+        });
+    }*/
+
 }
