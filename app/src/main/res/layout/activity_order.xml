@@ -76,9 +76,10 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:textSize="16sp"
+            android:textSize="13sp"
             android:gravity="center"
             android:layout_weight="1"
+            android:textStyle="bold"
             android:textColor="#604242"
             android:text="커피\u0026\n에스프레소" />
 
@@ -90,7 +91,8 @@
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="16sp"
+            android:textSize="13sp"
+            android:textStyle="bold"
             android:textColor="#604242"
             android:text="에이드\u0026\n스무디" />
 
@@ -102,7 +104,8 @@
             android:layout_marginRight="5dp"
             android:text="차"
             android:gravity="center"
-            android:textSize="16sp"
+            android:textSize="13sp"
+            android:textStyle="bold"
             android:textColor="#604242"
             android:layout_weight="1" />
 
@@ -114,7 +117,8 @@
             android:layout_marginRight="5dp"
             android:text="디저트"
             android:gravity="center"
-            android:textSize="16sp"
+            android:textSize="13sp"
+            android:textStyle="bold"
             android:textColor="#604242"
             android:layout_weight="1" />
 
@@ -126,7 +130,8 @@
             android:layout_marginRight="5dp"
             android:gravity="center"
             android:text="기타"
-            android:textSize="16sp"
+            android:textSize="13sp"
+            android:textStyle="bold"
             android:textColor="#604242"
             android:layout_weight="1" />
 

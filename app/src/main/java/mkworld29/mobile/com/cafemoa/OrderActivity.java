@@ -4,14 +4,17 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import mkworld29.mobile.com.cafemoa.adapter.OrderListAdapter;
 import mkworld29.mobile.com.cafemoa.adapter.OrderPagerAdapter;
 
 public class OrderActivity extends AppCompatActivity implements View.OnClickListener{
 
     private ViewPager mPager;
     private TextView tv_coffe, tv_smootie, tv_tea, tv_dessert, tv_etc;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         tv_tea.setOnClickListener(this);
         tv_dessert.setOnClickListener(this);
         tv_etc.setOnClickListener(this);
+
     }
 
     @Override

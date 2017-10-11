@@ -6,6 +6,8 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import mkworld29.mobile.com.cafemoa.R;
@@ -32,21 +34,52 @@ public class OrderPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(View pager, int position) {
         View v = null;
+
+        ListView lv_order;
+        OrderListAdapter adapter;
+
         if(position==0){
             v = mInflater.inflate(R.layout.order_inflate_one, null);
+            lv_order = (ListView) v.findViewById(R.id.lv_order);
+            adapter = new OrderListAdapter();
+            lv_order.setAdapter(adapter);
+            adapter.addItem("아메리카노",null,false);
+            adapter.addItem("카페라떼",null,true);
+            adapter.addItem("카푸치노",null,true);
+            adapter.addItem("오리엔탈버거",null,false);
+            adapter.notifyDataSetChanged();
         }
         else if(position==1){
             v = mInflater.inflate(R.layout.order_inflate_one, null);
-
-        }else if(position==2){
+            lv_order = (ListView) v.findViewById(R.id.lv_order);
+            adapter = new OrderListAdapter();
+            lv_order.setAdapter(adapter);
+            adapter.addItem(null,null,false);
+            adapter.notifyDataSetChanged();
+        }
+        else if(position==2){
             v = mInflater.inflate(R.layout.order_inflate_one, null);
-
-        }else if(position==3){
+            lv_order = (ListView) v.findViewById(R.id.lv_order);
+            adapter = new OrderListAdapter();
+            lv_order.setAdapter(adapter);
+            adapter.addItem(null,null,false);
+            adapter.notifyDataSetChanged();
+        }
+        else if(position==3){
             v = mInflater.inflate(R.layout.order_inflate_one, null);
-
-        }else if(position==4){
+            lv_order = (ListView) v.findViewById(R.id.lv_order);
+            adapter = new OrderListAdapter();
+            lv_order.setAdapter(adapter);
+            adapter.addItem(null,null,false);
+            adapter.notifyDataSetChanged();
+        }
+        else if(position==4){
             v = mInflater.inflate(R.layout.order_inflate_one, null);
-
+            lv_order = (ListView) v.findViewById(R.id.lv_order);
+            adapter = new OrderListAdapter();
+            lv_order.setAdapter(adapter);
+            adapter.addItem(null,null,false);
+            adapter.notifyDataSetChanged();
         }
 
         ((ViewPager)pager).addView(v, 0);
