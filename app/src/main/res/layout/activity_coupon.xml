@@ -25,28 +25,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_weight="2"
-        android:padding="10dp"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp">
 
     <LinearLayout
         android:background="#ff3333"
-        android:paddingLeft="5dp"
-        android:paddingTop="3dp"
-        android:paddingRight="15dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_cafe_name"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
             android:textSize="18sp"
-            android:textColor="#ffffff"
+            android:textColor="#626464"
             android:layout_gravity="center"
             android:text="카페이름"/>
 
@@ -54,12 +50,12 @@
             android:id="@+id/tv_cafe_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#ffffff"
+            android:textColor="#626464"
             android:gravity="right"
-            android:textSize="13sp"
+            android:textSize="10sp"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:text="카페주소\n주소주소"/>
+            android:text="카페주소"/>
 
 
         <GridView
