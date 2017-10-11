@@ -31,7 +31,7 @@ public class RetrofitInstance {
                     Request.Builder  requestBuilder = chain.request().newBuilder();
 
                     if(!token.equals("")){
-                        //requestBuilder.addHeader("Authorization", "JWT "+token);
+                        requestBuilder.addHeader("Authorization", "JWT "+token);
                     }
 
                     Request request = requestBuilder.build();

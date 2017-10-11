@@ -53,6 +53,11 @@ public class RetrofitConnection {
         public int coupon_progress;
         public int pk;
     }
+    public class Alert{
+        public boolean is_event;
+        public String content;
+        public String cafe_name;
+    }
 
     public class Recent_payment {
         public String cafe_name;
@@ -64,6 +69,7 @@ public class RetrofitConnection {
         public String orderer_username;
         public int beverage_pk;
     }
+
     public static class Order_option{
         int beverage;
         boolean whipping_cream;
@@ -104,6 +110,10 @@ public class RetrofitConnection {
     public interface reservation {
         @GET("get_cafes/")
         Call<List<Cafe>> repoContributors();
+    }
+    public interface get_alerts {
+        @GET("get_alerts/")
+        Call<List<Alert>> repoContributors();
     }
 
     public interface get_cafes {

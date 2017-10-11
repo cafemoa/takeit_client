@@ -54,7 +54,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
 
         holder.tv_cafe_address.setText(couponList.get(position).getCafe_address());
         holder.tv_cafe_name.setText(String.valueOf(couponList.get(position).getCafe_name()));
-        holder.iv_cafe_logo.setImageResource(couponList.get(position).getCafe_logo());
+        //holder.iv_cafe_logo.setImageResource(couponList.get(position).getCafe_logo());
         holder.gridView.setAdapter(stampAdapter);
         holder.sum = couponList.get(position).getSum();
         holder.pk = couponList.get(position).getPk();
@@ -80,7 +80,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
             _v = v;
             tv_cafe_address = (TextView) v.findViewById(R.id.tv_cafe_address);
             tv_cafe_name = (TextView) v.findViewById(R.id.tv_cafe_name);
-            iv_cafe_logo = (ImageView) v.findViewById(R.id.iv_cafe_logo);
+            //iv_cafe_logo = (ImageView) v.findViewById(R.id.iv_cafe_logo);
 
             tv_cafe_address.setTextColor(Color.WHITE);
             tv_cafe_name.setTextColor(Color.WHITE);
