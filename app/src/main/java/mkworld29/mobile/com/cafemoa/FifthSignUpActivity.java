@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class FifthSignUpActivity extends AppCompatActivity implements View.OnClickListener{
+import mkworld29.mobile.com.cafemoa.prefs.SignupPref;
 
+public class FifthSignUpActivity extends AppCompatActivity implements View.OnClickListener{
+    SignupPref pref;
     private Button btn_next;
     private Button btn_man, btn_woman;
     private boolean is_man, is_woman;
@@ -17,6 +19,7 @@ public class FifthSignUpActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fifth_sign_up);
 
+        pref = SignupPref.getInstance(getApplicationContext());
         is_man = is_woman = false;
 
         btn_next = (Button) findViewById(R.id.btn_next);
@@ -32,6 +35,8 @@ public class FifthSignUpActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View view) {
         if(view.getId() == btn_next.getId()) {
+            if(is_man) pref.addInfo("gender", "male");
+            else pref.addInfo("gender", "female");
             Intent intent = new Intent(FifthSignUpActivity.this, SixthSignUpActivity.class);
             startActivity(intent);
             finish();

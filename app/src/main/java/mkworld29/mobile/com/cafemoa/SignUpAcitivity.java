@@ -66,7 +66,7 @@ public class SignUpAcitivity extends AppCompatActivity implements View.OnClickLi
         }
         RetrofitConnection.signup service = retrofit.create(RetrofitConnection.signup.class);
 
-        final Call<ResponseBody> repos = service.repoContributors(id,pw,name,tel,email,1998,8,18,true);
+        final Call<ResponseBody> repos = service.repoContributors(id,pw,name,tel,email,"980818",true);
         repos.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

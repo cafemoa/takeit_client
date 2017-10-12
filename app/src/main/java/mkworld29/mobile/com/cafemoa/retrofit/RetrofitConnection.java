@@ -149,10 +149,15 @@ public class RetrofitConnection {
                 @Field("name") String name,
                 @Field("phone_number") String phone_number,
                 @Field("email") String email,
-                @Field("birth_year") int birth_year,
-                @Field("birth_month") int birth_month,
-                @Field("birth_day") int birth_day,
+                @Field("birth") String birth,
                 @Field("gender") boolean gender
+        );
+    }
+    public interface social_auth {
+        @FormUrlEncoded
+        @POST("social-api-auth/")
+        Call<Token> repoContributors(
+                @Field("access_token") String access_token
         );
     }
 
