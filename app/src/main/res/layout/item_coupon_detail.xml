@@ -3,8 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginLeft="12dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="12dp"
     android:layout_weight="3"
-    android:layout_marginRight="10dp"
     android:layout_marginBottom="10dp">
 
     <LinearLayout
@@ -14,7 +16,8 @@
         android:layout_weight="1"
         android:paddingLeft="8dp"
         android:orientation="vertical"
-        android:gravity="center"
+        android:gravity="top|center_horizontal"
+        android:layout_marginTop="20dp"
         android:paddingRight="8dp">
 
 
@@ -23,13 +26,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
+            android:textColor="#626466"
             android:text="아름다운세상"/>
 
         <TextView
             android:id="@+id/tv_cafe_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="10sp"
+            android:textColor="#626466"
             android:text="숭실대학교 학생회관 4층"/>
 
     </LinearLayout>

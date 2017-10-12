@@ -77,6 +77,7 @@
         <activity android:name=".FirstSignUpActivity">
 
         </activity>
+
         <activity android:name=".SecondSignUpActivity" />
         <activity android:name=".ThirdSignUpActivity" />
         <activity android:name=".FourthSignUpActivity" />
