@@ -74,9 +74,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="2"
+        android:layout_marginTop="10dp"
         android:paddingLeft="10dp">
 
 
     </android.support.v7.widget.RecyclerView>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/coupon_bottom"/>
 
 </LinearLayout>
