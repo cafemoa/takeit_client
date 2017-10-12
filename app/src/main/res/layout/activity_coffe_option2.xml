@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="mkworld29.mobile.com.cafemoa.CoffeOption2Activity">
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/baskit_arrow"
+        android:layout_marginTop="5dp"/>
+
+    <LinearLayout
+        android:id="@+id/lv_cafe_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp">
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#ff6466"
+            android:text="cafe"/>
+
+        <TextView
+            android:id="@+id/tv_cafe_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#ff6466"
+            android:text="EBISU"/>
+        
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/iv_content"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_below="@id/lv_cafe_name"
+        android:src="@drawable/option_americano"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+
+    <LinearLayout
+        android:id="@+id/lv_order_option"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/iv_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_gravity="left"
+                android:textColor="#0c0c0c"
+                android:text="맛있는 커피를 위해"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="21sp"
+                android:textColor="#0c0c0c"
+                android:textStyle="bold"
+                android:layout_gravity="left"
+                android:text="선택하세요"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="right"
+                android:layout_centerVertical="true"
+                android:text="사이즈"
+                android:textColor="#0c0c0c"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_order_size_s"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="7dp"
+                    android:text="S"
+                    android:textColor="#acacac"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tv_order_size_m"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="7dp"
+                    android:text="M"
+                    android:textColor="#acacac"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tv_order_size_l"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="L"
+                    android:textColor="#acacac"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="right"
+                android:text="샷 추가"
+                android:textColor="#0c0c0c"
+                android:layout_centerVertical="true"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:layout_centerVertical="true"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_order_shots_minus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="#0c0c0c"
+                    android:layout_gravity="center"
+                    android:text="-"
+                    android:layout_marginRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/tv_order_shots"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="#0c0c0c"
+                    android:text="1"
+                    android:layout_marginRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/tv_order_shots_plus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="#0c0c0c"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:text="+"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="right"
+                android:textColor="#0c0c0c"
+                android:layout_centerVertical="true"
+                android:text="Hot/Ice"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:layout_centerVertical="true"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_order_hot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="7dp"
+                    android:text="Hot"
+                    android:textColor="#acacac"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_order_ice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="7dp"
+                    android:text="Ice"
+                    android:textColor="#acacac"
+                    android:textSize="15sp" />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="right"
+                android:textColor="#0c0c0c"
+                android:text="휘핑크림"
+                android:layout_centerVertical="true"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:layout_centerVertical="true"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_order_whipping_true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="7dp"
+                    android:text="Yes"
+                    android:textColor="#acacac"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_order_whipping_false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="7dp"
+                    android:text="No"
+                    android:textColor="#acacac"
+                    android:textSize="15sp" />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="#0c0c0c"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="총금액"
+                android:textColor="#0c0c0c"
+                android:textSize="17sp"
+                android:layout_marginTop="15dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"/>
+
+            <TextView
+                android:id="@+id/tv_order_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="3000원"
+                android:textColor="#0c0c0c"
+                android:textSize="16sp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textStyle="bold"
+                android:layout_marginRight="35dp"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_height="55dp">
+
+            <Button
+                android:id="@+id/btn_get"
+                android:layout_width="130dp"
+                android:layout_height="40dp"
+                android:text="담기"
+                android:background="@drawable/roundedbutton"
+                android:textStyle="bold"
+                android:textColor="#fcfcfc"/>
+
+            <Button
+                android:id="@+id/btn_order"
+                android:layout_width="130dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/btn_get"
+                android:background="@drawable/roundedbutton2"
+                android:text="주문하기"
+                android:textStyle="bold"
+                android:textColor="#fcfcfc"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

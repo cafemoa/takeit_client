@@ -18,21 +18,15 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name">
-        </activity>
-
+            android:label="@string/app_name" />
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
-        <activity android:name=".LoginActivity">
-        </activity>
+        <activity android:name=".LoginActivity" />
         <activity android:name=".SignUpAcitivity" />
         <activity android:name=".ReservationActivity" />
-        <activity android:name=".CouponActivity" >
-
-
-            </activity>
+        <activity android:name=".CouponActivity" />
         <activity android:name=".PaymentActivity" />
         <activity android:name=".CouponDetailActivity" />
         <activity android:name=".AccessTermsActivity" />
@@ -73,11 +67,8 @@
         </provider>
 
         <activity android:name=".VeilActivity" />
-        <activity android:name=".SplashActivity"></activity>
-        <activity android:name=".FirstSignUpActivity">
-
-        </activity>
-
+        <activity android:name=".SplashActivity" />
+        <activity android:name=".FirstSignUpActivity" />
         <activity android:name=".SecondSignUpActivity" />
         <activity android:name=".ThirdSignUpActivity" />
         <activity android:name=".FourthSignUpActivity" />
@@ -90,11 +81,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OrderActivity">
-        </activity>
-        <activity android:name=".OrderCompleteActivity">
-
-        </activity>
+        <activity android:name=".OrderActivity" />
+        <activity android:name=".OrderCompleteActivity" />
+        <activity android:name=".Option2Acitivity" />
+        <activity android:name=".CoffeOption2Activity"></activity>
     </application>
 
 </manifest>
