@@ -53,9 +53,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText id;
     EditText pw;
     Button login;
-    SharedPreference sp;
     ProgressDialog pd;
-
+    SharedPreference sp;
 
 
     @Override

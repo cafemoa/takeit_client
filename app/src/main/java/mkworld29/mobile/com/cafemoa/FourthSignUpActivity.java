@@ -9,9 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import mkworld29.mobile.com.cafemoa.prefs.SignupPref;
+
 public class FourthSignUpActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher{
 
+    SignupPref pref;
     private Button btn_next;
+
 
     private EditText edt_number_1, edt_number_2, edt_number_3, edt_number_4,
             edt_number_5, edt_number_6, edt_number_7, edt_number_8;
@@ -23,6 +27,8 @@ public class FourthSignUpActivity extends AppCompatActivity implements View.OnCl
 
         btn_next = (Button) findViewById(R.id.btn_next);
         btn_next.setOnClickListener(this);
+
+        pref=SignupPref.getInstance(getApplicationContext());
 
         edt_number_1 = (EditText) findViewById(R.id.edt_number_1);
         edt_number_2 = (EditText) findViewById(R.id.edt_number_2);
@@ -46,6 +52,16 @@ public class FourthSignUpActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
+        String phone_number=edt_number_1.getText().toString()+
+                edt_number_2.getText().toString()+
+                edt_number_3.getText().toString()+
+                edt_number_4.getText().toString()+
+                edt_number_5.getText().toString()+
+                edt_number_6.getText().toString()+
+                edt_number_7.getText().toString()+
+                edt_number_8.getText().toString();
+
+        pref.addInfo("phone_number",phone_number);
         Intent intent = new Intent(FourthSignUpActivity.this, FifthSignUpActivity.class);
         startActivity(intent);
         finish();
