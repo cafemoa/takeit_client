@@ -7,6 +7,7 @@
     tools:context="mkworld29.mobile.com.cafemoa.CoffeOption2Activity">
 
     <ImageView
+        android:id="@+id/iv_back"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/baskit_arrow"

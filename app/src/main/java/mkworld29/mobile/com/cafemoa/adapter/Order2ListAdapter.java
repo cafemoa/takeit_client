@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import mkworld29.mobile.com.cafemoa.R;
 import mkworld29.mobile.com.cafemoa.item.OrderListItem;
+import mkworld29.mobile.com.cafemoa.item.OrderListItem2;
 import mkworld29.mobile.com.cafemoa.item.PaymentListViewItem;
 
 import static android.graphics.Typeface.BOLD;
@@ -29,23 +30,10 @@ import static android.graphics.Typeface.BOLD;
 
 public class Order2ListAdapter extends BaseAdapter{
 
-    private ArrayList<OrderListItem> listViewItemList = new ArrayList<>();
-    private RelativeLayout rv_content;
-    private LinearLayout lv_option;
+    private ArrayList<OrderListItem2> listViewItemList = new ArrayList<>();
+
     private TextView tv_content;
     private ImageView iv_content,iv_best;
-    private TextView tv_amount_minus, tv_amount, tv_amount_plus;
-    private TextView tv_size_s, tv_size_m,tv_size_l;
-    private TextView tv_shots_minus, tv_shots, tv_shots_plus;
-    private TextView tv_hot, tv_ice;
-    private TextView tv_whipping_true, tv_whipping_false;
-    private TextView[] arr_amount;
-    private TextView[] arr_size;
-    private TextView[] arr_shots;
-    private TextView[] arr_cold;
-    private TextView[] arr_whipping;
-
-    private boolean is_showed;
 
     @Override
     public int getCount() {
@@ -68,7 +56,7 @@ public class Order2ListAdapter extends BaseAdapter{
 
         if(convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.order_list_item, parent, false);
+            convertView = inflater.inflate(R.layout.order_list_item2, parent, false);
         }
 
         tv_content          =   (TextView)convertView.findViewById(R.id.tv_content);
@@ -92,7 +80,7 @@ public class Order2ListAdapter extends BaseAdapter{
 
     public void addItem(String content, String image, boolean is_best)
     {
-        OrderListItem item = new OrderListItem(content,image,is_best);
+        OrderListItem2 item = new OrderListItem2(content,image,is_best);
 
         listViewItemList.add(item);
 
@@ -110,11 +98,4 @@ public class Order2ListAdapter extends BaseAdapter{
         }
     }
 
-    public void setFontDefaults(TextView[] arr)
-    {
-        for(TextView t : arr)
-        {
-            setFontStyle(t,false);
-        }
-    }
 }
