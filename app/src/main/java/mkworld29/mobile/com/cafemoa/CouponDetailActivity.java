@@ -103,7 +103,7 @@ public class CouponDetailActivity extends AppCompatActivity {
                     for(int i=0; i<info.size(); i++){
                         RetrofitConnection.Recent_payment now_payment=info.get(i);
                         String title="["+now_payment.cafe_name+"] "+now_payment.menu_name;
-                        adapter.addItem(title, now_payment.price, now_payment.order_time);
+                        //adapter.addItem(title, now_payment.price, now_payment.order_time);
                     }
                     listView.setAdapter(adapter);
                 }else{

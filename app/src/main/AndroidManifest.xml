@@ -74,7 +74,7 @@
         <activity android:name=".FourthSignUpActivity" />
         <activity android:name=".FifthSignUpActivity" />
         <activity android:name=".SixthSignUpActivity" />
-        <activity android:name=".ReadyActivity"></activity>
+        <activity android:name=".ReadyActivity" />
         <activity android:name=".OrderActivity" />
         <activity android:name=".OrderCompleteActivity" />
         <activity android:name=".Option2Acitivity">
@@ -84,8 +84,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CoffeOption2Activity"></activity>
-        <activity android:name=".OrderListActivity"></activity>
+        <activity android:name=".CoffeOption2Activity" />
+        <activity android:name=".OrderListActivity" />
+        <activity android:name=".PersonalEventActivity" />
+        <activity android:name=".SettingActivity"></activity>
     </application>
 
 </manifest>

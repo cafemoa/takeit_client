@@ -7,8 +7,20 @@
     android:orientation="vertical"
     tools:context="mkworld29.mobile.com.cafemoa.OrderCompleteActivity">
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+
+
+        <include layout="@layout/toolbar_order_complete"/>
+
+
+    </android.support.design.widget.AppBarLayout>
+
     <LinearLayout
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="12dp"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_gravity="top"
@@ -45,6 +57,12 @@
         android:text="으로 완료 "/>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,6 +70,14 @@
         android:textStyle="bold"
         android:textColor="#0c0c0c"
         android:text="되었습니다 "/>
+
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="33dp"
+            android:src="@drawable/option_americano"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

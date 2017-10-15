@@ -54,23 +54,27 @@ public class PaymentListViewAdapter extends BaseAdapter {
         }
 
 
-        TextView tv_content = (TextView)convertView.findViewById(R.id.tv_content);
-        TextView tv_price =  (TextView) convertView.findViewById(R.id.tv_price);
-        TextView tv_time = (TextView) convertView.findViewById(R.id.tv_time);
+        TextView tv_content         = (TextView)convertView.findViewById(R.id.tv_content);
+        TextView tv_price           =  (TextView) convertView.findViewById(R.id.tv_price);
+        TextView tv_time            = (TextView) convertView.findViewById(R.id.tv_time);
+        TextView tv_cafe_name       = (TextView)convertView.findViewById(R.id.tv_cafe_name);
+        TextView tv_cafe_address    = (TextView)convertView.findViewById(R.id.tv_cafe_address);
 
         PaymentListViewItem listViewItem = listViewItemList.get(position);
 
         tv_content.setText(listViewItem.getContent());
         tv_price.setText(String.valueOf(listViewItem.getPrice()) + "원");
         tv_time.setText(listViewItem.getTime());
+        tv_cafe_name.setText(listViewItem.getCafe_name());
+        tv_cafe_address.setText(listViewItem.getCafe_address());
 
         return convertView;
 
     }
 
-    public void addItem(String content, String price, String time)
+    public void addItem(String content, String cafe_name, String cafe_address, String price, String time)
     {
-        PaymentListViewItem item = new PaymentListViewItem(content,price,time);
+        PaymentListViewItem item = new PaymentListViewItem(content, cafe_name, cafe_address, price,time);
 
         listViewItemList.add(item);
     }
