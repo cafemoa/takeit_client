@@ -20,6 +20,15 @@
         <item>삭제</item>
     </string-array>
 
+    <string-array name="order_list">
+        <item>최근 1개월</item>
+        <item>최근 3개월</item>
+        <item>최근 6개월</item>
+        <item>최근 1년</item>
+        <item>최근 5년</item>
+    </string-array>
+
+
     <string name="notification_title">TakeIt!</string>
 
 

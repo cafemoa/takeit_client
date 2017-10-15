@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import mkworld29.mobile.com.cafemoa.adapter.Order2PagerAdapter;
 import mkworld29.mobile.com.cafemoa.adapter.OrderListAdapter;
 import mkworld29.mobile.com.cafemoa.adapter.OrderPagerAdapter;
 
@@ -19,10 +20,10 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order);
+        setContentView(R.layout.activity_option2_acitivity);
 
         mPager = (ViewPager) findViewById(R.id.vp_order);
-        mPager.setAdapter(new OrderPagerAdapter(getApplicationContext()));
+        mPager.setAdapter(new Order2PagerAdapter(getApplicationContext()));
 
         tv_coffe = (TextView) findViewById(R.id.tv_coffe_espresso);
         tv_smootie= (TextView) findViewById(R.id.tv_ade_smootie);

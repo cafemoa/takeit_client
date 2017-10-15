@@ -110,8 +110,10 @@ public class MainActivity extends AppCompatActivity
         imb_next = (Button) findViewById(R.id.imb_next);
         imb_prev = (Button) findViewById(R.id.imb_prev);
 
+
         //imb_next.setOnClickListener(this);
         //imb_prev.setOnClickListener(this);
+
     }
 
 
@@ -136,7 +138,18 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View hView = navigationView.getHeaderView(0);
         navigationView.setNavigationItemSelectedListener(this);
+
+        ImageView iv_set_up = (ImageView) hView.findViewById(R.id.iv_set_up);
+        iv_set_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void startFlipper()
@@ -243,7 +256,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_coupon) {
             intent = new Intent(this, CouponActivity.class);
         } else if (id == R.id.nav_event) {
-            intent = new Intent(this, ReservationActivity.class);
+            intent = new Intent(this, OrderListActivity.class);
         } else if (id == R.id.nav_settings) {
             intent = new Intent(this, ReservationActivity.class);
         } else if (id == R.id.nav_talk){

@@ -22,6 +22,10 @@ public class ThirdSignUpActivity extends AppCompatActivity implements View.OnCli
         birth=(EditText)findViewById(R.id.sign_birth);
         btn_next = (Button) findViewById(R.id.btn_next);
         btn_next.setOnClickListener(this);
+
+        if(!pref.getString("birth").equals("")){
+            birth.setText(pref.getString("birth"));
+        }
     }
 
     @Override

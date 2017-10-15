@@ -3,6 +3,7 @@ package mkworld29.mobile.com.cafemoa;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,9 @@ public class FirstSignUpActivity extends AppCompatActivity implements View.OnCli
         btn_next = (Button) findViewById(R.id.btn_next);
         email = (EditText)findViewById(R.id.sign_email);
         btn_next.setOnClickListener(this);
+        if(!pref.getString("email").equals("")){
+            email.setText(pref.getString("email"));
+        }
     }
 
     @Override
