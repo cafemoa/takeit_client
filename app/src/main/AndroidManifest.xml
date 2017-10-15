@@ -75,16 +75,20 @@
         <activity android:name=".FifthSignUpActivity" />
         <activity android:name=".SixthSignUpActivity" />
         <activity android:name=".ReadyActivity">
+
+        </activity>
+        <activity android:name=".OrderActivity" />
+        <activity android:name=".OrderCompleteActivity" />
+        <activity android:name=".Option2Acitivity">
+
+        </activity>
+        <activity android:name=".CoffeOption2Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OrderActivity" />
-        <activity android:name=".OrderCompleteActivity" />
-        <activity android:name=".Option2Acitivity" />
-        <activity android:name=".CoffeOption2Activity"></activity>
     </application>
 
 </manifest>
