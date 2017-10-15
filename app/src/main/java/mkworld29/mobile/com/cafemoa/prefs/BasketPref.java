@@ -88,8 +88,13 @@ public class BasketPref {
         if(item == null)
             return ;
 
-
-        String id = String.valueOf(Integer.valueOf(settings.getString(PREFS_PROGRESS,"0"))+1);
+        String id = "0";
+        try {
+            id = String.valueOf(Integer.parseInt(settings.getString(PREFS_PROGRESS, "0")) + 1);
+        }catch (NumberFormatException e)
+        {
+            e.printStackTrace();
+        }
 
         item.setId(id);
 

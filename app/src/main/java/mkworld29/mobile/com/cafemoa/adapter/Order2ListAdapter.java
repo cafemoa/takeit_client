@@ -30,10 +30,15 @@ import static android.graphics.Typeface.BOLD;
 
 public class Order2ListAdapter extends BaseAdapter{
 
-    private ArrayList<OrderListItem2> listViewItemList = new ArrayList<>();
+    private ArrayList<OrderListItem2> listViewItemList ;
 
     private TextView tv_content;
     private ImageView iv_content,iv_best;
+
+    public Order2ListAdapter()
+    {
+        listViewItemList = new ArrayList<>();
+    }
 
     @Override
     public int getCount() {
@@ -77,13 +82,16 @@ public class Order2ListAdapter extends BaseAdapter{
         return convertView;
     }
 
+    public ArrayList<OrderListItem2> getListViewItemList()
+    {
+        return listViewItemList;
+    }
 
     public void addItem(String content, String image, boolean is_best)
     {
         OrderListItem2 item = new OrderListItem2(content,image,is_best);
 
         listViewItemList.add(item);
-
     }
 
     public void setFontStyle(TextView view, boolean is_bold)

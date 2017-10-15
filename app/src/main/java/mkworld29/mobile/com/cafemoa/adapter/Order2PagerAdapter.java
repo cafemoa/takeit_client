@@ -26,7 +26,8 @@ public class Order2PagerAdapter extends PagerAdapter {
 
     private Context mContext;
     ListView lv_order = null;
-    Order2ListAdapter adapter = null;
+    String cafe_name;
+    Order2ListAdapter mAdapter = null;
     View v = null;
 
     public Order2PagerAdapter(Context c)
@@ -34,6 +35,11 @@ public class Order2PagerAdapter extends PagerAdapter {
         super();
         mContext = c;
         mInflater = LayoutInflater.from(c);
+    }
+
+    public void setCafeName(String s)
+    {
+        this.cafe_name = s;
     }
 
     @Override
@@ -46,14 +52,13 @@ public class Order2PagerAdapter extends PagerAdapter {
 
         if(position==0){
             v = mInflater.inflate(R.layout.order_inflate_one, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order);
-            adapter = new Order2ListAdapter();
+            lv_order = (ListView) v.findViewById(R.id.lv_order_1);
+            final Order2ListAdapter adapter = new Order2ListAdapter();
             lv_order.setAdapter(adapter);
             adapter.addItem("아메리카노",null,false);
             adapter.addItem("카페라떼",null,true);
             adapter.addItem("카푸치노",null,true);
             adapter.addItem("오리엔탈버거",null,false);
-            adapter.notifyDataSetChanged();
 
             lv_order.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -64,42 +69,43 @@ public class Order2PagerAdapter extends PagerAdapter {
                     String content = item.getContent();
                     intent.putExtra("iv_content", iv_content);
                     intent.putExtra("content",content);
+                    intent.putExtra("cafe_name", cafe_name);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     v.getContext().startActivity(intent);
                 }
             });
         }
         else if(position==1){
-            v = mInflater.inflate(R.layout.order_inflate_one, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order);
-            adapter = new Order2ListAdapter();
-            lv_order.setAdapter(adapter);
-            adapter.addItem(null,null,false);
-            adapter.notifyDataSetChanged();
+            v = mInflater.inflate(R.layout.order_inflate_two, null);
+            lv_order = (ListView) v.findViewById(R.id.lv_order_2);
+            mAdapter = new Order2ListAdapter();
+            lv_order.setAdapter(mAdapter);
+            mAdapter.addItem(null,null,false);
+            mAdapter.notifyDataSetChanged();
         }
         else if(position==2){
-            v = mInflater.inflate(R.layout.order_inflate_one, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order);
-            adapter = new Order2ListAdapter();
-            lv_order.setAdapter(adapter);
-            adapter.addItem(null,null,false);
-            adapter.notifyDataSetChanged();
+            v = mInflater.inflate(R.layout.order_inflate_three, null);
+            lv_order = (ListView) v.findViewById(R.id.lv_order_3);
+            mAdapter = new Order2ListAdapter();
+            lv_order.setAdapter(mAdapter);
+            mAdapter.addItem(null,null,false);
+            mAdapter.notifyDataSetChanged();
         }
         else if(position==3){
-            v = mInflater.inflate(R.layout.order_inflate_one, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order);
-            adapter = new Order2ListAdapter();
-            lv_order.setAdapter(adapter);
-            adapter.addItem(null,null,false);
-            adapter.notifyDataSetChanged();
+            v = mInflater.inflate(R.layout.order_inflate_four, null);
+            lv_order = (ListView) v.findViewById(R.id.lv_order_4);
+            mAdapter = new Order2ListAdapter();
+            lv_order.setAdapter(mAdapter);
+            mAdapter.addItem(null,null,false);
+            mAdapter.notifyDataSetChanged();
         }
         else if(position==4){
-            v = mInflater.inflate(R.layout.order_inflate_one, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order);
-            adapter = new Order2ListAdapter();
-            lv_order.setAdapter(adapter);
-            adapter.addItem(null,null,false);
-            adapter.notifyDataSetChanged();
+            v = mInflater.inflate(R.layout.order_inflate_five, null);
+            lv_order = (ListView) v.findViewById(R.id.lv_order_5);
+            mAdapter = new Order2ListAdapter();
+            lv_order.setAdapter(mAdapter);
+            mAdapter.addItem(null,null,false);
+            mAdapter.notifyDataSetChanged();
         }
 
 

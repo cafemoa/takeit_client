@@ -1,31 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="240dp"
-    android:layout_height="160dp"
+    android:layout_width="170dp"
+    android:layout_height="105dp"
     android:orientation="vertical"
-    android:layout_marginLeft="12dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginRight="12dp"
-    android:layout_weight="3"
-    android:layout_marginBottom="10dp">
+    android:layout_weight="3">
 
     <LinearLayout
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:paddingLeft="8dp"
         android:orientation="vertical"
         android:gravity="top|center_horizontal"
-        android:layout_marginTop="20dp"
-        android:paddingRight="8dp">
+        android:layout_marginTop="5dp">
 
 
         <TextView
             android:id="@+id/tv_cafe_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="9sp"
             android:textColor="#626466"
             android:text="아름다운세상"/>
 
@@ -33,7 +27,7 @@
             android:id="@+id/tv_cafe_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
+            android:textSize="5sp"
             android:textColor="#626466"
             android:text="숭실대학교 학생회관 4층"/>
 
@@ -42,14 +36,14 @@
     <LinearLayout
         android:id="@+id/lv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_weight="2"
         android:padding="10dp">
 
         <GridView
             android:id="@+id/gv"
             android:layout_width="match_parent"
-            android:layout_height="70dp">
+            android:layout_height="match_parent">
 
         </GridView>
 

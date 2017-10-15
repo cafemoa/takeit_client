@@ -8,20 +8,29 @@ public class CoffeeOption {
 
     private int  shots;
     private int  size;
+    private int amounts;
     private boolean is_cold;
     private boolean is_whipping;
     private int pk;
-    private String image_url;
 
-    public CoffeeOption(int shots, int size, boolean is_cold, boolean is_whipping, int pk)
+    public CoffeeOption(int shots, int size, int amounts, boolean is_cold, boolean is_whipping, int pk)
     {
 
         this.shots = shots;
         this.size = size;
         this.is_cold = is_cold;
+        this.amounts = amounts;
         this.is_whipping = is_whipping;
         this.pk=pk;
 
+    }
+
+    public int getAmounts() {
+        return amounts;
+    }
+
+    public void setAmounts(int amounts) {
+        this.amounts = amounts;
     }
 
     public int getShots() {

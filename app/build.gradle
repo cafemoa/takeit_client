@@ -51,6 +51,7 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.0.1'
     compile 'com.squareup.okhttp3:okhttp-urlconnection:3.0.1'
     compile 'com.squareup.okhttp3:logging-interceptor:3.0.1'
+    compile 'de.hdodenhof:circleimageview:2.2.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.zoyi.channel:plugin-android:1.2.0'
     compile 'com.tsengvn:typekit:1.0.1'
@@ -59,6 +60,7 @@ dependencies {
     compile 'com.github.ksoichiro:androidpagecontrol:0.1.1'
     testCompile 'junit:junit:4.12'
 }
+
 
 
 

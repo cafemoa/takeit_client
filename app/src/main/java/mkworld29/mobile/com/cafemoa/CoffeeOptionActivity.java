@@ -178,11 +178,11 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
         cafe_name = String.valueOf(tv_cafe_name.getText());
         price = String.valueOf(tv_price.getText());
 
-        CoffeeOption option = new CoffeeOption(shots,size,is_cold,is_whipping,pk);
+        //CoffeeOption option = new CoffeeOption(shots,size,is_cold,is_whipping,pk);
 
-        BasketItem item = new BasketItem(image,cafe_name,content,price,time, 1,option);
+        //BasketItem item = new BasketItem(image,cafe_name,content,price,time, 1,option);
 
-        BasketPref.getInstance(this).addBasket(item);
+        //BasketPref.getInstance(this).addBasket(item);
     }
     
 }
