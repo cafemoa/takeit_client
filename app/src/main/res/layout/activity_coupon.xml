@@ -25,7 +25,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1sp"
-        android:background="#0c0c0c"/>
+        android:background="#acacac"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -78,7 +78,7 @@
         android:id="@+id/coupon_rv"
         android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="210dp"
         android:layout_weight="2"
         android:layout_marginTop="10dp"
         android:paddingLeft="10dp">

@@ -11,6 +11,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:largeHeap="true"
+        android:hardwareAccelerated="false"
         android:theme="@style/AppTheme.NoActionBar">
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -67,22 +69,27 @@
         </provider>
 
         <activity android:name=".VeilActivity" />
-        <activity android:name=".SplashActivity" />
+        <activity android:name=".SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            </activity>
         <activity android:name=".FirstSignUpActivity" />
         <activity android:name=".SecondSignUpActivity" />
         <activity android:name=".ThirdSignUpActivity" />
         <activity android:name=".FourthSignUpActivity" />
         <activity android:name=".FifthSignUpActivity" />
         <activity android:name=".SixthSignUpActivity" />
-        <activity android:name=".ReadyActivity" />
+        <activity android:name=".ReadyActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity android:name=".OrderActivity" />
         <activity android:name=".OrderCompleteActivity" />
         <activity android:name=".Option2Acitivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".CoffeOption2Activity" />
         <activity android:name=".OrderListActivity" />

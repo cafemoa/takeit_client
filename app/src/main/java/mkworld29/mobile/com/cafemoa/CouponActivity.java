@@ -13,6 +13,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -38,19 +39,23 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class CouponActivity extends AppCompatActivity {
+public class CouponActivity extends AppCompatActivity implements View.OnClickListener{
 
     int ITEM_SIZE = 5;
 
     private TextView tv_cafe_name;
     private TextView tv_cafe_address;
-    private ImageView iv_cafe_logo;
+    private ImageView iv_home, iv_cart, iv_alarm;
     private GridView gv;
     Retrofit retrofit;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coupon);
+
+        iv_home = (ImageView) findViewById(R.id.iv_home);
+        iv_cart = (ImageView) findViewById(R.id.iv_cart);
+        iv_alarm = (ImageView) findViewById(R.id.iv_alarm);
 
         tv_cafe_address = (TextView)findViewById(R.id.tv_cafe_address);
         tv_cafe_name = (TextView)findViewById(R.id.tv_cafe_name);
@@ -109,6 +114,33 @@ public class CouponActivity extends AppCompatActivity {
             }
         });
 
+        iv_cart.setOnClickListener(this);
+        iv_home.setOnClickListener(this);
+        iv_alarm.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == iv_cart.getId())
+        {
+            Intent i = new Intent(this, BaskitActivity.class);
+            startActivity(i);
+            finish();
+        }
+        else if(view.getId() == iv_home.getId())
+        {
+            finish();
+        }
+        else if(view.getId() == iv_alarm.getId())
+        {
+            NoticeDialog nd=new NoticeDialog(this);
+            WindowManager.LayoutParams wm = new WindowManager.LayoutParams();
+            wm.copyFrom(nd.getWindow().getAttributes());
+            wm.width=500;
+            wm.height=650;
+            nd.show();
+        }
     }
 
 

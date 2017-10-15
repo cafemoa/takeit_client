@@ -17,6 +17,7 @@
         <!-- This is a centered logo -->
 
         <ImageView
+            android:id="@+id/iv_home"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/coupon_home"
@@ -39,11 +40,13 @@
             android:layout_marginRight="10dp">
 
             <ImageView
+                android:id="@+id/iv_cart"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/coupon_cart"/>
 
             <ImageView
+                android:id="@+id/iv_alarm"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
