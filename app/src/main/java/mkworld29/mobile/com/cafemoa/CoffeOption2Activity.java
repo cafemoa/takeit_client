@@ -140,7 +140,21 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View view) {
 
-        if(view.getId() == tv_size_s.getId())
+        if(view.getId() == tv_amount_minus.getId())
+        {
+            int amount = Integer.parseInt(tv_amount.getText().toString());
+            if(amount>1)
+                amount--;
+            tv_amount.setText(""+amount);
+        }
+        else if(view.getId() == tv_amount_plus.getId())
+        {
+            int amount = Integer.parseInt(tv_amount.getText().toString());
+            if(amount<20)
+                amount++;
+            tv_amount.setText(""+amount);
+        }
+        else if(view.getId() == tv_size_s.getId())
         {
             setFontDefaults(arr_size);
             setFontStyle(tv_size_s, true);
