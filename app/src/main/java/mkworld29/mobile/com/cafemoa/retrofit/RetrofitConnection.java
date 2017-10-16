@@ -169,6 +169,12 @@ public class RetrofitConnection {
                 @Body RequestBody body
         );
     }
+    public interface get_cafe_beverage{
+        @GET("get_cafe_beverage/{PK}")
+        Call<List<Beverage>> repoContributors(
+                @Path("PK") int pk
+        );
+    }
 
     public interface fcm_register{
         @FormUrlEncoded

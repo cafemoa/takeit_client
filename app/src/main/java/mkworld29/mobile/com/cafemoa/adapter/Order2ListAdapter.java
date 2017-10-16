@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,10 +31,15 @@ import static android.graphics.Typeface.BOLD;
 
 public class Order2ListAdapter extends BaseAdapter{
 
-    private ArrayList<OrderListItem2> listViewItemList = new ArrayList<>();
+    private ArrayList<OrderListItem2> listViewItemList ;
 
     private TextView tv_content;
     private ImageView iv_content,iv_best;
+
+    public Order2ListAdapter()
+    {
+        listViewItemList = new ArrayList<>();
+    }
 
     @Override
     public int getCount() {
@@ -77,13 +83,15 @@ public class Order2ListAdapter extends BaseAdapter{
         return convertView;
     }
 
-
-    public void addItem(String content, String image, boolean is_best)
+    public ArrayList<OrderListItem2> getListViewItemList()
     {
-        OrderListItem2 item = new OrderListItem2(content,image,is_best);
+        return listViewItemList;
+    }
 
+    public void addItem(String content, String image, boolean is_best,int pk)
+    {
+        OrderListItem2 item = new OrderListItem2(content,image,is_best,pk);
         listViewItemList.add(item);
-
     }
 
     public void setFontStyle(TextView view, boolean is_bold)

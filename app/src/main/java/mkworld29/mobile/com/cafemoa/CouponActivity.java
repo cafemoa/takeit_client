@@ -82,9 +82,8 @@ public class CouponActivity extends AppCompatActivity implements View.OnClickLis
 
                     RecyclerView rv = (RecyclerView)findViewById(R.id.coupon_rv);
                     RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
-                    rv.setHasFixedSize(true);
                     rv.setLayoutManager(mLayoutManager);
-                    rv.addItemDecoration(new SpacesItemDecoration(50));
+                    rv.addItemDecoration(new SpacesItemDecoration(25));
 
 
                     tv_cafe_address.setText(item[0].getCafe_address());

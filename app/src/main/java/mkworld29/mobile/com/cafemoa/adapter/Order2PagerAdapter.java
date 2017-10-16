@@ -5,16 +5,31 @@ import android.content.Intent;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import mkworld29.mobile.com.cafemoa.CoffeOption2Activity;
+import mkworld29.mobile.com.cafemoa.CouponActivity;
 import mkworld29.mobile.com.cafemoa.Option2Acitivity;
 import mkworld29.mobile.com.cafemoa.R;
+import mkworld29.mobile.com.cafemoa.entity.Coupon;
 import mkworld29.mobile.com.cafemoa.item.OrderListItem2;
+import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
+import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by parkjaemin on 2017. 9. 26..
@@ -26,14 +41,22 @@ public class Order2PagerAdapter extends PagerAdapter {
 
     private Context mContext;
     ListView lv_order = null;
-    Order2ListAdapter adapter = null;
+    String cafe_name;
+    Order2ListAdapter mAdapter = null;
     View v = null;
+    int cafe_pk;
 
-    public Order2PagerAdapter(Context c)
+    public Order2PagerAdapter(Context c, int cafe_pk)
     {
         super();
         mContext = c;
         mInflater = LayoutInflater.from(c);
+        this.cafe_pk=cafe_pk;
+    }
+
+    public void setCafeName(String s)
+    {
+        this.cafe_name = s;
     }
 
     @Override
@@ -43,65 +66,92 @@ public class Order2PagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(View pager, int position) {
+        v = mInflater.inflate(R.layout.order_inflate_one, null);
+        lv_order = (ListView) v.findViewById(R.id.lv_order_1);
+        mAdapter = new Order2ListAdapter();
 
-        if(position==0){
-            v = mInflater.inflate(R.layout.order_inflate_one, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order);
-            adapter = new Order2ListAdapter();
-            lv_order.setAdapter(adapter);
-            adapter.addItem("아메리카노",null,false);
-            adapter.addItem("카페라떼",null,true);
-            adapter.addItem("카푸치노",null,true);
-            adapter.addItem("오리엔탈버거",null,false);
-            adapter.notifyDataSetChanged();
+        Retrofit retrofit= RetrofitInstance.getInstance(v.getContext());
+        RetrofitConnection.get_cafe_beverage service = retrofit.create(RetrofitConnection.get_cafe_beverage.class);
 
-            lv_order.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    OrderListItem2 item= (OrderListItem2) adapter.getItem(i);
-                    Intent intent = new Intent(v.getContext(), CoffeOption2Activity.class);
-                    String iv_content = item.getImg();
-                    String content = item.getContent();
-                    intent.putExtra("iv_content", iv_content);
-                    intent.putExtra("content",content);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    v.getContext().startActivity(intent);
+        final Call<List<RetrofitConnection.Beverage>> repos = service.repoContributors(cafe_pk);
+
+        repos.enqueue(new Callback<List<RetrofitConnection.Beverage>>() {
+            @Override
+            public void onResponse(Call<List<RetrofitConnection.Beverage>> call, Response<List<RetrofitConnection.Beverage>> response) {
+                if(response.code()==200){
+
+                    for(int i=0; i<response.body().size(); i++){
+                        RetrofitConnection.Beverage beverage=response.body().get(i);
+                        mAdapter.addItem(beverage.name,"http://rest.takeitnow.kr"+beverage.image,false,beverage.pk);
+                    }
+
+                    //mAdapter.addItem("아메리카노","http://rest.takeitnow.kr/uploads/menu/test1/%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.jpg",false,1);
+                    lv_order.setAdapter(mAdapter);
+                    //mAdapter.notifyDataSetChanged();
+                }else{
+                    Toast.makeText(v.getContext(), "Error : "+ response.code(), Toast.LENGTH_LONG).show();
                 }
-            });
+            }
+            @Override
+            public void onFailure(Call<List<RetrofitConnection.Beverage>> call, Throwable t) {
+                Log.d("TAG",t.getLocalizedMessage());
+            }
+        });
+
+
+        lv_order.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                OrderListItem2 item= (OrderListItem2) mAdapter.getItem(i);
+                Intent intent = new Intent(v.getContext(), CoffeOption2Activity.class);
+                String iv_content = item.getImg();
+                String content = item.getContent();
+                intent.putExtra("iv_content", iv_content);
+                intent.putExtra("content",content);
+                intent.putExtra("cafe_name", cafe_name);
+                intent.putExtra("cafe_pk", cafe_pk);
+                intent.putExtra("beverage_pk", ((OrderListItem2) mAdapter.getItem(i)).getPk());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                v.getContext().startActivity(intent);
+            }
+        });/*
+        if(position==0){
+            //Log.d("TAG", ""+cafe_pk);
+
         }
         else if(position==1){
-            v = mInflater.inflate(R.layout.order_inflate_one, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order);
-            adapter = new Order2ListAdapter();
-            lv_order.setAdapter(adapter);
-            adapter.addItem(null,null,false);
-            adapter.notifyDataSetChanged();
+            v = mInflater.inflate(R.layout.order_inflate_two, null);
+            lv_order = (ListView) v.findViewById(R.id.lv_order_2);
+            mAdapter = new Order2ListAdapter();
+            lv_order.setAdapter(mAdapter);
+            mAdapter.addItem("",null,false,0);
+            mAdapter.notifyDataSetChanged();
         }
         else if(position==2){
-            v = mInflater.inflate(R.layout.order_inflate_one, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order);
-            adapter = new Order2ListAdapter();
-            lv_order.setAdapter(adapter);
-            adapter.addItem(null,null,false);
-            adapter.notifyDataSetChanged();
+            v = mInflater.inflate(R.layout.order_inflate_three, null);
+            lv_order = (ListView) v.findViewById(R.id.lv_order_3);
+            mAdapter = new Order2ListAdapter();
+            lv_order.setAdapter(mAdapter);
+            mAdapter.addItem("",null,false,0);
+            mAdapter.notifyDataSetChanged();
         }
         else if(position==3){
-            v = mInflater.inflate(R.layout.order_inflate_one, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order);
-            adapter = new Order2ListAdapter();
-            lv_order.setAdapter(adapter);
-            adapter.addItem(null,null,false);
-            adapter.notifyDataSetChanged();
+            v = mInflater.inflate(R.layout.order_inflate_four, null);
+            lv_order = (ListView) v.findViewById(R.id.lv_order_4);
+            mAdapter = new Order2ListAdapter();
+            lv_order.setAdapter(mAdapter);
+            mAdapter.addItem("",null,false,0);
+            mAdapter.notifyDataSetChanged();
         }
         else if(position==4){
-            v = mInflater.inflate(R.layout.order_inflate_one, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order);
-            adapter = new Order2ListAdapter();
-            lv_order.setAdapter(adapter);
-            adapter.addItem(null,null,false);
-            adapter.notifyDataSetChanged();
+            v = mInflater.inflate(R.layout.order_inflate_five, null);
+            lv_order = (ListView) v.findViewById(R.id.lv_order_5);
+            mAdapter = new Order2ListAdapter();
+            lv_order.setAdapter(mAdapter);
+            mAdapter.addItem("",null,false,0);
+            mAdapter.notifyDataSetChanged();
         }
-
+*/
 
         ((ViewPager)pager).addView(v, 0);
 

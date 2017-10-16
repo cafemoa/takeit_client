@@ -33,11 +33,6 @@ public class OrderListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order_list);
 
         spinner_order_list = (Spinner) findViewById(R.id.spinner_order_list);
-
-
-        /**
-         여기서 spinner 처리하셍
-         */
         spinner_order_list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(
 
         ) {
@@ -69,13 +64,8 @@ public class OrderListActivity extends AppCompatActivity {
         });
 
         adapter = new PaymentListViewAdapter();
-
         listView = (ListView)findViewById(R.id.payment_listview);
-
         retrofit= RetrofitInstance.getInstance(getApplicationContext());
-
-
-        // AddItem
 
         setListViewData(0,1);
     }
@@ -93,8 +83,6 @@ public class OrderListActivity extends AppCompatActivity {
                     List<RetrofitConnection.Recent_payment> info=response.body();
                     for(int i=0; i<info.size(); i++){
                         RetrofitConnection.Recent_payment now_payment=info.get(i);
-                        //String title="["+now_payment.cafe_name+"] "+now_payment.menu_name;
-
                         adapter.addItem(now_payment.menu_name, now_payment.cafe_name, now_payment.cafe_location, now_payment.amount_price, now_payment.order_time); //이부분 고쳐줘
                     }
                     listView.setAdapter(adapter);

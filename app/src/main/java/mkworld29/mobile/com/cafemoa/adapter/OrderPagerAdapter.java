@@ -40,7 +40,7 @@ public class OrderPagerAdapter extends PagerAdapter {
 
         if(position==0){
             v = mInflater.inflate(R.layout.order_inflate_one, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order);
+            lv_order = (ListView) v.findViewById(R.id.lv_order_1);
             adapter = new OrderListAdapter();
             lv_order.setAdapter(adapter);
             adapter.addItem("아메리카노",null,false);
@@ -50,32 +50,32 @@ public class OrderPagerAdapter extends PagerAdapter {
             adapter.notifyDataSetChanged();
         }
         else if(position==1){
-            v = mInflater.inflate(R.layout.order_inflate_one, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order);
+            v = mInflater.inflate(R.layout.order_inflate_two, null);
+            lv_order = (ListView) v.findViewById(R.id.lv_order_2);
             adapter = new OrderListAdapter();
             lv_order.setAdapter(adapter);
             adapter.addItem(null,null,false);
             adapter.notifyDataSetChanged();
         }
         else if(position==2){
-            v = mInflater.inflate(R.layout.order_inflate_one, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order);
+            v = mInflater.inflate(R.layout.order_inflate_three, null);
+            lv_order = (ListView) v.findViewById(R.id.lv_order_3);
             adapter = new OrderListAdapter();
             lv_order.setAdapter(adapter);
             adapter.addItem(null,null,false);
             adapter.notifyDataSetChanged();
         }
         else if(position==3){
-            v = mInflater.inflate(R.layout.order_inflate_one, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order);
+            v = mInflater.inflate(R.layout.order_inflate_four, null);
+            lv_order = (ListView) v.findViewById(R.id.lv_order_4);
             adapter = new OrderListAdapter();
             lv_order.setAdapter(adapter);
             adapter.addItem(null,null,false);
             adapter.notifyDataSetChanged();
         }
         else if(position==4){
-            v = mInflater.inflate(R.layout.order_inflate_one, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order);
+            v = mInflater.inflate(R.layout.order_inflate_five, null);
+            lv_order = (ListView) v.findViewById(R.id.lv_order_5);
             adapter = new OrderListAdapter();
             lv_order.setAdapter(adapter);
             adapter.addItem(null,null,false);

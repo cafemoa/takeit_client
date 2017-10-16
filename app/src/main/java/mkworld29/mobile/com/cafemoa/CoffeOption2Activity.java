@@ -34,11 +34,17 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
     private TextView tv_shots_minus, tv_shots, tv_shots_plus;
     private TextView tv_hot, tv_ice;
     private TextView tv_whipping_true, tv_whipping_false;
+    private TextView tv_price;
+    private TextView tv_amount_minus, tv_amount, tv_amount_plus;
     private TextView[] arr_amount;
     private TextView[] arr_size;
     private TextView[] arr_shots;
     private TextView[] arr_cold;
     private TextView[] arr_whipping;
+
+    private String src_iv_content, src_content, src_cafe_name;
+    private int beverage_pk;
+    private int cafe_pk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +53,16 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
 
         Intent intent = getIntent();
 
-        String src_iv_content = intent.getStringExtra("iv_content");
+        if(intent != null) {
+            src_iv_content = intent.getStringExtra("iv_content");
+            src_content = intent.getStringExtra("content");
+            src_cafe_name = intent.getStringExtra("cafe_name");
+            beverage_pk = intent.getIntExtra("beverage_pk", 0);
+            cafe_pk = intent.getIntExtra("cafe_pk", 0);
+        }
 
         iv_content          =   (ImageView)findViewById(R.id.iv_content);
+        tv_price            =   (TextView) findViewById(R.id.tv_order_price);
 
         iv_back             =   (ImageView)findViewById(R.id.iv_back);
 
@@ -61,6 +74,11 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
 
         btn_get             =   (Button)findViewById(R.id.btn_get);
         btn_order             =   (Button)findViewById(R.id.btn_order);
+
+
+        tv_amount_minus     =   (TextView)findViewById(R.id.tv_order_amount_minus);
+        tv_amount           =   (TextView)findViewById(R.id.tv_order_amount);
+        tv_amount_plus      =   (TextView)findViewById(R.id.tv_order_amount_plus);
 
         tv_size_s           =   (TextView)findViewById(R.id.tv_order_size_s);
         tv_size_m           =   (TextView)findViewById(R.id.tv_order_size_m);
@@ -76,6 +94,10 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
         tv_whipping_true    =   (TextView)findViewById(R.id.tv_order_whipping_true);
         tv_whipping_false   =   (TextView)findViewById(R.id.tv_order_whipping_false);
 
+
+        arr_amount = new TextView[2];
+        arr_amount[0] = tv_amount_minus;
+        arr_amount[1] = tv_amount_plus;
 
         arr_size = new TextView[3];
         arr_size[0] = tv_size_s;
@@ -96,6 +118,8 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
 
         btn_get.setOnClickListener(this);
         btn_order.setOnClickListener(this);
+        tv_amount_minus.setOnClickListener(this);
+        tv_amount_plus.setOnClickListener(this);
         tv_size_s.setOnClickListener(this);
         tv_size_m.setOnClickListener(this);
         tv_size_l.setOnClickListener(this);
@@ -162,11 +186,17 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
         }
         else if(view.getId() == btn_get.getId())
         {
-
+            saveBasketItem();
+            Toast.makeText(this, "장바구니에 상품을 성공적으로 담았습니다.",Toast.LENGTH_SHORT).show();
+            finish();
         }
         else if(view.getId() == btn_order.getId())
         {
-
+            saveBasketItem();
+            Intent intent = new Intent(this, BaskitActivity.class);
+            intent.putExtra("cafe_pk",cafe_pk);
+            startActivity(intent);
+            finish();
         }
         else if(view.getId() == iv_back.getId())
         {
@@ -176,6 +206,44 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
 
     private void saveBasketItem()
     {
+        String content;
+        String image;
+        String cafeName;
+        String price;
+        String orderDate;
+        CoffeeOption option = null;
+        int shots, size, amount;
+        boolean is_cold, is_whipping;
+
+        shots = Integer.parseInt(tv_shots.getText().toString());
+
+        if(is_checked(tv_size_s))
+            size = 0;
+        else if(is_checked(tv_size_m))
+            size = 1;
+        else if(is_checked(tv_size_l))
+            size = 2;
+        else size = 0;
+
+        amount = Integer.parseInt(tv_amount.getText().toString());
+
+        if(is_checked(tv_hot)) is_cold = false;
+        else is_cold = true;
+
+        if(is_checked(tv_whipping_true)) is_whipping = true;
+        else is_whipping = false;
+
+        content = src_content;
+        cafeName = src_cafe_name;
+        price = tv_price.getText().toString();
+
+        option = new CoffeeOption(shots, size, amount, is_cold, is_whipping, beverage_pk);
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        BasketItem item = new BasketItem(src_iv_content, cafeName, content, price, dateFormat.format(date), amount, option);
+        BasketPref.getInstance(this).addBasket(item);
+
 
     }
 

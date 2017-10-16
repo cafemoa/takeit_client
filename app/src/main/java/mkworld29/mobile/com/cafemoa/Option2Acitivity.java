@@ -1,5 +1,6 @@
 package mkworld29.mobile.com.cafemoa;
 
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,16 +16,26 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
 
     private ViewPager mPager;
     private TextView tv_coffe, tv_smootie, tv_tea, tv_dessert, tv_etc;
-
+    public TextView tv_cafe_name;
+    private int cafe_pk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_option2_acitivity);
 
-        mPager = (ViewPager) findViewById(R.id.vp_order);
-        mPager.setAdapter(new Order2PagerAdapter(getApplicationContext()));
+        Intent i=getIntent();
+        cafe_pk=i.getIntExtra("cafe_pk",0);
 
+        tv_cafe_name = (TextView) findViewById(R.id.tv_cafe_name);
+        mPager = (ViewPager) findViewById(R.id.vp_order);
+
+        Order2PagerAdapter adapter = new Order2PagerAdapter(getApplicationContext(),cafe_pk);
+        adapter.setCafeName(tv_cafe_name.getText().toString());
+
+        mPager.setAdapter(adapter);
+
+        tv_cafe_name = (TextView) findViewById(R.id.tv_cafe_name);
         tv_coffe = (TextView) findViewById(R.id.tv_coffe_espresso);
         tv_smootie= (TextView) findViewById(R.id.tv_ade_smootie);
         tv_tea = (TextView) findViewById(R.id.tv_tea);

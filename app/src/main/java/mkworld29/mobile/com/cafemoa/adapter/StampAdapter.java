@@ -67,6 +67,10 @@ public class StampAdapter extends BaseAdapter {
             iv.getLayoutParams().height = (int)convertDpToPixel(50,context);
             iv.requestLayout();
         }
+        else {
+            iv.getLayoutParams().height = (int)convertDpToPixel(25,context);
+            iv.requestLayout();
+        }
 
         return convertView;
     }
