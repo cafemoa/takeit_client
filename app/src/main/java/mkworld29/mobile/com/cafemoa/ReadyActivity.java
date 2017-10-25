@@ -206,8 +206,9 @@ public class ReadyActivity extends AppCompatActivity implements View.OnClickList
 
         if(view.getId() == tv_sign_up.getId())
         {
-
+            SignupPref.getInstance(getApplicationContext()).removeAllInfo();
             intent = new Intent(this, AccessTermsActivity.class);
+
         }
         else if(view.getId() == tv_login.getId())
         {

@@ -48,6 +48,17 @@ public class FourthSignUpActivity extends AppCompatActivity implements View.OnCl
         edt_number_7.addTextChangedListener(this);
         edt_number_8.addTextChangedListener(this);
 
+        if(!pref.getString("phone_number").equals("")){
+            String phone_number=pref.getString("phone_number");
+            edt_number_1.setText(phone_number.charAt(0));
+            edt_number_2.setText(phone_number.charAt(1));
+            edt_number_3.setText(phone_number.charAt(2));
+            edt_number_4.setText(phone_number.charAt(3));
+            edt_number_5.setText(phone_number.charAt(4));
+            edt_number_6.setText(phone_number.charAt(5));
+            edt_number_7.setText(phone_number.charAt(6));
+            edt_number_8.setText(phone_number.charAt(7));
+        }
     }
 
     @Override

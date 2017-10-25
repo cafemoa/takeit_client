@@ -61,9 +61,10 @@ public class RetrofitConnection {
 
     public class Recent_payment {
         public String cafe_name;
-        public String price;
+        public String amount_price;
         public String order_time;
         public String menu_name;
+        public String cafe_location;
         public String image_url;
         public int pk;
         public String orderer_username;
@@ -137,8 +138,8 @@ public class RetrofitConnection {
     }
 
     public interface recent_payment_list_by_id{
-        @GET("recent_payment_list_by_id/")
-        Call<List<Recent_payment>> repoContributors();
+        @GET
+        Call<List<Recent_payment>> repoContributors(@Url String url);
     }
     public interface signup{
         @FormUrlEncoded
@@ -166,6 +167,12 @@ public class RetrofitConnection {
         Call<ResponseBody> repoContributors(
                 @Path("PK") int pk,
                 @Body RequestBody body
+        );
+    }
+    public interface get_cafe_beverage{
+        @GET("get_cafe_beverage/{PK}")
+        Call<List<Beverage>> repoContributors(
+                @Path("PK") int pk
         );
     }
 

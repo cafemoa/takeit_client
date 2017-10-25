@@ -30,6 +30,22 @@ public class FifthSignUpActivity extends AppCompatActivity implements View.OnCli
 
         btn_woman = (Button) findViewById(R.id.btn_woman);
         btn_woman.setOnClickListener(this);
+
+        if(!pref.getString("gender").equals("")){
+            String gender=pref.getString("gender");
+            if(gender.equals("male")){
+                is_man=true;
+                is_woman=false;
+                btn_man.setBackgroundColor(0xFFA9E6F2);
+                btn_woman.setBackgroundColor(0xFFE5E5E5);
+            }
+            else {
+                is_man=false;
+                is_woman=true;
+                btn_woman.setBackgroundColor(0xFFA9E6F2);
+                btn_man.setBackgroundColor(0xFFE5E5E5);
+            }
+        }
     }
 
     @Override
@@ -46,7 +62,6 @@ public class FifthSignUpActivity extends AppCompatActivity implements View.OnCli
             if(is_man) {    // 체크되어있으면
                 is_man = !is_man;   // 체크 해제 후
                 btn_man.setBackgroundColor(0xFFE5E5E5);   // 회색으로 바꿈
-
             }
             else{
                 is_man = !is_man;   // 체크 선택 후

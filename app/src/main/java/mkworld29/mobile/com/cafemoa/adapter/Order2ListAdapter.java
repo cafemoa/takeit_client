@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,10 +88,9 @@ public class Order2ListAdapter extends BaseAdapter{
         return listViewItemList;
     }
 
-    public void addItem(String content, String image, boolean is_best)
+    public void addItem(String content, String image, boolean is_best,int pk)
     {
-        OrderListItem2 item = new OrderListItem2(content,image,is_best);
-
+        OrderListItem2 item = new OrderListItem2(content,image,is_best,pk);
         listViewItemList.add(item);
     }
 

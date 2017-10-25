@@ -56,7 +56,7 @@ public class PaymentListViewAdapter extends BaseAdapter {
 
         TextView tv_content         = (TextView)convertView.findViewById(R.id.tv_content);
         TextView tv_price           =  (TextView) convertView.findViewById(R.id.tv_price);
-        TextView tv_time            = (TextView) convertView.findViewById(R.id.tv_time);
+        TextView tv_time            = (TextView) convertView.findViewById(R.id.tv_order_date);
         TextView tv_cafe_name       = (TextView)convertView.findViewById(R.id.tv_cafe_name);
         TextView tv_cafe_address    = (TextView)convertView.findViewById(R.id.tv_cafe_address);
 
@@ -77,5 +77,8 @@ public class PaymentListViewAdapter extends BaseAdapter {
         PaymentListViewItem item = new PaymentListViewItem(content, cafe_name, cafe_address, price,time);
 
         listViewItemList.add(item);
+    }
+    public void clearItems(){
+        listViewItemList.clear();
     }
 }

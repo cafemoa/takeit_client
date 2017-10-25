@@ -1,6 +1,7 @@
 package mkworld29.mobile.com.cafemoa.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
@@ -17,6 +18,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+import mkworld29.mobile.com.cafemoa.Option2Acitivity;
 import mkworld29.mobile.com.cafemoa.R;
 import mkworld29.mobile.com.cafemoa.item.MainCafeItem;
 
@@ -42,7 +44,7 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
     @Override
     public void onBindViewHolder(MainCafeAdapter.ViewHolder holder, int position) {
         final MainCafeItem item = items.get(position);
-        Log.d("TAG",item.getImage());
+        //Log.d("TAG",item.getImage());
         Glide.with(context)
                 .load(item.getImage())
                 .placeholder(R.mipmap.ic_launcher)
@@ -53,6 +55,14 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
         holder.name.setText(item.getName());
         holder.tag.setText(item.getTag());
         holder.location.setText(item.getLocation());
+        holder.cardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), Option2Acitivity.class);
+                i.putExtra("cafe_pk",item.getPk());
+                v.getContext().startActivity(i);
+            }
+        });
         if(!item.getEvent()) holder.event.setVisibility(View.INVISIBLE);
     }
 

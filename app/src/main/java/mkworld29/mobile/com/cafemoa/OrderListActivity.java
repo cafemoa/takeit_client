@@ -13,6 +13,7 @@ import java.util.List;
 
 import mkworld29.mobile.com.cafemoa.adapter.PaymentListViewAdapter;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
+import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,16 +33,28 @@ public class OrderListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order_list);
 
         spinner_order_list = (Spinner) findViewById(R.id.spinner_order_list);
-
-        /**
-         여기서 spinner 처리하셍
-         */
         spinner_order_list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(
 
         ) {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                switch (i){
+                    case 0 :
+                        setListViewData(0,1);
+                        break;
+                    case 1 :
+                        setListViewData(0,3);
+                        break;
+                    case 2 :
+                        setListViewData(0,6);
+                        break;
+                    case 3 :
+                        setListViewData(1,0);
+                        break;
+                    case 4 :
+                        setListViewData(5,0);
+                        break;
+                }
             }
 
             @Override
@@ -51,15 +64,17 @@ public class OrderListActivity extends AppCompatActivity {
         });
 
         adapter = new PaymentListViewAdapter();
-
         listView = (ListView)findViewById(R.id.payment_listview);
+        retrofit= RetrofitInstance.getInstance(getApplicationContext());
 
+        setListViewData(0,1);
+    }
 
-        // AddItem
+    public void setListViewData(int year,int month){
+        adapter.clearItems();
+        RetrofitConnection.recent_payment_list_by_id service2 = retrofit.create(RetrofitConnection.recent_payment_list_by_id.class);
 
-        RetrofitConnection.recent_payments service2 = retrofit.create(RetrofitConnection.recent_payments.class);
-
-        final Call<List<RetrofitConnection.Recent_payment>> repos2 = service2.repoContributors("recent_payment_list_by_order/"+0+"/");
+        final Call<List<RetrofitConnection.Recent_payment>> repos2 = service2.repoContributors("recent_payment_list_by_id/"+year+"/"+month);
 
         repos2.enqueue(new Callback<List<RetrofitConnection.Recent_payment>>() {
             @Override
@@ -68,8 +83,7 @@ public class OrderListActivity extends AppCompatActivity {
                     List<RetrofitConnection.Recent_payment> info=response.body();
                     for(int i=0; i<info.size(); i++){
                         RetrofitConnection.Recent_payment now_payment=info.get(i);
-                        String title="["+now_payment.cafe_name+"] "+now_payment.menu_name;
-                        //adapter.addItem(title, cafe_name, cafe_address, now_payment.price, now_payment.order_time); //이부분 고쳐줘
+                        adapter.addItem(now_payment.menu_name, now_payment.cafe_name, now_payment.cafe_location, now_payment.amount_price, now_payment.order_time); //이부분 고쳐줘
                     }
                     listView.setAdapter(adapter);
                 }else{

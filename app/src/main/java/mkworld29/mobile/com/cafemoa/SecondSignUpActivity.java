@@ -23,6 +23,10 @@ public class SecondSignUpActivity extends AppCompatActivity implements View.OnCl
         btn_next = (Button) findViewById(R.id.btn_next);
         name=(EditText)findViewById(R.id.sign_name);
         btn_next.setOnClickListener(this);
+
+        if(!pref.getString("name").equals("")){
+            name.setText(pref.getString("name"));
+        }
     }
 
     @Override

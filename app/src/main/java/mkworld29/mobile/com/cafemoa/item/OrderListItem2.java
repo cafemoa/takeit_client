@@ -8,12 +8,14 @@ public class OrderListItem2{
     String content;
     String img;
     boolean is_best;
+    int pk;
 
-    public OrderListItem2(String c, String i, boolean is_best)
+    public OrderListItem2(String c, String i, boolean is_best, int pk)
     {
         this.content = c;
         this.img = i;
         this.is_best = is_best;
+        this.pk=pk;
     }
 
     public String getContent() {
@@ -39,4 +41,6 @@ public class OrderListItem2{
     public void setIs_best(boolean is_best) {
         this.is_best = is_best;
     }
+    public void setPk(int pk){ this.pk=pk; }
+    public int getPk(){ return pk; }
 }

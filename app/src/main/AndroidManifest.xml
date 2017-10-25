@@ -20,7 +20,15 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" />
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -85,15 +93,11 @@
         <activity android:name=".OrderActivity" />
         <activity android:name=".OrderCompleteActivity" />
         <activity android:name=".Option2Acitivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name=".CoffeOption2Activity" >
 
-            </activity>
+        <activity android:name=".CoffeOption2Activity" >
+        </activity>
         <activity android:name=".OrderListActivity" />
         <activity android:name=".PersonalEventActivity" />
         <activity android:name=".SettingActivity" />

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -42,21 +43,13 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
     private TextView[] arr_whipping;
 
     private String src_iv_content, src_content, src_cafe_name;
-    private int pk;
+    private int beverage_pk;
+    private int cafe_pk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coffe_option2);
-
-        /**
-         *
-         *
-         * pk 처리 꼭 해야됨~!!
-         *
-         *
-         */
-        pk = 0;
 
         Intent intent = getIntent();
 
@@ -64,6 +57,8 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
             src_iv_content = intent.getStringExtra("iv_content");
             src_content = intent.getStringExtra("content");
             src_cafe_name = intent.getStringExtra("cafe_name");
+            beverage_pk = intent.getIntExtra("beverage_pk", 0);
+            cafe_pk = intent.getIntExtra("cafe_pk", 0);
         }
 
         iv_content          =   (ImageView)findViewById(R.id.iv_content);
@@ -213,6 +208,7 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
         {
             saveBasketItem();
             Intent intent = new Intent(this, BaskitActivity.class);
+            intent.putExtra("cafe_pk",cafe_pk);
             startActivity(intent);
             finish();
         }
@@ -255,7 +251,7 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
         cafeName = src_cafe_name;
         price = tv_price.getText().toString();
 
-        option = new CoffeeOption(shots, size, amount, is_cold, is_whipping, pk);
+        option = new CoffeeOption(shots, size, amount, is_cold, is_whipping, beverage_pk);
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();

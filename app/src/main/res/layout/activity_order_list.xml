@@ -28,14 +28,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="주문내역"
-            android:textStyle="bold"
-            android:layout_centerInParent="true"/>
-
         <Spinner
             android:id="@+id/spinner_order_list"
             android:layout_width="wrap_content"
@@ -46,6 +38,13 @@
 
 
         </Spinner>
+        <ListView
+            android:id="@+id/payment_listview"
+            android:layout_below="@id/spinner_order_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
 
 
     </RelativeLayout>

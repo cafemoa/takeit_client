@@ -31,6 +31,7 @@ public class SixthSignUpActivity extends AppCompatActivity {
 
         pref=SignupPref.getInstance(getApplicationContext());
 
+
         final String email=pref.getInfo("email");
         final String name=pref.getInfo("name");
         final String birth=pref.getInfo("birth");
@@ -39,6 +40,8 @@ public class SixthSignUpActivity extends AppCompatActivity {
 
         if(pref.getInfo("gender").equals("male")) gender=true;
         else gender=false;
+
+        pref.removeAllInfo();
 
         final Call<ResponseBody> repos = service.repoContributors(
                 "username",
