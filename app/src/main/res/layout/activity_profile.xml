@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="mkworld29.mobile.com.cafemoa.ProfileActivity"
+    android:background="#a4a6a8"
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
@@ -20,8 +21,10 @@
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
+        android:background="#fcfcfc"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -31,14 +34,147 @@
             android:src="@mipmap/ic_launcher"
             android:layout_gravity="center"/>
 
+        <TextView
+            android:id="@+id/tv_userId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="17sp"
+            android:text="유저네임"
+            />
+
     </LinearLayout>
 
     <LinearLayout
+        android:background="#fcfcfc"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="이메일"
+                android:textColor="#0c0c0c"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:gravity="right"
+                android:layout_centerVertical="true"
+                />
+
+            <EditText
+                android:id="@+id/edt_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tv_email"
+                android:textSize="15sp"
+                android:text="takeit@takeit.now"
+                android:layout_centerVertical="true"
+                android:textColor="#666466"
+                android:layout_marginLeft="20dp"
+                />
+            
+            <Button
+                android:id="@+id/btn_email_change"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@id/edt_email"
+                android:layout_marginLeft="50dp"
+                android:layout_centerVertical="true"
+                android:textColor="#646668"
+                android:text="수정"/>
+            
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edt_email"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true">
+
+                <CheckBox
+                    android:id="@+id/chk_email"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@id/chk_email"
+                    android:layout_centerVertical="true"
+                    android:textSize="12sp"
+                    android:textColor="#ff5c5c"
+                    android:text="이메일 수신동의 (주문정보를 이메일로 안내해드립니다.)"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:background="#fcfcfc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/tv_passwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="비밀번호"
+                android:textColor="#0c0c0c"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:gravity="right"
+                android:layout_centerVertical="true"
+                />
+
+            <EditText
+                android:id="@+id/edt_passwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:layout_toRightOf="@id/tv_passwd"
+                android:textSize="15sp"
+                android:text="takeit@takeit.now"
+                android:layout_centerVertical="true"
+                android:hint="8~20자 이내"
+                android:textColor="#666466"
+                android:layout_marginLeft="20dp"
+                />
+
+            <Button
+                android:id="@+id/btn_passwd_change"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@id/edt_passwd"
+                android:layout_marginLeft="50dp"
+                android:layout_centerVertical="true"
+                android:textColor="#646668"
+                android:text="수정"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#fcfcfc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
     <LinearLayout
+        android:background="#fcfcfc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -61,26 +197,32 @@
     </LinearLayout>
 
     <LinearLayout
+        android:background="#fcfcfc"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
+        android:padding="15dp"
         android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:textStyle="bold"
             android:text="회원탈퇴 "/>
 
     </LinearLayout>
 
     <LinearLayout
+        android:background="#fcfcfc"
+        android:layout_marginTop="10dp"
+        android:padding="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:textStyle="bold"
             android:text="로그아웃 "/>
 
