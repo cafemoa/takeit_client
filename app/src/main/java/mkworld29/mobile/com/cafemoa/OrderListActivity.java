@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class OrderListActivity extends AppCompatActivity {
     private ListView listView;
     private PaymentListViewAdapter adapter;
     private Spinner spinner_order_list;
+    private ImageView iv_back;
 
     Retrofit retrofit;
 
@@ -33,6 +35,13 @@ public class OrderListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order_list);
 
         spinner_order_list = (Spinner) findViewById(R.id.spinner_order_list);
+        iv_back=(ImageView) findViewById(R.id.iv_back);
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         spinner_order_list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(
 
         ) {

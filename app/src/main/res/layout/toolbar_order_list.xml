@@ -17,25 +17,12 @@
         <!-- This is a centered logo -->
 
         <ImageView
+            android:id="@+id/iv_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/baskit_arrow"
             android:layout_gravity="left|center_vertical"/>
 
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:orientation="horizontal"
-            android:layout_gravity="right|center_vertical"
-            android:layout_marginRight="10dp">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/coupon_cart"/>
-
-        </LinearLayout>
 
 
     </FrameLayout>
