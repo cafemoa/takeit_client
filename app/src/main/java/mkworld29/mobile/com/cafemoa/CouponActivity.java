@@ -54,7 +54,6 @@ public class CouponActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_coupon);
 
         iv_home = (ImageView) findViewById(R.id.iv_home);
-        iv_cart = (ImageView) findViewById(R.id.iv_cart);
         iv_alarm = (ImageView) findViewById(R.id.iv_alarm);
 
         tv_cafe_address = (TextView)findViewById(R.id.tv_cafe_address);
