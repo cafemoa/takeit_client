@@ -94,6 +94,11 @@ public class Order2ListAdapter extends BaseAdapter{
         listViewItemList.add(item);
     }
 
+    public void addItem(OrderListItem2 item)
+    {
+        listViewItemList.add(item);
+    }
+
     public void setFontStyle(TextView view, boolean is_bold)
     {
         if(is_bold) {

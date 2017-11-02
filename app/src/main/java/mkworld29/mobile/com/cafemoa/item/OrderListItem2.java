@@ -1,10 +1,13 @@
 package mkworld29.mobile.com.cafemoa.item;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by parkjaemin on 2017. 10. 6..
  */
 
-public class OrderListItem2{
+public class OrderListItem2 implements Parcelable{
     String content;
     String img;
     boolean is_best;
@@ -17,6 +20,25 @@ public class OrderListItem2{
         this.is_best = is_best;
         this.pk=pk;
     }
+
+    protected OrderListItem2(Parcel in) {
+        content = in.readString();
+        img = in.readString();
+        is_best = in.readByte() != 0;
+        pk = in.readInt();
+    }
+
+    public static final Creator<OrderListItem2> CREATOR = new Creator<OrderListItem2>() {
+        @Override
+        public OrderListItem2 createFromParcel(Parcel in) {
+            return new OrderListItem2(in);
+        }
+
+        @Override
+        public OrderListItem2[] newArray(int size) {
+            return new OrderListItem2[size];
+        }
+    };
 
     public String getContent() {
         return content;
@@ -43,4 +65,17 @@ public class OrderListItem2{
     }
     public void setPk(int pk){ this.pk=pk; }
     public int getPk(){ return pk; }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(content);
+        dest.writeString(img);
+        dest.writeByte((byte) (is_best ? 1 : 0));
+        dest.writeInt(pk);
+    }
 }

@@ -3,6 +3,8 @@ package mkworld29.mobile.com.cafemoa.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Parcelable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
@@ -35,7 +37,7 @@ import retrofit2.Retrofit;
  * Created by parkjaemin on 2017. 9. 26..
  */
 
-public class Order2PagerAdapter extends PagerAdapter {
+public class Order2PagerAdapter extends PagerAdapter{
 
     private LayoutInflater mInflater;
 
@@ -43,8 +45,19 @@ public class Order2PagerAdapter extends PagerAdapter {
     ListView lv_order = null;
     String cafe_name;
     Order2ListAdapter mAdapter = null;
+    private ArrayList<OrderListItem2> page0=new ArrayList<>();
+    private ArrayList<OrderListItem2> page1=new ArrayList<>();
+    private ArrayList<OrderListItem2> page2=new ArrayList<>();
+    private ArrayList<OrderListItem2> page3=new ArrayList<>();
+    private ArrayList<OrderListItem2> page4=new ArrayList<>();
     View v = null;
     int cafe_pk;
+
+    public void addItemPage0(OrderListItem2 item){page0.add(item);}
+    public void addItemPage1(OrderListItem2 item){page1.add(item);}
+    public void addItemPage2(OrderListItem2 item){page2.add(item);}
+    public void addItemPage3(OrderListItem2 item){page3.add(item);}
+    public void addItemPage4(OrderListItem2 item){page4.add(item);}
 
     public Order2PagerAdapter(Context c, int cafe_pk)
     {
@@ -53,7 +66,6 @@ public class Order2PagerAdapter extends PagerAdapter {
         mInflater = LayoutInflater.from(c);
         this.cafe_pk=cafe_pk;
     }
-
     public void setCafeName(String s)
     {
         this.cafe_name = s;
@@ -66,39 +78,70 @@ public class Order2PagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(View pager, int position) {
-        v = mInflater.inflate(R.layout.order_inflate_one, null);
-        lv_order = (ListView) v.findViewById(R.id.lv_order_1);
-        mAdapter = new Order2ListAdapter();
+        if(position==0){
+            mAdapterRefresh0();
+        }
+        else if(position==1){
+            mAdapterRefresh1();
+        }
+        else if(position==2){
+            v = mInflater.inflate(R.layout.order_inflate_three, null);
+            lv_order = (ListView) v.findViewById(R.id.lv_order_3);
+            mAdapter = new Order2ListAdapter();
+            lv_order.setAdapter(mAdapter);
+            mAdapter.addItem("아메리카노2","http://rest.takeitnow.kr",false,2);
+            mAdapter.addItem("딸기스무디2","http://rest.takeitnow.kr",false,2);
+            mAdapter.addItem("꿀맛2","http://rest.takeitnow.kr",false,2);
+            mAdapter.addItem("맛있는거2","http://rest.takeitnow.kr",false,2);
+            setClickListener();
+            mAdapter.notifyDataSetChanged();
+        }
+        else if(position==3){
+            v = mInflater.inflate(R.layout.order_inflate_four, null);
+            lv_order = (ListView) v.findViewById(R.id.lv_order_4);
+            mAdapter = new Order2ListAdapter();
+            lv_order.setAdapter(mAdapter);
+            mAdapter.addItem("아메리카노3","http://rest.takeitnow.kr",false,2);
+            mAdapter.addItem("딸기스무디3","http://rest.takeitnow.kr",false,2);
+            mAdapter.addItem("꿀맛3","http://rest.takeitnow.kr",false,2);
+            mAdapter.addItem("맛있는거3","http://rest.takeitnow.kr",false,2);
+            setClickListener();
+            mAdapter.notifyDataSetChanged();
+        }
+        else if(position==4){
+            v = mInflater.inflate(R.layout.order_inflate_five, null);
+            lv_order = (ListView) v.findViewById(R.id.lv_order_5);
+            mAdapter = new Order2ListAdapter();
+            lv_order.setAdapter(mAdapter);
+            mAdapter.addItem("아메리카노4","http://rest.takeitnow.kr",false,2);
+            mAdapter.addItem("딸기스무디4","http://rest.takeitnow.kr",false,2);
+            mAdapter.addItem("꿀맛4","http://rest.takeitnow.kr",false,2);
+            mAdapter.addItem("맛있는거4","http://rest.takeitnow.kr",false,2);
+            setClickListener();
+            mAdapter.notifyDataSetChanged();
+        }
 
-        Retrofit retrofit= RetrofitInstance.getInstance(v.getContext());
-        RetrofitConnection.get_cafe_beverage service = retrofit.create(RetrofitConnection.get_cafe_beverage.class);
+        ((ViewPager)pager).addView(v, 0);
 
-        final Call<List<RetrofitConnection.Beverage>> repos = service.repoContributors(cafe_pk);
+        return v;
+    }
 
-        repos.enqueue(new Callback<List<RetrofitConnection.Beverage>>() {
-            @Override
-            public void onResponse(Call<List<RetrofitConnection.Beverage>> call, Response<List<RetrofitConnection.Beverage>> response) {
-                if(response.code()==200){
-
-                    for(int i=0; i<response.body().size(); i++){
-                        RetrofitConnection.Beverage beverage=response.body().get(i);
-                        mAdapter.addItem(beverage.name,"http://rest.takeitnow.kr"+beverage.image,false,beverage.pk);
-                    }
-
-                    //mAdapter.addItem("아메리카노","http://rest.takeitnow.kr/uploads/menu/test1/%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.jpg",false,1);
-                    lv_order.setAdapter(mAdapter);
-                    //mAdapter.notifyDataSetChanged();
-                }else{
-                    Toast.makeText(v.getContext(), "Error : "+ response.code(), Toast.LENGTH_LONG).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<List<RetrofitConnection.Beverage>> call, Throwable t) {
-                Log.d("TAG",t.getLocalizedMessage());
-            }
-        });
+    @Override
+    public void destroyItem(View pager, int position, Object view) {
+        ((ViewPager)pager).removeView((View)view);
+    }
 
 
+    @Override
+    public boolean isViewFromObject(View view, Object o) {
+        return view == o;
+    }
+    @Override public void restoreState(Parcelable arg0, ClassLoader arg1) {}
+    @Override public Parcelable saveState() { return null; }
+    @Override public void startUpdate(View arg0) {}
+    @Override public void finishUpdate(View arg0) {}
+
+    public void setClickListener(){
         lv_order.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -114,61 +157,44 @@ public class Order2PagerAdapter extends PagerAdapter {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 v.getContext().startActivity(intent);
             }
-        });/*
-        if(position==0){
-            //Log.d("TAG", ""+cafe_pk);
+        });
+    }
+    public void mAdapterRefresh0(){
+        v = mInflater.inflate(R.layout.order_inflate_one, null);
+        lv_order = (ListView) v.findViewById(R.id.lv_order_1);
+        mAdapter = new Order2ListAdapter();
+        lv_order.setAdapter(mAdapter);
+        for(int i=0; i<page0.size(); i++){
+            mAdapter.addItem(page0.get(i));
+        }
+        setClickListener();
+        mAdapter.notifyDataSetChanged();
+    }
+    public void mAdapterRefresh1(){
+        v = mInflater.inflate(R.layout.order_inflate_two, null);
+        lv_order = (ListView) v.findViewById(R.id.lv_order_2);
+        mAdapter = new Order2ListAdapter();
+        lv_order.setAdapter(mAdapter);
+        for(int i=0; i<page1.size(); i++){
+            mAdapter.addItem(page1.get(i));
+        }
+        setClickListener();
+        mAdapter.notifyDataSetChanged();
+    }
+    public void mAdapterRefresh2(){
 
-        }
-        else if(position==1){
-            v = mInflater.inflate(R.layout.order_inflate_two, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order_2);
-            mAdapter = new Order2ListAdapter();
-            lv_order.setAdapter(mAdapter);
-            mAdapter.addItem("",null,false,0);
-            mAdapter.notifyDataSetChanged();
-        }
-        else if(position==2){
-            v = mInflater.inflate(R.layout.order_inflate_three, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order_3);
-            mAdapter = new Order2ListAdapter();
-            lv_order.setAdapter(mAdapter);
-            mAdapter.addItem("",null,false,0);
-            mAdapter.notifyDataSetChanged();
-        }
-        else if(position==3){
-            v = mInflater.inflate(R.layout.order_inflate_four, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order_4);
-            mAdapter = new Order2ListAdapter();
-            lv_order.setAdapter(mAdapter);
-            mAdapter.addItem("",null,false,0);
-            mAdapter.notifyDataSetChanged();
-        }
-        else if(position==4){
-            v = mInflater.inflate(R.layout.order_inflate_five, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order_5);
-            mAdapter = new Order2ListAdapter();
-            lv_order.setAdapter(mAdapter);
-            mAdapter.addItem("",null,false,0);
-            mAdapter.notifyDataSetChanged();
-        }
-*/
+        mAdapter.notifyDataSetChanged();
+        setClickListener();
+    }
+    public void mAdapterRefresh3(){
 
-        ((ViewPager)pager).addView(v, 0);
+        mAdapter.notifyDataSetChanged();
+        setClickListener();
+    }public void mAdapterRefresh4(){
 
-        return v;
+        mAdapter.notifyDataSetChanged();
+        setClickListener();
     }
 
-    @Override
-    public void destroyItem(View pager, int position, Object view) {
-        ((ViewPager)pager).removeView((View)view);
-    }
 
-    @Override
-    public boolean isViewFromObject(View view, Object o) {
-        return view == o;
-    }
-    @Override public void restoreState(Parcelable arg0, ClassLoader arg1) {}
-    @Override public Parcelable saveState() { return null; }
-    @Override public void startUpdate(View arg0) {}
-    @Override public void finishUpdate(View arg0) {}
 }
