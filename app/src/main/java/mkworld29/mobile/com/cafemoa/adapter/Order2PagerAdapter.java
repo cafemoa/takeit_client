@@ -44,7 +44,12 @@ public class Order2PagerAdapter extends PagerAdapter{
     private Context mContext;
     ListView lv_order = null;
     String cafe_name;
-    Order2ListAdapter mAdapter = null;
+    Order2ListAdapter mAdapter0 = null;
+    Order2ListAdapter mAdapter1 = null;
+    Order2ListAdapter mAdapter2 = null;
+    Order2ListAdapter mAdapter3 = null;
+    Order2ListAdapter mAdapter4 = null;
+
     private ArrayList<OrderListItem2> page0=new ArrayList<>();
     private ArrayList<OrderListItem2> page1=new ArrayList<>();
     private ArrayList<OrderListItem2> page2=new ArrayList<>();
@@ -77,21 +82,23 @@ public class Order2PagerAdapter extends PagerAdapter{
         return 5;
     }
 
+
     @Override
     public Object instantiateItem(View pager, int position) {
-        if(position==0){
+
+        if(position==0 && mAdapter0==null){
             mAdapterRefresh0();
         }
-        else if(position==1){
+        else if(position==1&& mAdapter1==null){
             mAdapterRefresh1();
         }
-        else if(position==2){
+        else if(position==2&& mAdapter2==null){
             mAdapterRefresh2();
         }
-        else if(position==3){
+        else if(position==3&& mAdapter3==null){
             mAdapterRefresh3();
         }
-        else if(position==4){
+        else if(position==4&& mAdapter4==null){
             mAdapterRefresh4();
         }
 
@@ -115,7 +122,7 @@ public class Order2PagerAdapter extends PagerAdapter{
     @Override public void startUpdate(View arg0) {}
     @Override public void finishUpdate(View arg0) {}
 
-    public void setClickListener(){
+    public void setClickListener(final Order2ListAdapter mAdapter){
         lv_order.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -136,55 +143,55 @@ public class Order2PagerAdapter extends PagerAdapter{
     public void mAdapterRefresh0(){
         v = mInflater.inflate(R.layout.order_inflate_one, null);
         lv_order = (ListView) v.findViewById(R.id.lv_order_1);
-        mAdapter = new Order2ListAdapter();
-        lv_order.setAdapter(mAdapter);
+        mAdapter0 = new Order2ListAdapter();
+        lv_order.setAdapter(mAdapter0);
         for(int i=0; i<page0.size(); i++){
-            mAdapter.addItem(page0.get(i));
+            mAdapter0.addItem(page0.get(i));
         }
-        setClickListener();
-        mAdapter.notifyDataSetChanged();
+        setClickListener(mAdapter0);
+        mAdapter0.notifyDataSetChanged();
     }
     public void mAdapterRefresh1(){
         v = mInflater.inflate(R.layout.order_inflate_two, null);
         lv_order = (ListView) v.findViewById(R.id.lv_order_2);
-        mAdapter = new Order2ListAdapter();
-        lv_order.setAdapter(mAdapter);
+        mAdapter1 = new Order2ListAdapter();
+        lv_order.setAdapter(mAdapter1);
         for(int i=0; i<page1.size(); i++){
-            mAdapter.addItem(page1.get(i));
+            mAdapter1.addItem(page1.get(i));
         }
-        setClickListener();
-        mAdapter.notifyDataSetChanged();
+        setClickListener(mAdapter1);
+        mAdapter1.notifyDataSetChanged();
     }
     public void mAdapterRefresh2(){
         v = mInflater.inflate(R.layout.order_inflate_three, null);
         lv_order = (ListView) v.findViewById(R.id.lv_order_3);
-        mAdapter = new Order2ListAdapter();
-        lv_order.setAdapter(mAdapter);
+        mAdapter2 = new Order2ListAdapter();
+        lv_order.setAdapter(mAdapter2);
         for(int i=0; i<page2.size(); i++){
-            mAdapter.addItem(page2.get(i));
+            mAdapter2.addItem(page2.get(i));
         }
-        mAdapter.notifyDataSetChanged();
-        setClickListener();
+        mAdapter2.notifyDataSetChanged();
+        setClickListener(mAdapter2);
     }
     public void mAdapterRefresh3(){
         v = mInflater.inflate(R.layout.order_inflate_four, null);
         lv_order = (ListView) v.findViewById(R.id.lv_order_4);
-        mAdapter = new Order2ListAdapter();
-        lv_order.setAdapter(mAdapter);
+        mAdapter3 = new Order2ListAdapter();
+        lv_order.setAdapter(mAdapter3);
         for(int i=0; i<page3.size(); i++){
-            mAdapter.addItem(page3.get(i));
+            mAdapter3.addItem(page3.get(i));
         }
-        mAdapter.notifyDataSetChanged();
-        setClickListener();
+        mAdapter3.notifyDataSetChanged();
+        setClickListener(mAdapter3);
     }public void mAdapterRefresh4(){
         v = mInflater.inflate(R.layout.order_inflate_five, null);
         lv_order = (ListView) v.findViewById(R.id.lv_order_5);
-        mAdapter = new Order2ListAdapter();
-        lv_order.setAdapter(mAdapter);
+        mAdapter4 = new Order2ListAdapter();
+        lv_order.setAdapter(mAdapter4);
         for(int i=0; i<page4.size(); i++){
-            mAdapter.addItem(page4.get(i));
+            mAdapter4.addItem(page4.get(i));
         }
-        mAdapter.notifyDataSetChanged();
-        setClickListener();
+        mAdapter4.notifyDataSetChanged();
+        setClickListener(mAdapter4);
     }
 }

@@ -72,6 +72,7 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
 
         for(int i=0; i<beverages.size(); i++){
             OrderListItem2 item=beverages.get(i);
+
             if(item.getType()==0) adapter.addItemPage0(item);
             if(item.getType()==1) adapter.addItemPage1(item);
             if(item.getType()==2) adapter.addItemPage2(item);
