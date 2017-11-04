@@ -115,7 +115,9 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
                     }
                     Intent i = new Intent(v.getContext(), Option2Acitivity.class);
                     i.putExtra("cafe_pk",item.getPk());
-
+                    i.putExtra("cafe_name", item.getName());
+                    i.putExtra("cafe_image", item.getImage());
+                    i.putExtra("cafe_location", item.getLocation());
                     i.putParcelableArrayListExtra("beverages", beverages);
                     v.getContext().startActivity(i);
                 }else{

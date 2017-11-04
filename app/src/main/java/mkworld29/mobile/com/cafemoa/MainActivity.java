@@ -34,6 +34,7 @@ import android.widget.ViewFlipper;
 
 import com.zoyi.channel.plugin.android.ChannelPlugin;
 import com.zoyi.channel.plugin.android.OnChannelPluginChangedListener;
+import com.zoyi.channel.plugin.android.push.ChannelPushClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +72,8 @@ public class MainActivity extends AppCompatActivity
         startFlipper();
         startNavigation();
         setCafeList();
+        ChannelPlugin.addOnChannelPluginChangedListener(this);
+        ChannelPushClient.handlePushMessage(this);
     }
     private void setCafeList(){
         recyclerView = (RecyclerView)findViewById(R.id.main_recyclerView);
@@ -111,9 +114,8 @@ public class MainActivity extends AppCompatActivity
         imb_prev = (Button) findViewById(R.id.imb_prev);
 
 
-        //imb_next.setOnClickListener(this);
-        //imb_prev.setOnClickListener(this);
-
+        imb_next.setOnClickListener(this);
+        imb_prev.setOnClickListener(this);
     }
 
 
@@ -158,7 +160,7 @@ public class MainActivity extends AppCompatActivity
 
         // add ImageView to ViewFlipper
 
-        for(int i=0;i<1;i++)
+        for(int i=0;i<3;i++)
         {
             ImageView img = new ImageView(this);
             Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.drawable.main_banner);
@@ -166,17 +168,17 @@ public class MainActivity extends AppCompatActivity
             flipper.addView(img);
         }
 
-        Animation showIn = AnimationUtils.loadAnimation(this,android.R.anim.slide_in_left);
+        Animation showIn = AnimationUtils.loadAnimation(this,R.anim.out_left);
+
         flipper.setInAnimation(showIn);
+        flipper.setOutAnimation(this,R.anim.in_right);
 
-        flipper.setOutAnimation(this,android.R.anim.slide_out_right);
+        flipper.setFlipInterval(6000);
+        flipper.startFlipping();
+        flipper.setFocusable(true);
+        flipper.setAutoStart(true);
 
-        //flipper.setFlipInterval(6000);
-        //flipper.startFlipping();
-        //flipper.setFocusable(true);
-        //flipper.setAutoStart(true);
-
-        //flipper.setOnTouchListener(this);
+        flipper.setOnTouchListener(this);
     }
 
     @Override
@@ -257,8 +259,6 @@ public class MainActivity extends AppCompatActivity
             intent = new Intent(this, CouponActivity.class);
         } else if (id == R.id.nav_event) {
             intent = new Intent(this, OrderListActivity.class);
-        } else if (id == R.id.nav_settings) {
-            intent = new Intent(this, ReservationActivity.class);
         } else if (id == R.id.nav_talk){
             checkInVeil();
         }
@@ -273,6 +273,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
+
         switch(event.getAction())
         {
             case MotionEvent.ACTION_DOWN:
@@ -293,6 +294,7 @@ public class MainActivity extends AppCompatActivity
 
                     Log.d("TOUCH TAGGG!!!!","show,next");
                     flipper.showNext();
+                    flipper.setFlipInterval(6000);
                 }
                 else
                 {
@@ -303,6 +305,7 @@ public class MainActivity extends AppCompatActivity
 
                     Log.d("TOUCH TAGGG!!!!","show,Prev");
                     flipper.showPrevious();
+                    flipper.setFlipInterval(6000);
 
                 }
                 break;
@@ -319,13 +322,18 @@ public class MainActivity extends AppCompatActivity
     public void onClick(View v) {
         if(v.getId() == imb_next.getId())
         {
+            flipper.setInAnimation(this, R.anim.in_right);
+            flipper.setOutAnimation(this,R.anim.out_left);
             flipper.showNext();
+            flipper.setFlipInterval(6000);
         }
         else if(v.getId() == imb_prev.getId())
         {
+            flipper.setInAnimation(this,R.anim.in_left);
+            flipper.setOutAnimation(this,R.anim.out_right);
             flipper.showPrevious();
+            flipper.setFlipInterval(6000);
         }
-
     }
 
     @Override

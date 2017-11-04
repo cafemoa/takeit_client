@@ -143,13 +143,16 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
 
             RetrofitConnection.payment_beverages service = retrofit.create(RetrofitConnection.payment_beverages.class);
             RequestBody body = RequestBody.create(MediaType.parse("application/json"), option_json);
-            final Call<ResponseBody> repos = service.repoContributors(cafe_pk,body);
-            repos.enqueue(new Callback<ResponseBody>() {
+            final Call<RetrofitConnection.Payment_Complete> repos = service.repoContributors(cafe_pk,body);
+            repos.enqueue(new Callback<RetrofitConnection.Payment_Complete>() {
                 @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                public void onResponse(Call<RetrofitConnection.Payment_Complete> call, Response<RetrofitConnection.Payment_Complete> response) {
                     if (response.code() == 201) {
-                        Toast.makeText(getApplicationContext(), "주문이 완료되었습니다.", Toast.LENGTH_SHORT).show();
                         BasketPref.getInstance(getApplicationContext()).removeAllBasket();
+                        Intent i = new Intent(getApplicationContext(), OrderCompleteActivity.class);
+                        i.putExtra("order_num", response.body().order_num);
+                        i.putExtra("payment_okay_date", response.body().order_time);
+                        startActivity(i);
                         finish();
                     }
                     else{
@@ -159,7 +162,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
                 }
 
                 @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                public void onFailure(Call<RetrofitConnection.Payment_Complete> call, Throwable t) {
                     Log.d("TAG", t.getLocalizedMessage());
                 }
             });

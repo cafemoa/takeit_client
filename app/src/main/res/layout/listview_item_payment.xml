@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:text="EBISU"
             android:textStyle="bold"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textColor="#0c0c0c"/>
 
 
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="형남공학관 2층"
             android:layout_marginLeft="8dp"
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:textColor="#646668"/>
 
         <TextView
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|right"
             android:gravity="right"
-            android:textSize="13sp"
+            android:textSize="12sp"
             android:textColor="#646668"
             android:layout_marginRight="10dp"
             android:text="2017.09.15"/>
@@ -53,10 +53,10 @@
         android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="5dp"
         android:text="아메리카노 (Size S / ICE / 샷추가)"
         android:textStyle="bold"
-        android:textSize="18sp"/>
+        android:textSize="16sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -69,9 +69,9 @@
             android:id="@+id/tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:layout_marginTop="10dp"
-            android:text="3,300 원"
+            android:textSize="18sp"
+            android:layout_marginTop="25dp"
+            android:text="3,300원"
             android:textStyle="bold"
             android:textColor="#ff4343"/>
 

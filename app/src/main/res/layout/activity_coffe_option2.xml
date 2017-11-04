@@ -20,13 +20,6 @@
         android:orientation="horizontal"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp">
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="#ff6466"
-            android:text="cafe"/>
 
         <TextView
             android:id="@+id/tv_cafe_name"
@@ -93,7 +86,7 @@
                 android:layout_marginLeft="10dp"
                 android:gravity="right"
                 android:layout_centerVertical="true"
-                android:text="사이즈"
+                android:text="잔 수"
                 android:textColor="#0c0c0c"
                 android:textSize="15sp" />
 

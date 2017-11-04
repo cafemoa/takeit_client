@@ -72,6 +72,11 @@ public class RetrofitConnection {
         public int beverage_pk;
     }
 
+    public class Payment_Complete{
+        public int order_num;
+        public String order_time;
+    }
+
     public static class Order_option{
         int beverage;
         boolean whipping_cream;
@@ -165,7 +170,7 @@ public class RetrofitConnection {
 
     public interface payment_beverages{
         @POST("order_beverage/{PK}")
-        Call<ResponseBody> repoContributors(
+        Call<Payment_Complete> repoContributors(
                 @Path("PK") int pk,
                 @Body RequestBody body
         );

@@ -6,9 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +32,12 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
 
     private ViewPager mPager;
     private TextView tv_coffe, tv_smootie, tv_tea, tv_dessert, tv_etc;
-    public TextView tv_cafe_name;
+    public TextView tv_cafe_name,tv_cafe_location;
+    public ImageView iv_cafe_image;
     public Order2PagerAdapter adapter;
     private int cafe_pk;
+    private String cafe_location,cafe_name,cafe_image;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +46,25 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
 
         Intent intent=getIntent();
         cafe_pk=intent.getIntExtra("cafe_pk",0);
+        cafe_name=intent.getStringExtra("cafe_name");
+        cafe_location=intent.getStringExtra("cafe_location");
+        cafe_image=intent.getStringExtra("cafe_image");
+
         ArrayList<OrderListItem2> beverages=intent.getParcelableArrayListExtra("beverages");
 
         tv_cafe_name = (TextView) findViewById(R.id.tv_cafe_name);
+        tv_cafe_name.setText(cafe_name);
+
+        tv_cafe_location = (TextView) findViewById(R.id.tv_cafe_location);
+        tv_cafe_location.setText(cafe_location);
+
+        iv_cafe_image=(ImageView)findViewById(R.id.iv_order);
+        Glide.with(getApplicationContext())
+                .load(cafe_image)
+                .placeholder(R.mipmap.ic_launcher)
+                .error(R.mipmap.ic_launcher)
+                .into(iv_cafe_image);
+
         mPager = (ViewPager) findViewById(R.id.vp_order);
 
         adapter = new Order2PagerAdapter(getApplicationContext(),cafe_pk);

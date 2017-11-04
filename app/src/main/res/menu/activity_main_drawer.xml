@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group android:checkableBehavior="single">
         <item
@@ -14,15 +15,13 @@
         android:id="@+id/nav_event"
         android:icon="@drawable/side_bar_order"
         android:title="최근주문내역" />
-    <item
-        android:id="@+id/nav_settings"
-        android:icon="@drawable/side_bar_card"
-        android:title="결제카드" />
 
         <item
             android:id="@+id/nav_talk"
             android:icon="@drawable/side_bar_chat"
-            android:title="고객센터"/>
+            android:title="고객센터">
+
+            </item>
 </group>
 <!--
     <item android:title="Communicate">

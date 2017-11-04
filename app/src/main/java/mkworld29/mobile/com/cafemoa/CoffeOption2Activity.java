@@ -30,6 +30,7 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
 
     private Button btn_order, btn_get;
     private ImageView iv_content, iv_back;
+    private TextView tv_cafe_name;
     private TextView tv_size_s, tv_size_m,tv_size_l;
     private TextView tv_shots_minus, tv_shots, tv_shots_plus;
     private TextView tv_hot, tv_ice;
@@ -60,7 +61,8 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
             beverage_pk = intent.getIntExtra("beverage_pk", 0);
             cafe_pk = intent.getIntExtra("cafe_pk", 0);
         }
-
+        tv_cafe_name        =   (TextView)findViewById(R.id.tv_cafe_name);
+        tv_cafe_name.setText(src_cafe_name);
         iv_content          =   (ImageView)findViewById(R.id.iv_content);
         tv_price            =   (TextView) findViewById(R.id.tv_order_price);
 

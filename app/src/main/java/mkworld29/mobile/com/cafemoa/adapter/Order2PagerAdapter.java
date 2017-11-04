@@ -53,6 +53,7 @@ public class Order2PagerAdapter extends PagerAdapter{
     View v = null;
     int cafe_pk;
 
+
     public void addItemPage0(OrderListItem2 item){page0.add(item);}
     public void addItemPage1(OrderListItem2 item){page1.add(item);}
     public void addItemPage2(OrderListItem2 item){page2.add(item);}

@@ -15,9 +15,7 @@ public class VeilActivity extends AppCompatActivity implements OnChannelPluginCh
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_veil);
-
         ChannelPlugin.addOnChannelPluginChangedListener(this);
-
         ChannelPushClient.handlePushMessage(this);
     }
 
