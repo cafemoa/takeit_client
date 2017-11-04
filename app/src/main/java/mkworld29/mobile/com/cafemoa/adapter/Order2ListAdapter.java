@@ -88,9 +88,9 @@ public class Order2ListAdapter extends BaseAdapter{
         return listViewItemList;
     }
 
-    public void addItem(String content, String image, boolean is_best,int pk)
+    public void addItem(String content, String image, boolean is_best,int type,int pk)
     {
-        OrderListItem2 item = new OrderListItem2(content,image,is_best,pk);
+        OrderListItem2 item = new OrderListItem2(content,image,is_best,type,pk);
         listViewItemList.add(item);
     }
 

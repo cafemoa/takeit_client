@@ -49,7 +49,12 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
         adapter.setCafeName(tv_cafe_name.getText().toString());
 
         for(int i=0; i<beverages.size(); i++){
-            adapter.addItemPage0(beverages.get(i));
+            OrderListItem2 item=beverages.get(i);
+            if(item.getType()==0) adapter.addItemPage0(item);
+            if(item.getType()==1) adapter.addItemPage1(item);
+            if(item.getType()==2) adapter.addItemPage2(item);
+            if(item.getType()==3) adapter.addItemPage3(item);
+            if(item.getType()==4) adapter.addItemPage4(item);
         }
 
         mPager.setAdapter(adapter);
@@ -66,34 +71,6 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
         tv_tea.setOnClickListener(this);
         tv_dessert.setOnClickListener(this);
         tv_etc.setOnClickListener(this);
-
-        Retrofit retrofit= RetrofitInstance.getInstance(getApplicationContext());
-        RetrofitConnection.get_cafe_beverage service = retrofit.create(RetrofitConnection.get_cafe_beverage.class);
-
-        final Call<List<RetrofitConnection.Beverage>> repos = service.repoContributors(cafe_pk);
-
-        repos.enqueue(new Callback<List<RetrofitConnection.Beverage>>() {
-            @Override
-            public void onResponse(Call<List<RetrofitConnection.Beverage>> call, Response<List<RetrofitConnection.Beverage>> response) {
-                if(response.code()==200){
-
-                    for(int i=0; i<response.body().size(); i++){
-                        RetrofitConnection.Beverage beverage=response.body().get(i);
-                        OrderListItem2 item=new OrderListItem2(beverage.name,"http://rest.takeitnow.kr"+beverage.image,false,beverage.pk);
-                        adapter.addItemPage1(item);
-                    }
-                    adapter.mAdapterRefresh1();
-                    adapter.notifyDataSetChanged();
-
-                }else{
-                    Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_LONG).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<List<RetrofitConnection.Beverage>> call, Throwable t) {
-                Log.d("TAG",t.getLocalizedMessage());
-            }
-        });
     }
 
     @Override

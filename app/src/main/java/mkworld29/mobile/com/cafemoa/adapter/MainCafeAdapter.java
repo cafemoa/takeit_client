@@ -63,14 +63,10 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
         holder.name.setText(item.getName());
         holder.tag.setText(item.getTag());
         holder.location.setText(item.getLocation());
-        final ArrayList<OrderListItem2> beverages=beverage_community(item.getPk());
         holder.cardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), Option2Acitivity.class);
-                i.putExtra("cafe_pk",item.getPk());
-                i.putParcelableArrayListExtra("beverages", beverages);
-                v.getContext().startActivity(i);
+                beverage_community(v,item);
             }
         });
         if(!item.getEvent()) holder.event.setVisibility(View.INVISIBLE);
@@ -100,12 +96,12 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
         }
     }
 
-    ArrayList<OrderListItem2> beverage_community(int cafe_pk){
+    ArrayList<OrderListItem2> beverage_community(final View v, final MainCafeItem item){
         final ArrayList<OrderListItem2> beverages=new ArrayList<>();
         Retrofit retrofit= RetrofitInstance.getInstance(context);
         RetrofitConnection.get_cafe_beverage service = retrofit.create(RetrofitConnection.get_cafe_beverage.class);
 
-        final Call<List<RetrofitConnection.Beverage>> repos = service.repoContributors(cafe_pk);
+        final Call<List<RetrofitConnection.Beverage>> repos = service.repoContributors(item.getPk());
 
         repos.enqueue(new Callback<List<RetrofitConnection.Beverage>>() {
             @Override
@@ -114,9 +110,14 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
 
                     for(int i=0; i<response.body().size(); i++){
                         RetrofitConnection.Beverage beverage=response.body().get(i);
-                        OrderListItem2 item=new OrderListItem2(beverage.name,"http://rest.takeitnow.kr"+beverage.image,false,beverage.pk);
+                        OrderListItem2 item=new OrderListItem2(beverage.name,"http://rest.takeitnow.kr"+beverage.image,false,beverage.type,beverage.pk);
                         beverages.add(item);
                     }
+                    Intent i = new Intent(v.getContext(), Option2Acitivity.class);
+                    i.putExtra("cafe_pk",item.getPk());
+
+                    i.putParcelableArrayListExtra("beverages", beverages);
+                    v.getContext().startActivity(i);
                 }else{
                     Toast.makeText(context, "Error : "+ response.code(), Toast.LENGTH_LONG).show();
                 }

@@ -12,13 +12,15 @@ public class OrderListItem2 implements Parcelable{
     String img;
     boolean is_best;
     int pk;
+    int type;
 
-    public OrderListItem2(String c, String i, boolean is_best, int pk)
+    public OrderListItem2(String c, String i, boolean is_best, int type, int pk)
     {
         this.content = c;
         this.img = i;
         this.is_best = is_best;
         this.pk=pk;
+        this.type=type;
     }
 
     protected OrderListItem2(Parcel in) {
@@ -26,6 +28,7 @@ public class OrderListItem2 implements Parcelable{
         img = in.readString();
         is_best = in.readByte() != 0;
         pk = in.readInt();
+        type = in.readInt();
     }
 
     public static final Creator<OrderListItem2> CREATOR = new Creator<OrderListItem2>() {
@@ -65,6 +68,7 @@ public class OrderListItem2 implements Parcelable{
     }
     public void setPk(int pk){ this.pk=pk; }
     public int getPk(){ return pk; }
+    public int getType(){return type;}
 
     @Override
     public int describeContents() {
@@ -77,5 +81,6 @@ public class OrderListItem2 implements Parcelable{
         dest.writeString(img);
         dest.writeByte((byte) (is_best ? 1 : 0));
         dest.writeInt(pk);
+        dest.writeInt(type);
     }
 }

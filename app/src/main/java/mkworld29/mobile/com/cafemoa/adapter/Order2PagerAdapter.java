@@ -85,40 +85,13 @@ public class Order2PagerAdapter extends PagerAdapter{
             mAdapterRefresh1();
         }
         else if(position==2){
-            v = mInflater.inflate(R.layout.order_inflate_three, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order_3);
-            mAdapter = new Order2ListAdapter();
-            lv_order.setAdapter(mAdapter);
-            mAdapter.addItem("아메리카노2","http://rest.takeitnow.kr",false,2);
-            mAdapter.addItem("딸기스무디2","http://rest.takeitnow.kr",false,2);
-            mAdapter.addItem("꿀맛2","http://rest.takeitnow.kr",false,2);
-            mAdapter.addItem("맛있는거2","http://rest.takeitnow.kr",false,2);
-            setClickListener();
-            mAdapter.notifyDataSetChanged();
+            mAdapterRefresh2();
         }
         else if(position==3){
-            v = mInflater.inflate(R.layout.order_inflate_four, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order_4);
-            mAdapter = new Order2ListAdapter();
-            lv_order.setAdapter(mAdapter);
-            mAdapter.addItem("아메리카노3","http://rest.takeitnow.kr",false,2);
-            mAdapter.addItem("딸기스무디3","http://rest.takeitnow.kr",false,2);
-            mAdapter.addItem("꿀맛3","http://rest.takeitnow.kr",false,2);
-            mAdapter.addItem("맛있는거3","http://rest.takeitnow.kr",false,2);
-            setClickListener();
-            mAdapter.notifyDataSetChanged();
+            mAdapterRefresh3();
         }
         else if(position==4){
-            v = mInflater.inflate(R.layout.order_inflate_five, null);
-            lv_order = (ListView) v.findViewById(R.id.lv_order_5);
-            mAdapter = new Order2ListAdapter();
-            lv_order.setAdapter(mAdapter);
-            mAdapter.addItem("아메리카노4","http://rest.takeitnow.kr",false,2);
-            mAdapter.addItem("딸기스무디4","http://rest.takeitnow.kr",false,2);
-            mAdapter.addItem("꿀맛4","http://rest.takeitnow.kr",false,2);
-            mAdapter.addItem("맛있는거4","http://rest.takeitnow.kr",false,2);
-            setClickListener();
-            mAdapter.notifyDataSetChanged();
+            mAdapterRefresh4();
         }
 
         ((ViewPager)pager).addView(v, 0);
@@ -182,19 +155,35 @@ public class Order2PagerAdapter extends PagerAdapter{
         mAdapter.notifyDataSetChanged();
     }
     public void mAdapterRefresh2(){
-
+        v = mInflater.inflate(R.layout.order_inflate_three, null);
+        lv_order = (ListView) v.findViewById(R.id.lv_order_3);
+        mAdapter = new Order2ListAdapter();
+        lv_order.setAdapter(mAdapter);
+        for(int i=0; i<page2.size(); i++){
+            mAdapter.addItem(page2.get(i));
+        }
         mAdapter.notifyDataSetChanged();
         setClickListener();
     }
     public void mAdapterRefresh3(){
-
+        v = mInflater.inflate(R.layout.order_inflate_four, null);
+        lv_order = (ListView) v.findViewById(R.id.lv_order_4);
+        mAdapter = new Order2ListAdapter();
+        lv_order.setAdapter(mAdapter);
+        for(int i=0; i<page3.size(); i++){
+            mAdapter.addItem(page3.get(i));
+        }
         mAdapter.notifyDataSetChanged();
         setClickListener();
     }public void mAdapterRefresh4(){
-
+        v = mInflater.inflate(R.layout.order_inflate_five, null);
+        lv_order = (ListView) v.findViewById(R.id.lv_order_5);
+        mAdapter = new Order2ListAdapter();
+        lv_order.setAdapter(mAdapter);
+        for(int i=0; i<page4.size(); i++){
+            mAdapter.addItem(page4.get(i));
+        }
         mAdapter.notifyDataSetChanged();
         setClickListener();
     }
-
-
 }

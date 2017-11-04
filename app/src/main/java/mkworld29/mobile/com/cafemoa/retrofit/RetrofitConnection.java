@@ -46,6 +46,7 @@ public class RetrofitConnection {
         public String name;
         public String price;
         public int pk;
+        public int type;
     }
 
     public class Coupon_info{
