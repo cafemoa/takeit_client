@@ -1,5 +1,6 @@
 package mkworld29.mobile.com.cafemoa;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,11 +32,11 @@ public class SixthSignUpActivity extends AppCompatActivity {
 
         pref=SignupPref.getInstance(getApplicationContext());
 
-
-        final String email=pref.getInfo("email");
-        final String name=pref.getInfo("name");
-        final String birth=pref.getInfo("birth");
-        final String phone_number=pref.getInfo("phone_number");
+        final String email         =  pref.getInfo("email");
+        final String name          =  pref.getInfo("name");
+        final String birth         =  pref.getInfo("birth");
+        final String password      =  pref.getInfo("password");
+        final String phone_number  =  pref.getInfo("phone_number");
         final boolean gender;
 
         if(pref.getInfo("gender").equals("male")) gender=true;
@@ -44,21 +45,25 @@ public class SixthSignUpActivity extends AppCompatActivity {
         pref.removeAllInfo();
 
         final Call<ResponseBody> repos = service.repoContributors(
-                "username",
-                "password",
                 email,
+                password,
                 name,
-                birth,
                 phone_number,
+                birth,
                 gender
         );
         repos.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if(response.code()==200) {
+                if(response.code()==201) {
+                    Toast.makeText(getApplicationContext(), "성공적으로 가입을 완료하였습니다.",Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(SixthSignUpActivity.this, LoginActivity.class);
+                    startActivity(i);
+                    finish();
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_SHORT).show();
+                    finish();
                 }
             }
 

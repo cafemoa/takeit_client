@@ -31,6 +31,9 @@ public class FifthSignUpActivity extends AppCompatActivity implements View.OnCli
         btn_woman = (Button) findViewById(R.id.btn_woman);
         btn_woman.setOnClickListener(this);
 
+        btn_man.setBackgroundColor(0xFFA9E6F2);
+        is_man=true;
+
         if(!pref.getString("gender").equals("")){
             String gender=pref.getString("gender");
             if(gender.equals("male")){

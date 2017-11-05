@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import mkworld29.mobile.com.cafemoa.prefs.SignupPref;
 
@@ -32,6 +33,10 @@ public class SecondSignUpActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View view) {
         pref.addInfo("name", name.getText().toString());
+        if(name.getText().toString().equals("")){
+            Toast.makeText(getApplicationContext(), "이름을 입력 해 주세요", Toast.LENGTH_SHORT).show();
+            return ;
+        }
         Intent intent = new Intent(SecondSignUpActivity.this, ThirdSignUpActivity.class);
         startActivity(intent);
         finish();

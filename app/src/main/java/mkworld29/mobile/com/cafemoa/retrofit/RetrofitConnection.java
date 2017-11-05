@@ -155,7 +155,6 @@ public class RetrofitConnection {
                 @Field("password") String password,
                 @Field("name") String name,
                 @Field("phone_number") String phone_number,
-                @Field("email") String email,
                 @Field("birth") String birth,
                 @Field("gender") boolean gender
         );
@@ -189,6 +188,13 @@ public class RetrofitConnection {
                 @Field("dev_id") String device_id,
                 @Field("reg_id") String token,
                 @Field("is_active") boolean is_active
+        );
+    }
+    public interface email_check{
+        @FormUrlEncoded
+        @POST("email_check/")
+        Call<ResponseBody> repoContributors(
+                @Field("email") String email
         );
     }
 }

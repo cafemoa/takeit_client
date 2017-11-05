@@ -118,6 +118,11 @@ public class ReadyActivity extends AppCompatActivity implements View.OnClickList
                                     } catch (JSONException e) {}
 
                                     try {
+                                        String uid=object.getString("id");
+                                        pref.addInfo("password", uid);
+                                    } catch (JSONException e) {}
+
+                                    try {
                                         String name=object.getString("name");
                                         pref.addInfo("name", name);
                                     } catch (JSONException e) {}

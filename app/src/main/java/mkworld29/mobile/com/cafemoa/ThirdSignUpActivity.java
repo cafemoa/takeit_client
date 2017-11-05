@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import mkworld29.mobile.com.cafemoa.prefs.SignupPref;
 
@@ -31,6 +32,20 @@ public class ThirdSignUpActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View view) {
         pref.addInfo("birth",birth.getText().toString());
+        String birth_str=birth.getText().toString();
+        if(birth_str.equals("")){
+            Toast.makeText(getApplicationContext(), "생년월일을 입력해주세요", Toast.LENGTH_SHORT).show();
+            return ;
+        }
+        if(birth_str.length()!=6){
+            Toast.makeText(getApplicationContext(), "생년월일을 6자리로 입력해주세요", Toast.LENGTH_SHORT).show();
+            return ;
+        }
+        if((birth_str.charAt(2)=='1' && birth_str.charAt(3)>='3')||
+                (birth_str.charAt(4)>='3' && birth_str.charAt(5)>='2')) {
+            Toast.makeText(getApplicationContext(), "생년월일을 형식이 옳지 않습니다.", Toast.LENGTH_SHORT).show();
+            return ;
+        }
         Intent intent = new Intent(ThirdSignUpActivity.this, FourthSignUpActivity.class);
         startActivity(intent);
         finish();
