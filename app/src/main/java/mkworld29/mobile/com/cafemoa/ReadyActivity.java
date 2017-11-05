@@ -137,7 +137,7 @@ public class ReadyActivity extends AppCompatActivity implements View.OnClickList
                                         pref.addInfo("email", email);
                                     } catch (JSONException e) {}
 
-                                    Intent i=new Intent(ReadyActivity.this, FirstSignUpActivity.class);
+                                    Intent i=new Intent(ReadyActivity.this, SecondSignUpActivity.class);
                                     startActivity(i);
                                     finish();
                                 }
