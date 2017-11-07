@@ -5,11 +5,14 @@ import android.os.Handler;
 import android.support.annotation.RequiresPermission;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.WindowManager;
 
 public class SplashActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.getWindow().getDecorView().setBackgroundResource(R.drawable.splash);
 
         new Handler().postDelayed(new Runnable() {

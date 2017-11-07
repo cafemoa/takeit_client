@@ -22,6 +22,13 @@
         android:layout_marginTop="30dp">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#ff6466"
+            android:text="cafe"/>
+
+        <TextView
             android:id="@+id/tv_cafe_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,7 +36,7 @@
             android:textStyle="bold"
             android:textColor="#ff6466"
             android:text="EBISU"/>
-        
+
     </LinearLayout>
 
 
@@ -76,6 +83,37 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="도착예정시간"/>
+
+            <EditText
+                android:id="@+id/edt_predice_arrive"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:maxLength="3"
+                android:hint="00"
+                android:inputType="numberSigned"
+                android:textSize="16sp"
+                android:layout_marginRight="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="분 후"/>
+
+        </LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="30dp">
@@ -86,7 +124,7 @@
                 android:layout_marginLeft="10dp"
                 android:gravity="right"
                 android:layout_centerVertical="true"
-                android:text="잔 수"
+                android:text="수량"
                 android:textColor="#0c0c0c"
                 android:textSize="15sp" />
 

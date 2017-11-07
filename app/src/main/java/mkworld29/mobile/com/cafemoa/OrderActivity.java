@@ -4,6 +4,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -14,15 +16,20 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
     private ViewPager mPager;
     private TextView tv_coffe, tv_smootie, tv_tea, tv_dessert, tv_etc;
+    private ImageView iv_back;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_order);
 
         mPager = (ViewPager) findViewById(R.id.vp_order);
         mPager.setAdapter(new OrderPagerAdapter(getApplicationContext()));
+
+        iv_back = (ImageView) findViewById(R.id.iv_back);
 
         tv_coffe = (TextView) findViewById(R.id.tv_coffe_espresso);
         tv_smootie= (TextView) findViewById(R.id.tv_ade_smootie);
@@ -30,6 +37,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         tv_dessert = (TextView) findViewById(R.id.tv_dessert);
         tv_etc = (TextView) findViewById(R.id.tv_etc);
 
+        iv_back.setOnClickListener(this);
         tv_coffe.setOnClickListener(this);
         tv_smootie.setOnClickListener(this);
         tv_tea.setOnClickListener(this);
@@ -60,6 +68,10 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         else if(view.getId() == tv_etc.getId())
         {
             mPager.setCurrentItem(4);
+        }
+        if(view.getId() == iv_back.getId())
+        {
+            finish();
         }
     }
 }
