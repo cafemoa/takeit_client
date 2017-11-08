@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
         retrofit = RetrofitInstance.getInstance(getApplicationContext());
@@ -235,11 +237,6 @@ public class MainActivity extends AppCompatActivity
             wm.width=500;
             wm.height=650;
             nd.show();
-        }
-        else if(id==R.id.action_basket){
-            Intent intent = new Intent(this, BaskitActivity.class);
-            startActivity(intent);
-            return true;
         }
 
         return super.onOptionsItemSelected(item);
