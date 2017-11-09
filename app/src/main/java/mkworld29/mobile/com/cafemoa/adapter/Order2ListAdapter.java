@@ -33,7 +33,7 @@ public class Order2ListAdapter extends BaseAdapter{
 
     private ArrayList<OrderListItem2> listViewItemList ;
 
-    private TextView tv_content;
+    private TextView tv_content,tv_price;
     private ImageView iv_content,iv_best;
 
     public Order2ListAdapter()
@@ -68,8 +68,10 @@ public class Order2ListAdapter extends BaseAdapter{
         tv_content          =   (TextView)convertView.findViewById(R.id.tv_content);
         iv_content          =   (ImageView)convertView.findViewById(R.id.iv_content);
         iv_best             =   (ImageView)convertView.findViewById(R.id.iv_best);
+        tv_price            =   (TextView)convertView.findViewById(R.id.beverage_price);
 
         tv_content.setText(listViewItemList.get(position).getContent());
+        tv_price.setText(listViewItemList.get(position).getPrice());
         Glide.with(context)
                 .load(listViewItemList.get(position).getImg())
                 .placeholder(R.drawable.option_americano)
@@ -88,9 +90,9 @@ public class Order2ListAdapter extends BaseAdapter{
         return listViewItemList;
     }
 
-    public void addItem(String content, String image, boolean is_best,int type,int pk)
+    public void addItem(String content, String image, String price,boolean is_best,int type,int pk)
     {
-        OrderListItem2 item = new OrderListItem2(content,image,is_best,type,pk);
+        OrderListItem2 item = new OrderListItem2(content,image,price,is_best,type,pk);
         listViewItemList.add(item);
     }
 

@@ -96,7 +96,7 @@
                 android:text="도착예정시간"/>
 
             <EditText
-                android:id="@+id/edt_predice_arrive"
+                android:id="@+id/edt_predict_arrive"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"

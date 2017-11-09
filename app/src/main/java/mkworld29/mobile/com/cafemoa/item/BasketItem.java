@@ -20,6 +20,7 @@ public class BasketItem {
     String price;
     String time;
     int amount;
+    int predict_time;
     CoffeeOption option;
 
     public BasketItem(String image,
@@ -28,6 +29,7 @@ public class BasketItem {
                       String price,
                       String time,
                       int amount,
+                      int predict_time,
                       CoffeeOption option) {
         this.image_url = image;
         this.cafe_name = cafe_name;
@@ -35,7 +37,16 @@ public class BasketItem {
         this.price = price;
         this.time = time;
         this.amount = amount;
+        this.predict_time = predict_time;
         this.option = option;
+    }
+
+    public int getPredict_time() {
+        return predict_time;
+    }
+
+    public void setPredict_time(int predict_time) {
+        this.predict_time = predict_time;
     }
 
     public int getAmount() {

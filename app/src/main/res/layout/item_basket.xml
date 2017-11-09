@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:elevation="15dp">
 
     <android.support.v7.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -32,17 +33,6 @@
                 />
 
 
-            <TextView
-                android:id="@+id/tv_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="left"
-                android:textSize="14sp"
-                android:textColor="#939393"
-                android:text="2017년 08월 23일 23:23:12"/>
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,7 +59,7 @@
                     android:gravity="left"
                     android:textSize="20sp"
                     android:textColor="#0c0c0c"
-                    android:text="( M )"/>
+                    android:text="(M)"/>
 
             </LinearLayout>
 
@@ -126,15 +116,6 @@
                 android:textColor="#585959"
                 android:text="2샷"/>
 
-
-            <ImageView
-                android:id="@+id/iv_content"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="right"
-                android:src="@mipmap/ic_launcher"/>
-
-
             <TextView
                 android:id="@+id/tv_price"
                 android:layout_width="match_parent"
@@ -143,7 +124,8 @@
                 android:gravity="right"
                 android:textSize="20sp"
                 android:textColor="#0c0c0c"
-                android:text="금액 2000원"/>
+                android:text="금액 2000원"
+                android:layout_marginBottom="20dp"/>
 
 
         </LinearLayout>

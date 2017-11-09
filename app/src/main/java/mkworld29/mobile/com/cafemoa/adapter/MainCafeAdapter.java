@@ -110,7 +110,7 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
 
                     for(int i=0; i<response.body().size(); i++){
                         RetrofitConnection.Beverage beverage=response.body().get(i);
-                        OrderListItem2 item=new OrderListItem2(beverage.name,"http://rest.takeitnow.kr"+beverage.image,false,beverage.type,beverage.pk);
+                        OrderListItem2 item=new OrderListItem2(beverage.name,"http://rest.takeitnow.kr"+beverage.image,beverage.price,beverage.is_best,beverage.type,beverage.pk);
                         beverages.add(item);
                     }
                     Intent i = new Intent(v.getContext(), Option2Acitivity.class);

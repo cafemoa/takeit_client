@@ -10,17 +10,19 @@ import android.os.Parcelable;
 public class OrderListItem2 implements Parcelable{
     String content;
     String img;
+    String price;
     boolean is_best;
     int pk;
     int type;
 
-    public OrderListItem2(String c, String i, boolean is_best, int type, int pk)
+    public OrderListItem2(String c, String i, String price,boolean is_best, int type, int pk)
     {
         this.content = c;
         this.img = i;
         this.is_best = is_best;
         this.pk=pk;
         this.type=type;
+        this.price=price;
     }
 
     protected OrderListItem2(Parcel in) {
@@ -29,6 +31,7 @@ public class OrderListItem2 implements Parcelable{
         is_best = in.readByte() != 0;
         pk = in.readInt();
         type = in.readInt();
+        price=in.readString();
     }
 
     public static final Creator<OrderListItem2> CREATOR = new Creator<OrderListItem2>() {
@@ -69,6 +72,7 @@ public class OrderListItem2 implements Parcelable{
     public void setPk(int pk){ this.pk=pk; }
     public int getPk(){ return pk; }
     public int getType(){return type;}
+    public String getPrice(){ return price; }
 
     @Override
     public int describeContents() {
@@ -82,5 +86,6 @@ public class OrderListItem2 implements Parcelable{
         dest.writeByte((byte) (is_best ? 1 : 0));
         dest.writeInt(pk);
         dest.writeInt(type);
+        dest.writeString(price);
     }
 }

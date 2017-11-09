@@ -47,6 +47,7 @@ public class RetrofitConnection {
         public String price;
         public int pk;
         public int type;
+        public boolean is_best;
     }
 
     public class Coupon_info{
@@ -75,6 +76,7 @@ public class RetrofitConnection {
     public class Payment_Complete{
         public int order_num;
         public String order_time;
+        public int get_time;
     }
 
     public static class Order_option{

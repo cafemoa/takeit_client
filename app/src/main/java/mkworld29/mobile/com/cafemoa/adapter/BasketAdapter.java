@@ -72,13 +72,13 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
         holder.tv_cafe_name.setText(basketList.get(position).getCafe_name());
         holder.tv_content.setText(basketList.get(position).getContent());
         holder.tv_price.setText(String.valueOf(basketList.get(position).getPrice()));
-        holder.tv_time.setText(basketList.get(position).getTime());
-        Glide.with(context)
+        //holder.tv_time.setText(basketList.get(position).getTime());
+        /*Glide.with(context)
                 .load(basketList.get(position).getImage_url())
                 .placeholder(R.mipmap.ic_launcher)
                 .error(R.mipmap.ic_launcher)
                 .into(holder.iv_content);
-
+*/
         if(basketList.get(position).getAmount() == 1)
             holder.tv_amount.setVisibility(View.GONE);
         else
@@ -103,7 +103,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
         switch(option.getSize())
         {
             case 0:
-                holder.tv_size.setText("( M )");
+                holder.tv_size.setText("( R )");
                 break;
             case 1:
                 holder.tv_size.setText("( L )");
@@ -213,7 +213,6 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
             tv_is_whipping  = (TextView) v.findViewById(R.id.tv_is_whipping);
             tv_shots        = (TextView) v.findViewById(R.id.tv_shots);
             tv_size         = (TextView) v.findViewById(R.id.tv_size);
-            tv_time         = (TextView) v.findViewById(R.id.tv_time);
             tv_amount       = (TextView) v.findViewById(R.id.tv_amount);
             spinner         = (Spinner)  v.findViewById(R.id.spinner_option);
             cv              = (CardView) v.findViewById(R.id.cv);

@@ -82,6 +82,11 @@ public class CouponActivity extends AppCompatActivity implements View.OnClickLis
                         item[i] = new Coupon(info.get(i).cafe.name,info.get(i).cafe.locationString,R.mipmap.ic_launcher_round, info.get(i).coupon_progress,info.get(i).pk);
                     }
 
+                    if(item.length <= 0) {
+                        gv.setVisibility(View.GONE);
+                        return;
+                    }
+
                     RecyclerView rv = (RecyclerView)findViewById(R.id.coupon_rv);
                     RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
                     rv.setLayoutManager(mLayoutManager);
@@ -115,7 +120,6 @@ public class CouponActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
-        iv_cart.setOnClickListener(this);
         iv_home.setOnClickListener(this);
         iv_alarm.setOnClickListener(this);
 
