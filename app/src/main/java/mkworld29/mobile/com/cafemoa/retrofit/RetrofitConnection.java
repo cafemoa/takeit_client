@@ -83,22 +83,26 @@ public class RetrofitConnection {
         boolean is_ice;
         int size;
         int shot_num;
+        int amount;
 
-        public Order_option(int beverage, boolean whipping_cream,boolean is_ice,int size, int shot_num) {
+        public Order_option(int beverage, boolean whipping_cream,boolean is_ice,int size, int shot_num,int amount) {
             this.beverage = beverage;
             this.whipping_cream = whipping_cream;
             this.is_ice = is_ice;
             this.size = size;
             this.shot_num = shot_num;
+            this.amount=amount;
         }
     }
 
     public static class Order_Info{
         int payment_type;
+        int get_time;
         Order_option[] options;
-        public Order_Info(int payment_type, Order_option[] options){
+        public Order_Info(int payment_type, int get_time,Order_option[] options){
             this.payment_type=payment_type;
             this.options=options;
+            this.get_time=get_time;
         }
     }
 

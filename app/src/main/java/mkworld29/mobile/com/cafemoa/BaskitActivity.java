@@ -44,6 +44,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+import static java.lang.Integer.parseInt;
+
 public class BaskitActivity extends AppCompatActivity implements View.OnClickListener{
 
     public static int mWidthPixels, mHeightPixels;
@@ -132,15 +134,19 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
             for(int i=0; i<ids.length; i++){
                 BasketItem item=BasketPref.getInstance(this).getBasket(ids[i]);
                 CoffeeOption option=item.getOption();
-
                 int shots=option.getShots();
                 int size=option.getSize();
                 boolean is_ice=option.is_cold();
                 boolean is_whipping=option.is_whipping();
                 int beverage=option.getPk();
-                options[i]=new RetrofitConnection.Order_option(beverage,is_whipping,is_ice,size,shots);
+                int amount=option.getAmounts();
+
+                Log.d("TAG", ""+shots+","+size+","+is_ice+","+is_whipping+","+beverage+","+amount+",");
+
+                options[i]=new RetrofitConnection.Order_option(beverage,is_whipping,is_ice,size,shots,amount);
             }
-            RetrofitConnection.Order_Info info=new RetrofitConnection.Order_Info(0,options);
+            //String time=BasketPref.getInstance(this).getBasket(ids[0]).getTime();
+            RetrofitConnection.Order_Info info=new RetrofitConnection.Order_Info(0,10,options);
             Gson gson = new Gson();
             String option_json = gson.toJson(info);
 
