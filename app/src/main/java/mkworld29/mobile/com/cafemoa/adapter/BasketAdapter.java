@@ -213,7 +213,6 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
             tv_is_whipping  = (TextView) v.findViewById(R.id.tv_is_whipping);
             tv_shots        = (TextView) v.findViewById(R.id.tv_shots);
             tv_size         = (TextView) v.findViewById(R.id.tv_size);
-            tv_time         = (TextView) v.findViewById(R.id.tv_time);
             tv_amount       = (TextView) v.findViewById(R.id.tv_amount);
             spinner         = (Spinner)  v.findViewById(R.id.spinner_option);
             cv              = (CardView) v.findViewById(R.id.cv);
