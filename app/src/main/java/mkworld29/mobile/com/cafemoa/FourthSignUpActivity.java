@@ -116,7 +116,32 @@ public class FourthSignUpActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+        /*if(charSequence.toString().equals("")){
+            switch(now_input_num) {
+                case 2:
+                    edt_number_1.requestFocus();
+                    break;
+                case 3:
+                    edt_number_2.requestFocus();
+                    break;
+                case 4:
+                    edt_number_3.requestFocus();
+                    break;
+                case 5:
+                    edt_number_4.requestFocus();
+                    break;
+                case 6:
+                    edt_number_5.requestFocus();
+                    break;
+                case 7:
+                    edt_number_6.requestFocus();
+                    break;
+                case 8:
+                    edt_number_7.requestFocus();
+                    break;
+            }
+            now_input_num--;
+        }*/
         if(edt_number_1.getText().toString().length() == 1) {
             edt_number_2.requestFocus();
             now_input_num=2;

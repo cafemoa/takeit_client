@@ -88,8 +88,8 @@ public class ReadyActivity extends AppCompatActivity implements View.OnClickList
                 GraphRequest graphRequest = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
                     public void onCompleted(final JSONObject object, GraphResponse response) {
-                        String access_token=loginResult.getAccessToken().getToken();
-                        //Log.d("TAG", access_token);
+                        final String access_token=loginResult.getAccessToken().getToken();
+
                         pd = ProgressDialog.show(ReadyActivity.this, "로그인중", "로그인중 입니다.");
                         RetrofitConnection.social_auth service = retrofit.create(RetrofitConnection.social_auth.class);
                         final Call<RetrofitConnection.Token> repos = service.repoContributors(access_token);
@@ -135,12 +135,9 @@ public class ReadyActivity extends AppCompatActivity implements View.OnClickList
                                         pref.addInfo("gender", gender);
                                     } catch (JSONException e) {}
 
-                                    try {
-                                        String email=object.getString("email");
-                                        pref.addInfo("email", email);
-                                    } catch (JSONException e) {}
+                                    pref.addInfo("access_token", access_token);
 
-                                    Intent i=new Intent(ReadyActivity.this, FirstSignUpActivity.class);
+                                    Intent i=new Intent(ReadyActivity.this, SecondSignUpActivity.class);
                                     startActivity(i);
                                     finish();
                                 }

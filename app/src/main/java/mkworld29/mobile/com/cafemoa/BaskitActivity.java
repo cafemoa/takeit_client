@@ -44,6 +44,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+import static java.lang.Integer.parseInt;
+
 public class BaskitActivity extends AppCompatActivity implements View.OnClickListener{
 
     public static int mWidthPixels, mHeightPixels;
@@ -129,18 +131,23 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
             final ProgressDialog pd = ProgressDialog.show(BaskitActivity.this, "주문중", "주문중 입니다.");
             String ids[] = BasketPref.getInstance(this).getSplitPrefsCurrentStorage();
             RetrofitConnection.Order_option[] options = new RetrofitConnection.Order_option[ids.length];
+            int time=0;
             for(int i=0; i<ids.length; i++){
                 BasketItem item=BasketPref.getInstance(this).getBasket(ids[i]);
                 CoffeeOption option=item.getOption();
-
                 int shots=option.getShots();
                 int size=option.getSize();
                 boolean is_ice=option.is_cold();
                 boolean is_whipping=option.is_whipping();
                 int beverage=option.getPk();
-                options[i]=new RetrofitConnection.Order_option(beverage,is_whipping,is_ice,size,shots);
+                int amount=option.getAmounts();
+                time=item.getPredict_time();
+                //Log.d("TAG", ""+shots+","+size+","+is_ice+","+is_whipping+","+beverage+","+amount+",");
+
+                options[i]=new RetrofitConnection.Order_option(beverage,is_whipping,is_ice,size,shots,amount);
             }
-            RetrofitConnection.Order_Info info=new RetrofitConnection.Order_Info(0,options);
+            //String time=BasketPref.getInstance(this).getBasket(ids[0]).getTime();
+            RetrofitConnection.Order_Info info=new RetrofitConnection.Order_Info(0,time,options);
             Gson gson = new Gson();
             String option_json = gson.toJson(info);
 
@@ -155,6 +162,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
                         Intent i = new Intent(getApplicationContext(), OrderCompleteActivity.class);
                         i.putExtra("order_num", response.body().order_num);
                         i.putExtra("payment_okay_date", response.body().order_time);
+                        i.putExtra("get_time", response.body().get_time);
                         startActivity(i);
                         finish();
                     }

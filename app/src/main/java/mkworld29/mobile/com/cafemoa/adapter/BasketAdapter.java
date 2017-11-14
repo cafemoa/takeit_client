@@ -97,7 +97,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
         switch(option.getSize())
         {
             case 0:
-                holder.tv_size.setText("( M )");
+                holder.tv_size.setText("( R )");
                 break;
             case 1:
                 holder.tv_size.setText("( L )");

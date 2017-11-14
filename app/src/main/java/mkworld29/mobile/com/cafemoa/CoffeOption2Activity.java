@@ -50,6 +50,7 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
     private String src_iv_content, src_content, src_cafe_name;
     private int beverage_pk;
     private int cafe_pk;
+    private String price;
 
     private int defaultPrice;
 
@@ -74,13 +75,15 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
             src_cafe_name = intent.getStringExtra("cafe_name");
             beverage_pk = intent.getIntExtra("beverage_pk", 0);
             cafe_pk = intent.getIntExtra("cafe_pk", 0);
+            price = intent.getStringExtra("price");
         }
 
         iv_content          =   (ImageView)findViewById(R.id.iv_content);
         tv_price            =   (TextView) findViewById(R.id.tv_order_price);
         iv_back             =   (ImageView)findViewById(R.id.iv_back);
 
-        defaultPrice = Integer.parseInt(tv_price.getText().subSequence(0,tv_price.getText().length()-1).toString());
+        //defaultPrice = Integer.parseInt(price.split(" ")[0].split(":")[1]);
+        setDefaultPrice(0);
 
         Glide.with(getApplicationContext())
                 .load(src_iv_content)
@@ -137,9 +140,28 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
         btn_order.setOnClickListener(this);
         tv_amount_minus.setOnClickListener(this);
         tv_amount_plus.setOnClickListener(this);
-        tv_size_s.setOnClickListener(this);
-        tv_size_m.setOnClickListener(this);
-        tv_size_l.setOnClickListener(this);
+
+        if(price.split(" ").length>=1) {
+            tv_size_s.setOnClickListener(this);
+            tv_size_s.setText(price.split(" ")[0].split(":")[0]);
+        }
+        else
+            tv_size_s.setVisibility(View.GONE);
+
+        if(price.split(" ").length>=2) {
+            tv_size_m.setOnClickListener(this);
+            tv_size_m.setText(price.split(" ")[1].split(":")[0]);
+        }
+        else
+            tv_size_m.setVisibility(View.GONE);
+
+        if(price.split(" ").length>=3) {
+            tv_size_l.setOnClickListener(this);
+            tv_size_l.setText(price.split(" ")[2].split(":")[0]);
+        }
+        else
+            tv_size_l.setVisibility(View.GONE);
+
         tv_shots_minus.setOnClickListener(this);
         tv_shots_plus.setOnClickListener(this);
         tv_ice.setOnClickListener(this);
@@ -162,7 +184,6 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
             if(amount>1)
                 amount--;
             tv_amount.setText(""+amount);
-            tv_price.setText(String.valueOf(Integer.parseInt(tv_amount.getText().toString()) * defaultPrice)+ "원");
         }
         else if(view.getId() == tv_amount_plus.getId())
         {
@@ -170,25 +191,28 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
             if(amount<20)
                 amount++;
             tv_amount.setText(""+amount);
-            tv_price.setText(String.valueOf(Integer.parseInt(tv_amount.getText().toString()) * defaultPrice) + "원");
+
         }
         else if(view.getId() == tv_size_s.getId())
         {
             setFontDefaults(arr_size);
             setFontStyle(tv_size_s, true);
             size = 0;
+            setDefaultPrice(0);
         }
         else if(view.getId() == tv_size_m.getId())
         {
             setFontDefaults(arr_size);
             setFontStyle(tv_size_m, true);
             size = 1;
+            setDefaultPrice(1);
         }
         else if(view.getId() == tv_size_l.getId())
         {
             setFontDefaults(arr_size);
             setFontStyle(tv_size_l, true);
             size = 2;
+            setDefaultPrice(2);
         }
         else if(view.getId() == tv_shots_minus.getId())
         {
@@ -246,6 +270,7 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
         {
             finish();
         }
+        tv_price.setText(String.valueOf(Integer.parseInt(tv_amount.getText().toString()) * defaultPrice) + "원");
     }
 
     private void saveBasketItem()
@@ -293,6 +318,10 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
         {
             setFontStyle(t,false);
         }
+    }
+
+    public void setDefaultPrice(int index){
+        defaultPrice = Integer.parseInt(price.split(" ")[index].split(":")[1]);
     }
 
     public boolean is_checked(TextView view)
