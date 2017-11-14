@@ -72,12 +72,6 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
         holder.tv_cafe_name.setText(basketList.get(position).getCafe_name());
         holder.tv_content.setText(basketList.get(position).getContent());
         holder.tv_price.setText(String.valueOf(basketList.get(position).getPrice()));
-        holder.tv_time.setText(basketList.get(position).getTime());
-        Glide.with(context)
-                .load(basketList.get(position).getImage_url())
-                .placeholder(R.mipmap.ic_launcher)
-                .error(R.mipmap.ic_launcher)
-                .into(holder.iv_content);
 
         if(basketList.get(position).getAmount() == 1)
             holder.tv_amount.setVisibility(View.GONE);

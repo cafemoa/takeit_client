@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mkworld29.mobile.com.cafemoa.item.MainCafeItem;
+import mkworld29.mobile.com.cafemoa.prefs.BasketPref;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
 import retrofit2.Call;
@@ -76,7 +77,12 @@ public class MainActivity extends AppCompatActivity
         setCafeList();
         ChannelPlugin.addOnChannelPluginChangedListener(this);
         ChannelPushClient.handlePushMessage(this);
+
+
     }
+
+
+
     private void setCafeList(){
         recyclerView = (RecyclerView)findViewById(R.id.main_recyclerView);
 
@@ -112,6 +118,9 @@ public class MainActivity extends AppCompatActivity
 
     private void establishView()
     {
+
+
+
         imb_next = (Button) findViewById(R.id.imb_next);
         imb_prev = (Button) findViewById(R.id.imb_prev);
 
@@ -156,6 +165,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+
     private void startFlipper()
     {
         flipper = (ViewFlipper)findViewById(R.id.main_flipper);
@@ -197,6 +207,10 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        MenuItem item = menu.findItem(R.id.action_cart);
+        Log.d("====BASKET TAG===", "" + BasketPref.getInstance(this.getApplicationContext()).getSize());
+        if(BasketPref.getInstance(this.getApplicationContext()).getSize() > 0) item.setVisible(true);
+        else item.setVisible(false);
         return true;
     }
 
@@ -237,6 +251,11 @@ public class MainActivity extends AppCompatActivity
             wm.width=500;
             wm.height=650;
             nd.show();
+        }
+        else if(id == R.id.action_cart)
+        {
+            Intent intent = new Intent(this, BaskitActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

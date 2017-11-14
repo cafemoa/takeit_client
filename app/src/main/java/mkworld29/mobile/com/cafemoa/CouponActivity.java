@@ -22,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +47,7 @@ public class CouponActivity extends AppCompatActivity implements View.OnClickLis
 
     private TextView tv_cafe_name;
     private TextView tv_cafe_address;
+    private TextView tv_available_coupon;
     private ImageView iv_home, iv_cart, iv_alarm;
     private GridView gv;
     Retrofit retrofit;
@@ -61,6 +64,7 @@ public class CouponActivity extends AppCompatActivity implements View.OnClickLis
 
         tv_cafe_address = (TextView)findViewById(R.id.tv_cafe_address);
         tv_cafe_name = (TextView)findViewById(R.id.tv_cafe_name);
+        tv_available_coupon = (TextView) findViewById(R.id.tv_available_coupon);
         //iv_cafe_logo = (ImageView) findViewById(R.id.iv_cafe_logo);
         gv = (GridView)findViewById(R.id.gv);
         gv.setNumColumns(5);
@@ -97,9 +101,11 @@ public class CouponActivity extends AppCompatActivity implements View.OnClickLis
                     tv_cafe_name.setText(item[0].getCafe_name());
                     //iv_cafe_logo.setImageResource(item[0].getCafe_logo());
 
+                    tv_available_coupon.setText(String.valueOf(item[0].getSum()/10));
+
                     StampAdapter stampAdapter = new StampAdapter(
                             getApplicationContext(),
-                            R.layout.item_stamp_on, item[0].getSum(),true);
+                            R.layout.item_stamp_on, item[0].getSum()%10,true);
 
                     gv.setAdapter(stampAdapter);
 

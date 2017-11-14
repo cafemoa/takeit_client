@@ -52,13 +52,14 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
     public void onBindViewHolder(final CouponAdapter.ViewHolder holder, int position) {
         StampAdapter stampAdapter = new StampAdapter(
                 holder._v.getContext(),
-                R.layout.item_stamp_on, couponList.get(position).getSum(), false);
+                R.layout.item_stamp_on, couponList.get(position).getSum()%10, false);
 
         holder.tv_cafe_address.setText(couponList.get(position).getCafe_address());
         holder.tv_cafe_name.setText(String.valueOf(couponList.get(position).getCafe_name()));
         //holder.iv_cafe_logo.setImageResource(couponList.get(position).getCafe_logo());
         holder.gridView.setAdapter(stampAdapter);
         holder.sum = couponList.get(position).getSum();
+        holder.tv_available_coupon.setText(String.valueOf(couponList.get(position).getSum()/10));
         holder.pk = couponList.get(position).getPk();
     }
 
@@ -70,6 +71,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_cafe_address;
         TextView tv_cafe_name;
+        TextView tv_available_coupon;
         ImageView iv_cafe_logo;
         GridView gridView;
         int sum;
@@ -82,6 +84,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
             _v = v;
             tv_cafe_address = (TextView) v.findViewById(R.id.tv_cafe_address);
             tv_cafe_name = (TextView) v.findViewById(R.id.tv_cafe_name);
+            tv_available_coupon = (TextView) v.findViewById(R.id.tv_available_coupon);
             //iv_cafe_logo = (ImageView) v.findViewById(R.id.iv_cafe_logo);
 
             tv_cafe_address.setTextColor(Color.WHITE);

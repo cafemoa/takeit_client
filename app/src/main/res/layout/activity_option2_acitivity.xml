@@ -10,6 +10,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="180dp">
+
+
+
         <ImageView
             android:id="@+id/iv_order"
             android:layout_width="match_parent"
@@ -18,9 +21,21 @@
             android:scaleType="fitXY"/>
 
         <ImageView
+            android:id="@+id/iv_cart"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="8dp"
+            android:src="@drawable/main_basket"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            android:layout_marginRight="30dp"/>
+
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
             android:src="@drawable/option_arrow"/>
 
         <LinearLayout

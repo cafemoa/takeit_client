@@ -25,6 +25,8 @@ public class StampAdapter extends BaseAdapter {
     boolean scale;
     int layout;
     int sum;
+    int complete_coupon;
+
     public StampAdapter(Context context, int layout, int sum, boolean scale)
     {
         this.context = context;

@@ -22,6 +22,7 @@ import mkworld29.mobile.com.cafemoa.adapter.OrderListAdapter;
 import mkworld29.mobile.com.cafemoa.adapter.OrderPagerAdapter;
 import mkworld29.mobile.com.cafemoa.item.OrderListItem;
 import mkworld29.mobile.com.cafemoa.item.OrderListItem2;
+import mkworld29.mobile.com.cafemoa.prefs.BasketPref;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
 import retrofit2.Call;
@@ -34,7 +35,7 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
     private ViewPager mPager;
     private TextView tv_coffe, tv_smootie, tv_tea, tv_dessert, tv_etc;
     public TextView tv_cafe_name,tv_cafe_location;
-    public ImageView iv_cafe_image;
+    public ImageView iv_cafe_image, iv_cart;
     public Order2PagerAdapter adapter;
     private int cafe_pk;
     private String cafe_location,cafe_name,cafe_image;
@@ -54,6 +55,9 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
         cafe_image=intent.getStringExtra("cafe_image");
 
         ArrayList<OrderListItem2> beverages=intent.getParcelableArrayListExtra("beverages");
+
+
+        iv_cart = (ImageView)findViewById(R.id.iv_cart);
 
         tv_cafe_name = (TextView) findViewById(R.id.tv_cafe_name);
         tv_cafe_name.setText(cafe_name);
@@ -97,6 +101,16 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
         tv_tea.setOnClickListener(this);
         tv_dessert.setOnClickListener(this);
         tv_etc.setOnClickListener(this);
+        iv_cart.setOnClickListener(this);
+
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if(BasketPref.getInstance(this.getApplicationContext()).getSize() > 0) iv_cart.setVisibility(View.VISIBLE);
+        else iv_cart.setVisibility(View.GONE);
     }
 
     @Override
@@ -121,6 +135,11 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
         else if(view.getId() == tv_etc.getId())
         {
             mPager.setCurrentItem(4);
+        }
+        else if(view.getId() == iv_cart.getId())
+        {
+            Intent intent = new Intent(this, BaskitActivity.class);
+            startActivity(intent);
         }
     }
 }

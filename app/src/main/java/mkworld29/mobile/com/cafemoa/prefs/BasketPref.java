@@ -145,11 +145,17 @@ public class BasketPref {
 
     public int getSize()
     {
+        int length;
+
         String current_storage = settings.getString(PREFS_CURRENT_STORAGE,"");
 
         String[] split_storage = current_storage.split("_");
+        length = split_storage.length;
 
-        return split_storage.length;
+        for(String i : split_storage)
+            if(i.equals(""))    length--;
+
+        return length;
     }
 
     public String[] getSplitPrefsCurrentStorage()
