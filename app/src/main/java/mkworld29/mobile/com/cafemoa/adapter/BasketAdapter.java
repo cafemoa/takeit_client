@@ -1,31 +1,18 @@
 package mkworld29.mobile.com.cafemoa.adapter;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Point;
-import android.media.Image;
+import android.content.Intent;
 import android.os.Build;
-import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
-import android.view.Display;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
-import android.widget.Spinner;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -33,23 +20,24 @@ import mkworld29.mobile.com.cafemoa.BaskitActivity;
 import mkworld29.mobile.com.cafemoa.R;
 import mkworld29.mobile.com.cafemoa.entity.CoffeeOption;
 import mkworld29.mobile.com.cafemoa.item.BasketItem;
-import mkworld29.mobile.com.cafemoa.item.CardItem;
-import mkworld29.mobile.com.cafemoa.prefs.BasketPref;
+import mkworld29.mobile.com.cafemoa.BaskitDeleteDialog;
 
 /**
  * Created by chmod777 on 2017. 6. 24..
  */
 
 public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder> {
-    Context context;
-    List<BasketItem> basketList; //공지사항 정보 담겨있음
+    private Context context;
+    private BaskitActivity activity;
+    public List<BasketItem> basketList; //공지사항 정보 담겨있음
 
     private static int CONTENT_TAG_ID = 1231241232;
 
 
-    public BasketAdapter(Context context, List<BasketItem> basketList) {
+    public BasketAdapter(Context context, List<BasketItem> basketList, BaskitActivity activity) {
         this.context = context;
         this.basketList = basketList;
+        this.activity=activity;
     }
 
     @Override
@@ -108,19 +96,29 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
 
         }
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(holder._v.getContext(),
-                R.array.basket_option_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        holder.spinner.setAdapter(adapter);
+        holder.iv_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, BaskitDeleteDialog.class);
+                intent.putExtra("ID", basketList.get(position).getId());
+                intent.putExtra("Position",position);
+                activity.startActivityForResult(intent,0);
+            }
+        });
+
+        //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(holder._v.getContext(),
+          //      R.array.basket_option_array, android.R.layout.simple_spinner_item);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        /*holder.spinner.setAdapter(adapter);
         holder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(final AdapterView<?> adapterView, final View selectedView, int i, long l) {
                 switch (i)
                 {
-                    /** 수정 선택 시 */
+                     수정 선택 시
                     case 0:
                         break;
-                    /** 삭제 선택 시 */
+                     삭제 선택 시
                     case 1:
 
                         LayoutInflater inflater = (LayoutInflater) adapterView.getContext()
@@ -166,6 +164,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
 
             }
         });
+        */
 
     }
 
@@ -186,8 +185,8 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
                 tv_time,
                 tv_amount;
         ImageView iv_content;
+        ImageView iv_cancel;
         View _v;
-        Spinner spinner;
         CardView cv;
         String image_url;
 
@@ -208,9 +207,9 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
             tv_shots        = (TextView) v.findViewById(R.id.tv_shots);
             tv_size         = (TextView) v.findViewById(R.id.tv_size);
             tv_amount       = (TextView) v.findViewById(R.id.tv_amount);
-            spinner         = (Spinner)  v.findViewById(R.id.spinner_option);
             cv              = (CardView) v.findViewById(R.id.cv);
-            iv_content     = (ImageView) v.findViewById(R.id.iv_content);
+            iv_content      = (ImageView) v.findViewById(R.id.iv_content);
+            iv_cancel       = (ImageView) v.findViewById(R.id.iv_cancel);
             _v = v;
 
         }

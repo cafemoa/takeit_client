@@ -285,7 +285,6 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
 
         amount = Integer.parseInt(tv_amount.getText().toString());
 
-
         content = src_content;
         cafeName = src_cafe_name;
         price = tv_price.getText().toString();
