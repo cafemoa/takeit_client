@@ -58,6 +58,7 @@ dependencies {
     compile 'com.felipecsl:gifimageview:2.1.0'
     compile 'commons-io:commons-io:2.4'
     compile 'com.github.ksoichiro:androidpagecontrol:0.1.1'
+    compile 'com.pkmmte.view:circularimageview:1.1'
     testCompile 'junit:junit:4.12'
 }
 

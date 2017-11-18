@@ -16,12 +16,14 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Url;
@@ -77,6 +79,12 @@ public class RetrofitConnection {
         public int order_num;
         public String order_time;
         public int get_time;
+    }
+
+    public class Profile{
+        public String name;
+        public String profile_picture;
+        public String username;
     }
 
     public static class Order_option{
@@ -147,6 +155,24 @@ public class RetrofitConnection {
     public interface recent_payments{
         @GET
         Call<List<Recent_payment>> repoContributors(@Url String url);
+    }
+
+    public interface get_profile{
+        @GET("user-manage/")
+        Call<Profile> repoContributors();
+    }
+
+    public interface save_profile{
+        @FormUrlEncoded
+        @PUT("user-manage/")
+        Call<ResponseBody> repoContributors(
+                @Field("password") String password
+        );
+    }
+
+    public interface delete_user{
+        @DELETE("user-manage/")
+        Call<ResponseBody> repoContributors();
     }
 
     public interface recent_payment_list_by_id{
