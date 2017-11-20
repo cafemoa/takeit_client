@@ -1,10 +1,12 @@
 package mkworld29.mobile.com.cafemoa;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.media.Image;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,7 +56,9 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
     private TextView tv_title;
     private Button btn_order, btn_add_order;
     private Retrofit retrofit;
+    private ImageView iv_back;
     private int cafe_pk;
+    private BasketAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,12 +80,16 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
         mHeightPixels = metrics.heightPixels;
 
         btn_order = (Button) findViewById(R.id.btn_order);
-        btn_add_order = (Button) findViewById(R.id.btn_add_order);
+        //btn_add_order = (Button) findViewById(R.id.btn_add_order);
         btn_order.setOnClickListener(this);
-        btn_add_order.setOnClickListener(this);
+        //btn_add_order.setOnClickListener(this);
 
         tv_title = (TextView) findViewById(R.id.tv_title);
         tv_title.setText("장바구니");
+
+        iv_back=(ImageView)findViewById(R.id.iv_back);
+        iv_back.setOnClickListener(this);
+
 
         // 상태바와 메뉴바의 크기를 포함해서 재계산
         if (Build.VERSION.SDK_INT >= 14 && Build.VERSION.SDK_INT < 17)
@@ -107,8 +116,6 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
 
         String ids[] = BasketPref.getInstance(this).getSplitPrefsCurrentStorage();
 
-        Log.d("mkWorld29.com.cafemoa", ""+ids.length);
-
         if(ids.length != 0) {
             BasketItem[] item = new BasketItem[ids.length];
 
@@ -118,14 +125,19 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
                 item[i] = BasketPref.getInstance(this).getBasket(ids[i]);
                 items.add(item[i]);
             }
+
+            adapter=new BasketAdapter(getApplicationContext(), items,this);
             rv.addItemDecoration(new BaskitActivity.GridSpacingItemDecoration(2, dpToPx(10), true));
-            rv.setAdapter(new BasketAdapter(getApplicationContext(), items));
+            rv.setAdapter(adapter);
         }
     }
 
 
     @Override
     public void onClick(View view) {
+        if(view.getId() == iv_back.getId())
+            finish();
+
         if(view.getId() == btn_order.getId())
         {
             final ProgressDialog pd = ProgressDialog.show(BaskitActivity.this, "주문중", "주문중 입니다.");
@@ -228,4 +240,19 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
         this.overridePendingTransition(R.anim.basket_end_start, R.anim.basket_end_exit);
         super.finish();
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 0) {
+            if(resultCode == Activity.RESULT_OK){
+               int position = data.getIntExtra("Position",0);
+                adapter.basketList.remove(position);
+                adapter.notifyDataSetChanged();
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+            }
+        }
+    }
+
 }

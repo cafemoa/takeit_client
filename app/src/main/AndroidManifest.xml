@@ -44,7 +44,7 @@
         <activity android:name=".AccessTermsActivity" />
         <activity android:name=".OptionActivity" />
         <activity android:name=".CoffeeOptionActivity" />
-        <activity android:name=".BaskitActivity" />
+        <activity android:name=".BaskitActivity"/>
 
         <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
@@ -107,6 +107,9 @@
         <activity android:name=".SettingActivity" />
         <activity android:name=".ProfileActivity"></activity>
         <activity android:name=".SignupPasswordActivity"/>
+        <activity android:name=".BaskitDeleteDialog" android:theme="@android:style/Theme.Dialog" />
+
+
     </application>
 
 </manifest>

@@ -17,6 +17,7 @@
         <!-- This is a centered logo -->
 
         <ImageView
+            android:id="@+id/iv_back"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/baskit_arrow"

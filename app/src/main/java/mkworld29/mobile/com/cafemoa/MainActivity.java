@@ -248,8 +248,6 @@ public class MainActivity extends AppCompatActivity
             NoticeDialog nd=new NoticeDialog(this);
             WindowManager.LayoutParams wm = new WindowManager.LayoutParams();
             wm.copyFrom(nd.getWindow().getAttributes());
-            wm.width=500;
-            wm.height=650;
             nd.show();
         }
         else if(id == R.id.action_cart)

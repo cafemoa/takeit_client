@@ -38,6 +38,7 @@ public class NoticeDialog extends Dialog {
     ListView listView;
     Button back;
     Retrofit retrofit;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +72,7 @@ public class NoticeDialog extends Dialog {
                     listView.setAdapter(alertAdapter);
                 }
                 else{
-                    Toast.makeText(getContext(), "Error : "+ response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Error : "+ response.code(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -92,7 +93,7 @@ public class NoticeDialog extends Dialog {
         listView.setFooterDividersEnabled(false);
 
         getWindow().setBackgroundDrawableResource(R.color.translucent_white);
-        getWindow().setLayout(dpToPx(getContext(),380), dpToPx(getContext(),600));
+        //getWindow().setLayout(dpToPx(getContext(),380), dpToPx(getContext(),600));
 
     }
     public NoticeDialog(Context context) {
@@ -103,4 +104,5 @@ public class NoticeDialog extends Dialog {
         int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
         return px;
     }
+
 }

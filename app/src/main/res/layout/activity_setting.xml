@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="mkworld29.mobile.com.cafemoa.OptionActivity"
     android:orientation="vertical"
-    android:background="#cccccc">
+    android:background="#e1e1e1">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -55,14 +55,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="#0c0c0c"
                 android:text="앱 푸시 알림"/>
@@ -70,11 +70,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 android:textColor="#646668"
                 android:layout_marginTop="10dp"
                 android:text="주문정보 알림은 항상 수신됩니다."
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginBottom="10dp"/>
         </LinearLayout>
 
 
@@ -90,13 +90,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="3dp"
         android:background="#fcfcfc">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="15dp"
             android:layout_marginLeft="20dp"
             android:orientation="vertical"
             android:layout_marginBottom="15dp">
@@ -104,7 +104,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="#0c0c0c"
                 android:text="마케팅 정보 메일 SMS 수신 동의"/>
@@ -120,11 +120,6 @@
             android:layout_centerVertical="true"/>
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
 
         <TextView
             android:layout_width="match_parent"
@@ -132,11 +127,111 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#646668"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginLeft="10dp"
-            android:text="알림 설정"/>
+            android:layout_marginBottom="15dp"
+            android:text="프로필 설정"/>
 
+    <LinearLayout
 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="15dp"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:id="@+id/tv_profile_name"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#000000"
+            android:text="권도윤"/>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:text="이메일"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/et_profile_email"
+                android:layout_marginLeft="20dp"
+                android:textSize="15dp"
+                android:minEms="10"
+                android:background="@null"
+                android:text="eunseo9808@naver.com"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="25dp"
+                android:background="#e1e1e1"
+                android:layout_marginLeft="30dp"
+                android:textColor="#AAAAAA"
+                android:text="수정"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:text="비밀번호"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/tv_profile_password"
+                android:layout_marginLeft="15dp"
+                android:textSize="15dp"
+                android:hint="8-20자 이내"
+                android:background="@null"
+                android:maxLength="20"
+                android:minEms="10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="25dp"
+                android:background="#e1e1e1"
+                android:layout_marginLeft="30dp"
+                android:textColor="#AAAAAA"
+                android:text="수정"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp">
+        <Button
+            android:id="@+id/bt_delete_user"
+            android:textColor="#000000"
+            android:text="회원 탈퇴"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/bt_logout"
+            android:layout_weight="2"
+            android:textColor="#000000"
+            android:text="로그아웃"
+            android:background="#FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </LinearLayout>
