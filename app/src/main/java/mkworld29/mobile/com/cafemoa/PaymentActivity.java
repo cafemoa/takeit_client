@@ -1,6 +1,7 @@
 package mkworld29.mobile.com.cafemoa;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -51,6 +52,8 @@ public class PaymentActivity extends AppCompatActivity {
             if ( url.startsWith(APP_SCHEME) ) {
                 String redirectURL = url.substring(APP_SCHEME.length()+3);
                 mainWebView.loadUrl(redirectURL);
+                setResult(Activity.RESULT_OK);
+                finish();
             }
         }
 
