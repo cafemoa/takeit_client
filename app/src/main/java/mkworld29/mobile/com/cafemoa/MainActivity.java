@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View hView = navigationView.getHeaderView(0);
         navigationView.setNavigationItemSelectedListener(this);
-
+/*
         ImageView iv_set_up = (ImageView) hView.findViewById(R.id.iv_set_up);
         iv_set_up.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,6 +162,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+        */
 
     }
 

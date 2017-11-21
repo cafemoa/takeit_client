@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:textColor="#fcfcfc"
+
             android:layout_gravity="right|center_vertical"
             android:text="저장"/>
 

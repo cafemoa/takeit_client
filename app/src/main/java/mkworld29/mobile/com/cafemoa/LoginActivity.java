@@ -104,7 +104,6 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.makeText(LoginActivity.this,"Check In Failed", Toast.LENGTH_SHORT).show();
                                 }
                             });
-
                         }
                         else{
                             Toast.makeText(getApplicationContext(), "아이디와 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
@@ -115,6 +114,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<RetrofitConnection.Token> call, Throwable t) {
                         Log.d("TAG", t.getLocalizedMessage());
+                        pd.dismiss();
                     }
                 });
             }

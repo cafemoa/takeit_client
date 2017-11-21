@@ -79,6 +79,8 @@ public class RetrofitConnection {
         public int order_num;
         public String order_time;
         public int get_time;
+        public int amount_price;
+        public String menu_name;
     }
 
     public class Profile{
@@ -206,6 +208,14 @@ public class RetrofitConnection {
                 @Body RequestBody body
         );
     }
+
+    public interface ready_payment{
+        @POST("ready_payment/")
+        Call<Payment_Complete> repoContributors(
+                @Body RequestBody body
+        );
+    }
+
     public interface get_cafe_beverage{
         @GET("get_cafe_beverage/{PK}")
         Call<List<Beverage>> repoContributors(

@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 import android.webkit.CookieManager;
 import android.webkit.WebSettings;
@@ -43,7 +44,7 @@ public class PaymentActivity extends AppCompatActivity {
         Uri intentData = intent.getData();
 
         if ( intentData == null ) {
-            mainWebView.loadUrl("http://61.100.180.146/payment/");
+            mainWebView.loadUrl("http://rest.takeitnow.kr/payment/");
         } else {
             //isp 인증 후 복귀했을 때 결제 후속조치
             String url = intentData.toString();
@@ -56,13 +57,15 @@ public class PaymentActivity extends AppCompatActivity {
         try {
             if(intent != null)
             {
-                String menu_name = intent.getStringExtra("menu_name");
-                String price = intent.getStringExtra("price");
+
+                String menu_name = intent.getStringExtra("name");
+                int price = intent.getIntExtra("price",0);
+
                 String str = null;
-                if(menu_name != null && price != null)
-                    str = "name=" + URLEncoder.encode(menu_name, "UTF-8") + "&price=" + URLEncoder.encode(price, "UTF-8");
+                if(menu_name != null && price != 0)
+                    str = "name=" + URLEncoder.encode(menu_name, "UTF-8") + "&price=" + URLEncoder.encode(""+price, "UTF-8");
                 if(str !=null)
-                    mainWebView.postUrl("http://61.100.180.146/payment/", str.getBytes());
+                    mainWebView.postUrl("http://rest.takeitnow.kr/payment/", str.getBytes());
             }
         }
         catch(UnsupportedEncodingException i){

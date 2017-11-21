@@ -155,7 +155,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:layout_marginLeft="20dp"
-                android:text="이메일"
+                android:text="이메일  "
                 android:textColor="#000000"
                 android:textStyle="bold"
                 android:textSize="15dp"
@@ -170,13 +170,7 @@
                 android:text="eunseo9808@naver.com"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="25dp"
-                android:background="#e1e1e1"
-                android:layout_marginLeft="30dp"
-                android:textColor="#AAAAAA"
-                android:text="수정"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -193,7 +187,7 @@
                 android:layout_height="wrap_content" />
             <EditText
                 android:id="@+id/tv_profile_password"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="20dp"
                 android:textSize="15dp"
                 android:hint="8-20자 이내"
                 android:background="@null"
