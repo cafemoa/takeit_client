@@ -118,6 +118,8 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
                     i.putExtra("cafe_name", item.getName());
                     i.putExtra("cafe_image", item.getImage());
                     i.putExtra("cafe_location", item.getLocation());
+                    i.putExtra("cafe_min_time", item.getMin_time());
+
                     i.putParcelableArrayListExtra("beverages", beverages);
                     v.getContext().startActivity(i);
                 }else{

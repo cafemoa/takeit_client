@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -51,7 +53,7 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
     private int beverage_pk;
     private int cafe_pk;
     private String price;
-
+    private int cafe_min_time;
     private int defaultPrice;
 
     @Override
@@ -76,6 +78,7 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
             beverage_pk = intent.getIntExtra("beverage_pk", 0);
             cafe_pk = intent.getIntExtra("cafe_pk", 0);
             price = intent.getStringExtra("price");
+            cafe_min_time=intent.getIntExtra("cafe_min_time",0);
         }
 
         iv_content          =   (ImageView)findViewById(R.id.iv_content);
@@ -136,6 +139,9 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
         arr_whipping[0] = tv_whipping_true;
         arr_whipping[1] = tv_whipping_false;
 
+        edt_predict_arrive.setText(""+cafe_min_time);
+
+
         btn_get.setOnClickListener(this);
         btn_order.setOnClickListener(this);
         tv_amount_minus.setOnClickListener(this);
@@ -177,7 +183,11 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-
+        if(Integer.parseInt(edt_predict_arrive.getText().toString())<
+                cafe_min_time) {
+            Toast.makeText(getApplicationContext(), "최소 시간은" +cafe_min_time+"분 입니다.", Toast.LENGTH_SHORT).show();
+            edt_predict_arrive.setText(""+cafe_min_time);
+        }
         if(view.getId() == tv_amount_minus.getId())
         {
             int amount = Integer.parseInt(tv_amount.getText().toString());

@@ -34,6 +34,7 @@ import android.widget.ViewFlipper;
 
 import com.zoyi.channel.plugin.android.ChannelPlugin;
 import com.zoyi.channel.plugin.android.OnChannelPluginChangedListener;
+import com.zoyi.channel.plugin.android.activity.settings.SettingsActivity;
 import com.zoyi.channel.plugin.android.push.ChannelPushClient;
 
 import java.util.ArrayList;
@@ -99,7 +100,7 @@ public class MainActivity extends AppCompatActivity
                     for(int i=0; i<response.body().size(); i++) {
                         RetrofitConnection.Cafe cafe=response.body().get(i);
                         //Log.d("TAG",cafe.cafe_image);
-                        data.add(new MainCafeItem(cafe.pk,cafe.name, cafe.locationString, cafe.tag, "http://rest.takeitnow.kr"+cafe.cafe_image, true));
+                        data.add(new MainCafeItem(cafe.pk,cafe.name, cafe.locationString, cafe.tag, "http://rest.takeitnow.kr"+cafe.cafe_image, true,cafe.min_time));
                     }
                     recyclerView.setAdapter(new MainCafeAdapter(getApplicationContext(), data, R.layout.activity_main));
                 }
@@ -269,7 +270,7 @@ public class MainActivity extends AppCompatActivity
         Intent intent = null;
         if (id == R.id.nav_reservation) {
             // Handle the camera action
-            intent = new Intent(this, ReservationActivity.class);
+            intent = new Intent(this, SettingActivity.class);
         } else if (id == R.id.nav_coupon) {
             intent = new Intent(this, CouponActivity.class);
         } else if (id == R.id.nav_event) {

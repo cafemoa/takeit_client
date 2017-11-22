@@ -39,6 +39,7 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
     public Order2PagerAdapter adapter;
     private int cafe_pk;
     private String cafe_location,cafe_name,cafe_image;
+    private int cafe_min_time;
 
 
     @Override
@@ -53,6 +54,7 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
         cafe_name=intent.getStringExtra("cafe_name");
         cafe_location=intent.getStringExtra("cafe_location");
         cafe_image=intent.getStringExtra("cafe_image");
+        cafe_min_time=intent.getIntExtra("cafe_min_time", 0);
 
         ArrayList<OrderListItem2> beverages=intent.getParcelableArrayListExtra("beverages");
 
@@ -74,7 +76,7 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
 
         mPager = (ViewPager) findViewById(R.id.vp_order);
 
-        adapter = new Order2PagerAdapter(getApplicationContext(),cafe_pk);
+        adapter = new Order2PagerAdapter(getApplicationContext(),cafe_pk,cafe_min_time);
         adapter.setCafeName(tv_cafe_name.getText().toString());
 
         for(int i=0; i<beverages.size(); i++){

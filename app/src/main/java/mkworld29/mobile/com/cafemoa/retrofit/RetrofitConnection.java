@@ -39,6 +39,7 @@ public class RetrofitConnection {
         public String name;
         public String locationString;
         public int pk;
+        public int min_time;
 
         public List<Beverage> beverages;
     }
