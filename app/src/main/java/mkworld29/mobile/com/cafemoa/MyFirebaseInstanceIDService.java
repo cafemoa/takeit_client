@@ -21,6 +21,7 @@ import mkworld29.mobile.com.cafemoa.retrofit.SharedPreference;
 import android.util.Log;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
+import com.zoyi.channel.plugin.android.global.PrefSupervisor;
 
 
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
@@ -36,7 +37,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     public void onTokenRefresh() {
         // Get updated InstanceID token.
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-        Log.d(TAG, "JAEMIN Refreshed token: " + refreshedToken);
+        PrefSupervisor.setDeviceToken(this, refreshedToken);
         BasketPref.getInstance(null).addString("FCM_TOKEN",refreshedToken);
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the

@@ -22,6 +22,7 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.felipecsl.gifimageview.library.GifImageView;
@@ -60,6 +61,7 @@ public class ReadyActivity extends AppCompatActivity implements View.OnClickList
     Retrofit retrofit;
     ProgressDialog pd;
     SharedPreference sp;
+    LoginButton loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,13 +76,14 @@ public class ReadyActivity extends AppCompatActivity implements View.OnClickList
 
         FacebookSdk.setAutoLogAppEventsEnabled(true);
         FacebookSdk.setApplicationId("1224243417701535");
-        FacebookSdk.sdkInitialize(this.getApplicationContext());
+        //FacebookSdk.sdkInitialize(this.getApplicationContext());
 
         BasketPref.getInstance(getApplicationContext());
 
         callbackManager = CallbackManager.Factory.create();
 
-        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
+        LoginManager.getInstance().logOut();
+        loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions(Arrays.asList("public_profile", "email"));
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -103,9 +106,9 @@ public class ReadyActivity extends AppCompatActivity implements View.OnClickList
                                         @Override
                                         public void onSuccessed() {
                                             send_fcmtoken();
-//                                    Intent i=new Intent(LoginActivity.this, MainActivity.class);
-//                                    startActivity(i);
-//                                    finish();
+//                            Intent i=new Intent(LoginActivity.this, MainActivity.class);
+//                            startActivity(i);
+//                            finish();
                                         }
                                         @Override
                                         public void onFailed(ChannelException exception) {
@@ -175,6 +178,14 @@ public class ReadyActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onError(FacebookException error) {
                 Log.e("LoginErr",error.toString());
+            }
+        });
+
+        findViewById(R.id.facebook_login).setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                loginButton.performClick();
             }
         });
 

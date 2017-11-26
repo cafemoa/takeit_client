@@ -45,7 +45,7 @@ public class SixthSignUpActivity extends AppCompatActivity {
 
         sp=SharedPreference.getInstance();
         retrofit= RetrofitInstance.getInstance(getApplicationContext());
-        RetrofitConnection.signup service = retrofit.create(RetrofitConnection.signup.class);
+
 
         pref=SignupPref.getInstance(getApplicationContext());
 
@@ -63,29 +63,51 @@ public class SixthSignUpActivity extends AppCompatActivity {
 
         pref.removeAllInfo();
 
-        final Call<ResponseBody> repos = service.repoContributors(
-                email,
-                password,
-                name,
-                phone_number,
-                birth,
-                gender
-        );
 
-
-
-        repos.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if(response.code()==201) {
-                    Toast.makeText(getApplicationContext(), "성공적으로 가입을 완료하였습니다.",Toast.LENGTH_SHORT).show();
-
-                    if(access_token.equals("")){
+        if(access_token.equals("")){
+            RetrofitConnection.signup service = retrofit.create(RetrofitConnection.signup.class);
+            final Call<ResponseBody> repos = service.repoContributors(
+                    email,
+                    password,
+                    name,
+                    phone_number,
+                    birth,
+                    gender
+            );
+            repos.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if(response.code()==201) {
+                        Toast.makeText(getApplicationContext(), "성공적으로 가입을 완료하였습니다.",Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(SixthSignUpActivity.this, LoginActivity.class);
                         startActivity(i);
                         finish();
                     }
                     else{
+                        Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Log.d("TAG",t.getLocalizedMessage());
+                }
+            });
+        }
+        else{
+            RetrofitConnection.social_signup service = retrofit.create(RetrofitConnection.social_signup.class);
+            final Call<ResponseBody> repos = service.repoContributors(
+                    name,
+                    phone_number,
+                    birth,
+                    gender,
+                    access_token
+            );
+            repos.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if(response.code()==201) {
+                        Toast.makeText(getApplicationContext(), "성공적으로 가입을 완료하였습니다.",Toast.LENGTH_SHORT).show();
                         pd = ProgressDialog.show(SixthSignUpActivity.this, "로그인중", "로그인중 입니다.");
                         RetrofitConnection.social_auth service = retrofit.create(RetrofitConnection.social_auth.class);
                         final Call<RetrofitConnection.Token> repos = service.repoContributors(access_token);
@@ -118,19 +140,17 @@ public class SixthSignUpActivity extends AppCompatActivity {
                             }
                         });
                     }
-
-
+                    else{
+                        Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_SHORT).show();
+                    }
                 }
-                else{
-                    Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_SHORT).show();
-                }
-            }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.d("TAG",t.getLocalizedMessage());
-            }
-        });
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Log.d("TAG",t.getLocalizedMessage());
+                }
+            });
+        }
     }
     public void send_fcmtoken(){
         RetrofitConnection.fcm_register service = retrofit.create(RetrofitConnection.fcm_register.class);

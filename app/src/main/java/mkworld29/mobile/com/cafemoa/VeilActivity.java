@@ -11,19 +11,15 @@ import com.zoyi.channel.plugin.android.ChannelPlugin;
 import com.zoyi.channel.plugin.android.OnChannelPluginChangedListener;
 import com.zoyi.channel.plugin.android.push.ChannelPushClient;
 
-public class VeilActivity extends AppCompatActivity implements OnChannelPluginChangedListener {
+public class VeilActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_veil);
-        ChannelPlugin.addOnChannelPluginChangedListener(this);
+        //ChannelPlugin.addOnChannelPluginChangedListener(this);
         ChannelPushClient.handlePushMessage(this);
     }
 
-    @Override
-    public void badgeChanged(int count) {
-        Log.i("Badge Changed", count + "");
-    }
 }

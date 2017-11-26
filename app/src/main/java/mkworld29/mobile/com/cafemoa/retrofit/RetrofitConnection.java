@@ -194,6 +194,19 @@ public class RetrofitConnection {
                 @Field("gender") boolean gender
         );
     }
+
+    public interface social_signup{
+        @FormUrlEncoded
+        @POST("social-api-signup/")
+        Call<ResponseBody> repoContributors(
+                @Field("name") String name,
+                @Field("phone_number") String phone_number,
+                @Field("birth") String birth,
+                @Field("gender") boolean gender,
+                @Field("access_token") String access_token
+        );
+    }
+
     public interface social_auth {
         @FormUrlEncoded
         @POST("social-api-auth/")
@@ -230,6 +243,14 @@ public class RetrofitConnection {
         Call<ResponseBody> repoContributors(
                 @Field("dev_id") String device_id,
                 @Field("reg_id") String token,
+                @Field("is_active") boolean is_active
+        );
+    }
+
+    public interface fcm_setActive{
+        @FormUrlEncoded
+        @PUT("fcm/set_active")
+        Call<ResponseBody> repoContributors(
                 @Field("is_active") boolean is_active
         );
     }

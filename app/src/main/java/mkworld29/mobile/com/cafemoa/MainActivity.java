@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         View.OnTouchListener ,
         View.OnClickListener,
-        OnChannelPluginChangedListener,
         ViewFlipperAction.ViewFlipperCallback{
 
     private ViewFlipper flipper;
@@ -76,7 +75,7 @@ public class MainActivity extends AppCompatActivity
         startFlipper();
         startNavigation();
         setCafeList();
-        ChannelPlugin.addOnChannelPluginChangedListener(this);
+        //ChannelPlugin.addOnChannelPluginChangedListener(this);
         ChannelPushClient.handlePushMessage(this);
 
 
@@ -276,7 +275,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_event) {
             intent = new Intent(this, OrderListActivity.class);
         } else if (id == R.id.nav_talk){
-            checkInVeil();
+            //checkInVeil();
+            ChannelPlugin.show(this);
         }
 
         if(intent !=null)
@@ -354,14 +354,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onDestroy() {
-        ChannelPlugin.removeOnChannelPluginChangedListener(this);
+        //ChannelPlugin.removeOnChannelPluginChangedListener(this);
         ChannelPlugin.checkOut();
         super.onDestroy();
-    }
-
-    @Override
-    public void badgeChanged(int count) {
-        Log.i("Badge Changed", count + "");
     }
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {

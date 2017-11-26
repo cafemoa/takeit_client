@@ -26,7 +26,7 @@
 
         <TextView
             android:text="설정"
-            android:textSize="28sp"
+            android:textSize="20sp"
             android:textColor="#fcfcfc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
