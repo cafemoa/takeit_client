@@ -36,6 +36,7 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
     private TextView tv_coffe, tv_smootie, tv_tea, tv_dessert, tv_etc;
     public TextView tv_cafe_name,tv_cafe_location;
     public ImageView iv_cafe_image, iv_cart;
+    private ImageView iv_back;
     public Order2PagerAdapter adapter;
     private int cafe_pk;
     private String cafe_location,cafe_name,cafe_image;
@@ -58,6 +59,13 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
 
         ArrayList<OrderListItem2> beverages=intent.getParcelableArrayListExtra("beverages");
 
+        iv_back=(ImageView)findViewById(R.id.iv_back);
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         iv_cart = (ImageView)findViewById(R.id.iv_cart);
 
