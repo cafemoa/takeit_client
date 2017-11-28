@@ -42,7 +42,7 @@ public class SettingActivity extends AppCompatActivity {
     private TextView tv_name;
     private Retrofit retrofit;
     private Switch fcm_deny;
-
+    private Button bt_password_change;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +58,7 @@ public class SettingActivity extends AppCompatActivity {
         bt_save            = (Button)findViewById(R.id.bt_save);
         iv_back            = (ImageView)findViewById(R.id.iv_back);
         fcm_deny           = (Switch)findViewById(R.id.switch_push);
+        bt_password_change = (Button)findViewById(R.id.bt_password_change);
 
 
         fcm_deny.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -81,6 +82,15 @@ public class SettingActivity extends AppCompatActivity {
                         Log.d("TAG",t.getLocalizedMessage());
                     }
                 });
+            }
+        });
+
+        bt_password_change.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(SettingActivity.this,PasswordChangeActivity.class);
+                startActivity(i);
             }
         });
 
@@ -174,6 +184,7 @@ public class SettingActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "수정이 완료되었습니다.", Toast.LENGTH_SHORT).show();
                     return ;
                 }
+                /*
                 RetrofitConnection.save_profile service = retrofit.create(RetrofitConnection.save_profile.class);
                 final Call<ResponseBody> repos = service.repoContributors(et_password.getText().toString());
                 repos.enqueue(new Callback<ResponseBody>() {
@@ -192,6 +203,7 @@ public class SettingActivity extends AppCompatActivity {
                         Log.d("TAG",t.getLocalizedMessage());
                     }
                 });
+                */
             }
         });
 

@@ -169,6 +169,7 @@ public class RetrofitConnection {
         @FormUrlEncoded
         @PUT("user-manage/")
         Call<ResponseBody> repoContributors(
+                @Field("now_password") String now_password,
                 @Field("password") String password
         );
     }
