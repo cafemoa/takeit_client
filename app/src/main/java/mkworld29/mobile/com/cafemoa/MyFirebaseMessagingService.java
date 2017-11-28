@@ -15,6 +15,9 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.firebase.messaging.RemoteMessage;
+import com.zoyi.channel.plugin.android.push.ChannelPushManager;
+
+import java.util.Map;
 
 public class MyFirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
 
@@ -54,33 +57,39 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
 
-        msg = remoteMessage.getData().get("message");
+
 
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated. See sendNotification method below.
 
+        Map<String, String> messages = remoteMessage.getData();
         // [END receive_message]
+        if (ChannelPushManager.isChannelPluginMessage(messages)) {
+            ChannelPushManager.handlePush(this, messages);
+        }
+        else{
+            msg = messages.get("message");
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+                    new Intent(this, MainActivity.class), 0);
 
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-                new Intent(this, MainActivity.class), 0);
+            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this).setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentTitle("Take It!")
+                    .setContentIntent(contentIntent)
+                    .setContentText(msg)
+                    .setAutoCancel(true)
+                    .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                    .setVibrate(new long[]{1, 1000});
 
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this).setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("Take It!")
-                .setContentIntent(contentIntent)
-                .setContentText(msg)
-                .setAutoCancel(true)
-                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                .setVibrate(new long[]{1, 1000});
+            NotificationManager notificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        notificationManager.notify(0 /* ID of notification */, mBuilder.build());
+            notificationManager.notify(0 /* ID of notification */, mBuilder.build());
 
 
-        mBuilder.setContentIntent(contentIntent);
+            mBuilder.setContentIntent(contentIntent);
+        }
     }
 }

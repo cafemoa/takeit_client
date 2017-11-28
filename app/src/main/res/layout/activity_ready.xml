@@ -49,19 +49,38 @@
             android:gravity="bottom"
             android:layout_weight="5">
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                >
 
             <com.facebook.login.widget.LoginButton
                 xmlns:facebook="schemas.android.com/apk/res-auto"
                 android:id="@+id/login_button"
                 android:layout_width="match_parent"
-                android:layout_height="33dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+                android:visibility="gone"
                 android:scaleType="centerInside"
                 facebook:login_text="Facebook으로 가입/로그인"
                 facebook:logout_text="Facebook 로그아웃"
                 />
+
+                <TextView
+                    android:id="@+id/facebook_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/facebook_login"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:text="Facebook으로 가입/로그인"
+                    />
+            </FrameLayout>
 
 
             <LinearLayout

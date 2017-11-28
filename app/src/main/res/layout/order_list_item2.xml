@@ -26,7 +26,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/option_best"
-            android:layout_toRightOf="@id/iv_content"
+            android:layout_toRightOf="@id/tv_content"
             android:visibility="gone"
             android:layout_centerVertical="true"/>
 

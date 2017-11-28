@@ -9,8 +9,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +41,7 @@ public class SettingActivity extends AppCompatActivity {
     private Button bt_save;
     private TextView tv_name;
     private Retrofit retrofit;
+    private Switch fcm_deny;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,32 @@ public class SettingActivity extends AppCompatActivity {
         tv_name            = (TextView) findViewById(R.id.tv_profile_name);
         bt_save            = (Button)findViewById(R.id.bt_save);
         iv_back            = (ImageView)findViewById(R.id.iv_back);
+        fcm_deny           = (Switch)findViewById(R.id.switch_push);
+
+
+        fcm_deny.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, final boolean b) {
+                RetrofitConnection.fcm_setActive service = retrofit.create(RetrofitConnection.fcm_setActive.class);
+                Call<ResponseBody> repos = service.repoContributors(b);
+                repos.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if(response.code()==200){
+
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.d("TAG",t.getLocalizedMessage());
+                    }
+                });
+            }
+        });
 
         retrofit = RetrofitInstance.getInstance(this);
 

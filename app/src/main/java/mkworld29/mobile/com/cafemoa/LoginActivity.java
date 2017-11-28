@@ -104,7 +104,6 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.makeText(LoginActivity.this,"Check In Failed", Toast.LENGTH_SHORT).show();
                                 }
                             });
-
                         }
                         else{
                             Toast.makeText(getApplicationContext(), "아이디와 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
@@ -115,6 +114,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<RetrofitConnection.Token> call, Throwable t) {
                         Log.d("TAG", t.getLocalizedMessage());
+                        pd.dismiss();
                     }
                 });
             }
@@ -137,12 +137,10 @@ public class LoginActivity extends AppCompatActivity {
         RetrofitConnection.fcm_register service = retrofit.create(RetrofitConnection.fcm_register.class);
         final String deviceID = android.provider.Settings.Secure.getString(getBaseContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         final String fcm_token= BasketPref.getInstance(getApplicationContext()).getString("FCM_TOKEN");
-        Log.d("TAG", deviceID+","+fcm_token);
         final Call<ResponseBody> repos=service.repoContributors(deviceID,fcm_token,true);
         repos.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
                 Intent i=new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();

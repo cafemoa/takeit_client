@@ -56,7 +56,8 @@ public class Order2PagerAdapter extends PagerAdapter{
     private ArrayList<OrderListItem2> page3=new ArrayList<>();
     private ArrayList<OrderListItem2> page4=new ArrayList<>();
     View v = null;
-    int cafe_pk;
+    private int cafe_pk;
+    private int cafe_min_time;
 
 
     public void addItemPage0(OrderListItem2 item){page0.add(item);}
@@ -65,12 +66,13 @@ public class Order2PagerAdapter extends PagerAdapter{
     public void addItemPage3(OrderListItem2 item){page3.add(item);}
     public void addItemPage4(OrderListItem2 item){page4.add(item);}
 
-    public Order2PagerAdapter(Context c, int cafe_pk)
+    public Order2PagerAdapter(Context c, int cafe_pk, int cafe_min_time)
     {
         super();
         mContext = c;
         mInflater = LayoutInflater.from(c);
         this.cafe_pk=cafe_pk;
+        this.cafe_min_time=cafe_min_time;
     }
     public void setCafeName(String s)
     {
@@ -135,6 +137,7 @@ public class Order2PagerAdapter extends PagerAdapter{
                 intent.putExtra("cafe_name", cafe_name);
                 intent.putExtra("cafe_pk", cafe_pk);
                 intent.putExtra("beverage_pk", ((OrderListItem2) mAdapter.getItem(i)).getPk());
+                intent.putExtra("cafe_min_time",cafe_min_time);
                 intent.putExtra("price", item.getPrice());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 v.getContext().startActivity(intent);

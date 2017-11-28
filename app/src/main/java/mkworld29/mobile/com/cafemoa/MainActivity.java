@@ -34,6 +34,7 @@ import android.widget.ViewFlipper;
 
 import com.zoyi.channel.plugin.android.ChannelPlugin;
 import com.zoyi.channel.plugin.android.OnChannelPluginChangedListener;
+import com.zoyi.channel.plugin.android.activity.settings.SettingsActivity;
 import com.zoyi.channel.plugin.android.push.ChannelPushClient;
 
 import java.util.ArrayList;
@@ -52,7 +53,6 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         View.OnTouchListener ,
         View.OnClickListener,
-        OnChannelPluginChangedListener,
         ViewFlipperAction.ViewFlipperCallback{
 
     private ViewFlipper flipper;
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity
         startFlipper();
         startNavigation();
         setCafeList();
-        ChannelPlugin.addOnChannelPluginChangedListener(this);
+        //ChannelPlugin.addOnChannelPluginChangedListener(this);
         ChannelPushClient.handlePushMessage(this);
 
 
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity
                     for(int i=0; i<response.body().size(); i++) {
                         RetrofitConnection.Cafe cafe=response.body().get(i);
                         //Log.d("TAG",cafe.cafe_image);
-                        data.add(new MainCafeItem(cafe.pk,cafe.name, cafe.locationString, cafe.tag, "http://rest.takeitnow.kr"+cafe.cafe_image, true));
+                        data.add(new MainCafeItem(cafe.pk,cafe.name, cafe.locationString, cafe.tag, "http://rest.takeitnow.kr"+cafe.cafe_image, true,cafe.min_time));
                     }
                     recyclerView.setAdapter(new MainCafeAdapter(getApplicationContext(), data, R.layout.activity_main));
                 }
@@ -279,7 +279,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_event) {
             intent = new Intent(this, OrderListActivity.class);
         } else if (id == R.id.nav_talk){
-            checkInVeil();
+            //checkInVeil();
+            ChannelPlugin.show(this);
         }
 
         if(intent !=null)
@@ -357,14 +358,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onDestroy() {
-        ChannelPlugin.removeOnChannelPluginChangedListener(this);
+        //ChannelPlugin.removeOnChannelPluginChangedListener(this);
         ChannelPlugin.checkOut();
         super.onDestroy();
-    }
-
-    @Override
-    public void badgeChanged(int count) {
-        Log.i("Badge Changed", count + "");
     }
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
