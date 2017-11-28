@@ -22,15 +22,6 @@
             android:layout_marginLeft="10dp"/>
 
         <ImageView
-            android:id="@+id/iv_content"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/option_americano"
-            android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/tv_content"/>
-
-        <ImageView
             android:id="@+id/iv_best"
             android:layout_width="20dp"
             android:layout_height="20dp"

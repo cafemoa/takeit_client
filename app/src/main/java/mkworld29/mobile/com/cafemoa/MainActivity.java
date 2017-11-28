@@ -118,12 +118,8 @@ public class MainActivity extends AppCompatActivity
 
     private void establishView()
     {
-
-
-
         imb_next = (Button) findViewById(R.id.imb_next);
         imb_prev = (Button) findViewById(R.id.imb_prev);
-
 
         imb_next.setOnClickListener(this);
         imb_prev.setOnClickListener(this);
@@ -154,14 +150,14 @@ public class MainActivity extends AppCompatActivity
         View hView = navigationView.getHeaderView(0);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ImageView iv_set_up = (ImageView) hView.findViewById(R.id.iv_set_up);
-        iv_set_up.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SettingActivity.class);
-                startActivity(intent);
-            }
-        });
+//        ImageView iv_set_up = (ImageView) hView.findViewById(R.id.iv_set_up);
+//        iv_set_up.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
     }
 
@@ -184,6 +180,16 @@ public class MainActivity extends AppCompatActivity
 
         flipper.setInAnimation(showIn);
         flipper.setOutAnimation(this,R.anim.in_right);
+
+        flipper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, PersonalEventActivity.class);
+                intent.putExtra("url","여기에 Url 넣으면됨 ");
+                startActivity(intent);
+
+            }
+        });
 
         flipper.setFlipInterval(6000);
         flipper.startFlipping();
@@ -267,8 +273,7 @@ public class MainActivity extends AppCompatActivity
 
         Intent intent = null;
         if (id == R.id.nav_reservation) {
-            // Handle the camera action
-            intent = new Intent(this, ReservationActivity.class);
+            intent = new Intent(this, SettingActivity.class);
         } else if (id == R.id.nav_coupon) {
             intent = new Intent(this, CouponActivity.class);
         } else if (id == R.id.nav_event) {

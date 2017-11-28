@@ -13,7 +13,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        this.getWindow().getDecorView().setBackgroundResource(R.drawable.splash);
+        this.getWindow().getDecorView().setBackgroundResource(R.drawable.client_splash);
 
         new Handler().postDelayed(new Runnable() {
             @Override
