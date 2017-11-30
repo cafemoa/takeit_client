@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+import mkworld29.mobile.com.cafemoa.retrofit.SharedPreference;
+
 public class SplashActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +22,15 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
-                Intent i = new Intent(SplashActivity.this, ReadyActivity.class);
-                startActivity(i);
+                if(!SharedPreference.getInstance(getApplicationContext()).get("Authorization").equals("")){
+                    Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                    startActivity(i);
+                }
+                else {
+                    Intent i = new Intent(SplashActivity.this, ReadyActivity.class);
+                    startActivity(i);
+                }
+
 
                 // close this activity
                 finish();

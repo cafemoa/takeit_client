@@ -136,7 +136,6 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
         else if(view.getId() == tv_tea.getId())
         {
             mPager.setCurrentItem(2);
-
         }
         else if(view.getId() == tv_dessert.getId())
         {
