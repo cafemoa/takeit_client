@@ -43,7 +43,6 @@ public class PasswordChangeActivity extends AppCompatActivity {
         iv_back                 = (ImageView)findViewById(R.id.iv_back);
 
         iv_back.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View v) {
                 finish();

@@ -88,23 +88,61 @@ public class Order2PagerAdapter extends PagerAdapter{
     @Override
     public Object instantiateItem(View pager, int position) {
 
-        if(position==0 && mAdapter0==null){
-            mAdapterRefresh0();
+        if(position==0){
+            if(mAdapter0==null){
+                mAdapterRefresh0();
+            }
+            else{
+                v = mInflater.inflate(R.layout.order_inflate_one, null);
+                lv_order = (ListView) v.findViewById(R.id.lv_order_1);
+                lv_order.setAdapter(mAdapter0);
+            }
+            ((ViewPager)pager).addView(v, 0);
         }
-        else if(position==1&& mAdapter1==null){
-            mAdapterRefresh1();
+        else if(position==1){
+            if(mAdapter1==null){
+                mAdapterRefresh1();
+            }
+            else{
+                v = mInflater.inflate(R.layout.order_inflate_two, null);
+                lv_order = (ListView) v.findViewById(R.id.lv_order_2);
+                lv_order.setAdapter(mAdapter1);
+            }
+            ((ViewPager)pager).addView(v, 0);
         }
-        else if(position==2&& mAdapter2==null){
-            mAdapterRefresh2();
+        else if(position==2){
+            if(mAdapter2==null){
+                mAdapterRefresh2();
+            }
+            else{
+                v = mInflater.inflate(R.layout.order_inflate_three, null);
+                lv_order = (ListView) v.findViewById(R.id.lv_order_3);
+                lv_order.setAdapter(mAdapter2);
+            }
+            ((ViewPager)pager).addView(v, 0);
         }
-        else if(position==3&& mAdapter3==null){
-            mAdapterRefresh3();
+        else if(position==3){
+            if(mAdapter3==null){
+                mAdapterRefresh3();
+            }
+            else{
+                v = mInflater.inflate(R.layout.order_inflate_four, null);
+                lv_order = (ListView) v.findViewById(R.id.lv_order_4);
+                lv_order.setAdapter(mAdapter3);
+            }
+            ((ViewPager)pager).addView(v, 0);
         }
-        else if(position==4&& mAdapter4==null){
-            mAdapterRefresh4();
+        else if(position==4){
+            if(mAdapter4==null){
+                mAdapterRefresh4();
+            }
+            else{
+                v = mInflater.inflate(R.layout.order_inflate_five, null);
+                lv_order = (ListView) v.findViewById(R.id.lv_order_5);
+                lv_order.setAdapter(mAdapter4);
+            }
+            ((ViewPager)pager).addView(v, 0);
         }
-
-        ((ViewPager)pager).addView(v, 0);
 
         return v;
     }
@@ -145,6 +183,7 @@ public class Order2PagerAdapter extends PagerAdapter{
         });
     }
     public void mAdapterRefresh0(){
+
         v = mInflater.inflate(R.layout.order_inflate_one, null);
         lv_order = (ListView) v.findViewById(R.id.lv_order_1);
         mAdapter0 = new Order2ListAdapter();
@@ -187,7 +226,8 @@ public class Order2PagerAdapter extends PagerAdapter{
         }
         mAdapter3.notifyDataSetChanged();
         setClickListener(mAdapter3);
-    }public void mAdapterRefresh4(){
+    }
+    public void mAdapterRefresh4(){
         v = mInflater.inflate(R.layout.order_inflate_five, null);
         lv_order = (ListView) v.findViewById(R.id.lv_order_5);
         mAdapter4 = new Order2ListAdapter();
