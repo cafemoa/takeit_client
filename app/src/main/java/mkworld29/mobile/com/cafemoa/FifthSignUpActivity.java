@@ -1,17 +1,21 @@
 package mkworld29.mobile.com.cafemoa;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
+
+import com.tsengvn.typekit.TypekitContextWrapper;
 
 import mkworld29.mobile.com.cafemoa.prefs.SignupPref;
 
 public class FifthSignUpActivity extends AppCompatActivity implements View.OnClickListener{
     SignupPref pref;
-    private Button btn_next;
+    private ImageView iv_next;
     private Button btn_man, btn_woman;
     private boolean is_man, is_woman;
 
@@ -26,8 +30,8 @@ public class FifthSignUpActivity extends AppCompatActivity implements View.OnCli
         pref = SignupPref.getInstance(getApplicationContext());
         is_man = is_woman = false;
 
-        btn_next = (Button) findViewById(R.id.btn_next);
-        btn_next.setOnClickListener(this);
+        iv_next = (ImageView) findViewById(R.id.iv_next);
+        iv_next.setOnClickListener(this);
 
         btn_man = (Button) findViewById(R.id.btn_man);
         btn_man.setOnClickListener(this);
@@ -43,13 +47,13 @@ public class FifthSignUpActivity extends AppCompatActivity implements View.OnCli
             if(gender.equals("male")){
                 is_man=true;
                 is_woman=false;
-                btn_man.setBackgroundColor(0xFFA9E6F2);
+                btn_man.setBackgroundColor(0xFFed4f46);
                 btn_woman.setBackgroundColor(0xFFE5E5E5);
             }
             else {
                 is_man=false;
                 is_woman=true;
-                btn_woman.setBackgroundColor(0xFFA9E6F2);
+                btn_woman.setBackgroundColor(0xFFed4f46);
                 btn_man.setBackgroundColor(0xFFE5E5E5);
             }
         }
@@ -57,7 +61,7 @@ public class FifthSignUpActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == btn_next.getId()) {
+        if(view.getId() == iv_next.getId()) {
             if(is_man) pref.addInfo("gender", "male");
             else pref.addInfo("gender", "female");
             Intent intent = new Intent(FifthSignUpActivity.this, SixthSignUpActivity.class);
@@ -72,7 +76,7 @@ public class FifthSignUpActivity extends AppCompatActivity implements View.OnCli
             }
             else{
                 is_man = !is_man;   // 체크 선택 후
-                btn_man.setBackgroundColor(0xFFA9E6F2);   // 표시하는 색으로 바꾸고
+                btn_man.setBackgroundColor(0xFFed4f46);   // 표시하는 색으로 바꾸고
                 if(is_woman)        // 여자 선택되어있으면
                 {
                     is_woman = !is_woman;   // 체크 해제 후
@@ -88,7 +92,7 @@ public class FifthSignUpActivity extends AppCompatActivity implements View.OnCli
             }
             else{
                 is_woman = !is_woman;
-                btn_woman.setBackgroundColor(0xFFFFDC55);
+                btn_woman.setBackgroundColor(0xFFed4f46);
                 if(is_man)
                 {
                     is_man = !is_man;
@@ -97,6 +101,11 @@ public class FifthSignUpActivity extends AppCompatActivity implements View.OnCli
             }
 
         }
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
 }
 

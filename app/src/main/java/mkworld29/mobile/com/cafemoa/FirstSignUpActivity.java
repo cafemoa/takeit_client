@@ -1,5 +1,6 @@
 package mkworld29.mobile.com.cafemoa;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +9,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.tsengvn.typekit.TypekitContextWrapper;
 
 import mkworld29.mobile.com.cafemoa.prefs.SignupPref;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
@@ -21,7 +26,7 @@ import retrofit2.Retrofit;
 
 public class FirstSignUpActivity extends AppCompatActivity implements View.OnClickListener{
     SignupPref pref;
-    private Button btn_next;
+    private ImageView iv_next;
     private EditText email;
     Retrofit retrofit;
     @Override
@@ -33,9 +38,9 @@ public class FirstSignUpActivity extends AppCompatActivity implements View.OnCli
 
         pref=SignupPref.getInstance(getApplicationContext());
 
-        btn_next = (Button) findViewById(R.id.btn_next);
+        iv_next = (ImageView) findViewById(R.id.iv_next);
         email = (EditText)findViewById(R.id.sign_email);
-        btn_next.setOnClickListener(this);
+        iv_next.setOnClickListener(this);
         if(!pref.getString("email").equals("")){
             email.setText(pref.getString("email"));
         }
@@ -56,7 +61,7 @@ public class FirstSignUpActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if(response.code()==200) {
-                    if(!pref.getString("password").equals("")){
+                    if(!pref.getString("password").equals("")) {
                         Intent intent = new Intent(FirstSignUpActivity.this, SecondSignUpActivity.class);
                         startActivity(intent);
                         finish();
@@ -78,5 +83,10 @@ public class FirstSignUpActivity extends AppCompatActivity implements View.OnCli
                 Log.d("TAG",t.getLocalizedMessage());
             }
         });
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
 }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import mkworld29.mobile.com.cafemoa.prefs.SignupPref;
@@ -18,7 +19,7 @@ import mkworld29.mobile.com.cafemoa.prefs.SignupPref;
 
 public class SignupPasswordActivity extends AppCompatActivity implements View.OnClickListener{
     SignupPref pref;
-    private Button btn_next;
+    private ImageView iv_next;
     private EditText password;
     private EditText password_check;
     private TextView tv_password1;
@@ -35,7 +36,7 @@ public class SignupPasswordActivity extends AppCompatActivity implements View.On
 
         pref=SignupPref.getInstance(getApplicationContext());
 
-        btn_next                  =   (Button) findViewById(R.id.btn_next);
+        iv_next                  =   (ImageView) findViewById(R.id.iv_next);
         password                  =   (EditText)findViewById(R.id.sign_password);
         password_check            =   (EditText)findViewById(R.id.sign_password_check);
 
@@ -45,7 +46,7 @@ public class SignupPasswordActivity extends AppCompatActivity implements View.On
         tv_password_check2        =   (TextView)findViewById(R.id.tv_password_check2);
         tv_isnot_password_equal   =   (TextView)findViewById(R.id.tv_isnot_password_equal);
 
-        btn_next.setOnClickListener(this);
+        iv_next.setOnClickListener(this);
 
 
     }

@@ -1,6 +1,7 @@
 package mkworld29.mobile.com.cafemoa;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.tsengvn.typekit.TypekitContextWrapper;
 import com.zoyi.channel.plugin.android.ChannelException;
 import com.zoyi.channel.plugin.android.ChannelPlugin;
 import com.zoyi.channel.plugin.android.CheckIn;
@@ -172,5 +174,10 @@ public class SixthSignUpActivity extends AppCompatActivity {
                 Log.d("TAG", t.getLocalizedMessage());
             }
         });
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
 }

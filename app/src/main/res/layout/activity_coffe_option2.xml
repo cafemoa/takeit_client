@@ -40,21 +40,25 @@
     </LinearLayout>
 
 
-    <ImageView
-        android:id="@+id/iv_content"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/lv_cafe_name"
-        android:src="@drawable/option_americano"
+        android:textSize="22sp"
+        android:text="아메리카노"
+        android:textStyle="bold"
+
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"/>
 
     <LinearLayout
         android:id="@+id/lv_order_option"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_below="@id/iv_content"
+        android:layout_below="@id/tv_content"
         android:layout_marginTop="20dp"
         android:orientation="vertical">
 

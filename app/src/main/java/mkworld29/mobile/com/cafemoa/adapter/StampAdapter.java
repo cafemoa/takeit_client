@@ -58,7 +58,7 @@ public class StampAdapter extends BaseAdapter {
             ImageView iv = null;
         if (position + 1 <= sum) {
             iv = (ImageView) convertView.findViewById(R.id.iv_stamp_on);
-            iv.setImageResource(R.drawable.stamp_on);            //  쿠폰 찍힌 이미지
+            iv.setImageResource(R.drawable.item_stamp_on);            //  쿠폰 찍힌 이미지
         } else {
             iv = (ImageView) convertView.findViewById(R.id.iv_stamp_on);
             iv.setImageResource(R.drawable.stamp_off);            //  쿠폰 안 찍힌 이미지

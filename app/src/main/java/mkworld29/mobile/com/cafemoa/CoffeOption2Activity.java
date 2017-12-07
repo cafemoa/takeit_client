@@ -33,13 +33,14 @@ import mkworld29.mobile.com.cafemoa.prefs.BasketPref;
 public class CoffeOption2Activity extends AppCompatActivity implements View.OnClickListener{
 
     private Button btn_order, btn_get;
-    private ImageView iv_content, iv_back;
+    private ImageView iv_back;
     private EditText edt_predict_arrive;
     private TextView tv_size_s, tv_size_m,tv_size_l;
     private TextView tv_shots_minus, tv_shots, tv_shots_plus;
     private TextView tv_hot, tv_ice;
     private TextView tv_whipping_true, tv_whipping_false;
     private TextView tv_price;
+    private TextView tv_content;
     private TextView tv_amount_minus, tv_amount, tv_amount_plus;
     private TextView[] arr_amount;
     private TextView[] arr_size;
@@ -81,18 +82,15 @@ public class CoffeOption2Activity extends AppCompatActivity implements View.OnCl
             cafe_min_time=intent.getIntExtra("cafe_min_time",0);
         }
 
-        iv_content          =   (ImageView)findViewById(R.id.iv_content);
         tv_price            =   (TextView) findViewById(R.id.tv_order_price);
         iv_back             =   (ImageView)findViewById(R.id.iv_back);
+        tv_content          =   (TextView) findViewById(R.id.tv_content);
+
+        tv_content.setText(src_content);
 
         //defaultPrice = Integer.parseInt(price.split(" ")[0].split(":")[1]);
         setDefaultPrice(0);
 
-        Glide.with(getApplicationContext())
-                .load(src_iv_content)
-                .placeholder(R.drawable.option_americano)
-                .error(R.drawable.option_americano)
-                .into(iv_content);
 
         btn_get             =   (Button)findViewById(R.id.btn_get);
         btn_order             =   (Button)findViewById(R.id.btn_order);

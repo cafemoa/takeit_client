@@ -71,12 +71,6 @@
         android:textColor="#0c0c0c"
         android:text="되었습니다 "/>
 
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="33dp"
-            android:src="@drawable/option_americano"/>
-
         </LinearLayout>
 
     </LinearLayout>

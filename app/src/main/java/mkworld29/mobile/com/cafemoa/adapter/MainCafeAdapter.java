@@ -55,9 +55,8 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
         //Log.d("TAG",item.getImage());
         Glide.with(context)
                 .load(item.getImage())
-                .placeholder(R.mipmap.ic_launcher)
-
-                .error(R.mipmap.ic_launcher)
+                .placeholder(R.drawable.decoration)
+                .error(R.drawable.decoration)
                 .into(holder.image);
         //holder.image.setImageResource(item.getImage());
         holder.name.setText(item.getName());

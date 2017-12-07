@@ -1,5 +1,6 @@
 package mkworld29.mobile.com.cafemoa;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,14 +11,17 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.tsengvn.typekit.TypekitContextWrapper;
 
 import mkworld29.mobile.com.cafemoa.prefs.SignupPref;
 
 public class FourthSignUpActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher{
 
     SignupPref pref;
-    private Button btn_next;
+    private ImageView iv_next;
 
 
     private EditText edt_number_1, edt_number_2, edt_number_3, edt_number_4,
@@ -31,8 +35,8 @@ public class FourthSignUpActivity extends AppCompatActivity implements View.OnCl
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_fourth_sign_up);
 
-        btn_next = (Button) findViewById(R.id.btn_next);
-        btn_next.setOnClickListener(this);
+        iv_next = (ImageView) findViewById(R.id.iv_next);
+        iv_next.setOnClickListener(this);
 
         pref=SignupPref.getInstance(getApplicationContext());
 
@@ -175,5 +179,10 @@ public class FourthSignUpActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void afterTextChanged(Editable editable) {
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
 }

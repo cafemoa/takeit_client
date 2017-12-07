@@ -7,26 +7,43 @@
     tools:context="mkworld29.mobile.com.cafemoa.FirstSignUpActivity"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="20dp"
-        android:src="@drawable/sign_up_app_bar"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:background="@drawable/baskit_arrow"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/decoration"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="30dp"
         android:text="계정 만들기"
-        android:textSize="40sp"
+        android:textSize="30sp"
+        android:textStyle="bold"
         android:textColor="#0c0c0c"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="30dp"
         android:orientation="vertical"
-        android:layout_marginLeft="20dp">
+        android:layout_marginLeft="30dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textColor="#0c0c0c"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:text="본인의 성별"/>
 
             <TextView
@@ -82,21 +99,33 @@
                 android:text="여"/>
 
             </LinearLayout>
-        <Button
-            android:id="@+id/btn_next"
-            android:layout_width="100dp"
-            android:layout_height="55dp"
-            android:background="@drawable/btn_sign_up"
-            android:textColor="#fcfcfc"
-            android:textSize="25sp"
+
+        <LinearLayout
+            android:id="@+id/ll_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:layout_gravity="right"
-            android:gravity="center"
-            android:text="다음"/>
+            android:layout_gravity="right">
 
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="GO"
+                android:textStyle="bold"
+                android:textColor="#ff1010"
+                android:layout_gravity="center"/>
 
+            <ImageView
+                android:id="@+id/iv_next"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="-5dp"
+                android:src="@drawable/decoration"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
