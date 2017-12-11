@@ -47,6 +47,11 @@ dependencies {
     compile 'com.google.code.gson:gson:2.7'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile('org.simpleframework:simple-xml:2.7.+'){
+        exclude group : 'xpp3', module: 'xpp3'
+        exclude group : 'stax', module: 'stax-api'
+        exclude group : 'stax', module: 'stax'
+    }
     compile 'com.squareup.okhttp3:okhttp:3.0.1'
     compile 'com.squareup.okhttp3:okhttp-urlconnection:3.0.1'
     compile 'com.squareup.okhttp3:logging-interceptor:3.0.1'
