@@ -1,36 +1,23 @@
 package mkworld29.mobile.com.cafemoa.xmlEntity;
 
 import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Root;
 
 /**
  * Created by eunseo on 2017-12-12.
  */
 
+@Root(name="data", strict=false)
 public class Data{
-    @Attribute(name="error")
+    @Attribute(name="error", required = false)
     public int error;
 
-    @Attribute(name="msg")
-    public String msg;
-
-    @Attribute(name="orderno")
+    @Attribute(name="orderno", required = false)
     public String orderno;
-
-    @Attribute(name="payno")
-    public String payno;
-
-    @Attribute(name="paytype")
-    public String paytype;
 
     @Attribute(name="payurl" , required = false)
     public String payurl;
 
-    @Attribute(name="useretc1", required = false)
-    public String useretc1;
-
-    @Attribute(name="useretc2", required = false)
-    public String useretc2;
-
-    @Attribute(name="useretc3" , required = false)
-    public String useretc3;
+    @Attribute(name="statusnm", required = false)
+    public String statusnm;
 }

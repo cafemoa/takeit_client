@@ -58,6 +58,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
     private ImageView iv_back;
     private int cafe_pk;
     private BasketAdapter adapter;
+    private String thepay_order_num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,6 +174,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
                     if (response.code() == 200) {
                         //public String create_payment_xml(String orderno,String payusernm, String usernm, String payhpno, String goodsnm, String payrequestamt, String payclosedt, String telno){
                         RetrofitConnection.Payment_ready data = response.body();
+                        thepay_order_num=data.order_num;
                         String xml=create_payment_xml(data.order_num, data.cafe_name, data.user_name, data.user_phonenumber, data.menu_name, ""+data.amount_price, data.pay_closetime, data.cafe_phonenumber);
                         thePay_pay_request(xml);
                     }
@@ -314,61 +316,95 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
             }
         }
         if(requestCode==1){
-            final ProgressDialog pd = ProgressDialog.show(BaskitActivity.this, "주문중", "주문중 입니다.");
-            String ids[] = BasketPref.getInstance(this).getSplitPrefsCurrentStorage();
-            RetrofitConnection.Order_option[] options = new RetrofitConnection.Order_option[ids.length];
-            int time=0;
-            for(int i=0; i<ids.length; i++){
-                BasketItem item=BasketPref.getInstance(this).getBasket(ids[i]);
-                CoffeeOption option=item.getOption();
-                int shots=option.getShots();
-                int size=option.getSize();
-                boolean is_ice=option.is_cold();
-                boolean is_whipping=option.is_whipping();
-                int beverage=option.getPk();
-                int amount=option.getAmounts();
+            String xml=create_payment_check_xml(thepay_order_num);
 
-                time=item.getPredict_time();
-                //Log.d("TAG", ""+shots+","+size+","+is_ice+","+is_whipping+","+beverage+","+amount+",");
+            RetrofitConnection.thePay_pay_request service = retrofit.create(RetrofitConnection.thePay_pay_request.class);
+            RequestBody body = RequestBody.create(MediaType.parse("application/xml"), xml);
+            final Call<ResponseBody> repos = service.repoContributors(body);
 
-                options[i]=new RetrofitConnection.Order_option(beverage,is_whipping,is_ice,size,shots,amount);
-            }
-
-            //String time=BasketPref.getInstance(this).getBasket(ids[0]).getTime();
-            RetrofitConnection.Order_Info info=new RetrofitConnection.Order_Info(0,time,options);
-            Gson gson = new Gson();
-            String option_json = gson.toJson(info);
-
-            RetrofitConnection.payment_beverages service = retrofit.create(RetrofitConnection.payment_beverages.class);
-            RequestBody body = RequestBody.create(MediaType.parse("application/json"), option_json);
-            final Call<RetrofitConnection.Payment_Complete> repos = service.repoContributors(cafe_pk,body);
-            repos.enqueue(new Callback<RetrofitConnection.Payment_Complete>() {
+            repos.enqueue(new Callback<ResponseBody>() {
                 @Override
-                public void onResponse(Call<RetrofitConnection.Payment_Complete> call, Response<RetrofitConnection.Payment_Complete> response) {
-                    if (response.code() == 201) {
-                        BasketPref.getInstance(getApplicationContext()).removeAllBasket();
-                        Intent i = new Intent(getApplicationContext(), OrderCompleteActivity.class);
-                        i.putExtra("order_num", response.body().order_num);
-                        i.putExtra("payment_okay_date", response.body().order_time);
-                        i.putExtra("get_time", response.body().get_time);
-                        startActivity(i);
-                        finish();
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if (response.code() == 200) {
+                        try {
+                            String source = response.body().string();
+                            Serializer serializer = new Persister();
+                            Pay_request pay_request = serializer.read(Pay_request.class, source);
+
+                            if(!pay_request.resbody.response.data.statusnm.trim().equals("결제대기"))
+                                order_request();
+                            else{
+                                Toast.makeText(getApplicationContext(), "결제가 취소되었습니다", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }catch(Exception e){}
                     }
-                    else{
+                    else {
                         Toast.makeText(getApplicationContext(), "에러가 발생하였습니다.", Toast.LENGTH_SHORT).show();
                     }
-                    pd.dismiss();
                 }
 
                 @Override
-                public void onFailure(Call<RetrofitConnection.Payment_Complete> call, Throwable t) {
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
                     Log.d("TAG", t.getLocalizedMessage());
-                    pd.dismiss();
                 }
             });
         }
     }
+    public void order_request(){
+        final ProgressDialog pd = ProgressDialog.show(BaskitActivity.this, "주문중", "주문중 입니다.");
+        String ids[] = BasketPref.getInstance(this).getSplitPrefsCurrentStorage();
+        RetrofitConnection.Order_option[] options = new RetrofitConnection.Order_option[ids.length];
+        int time=0;
+        for(int i=0; i<ids.length; i++){
+            BasketItem item=BasketPref.getInstance(this).getBasket(ids[i]);
+            CoffeeOption option=item.getOption();
+            int shots=option.getShots();
+            int size=option.getSize();
+            boolean is_ice=option.is_cold();
+            boolean is_whipping=option.is_whipping();
+            int beverage=option.getPk();
+            int amount=option.getAmounts();
 
+            time=item.getPredict_time();
+            //Log.d("TAG", ""+shots+","+size+","+is_ice+","+is_whipping+","+beverage+","+amount+",");
+
+            options[i]=new RetrofitConnection.Order_option(beverage,is_whipping,is_ice,size,shots,amount);
+        }
+
+        //String time=BasketPref.getInstance(this).getBasket(ids[0]).getTime();
+        RetrofitConnection.Order_Info info=new RetrofitConnection.Order_Info(0,time,options);
+        Gson gson = new Gson();
+        String option_json = gson.toJson(info);
+
+        RetrofitConnection.payment_beverages service = retrofit.create(RetrofitConnection.payment_beverages.class);
+        RequestBody body = RequestBody.create(MediaType.parse("application/json"), option_json);
+        final Call<RetrofitConnection.Payment_Complete> repos = service.repoContributors(cafe_pk,body);
+        repos.enqueue(new Callback<RetrofitConnection.Payment_Complete>() {
+            @Override
+            public void onResponse(Call<RetrofitConnection.Payment_Complete> call, Response<RetrofitConnection.Payment_Complete> response) {
+                if (response.code() == 201) {
+                    BasketPref.getInstance(getApplicationContext()).removeAllBasket();
+                    Intent i = new Intent(getApplicationContext(), OrderCompleteActivity.class);
+                    i.putExtra("order_num", response.body().order_num);
+                    i.putExtra("payment_okay_date", response.body().order_time);
+                    i.putExtra("get_time", response.body().get_time);
+                    startActivity(i);
+                    finish();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "에러가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+                }
+                pd.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<RetrofitConnection.Payment_Complete> call, Throwable t) {
+                Log.d("TAG", t.getLocalizedMessage());
+                pd.dismiss();
+            }
+        });
+    }
     public void thePay_pay_request(String payment_xml){
         RetrofitConnection.thePay_pay_request service = retrofit.create(RetrofitConnection.thePay_pay_request.class);
         RequestBody body = RequestBody.create(MediaType.parse("application/xml"), payment_xml);
@@ -388,7 +424,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
                         }
                         else {
                             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(pay_request.resbody.response.data.payurl));
-                            startActivity(intent);
+                            startActivityForResult(intent,1);
 
                             /*
                             Intent i = new Intent(BaskitActivity.this, PaymentActivity.class);
@@ -397,7 +433,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
                             */
                         }
 
-                    }catch (Exception e){ Log.d("SIBAL", e.getLocalizedMessage());}
+                    }catch (Exception e){ Log.d("TAG", e.getLocalizedMessage());}
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "에러가 발생하였습니다.", Toast.LENGTH_SHORT).show();
@@ -406,7 +442,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.d("SIBAL", t.getLocalizedMessage());
+                Log.d("TAG", t.getLocalizedMessage());
             }
         });
     }
@@ -456,6 +492,20 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
                 "     </request>\n" +
                 "  </reqbody>\n" +
                 "</root>\n";
+        return payment_xml;
+    }
+
+    public String create_payment_check_xml(String order_num){
+        String payment_xml="<root>\n" +
+                "  <reqhead>\n" +
+                "    <userinfo userid=\"thepay1\" passwd=\"7110eda4d09e062aa5e4a390b0a572ac0d2c0220\"/>\n" +
+                "  </reqhead>\n" +
+                "  <reqbody>\n" +
+                "     <request  method=\"pay_detail\">\n" +
+                "       <data orderno=\""+order_num+"\"/>\n" +
+                "     </request>\n" +
+                "  </reqbody>\n" +
+                "</root>";
         return payment_xml;
     }
 
