@@ -43,6 +43,7 @@ public class RetrofitConnection {
         public String cafe_image;
         public String name;
         public String locationString;
+        public boolean is_open;
         public int pk;
         public int min_time;
 

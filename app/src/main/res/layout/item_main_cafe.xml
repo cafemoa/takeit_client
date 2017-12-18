@@ -39,13 +39,13 @@
             android:textSize="22sp"
             />
         <TextView
-            android:id="@+id/main_is_event"
+            android:id="@+id/main_is_open"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/main_cafe_name"
             android:layout_alignParentRight="true"
             android:textSize="17sp"
-            android:text="현재 이벤트 할인 중!"
+            android:text="영업 시간이 아닙니다"
             android:textStyle="bold"
             android:textColor="#f58941"
             />

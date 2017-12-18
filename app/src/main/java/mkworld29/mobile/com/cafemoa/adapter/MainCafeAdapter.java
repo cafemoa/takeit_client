@@ -62,13 +62,15 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
         holder.name.setText(item.getName());
         holder.tag.setText(item.getTag());
         holder.location.setText(item.getLocation());
+
         holder.cardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                beverage_community(v,item);
+                if(item.getOpen()) beverage_community(v,item);
+                else Toast.makeText(context,"점주의 사정으로 인해 주문이 불가합니다.", Toast.LENGTH_SHORT).show();
             }
         });
-        if(!item.getEvent()) holder.event.setVisibility(View.INVISIBLE);
+        if(item.getOpen()) holder.is_open.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -80,7 +82,7 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
         ImageView image;
         TextView name;
         TextView tag;
-        TextView event;
+        TextView is_open;
         TextView location;
         CardView cardview;
 
@@ -89,7 +91,7 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
             image = (ImageView) itemView.findViewById(R.id.main_cafe_image);
             name = (TextView) itemView.findViewById(R.id.main_cafe_name);
             tag = (TextView) itemView.findViewById(R.id.main_cafe_tag);
-            event = (TextView) itemView.findViewById(R.id.main_is_event);
+            is_open = (TextView) itemView.findViewById(R.id.main_is_open);
             location = (TextView) itemView.findViewById(R.id.main_cafe_location);
             cardview = (CardView) itemView.findViewById(R.id.main_cafe_cardview);
         }

@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity
                     for(int i=0; i<response.body().size(); i++) {
                         RetrofitConnection.Cafe cafe=response.body().get(i);
                         //Log.d("TAG",cafe.cafe_image);
-                        data.add(new MainCafeItem(cafe.pk,cafe.name, cafe.locationString, cafe.tag, "http://rest.takeitnow.kr"+cafe.cafe_image, true,cafe.min_time));
+                        data.add(new MainCafeItem(cafe.pk,cafe.name, cafe.locationString, cafe.tag, "http://rest.takeitnow.kr"+cafe.cafe_image, cafe.is_open,cafe.min_time));
                     }
                     recyclerView.setAdapter(new MainCafeAdapter(getApplicationContext(), data, R.layout.activity_main));
                 }
