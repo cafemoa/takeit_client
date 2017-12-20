@@ -10,15 +10,15 @@ public class MainCafeItem {
     private String location;
     private String tag;
     private String cafe_image;
-    private boolean is_event;
+    private boolean is_open;
     private int min_time;
 
-    public MainCafeItem(int pk,String name, String location,String tag, String cafe_image, boolean is_event, int min_time){
+    public MainCafeItem(int pk,String name, String location,String tag, String cafe_image, boolean is_open, int min_time){
         this.name=name;
         this.location=location;
         this.tag=tag;
         this.cafe_image=cafe_image;
-        this.is_event=is_event;
+        this.is_open=is_open;
         this.pk=pk;
         this.min_time=min_time;
     }
@@ -27,6 +27,6 @@ public class MainCafeItem {
     public String getLocation(){ return location; }
     public String getTag(){ return tag; }
     public String getImage(){ return cafe_image; }
-    public boolean getEvent(){ return is_event; }
+    public boolean getOpen(){ return is_open; }
     public int getMin_time(){ return min_time; }
 }

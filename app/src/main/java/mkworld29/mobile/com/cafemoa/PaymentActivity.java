@@ -20,9 +20,7 @@ import mkworld29.mobile.com.cafemoa.iamportsdk.InicisWebViewClient;
 
 public class PaymentActivity extends AppCompatActivity {
     private WebView mainWebView;
-    private static final String APP_SCHEME = "CAFEMOAAPP";
 
-    @SuppressLint("NewApi") @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -34,54 +32,10 @@ public class PaymentActivity extends AppCompatActivity {
         WebSettings settings = mainWebView.getSettings();
         settings.setJavaScriptEnabled(true);
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-            CookieManager cookieManager = CookieManager.getInstance();
-            cookieManager.setAcceptCookie(true);
-            cookieManager.setAcceptThirdPartyCookies(mainWebView, true);
-        }
-
         Intent intent = getIntent();
-        Uri intentData = intent.getData();
+        String payurl=intent.getStringExtra("payurl");
+        //Uri intentData = intent.getData();
 
-        if ( intentData == null ) {
-            mainWebView.loadUrl("http://rest.takeitnow.kr/payment/");
-        } else {
-            //isp 인증 후 복귀했을 때 결제 후속조치
-            String url = intentData.toString();
-            if ( url.startsWith(APP_SCHEME) ) {
-                String redirectURL = url.substring(APP_SCHEME.length()+3);
-                mainWebView.loadUrl(redirectURL);
-                setResult(Activity.RESULT_OK);
-                finish();
-            }
-        }
-
-        try {
-            if(intent != null)
-            {
-
-                String menu_name = intent.getStringExtra("name");
-                int price = intent.getIntExtra("price",0);
-
-                String str = null;
-                if(menu_name != null && price != 0)
-                    str = "name=" + URLEncoder.encode(menu_name, "UTF-8") + "&price=" + URLEncoder.encode(""+price, "UTF-8");
-                if(str !=null)
-                    mainWebView.postUrl("http://rest.takeitnow.kr/payment/", str.getBytes());
-            }
-        }
-        catch(UnsupportedEncodingException i){
-            i.printStackTrace();
-        }
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        String url = intent.toString();
-        if ( url.startsWith(APP_SCHEME) ) {
-            String redirectURL = url.substring(APP_SCHEME.length()+3);
-            mainWebView.loadUrl(redirectURL);
-        }
+        mainWebView.loadUrl(payurl);
     }
 }

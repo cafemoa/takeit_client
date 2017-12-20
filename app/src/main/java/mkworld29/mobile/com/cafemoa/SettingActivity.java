@@ -17,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.pkmmte.view.CircularImageView;
 
 import java.util.List;
 

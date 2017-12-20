@@ -96,6 +96,7 @@ public class Order2PagerAdapter extends PagerAdapter{
                 v = mInflater.inflate(R.layout.order_inflate_one, null);
                 lv_order = (ListView) v.findViewById(R.id.lv_order_1);
                 lv_order.setAdapter(mAdapter0);
+                setClickListener(mAdapter0);
             }
             ((ViewPager)pager).addView(v, 0);
         }
@@ -107,6 +108,7 @@ public class Order2PagerAdapter extends PagerAdapter{
                 v = mInflater.inflate(R.layout.order_inflate_two, null);
                 lv_order = (ListView) v.findViewById(R.id.lv_order_2);
                 lv_order.setAdapter(mAdapter1);
+                setClickListener(mAdapter1);
             }
             ((ViewPager)pager).addView(v, 0);
         }
@@ -118,6 +120,7 @@ public class Order2PagerAdapter extends PagerAdapter{
                 v = mInflater.inflate(R.layout.order_inflate_three, null);
                 lv_order = (ListView) v.findViewById(R.id.lv_order_3);
                 lv_order.setAdapter(mAdapter2);
+                setClickListener(mAdapter2);
             }
             ((ViewPager)pager).addView(v, 0);
         }
@@ -129,6 +132,7 @@ public class Order2PagerAdapter extends PagerAdapter{
                 v = mInflater.inflate(R.layout.order_inflate_four, null);
                 lv_order = (ListView) v.findViewById(R.id.lv_order_4);
                 lv_order.setAdapter(mAdapter3);
+                setClickListener(mAdapter3);
             }
             ((ViewPager)pager).addView(v, 0);
         }
@@ -140,6 +144,7 @@ public class Order2PagerAdapter extends PagerAdapter{
                 v = mInflater.inflate(R.layout.order_inflate_five, null);
                 lv_order = (ListView) v.findViewById(R.id.lv_order_5);
                 lv_order.setAdapter(mAdapter4);
+                setClickListener(mAdapter4);
             }
             ((ViewPager)pager).addView(v, 0);
         }

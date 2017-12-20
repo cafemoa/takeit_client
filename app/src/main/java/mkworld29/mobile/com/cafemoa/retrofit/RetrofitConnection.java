@@ -6,6 +6,11 @@ package mkworld29.mobile.com.cafemoa.retrofit;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.zoyi.channel.plugin.android.model.rest.User;
+
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +43,7 @@ public class RetrofitConnection {
         public String cafe_image;
         public String name;
         public String locationString;
+        public boolean is_open;
         public int pk;
         public int min_time;
 
@@ -84,6 +90,18 @@ public class RetrofitConnection {
         public String menu_name;
     }
 
+    public class Payment_ready{
+        public String order_num;
+        public String user_name;
+        public String cafe_name;
+        public String user_phonenumber;
+        public String cafe_phonenumber;
+        public String pay_closetime;
+        public int amount_price;
+        public String menu_name;
+
+    }
+
     public class Profile{
         public String name;
         public String profile_picture;
@@ -122,6 +140,71 @@ public class RetrofitConnection {
     public class Token{
         public String token;
     }
+/*
+    @Root(strict = false)
+    static public class Pay_request {
+        @Element(name="reshead")
+        public ResHead reshead;
+        public class ResHead{
+            @Attribute(name="error")
+            public int error;
+            @Attribute(name="error_msg")
+            public String error_msg;
+        }
+
+        @Element(name="resbody")
+        public ResBody resbody;
+
+        public class ResBody{
+            @Element(name="response")
+            public _Response response;
+
+            public class _Response{
+                @Element(name="data")
+                public Data data;
+
+                public class Data{
+                    @Attribute(name="error")
+                    public int error;
+
+                    @Attribute(name="msg")
+                    public String msg;
+
+                    @Attribute(name="orderno")
+                    public String orderno;
+
+                    @Attribute(name="payno")
+                    public String payno;
+
+                    @Attribute(name="paytype")
+                    public String paytype;
+
+                    @Attribute(name="payurl")
+                    public String payurl;
+
+                    @Attribute(name="useretc1")
+                    public String useretc1;
+
+                    @Attribute(name="useretc2")
+                    public String useretc2;
+
+                    @Attribute(name="useretc3")
+                    public String useretc3;
+                }
+
+                @Attribute(name="error")
+                public int error;
+                @Attribute(name="error_msg")
+                public String error_msg;
+                @Attribute(name="method")
+                public String method;
+
+            }
+
+        }
+        //@Attribute(name="payurl")
+        //public String pay_url;
+    }*/
 
     public interface login {
         @FormUrlEncoded
@@ -224,9 +307,17 @@ public class RetrofitConnection {
         );
     }
 
+    public interface thePay_pay_request{
+        @POST("http://1.234.19.61:7080/thepay_if/ProcRequest.action")
+        Call<ResponseBody> repoContributors(
+                @Body RequestBody body
+        );
+    }
+
     public interface ready_payment{
-        @POST("ready_payment/")
-        Call<Payment_Complete> repoContributors(
+        @POST("ready_payment/{PK}")
+        Call<Payment_ready> repoContributors(
+                @Path("PK") int pk,
                 @Body RequestBody body
         );
     }
@@ -262,4 +353,6 @@ public class RetrofitConnection {
                 @Field("email") String email
         );
     }
+
+
 }
