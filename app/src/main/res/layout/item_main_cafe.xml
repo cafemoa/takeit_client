@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
     <android.support.v7.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -74,4 +76,33 @@
     </RelativeLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
-</LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_wall"
+        android:layout_width="match_parent"
+        android:layout_height="285dp"
+        android:background="#9c9c9c9c"
+        android:src="#9c9c9c9c"
+        android:layout_margin="10dp"
+        android:visibility="visible"/>
+
+    <LinearLayout
+        android:id="@+id/ly_wall"
+        android:layout_width="50dp"
+        android:layout_height="65dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/owner"/>
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ready"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,7 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
         this.items=items;
         this.item_layout=item_layout;
     }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_main_cafe, null);
@@ -70,6 +72,16 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
                 else Toast.makeText(context,"점주의 사정으로 인해 주문이 불가합니다.", Toast.LENGTH_SHORT).show();
             }
         });
+        if(true)            // 영업중이면 밑에 View.GONE으로 바꾸기!!! 꼮!!!
+        {
+            holder.iv_wall.setVisibility(View.VISIBLE); // View.GONE으로 바꿔!!!!
+            holder.ly_wall.setVisibility(View.VISIBLE);
+        }
+        else                // 영업중이 아니면
+        {
+            holder.iv_wall.setVisibility(View.VISIBLE);
+            holder.ly_wall.setVisibility(View.VISIBLE);
+        }
         if(item.getOpen()) holder.is_open.setVisibility(View.INVISIBLE);
     }
 
@@ -85,6 +97,8 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
         TextView is_open;
         TextView location;
         CardView cardview;
+        ImageView iv_wall;
+        LinearLayout ly_wall;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -94,6 +108,9 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
             is_open = (TextView) itemView.findViewById(R.id.main_is_open);
             location = (TextView) itemView.findViewById(R.id.main_cafe_location);
             cardview = (CardView) itemView.findViewById(R.id.main_cafe_cardview);
+
+            iv_wall     =   (ImageView) itemView.findViewById(R.id.iv_wall) ;
+            ly_wall     =   (LinearLayout) itemView.findViewById(R.id.ly_wall);
         }
     }
 
