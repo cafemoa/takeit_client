@@ -88,19 +88,19 @@
 
     <LinearLayout
         android:id="@+id/ly_wall"
-        android:layout_width="50dp"
-        android:layout_height="65dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="gone"
         android:layout_centerInParent="true">
 
         <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:src="@drawable/owner"/>
         <ImageView
-            android:layout_width="45dp"
-            android:layout_height="20dp"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:src="@drawable/ready"/>
 
     </LinearLayout>

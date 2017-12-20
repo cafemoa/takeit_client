@@ -72,10 +72,10 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
                 else Toast.makeText(context,"점주의 사정으로 인해 주문이 불가합니다.", Toast.LENGTH_SHORT).show();
             }
         });
-        if(true)            // 영업중이면 밑에 View.GONE으로 바꾸기!!! 꼮!!!
+        if(true)            // 영업 중일때의 조건식 적으시오..
         {
-            holder.iv_wall.setVisibility(View.VISIBLE); // View.GONE으로 바꿔!!!!
-            holder.ly_wall.setVisibility(View.VISIBLE);
+            holder.iv_wall.setVisibility(View.GONE);
+            holder.ly_wall.setVisibility(View.GONE);
         }
         else                // 영업중이 아니면
         {
