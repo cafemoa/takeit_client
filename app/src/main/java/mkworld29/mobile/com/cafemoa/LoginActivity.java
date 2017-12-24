@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText id;
     EditText pw;
     Button login;
+    CheckBox auto_login;
     ProgressDialog pd;
     SharedPreference sp;
 
@@ -70,11 +73,23 @@ public class LoginActivity extends AppCompatActivity {
         String token = FirebaseInstanceId.getInstance().getToken();
 
         final String fcm_token= BasketPref.getInstance(getApplicationContext()).getString("FCM_TOKEN");
-        Log.d("TAG", ","+fcm_token);
 
         id=(EditText)findViewById(R.id.login_id);
         pw=(EditText)findViewById(R.id.login_pwd);
         login=(Button)findViewById(R.id.btn_login);
+
+
+        auto_login=(CheckBox) findViewById(R.id.chk_auto_login);
+        if(SharedPreference.getInstance(getApplicationContext()).get("AUTO").equals("Y"))
+            auto_login.setChecked(true);
+
+        auto_login.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                SharedPreference.getInstance(getApplicationContext()).put("AUTO", b? "Y" : "N");
+            }
+        });
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
