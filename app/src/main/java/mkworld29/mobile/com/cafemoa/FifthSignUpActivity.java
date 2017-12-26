@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.tsengvn.typekit.TypekitContextWrapper;
 
@@ -27,6 +28,8 @@ public class FifthSignUpActivity extends AppCompatActivity implements View.OnCli
 
         setContentView(R.layout.activity_fifth_sign_up);
 
+        is_man  = is_woman = false;
+
         pref = SignupPref.getInstance(getApplicationContext());
         is_man = is_woman = false;
 
@@ -38,9 +41,6 @@ public class FifthSignUpActivity extends AppCompatActivity implements View.OnCli
 
         btn_woman = (Button) findViewById(R.id.btn_woman);
         btn_woman.setOnClickListener(this);
-
-        btn_man.setBackgroundColor(0xFFA9E6F2);
-        is_man=true;
 
         if(!pref.getString("gender").equals("")){
             String gender=pref.getString("gender");
@@ -62,6 +62,10 @@ public class FifthSignUpActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View view) {
         if(view.getId() == iv_next.getId()) {
+            if(!is_man && !is_woman) {
+                Toast.makeText(this, "성별을 선택해주세요", Toast.LENGTH_SHORT).show();
+                return;
+            }
             if(is_man) pref.addInfo("gender", "male");
             else pref.addInfo("gender", "female");
             Intent intent = new Intent(FifthSignUpActivity.this, SixthSignUpActivity.class);

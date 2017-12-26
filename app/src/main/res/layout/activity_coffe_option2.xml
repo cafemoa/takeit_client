@@ -8,10 +8,10 @@
 
     <ImageView
         android:id="@+id/iv_back"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:src="@drawable/baskit_arrow"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="15dp"/>
 
     <LinearLayout
         android:id="@+id/lv_cafe_name"
@@ -91,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="15dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -120,7 +120,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp">
+            android:layout_height="45dp">
 
             <TextView
                 android:layout_width="60dp"
@@ -130,11 +130,11 @@
                 android:layout_centerVertical="true"
                 android:text="수량"
                 android:textColor="#0c0c0c"
-                android:textSize="15sp" />
+                android:textSize="17sp" />
 
 
             <LinearLayout
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="15dp"
@@ -148,6 +148,7 @@
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:text="-"
+                    android:textSize="30sp"
                     android:textColor="#0c0c0c"
                     android:layout_marginRight="10dp"/>
 
@@ -157,6 +158,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="1"
+                    android:textSize="20sp"
                     android:textColor="#0c0c0c"
                     android:layout_marginRight="10dp"/>
 
@@ -166,6 +168,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:layout_gravity="center"
+                    android:textSize="30sp"
                     android:layout_marginRight="10dp"
                     android:textColor="#0c0c0c"
                     android:text="+"/>
@@ -177,7 +180,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp">
+            android:layout_height="45dp">
 
             <TextView
                 android:layout_width="60dp"
@@ -187,11 +190,11 @@
                 android:layout_centerVertical="true"
                 android:text="사이즈"
                 android:textColor="#0c0c0c"
-                android:textSize="15sp" />
+                android:textSize="17sp" />
 
             <LinearLayout
-                android:layout_width="60dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
@@ -204,7 +207,7 @@
                     android:layout_marginRight="7dp"
                     android:text="S"
                     android:textColor="#acacac"
-                    android:textSize="17sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/tv_order_size_m"
@@ -213,7 +216,7 @@
                     android:layout_marginRight="7dp"
                     android:text="M"
                     android:textColor="#acacac"
-                    android:textSize="17sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/tv_order_size_l"
@@ -221,7 +224,7 @@
                     android:layout_height="wrap_content"
                     android:text="L"
                     android:textColor="#acacac"
-                    android:textSize="17sp" />
+                    android:textSize="30sp" />
 
             </LinearLayout>
 
@@ -229,7 +232,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp">
+            android:layout_height="45dp">
 
             <TextView
                 android:layout_width="60dp"
@@ -239,10 +242,10 @@
                 android:text="샷 추가"
                 android:textColor="#0c0c0c"
                 android:layout_centerVertical="true"
-                android:textSize="15sp" />
+                android:textSize="17sp" />
 
             <LinearLayout
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="15dp"
@@ -256,6 +259,7 @@
                     android:gravity="center"
                     android:textColor="#0c0c0c"
                     android:layout_gravity="center"
+                    android:textSize="30sp"
                     android:text="-"
                     android:layout_marginRight="10dp"/>
 
@@ -265,6 +269,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textColor="#0c0c0c"
+                    android:textSize="30sp"
                     android:text="1"
                     android:layout_marginRight="10dp"/>
 
@@ -274,6 +279,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textColor="#0c0c0c"
+                    android:textSize="30sp"
                     android:layout_gravity="center"
                     android:layout_marginRight="10dp"
                     android:text="+"/>
@@ -284,21 +290,21 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp">
+            android:layout_height="45dp">
 
             <TextView
-                android:layout_width="60dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="right"
                 android:textColor="#0c0c0c"
                 android:layout_centerVertical="true"
                 android:text="Hot/Ice"
-                android:textSize="14sp" />
+                android:textSize="17sp" />
 
             <LinearLayout
-                android:layout_width="60dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="15dp"
                 android:layout_centerVertical="true"
@@ -311,7 +317,7 @@
                     android:layout_marginRight="7dp"
                     android:text="Hot"
                     android:textColor="#acacac"
-                    android:textSize="15sp" />
+                    android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/tv_order_ice"
@@ -320,7 +326,7 @@
                     android:layout_marginRight="7dp"
                     android:text="Ice"
                     android:textColor="#acacac"
-                    android:textSize="15sp" />
+                    android:textSize="25sp" />
 
 
             </LinearLayout>
@@ -329,21 +335,21 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp">
+            android:layout_height="45dp">
 
             <TextView
-                android:layout_width="60dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="right"
                 android:textColor="#0c0c0c"
                 android:text="휘핑크림"
                 android:layout_centerVertical="true"
-                android:textSize="14sp" />
+                android:textSize="17sp" />
 
             <LinearLayout
-                android:layout_width="60dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="15dp"
                 android:layout_centerVertical="true"
@@ -356,7 +362,7 @@
                     android:layout_marginRight="7dp"
                     android:text="Yes"
                     android:textColor="#acacac"
-                    android:textSize="15sp" />
+                    android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/tv_order_whipping_false"
@@ -365,7 +371,7 @@
                     android:layout_marginRight="7dp"
                     android:text="No"
                     android:textColor="#acacac"
-                    android:textSize="15sp" />
+                    android:textSize="25sp" />
 
 
             </LinearLayout>
