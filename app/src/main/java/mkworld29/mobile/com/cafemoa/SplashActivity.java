@@ -22,9 +22,10 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
-                if(!SharedPreference.getInstance(getApplicationContext()).get("Authorization").equals("")){
-                    Intent i = new Intent(SplashActivity.this, MainActivity.class);
-                    startActivity(i);
+                if(!SharedPreference.getInstance(getApplicationContext()).get("Authorization").equals("") &&
+                        SharedPreference.getInstance(getApplicationContext()).get("AUTO").equals("Y")){
+                        Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                        startActivity(i);
                 }
                 else {
                     Intent i = new Intent(SplashActivity.this, ReadyActivity.class);
