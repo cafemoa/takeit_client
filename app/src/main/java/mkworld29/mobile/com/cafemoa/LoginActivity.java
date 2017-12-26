@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText pw;
     Button login;
     CheckBox auto_login;
+    ImageView img_arrow;
     ProgressDialog pd;
     SharedPreference sp;
 
@@ -77,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
         id=(EditText)findViewById(R.id.login_id);
         pw=(EditText)findViewById(R.id.login_pwd);
         login=(Button)findViewById(R.id.btn_login);
+        img_arrow = (ImageView) findViewById(R.id.imageView2);
 
 
         auto_login=(CheckBox) findViewById(R.id.chk_auto_login);
@@ -87,6 +90,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 SharedPreference.getInstance(getApplicationContext()).put("AUTO", b? "Y" : "N");
+            }
+        });
+
+        img_arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 

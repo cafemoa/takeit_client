@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -70,6 +71,21 @@ public class FourthSignUpActivity extends AppCompatActivity implements View.OnCl
             edt_number_8.setText(phone_number.charAt(7));
         }
         now_input_num=1;
+
+
+        edt_number_8.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER) || (event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.FLAG_EDITOR_ACTION)) {
+                    // Perform action on key press
+                    onClick(edt_number_8);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override

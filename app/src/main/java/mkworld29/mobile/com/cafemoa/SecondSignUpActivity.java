@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -35,6 +37,19 @@ public class SecondSignUpActivity extends AppCompatActivity implements View.OnCl
         if(!pref.getString("name").equals("")){
             name.setText(pref.getString("name"));
         }
+
+
+        name.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event != null && (keyCode == KeyEvent.KEYCODE_ENTER)) || (keyCode == EditorInfo.IME_ACTION_DONE)) {
+                    // Perform action on key press
+                    onClick(name);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override

@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import mkworld29.mobile.com.cafemoa.prefs.SignupPref;
 
@@ -49,6 +51,19 @@ public class SignupPasswordActivity extends AppCompatActivity implements View.On
         iv_next.setOnClickListener(this);
 
 
+        password_check.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER) || (event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.FLAG_EDITOR_ACTION)) {
+                    // Perform action on key press
+                    onClick(password_check);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override

@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:maxLength="3"
-                android:hint="00"
+                android:hint=""
                 android:inputType="numberSigned"
                 android:textSize="16sp"
                 android:layout_marginRight="10dp"/>
@@ -123,7 +123,7 @@
             android:layout_height="45dp">
 
             <TextView
-                android:layout_width="60dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="right"
@@ -147,10 +147,11 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:layout_gravity="center"
-                    android:text="-"
+                    android:text=" - "
+                    android:textStyle="bold"
                     android:textSize="30sp"
                     android:textColor="#0c0c0c"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_marginRight="5dp"/>
 
                 <TextView
                     android:id="@+id/tv_order_amount"
@@ -183,7 +184,7 @@
             android:layout_height="45dp">
 
             <TextView
-                android:layout_width="60dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="right"
@@ -235,7 +236,7 @@
             android:layout_height="45dp">
 
             <TextView
-                android:layout_width="60dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="right"
@@ -260,8 +261,9 @@
                     android:textColor="#0c0c0c"
                     android:layout_gravity="center"
                     android:textSize="30sp"
-                    android:text="-"
-                    android:layout_marginRight="10dp"/>
+                    android:text=" - "
+                    android:textStyle="bold"
+                    android:layout_marginRight="5dp"/>
 
                 <TextView
                     android:id="@+id/tv_order_shots"
@@ -269,7 +271,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textColor="#0c0c0c"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:text="1"
                     android:layout_marginRight="10dp"/>
 
@@ -293,7 +295,7 @@
             android:layout_height="45dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="right"
@@ -338,7 +340,7 @@
             android:layout_height="45dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="right"

@@ -57,14 +57,16 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textColor="#0c0c0c"
+                android:maxLines="1"
                 android:textSize="22sp"
                 android:text="이름"/>
 
             <TextView
-                android:layout_width="130dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#0c0c0c"
                 android:layout_toRightOf="@id/tv_name"
+                android:maxLines="1"
                 android:textSize="20sp"
                 android:text="을 입력하세요."/>
 
@@ -87,15 +89,15 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp">
 
-
-
-
             <EditText
                 android:id="@+id/sign_name"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textSize="23sp"
+                android:imeOptions="actionDone"
                 android:backgroundTint="#ed4f46"/>
-
 
 
         </RelativeLayout>

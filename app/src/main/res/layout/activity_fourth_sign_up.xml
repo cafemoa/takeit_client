@@ -204,7 +204,9 @@
                 android:textSize="23sp"
                 android:inputType="number"
                 android:maxLength="1"
+                android:maxLines="1"
                 android:layout_marginLeft="5dp"
+                android:imeOptions="actionDone"
                 android:background="#e5e5e5"/>
         </LinearLayout>
 

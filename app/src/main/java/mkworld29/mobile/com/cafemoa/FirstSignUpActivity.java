@@ -5,11 +5,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -44,6 +43,20 @@ public class FirstSignUpActivity extends AppCompatActivity implements View.OnCli
         if(!pref.getString("email").equals("")){
             email.setText(pref.getString("email"));
         }
+
+        email.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER) || (event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.FLAG_EDITOR_ACTION)) {
+                    // Perform action on key press
+                    onClick(email);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override
