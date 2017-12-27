@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -23,6 +22,8 @@ public class FourthSignUpActivity extends AppCompatActivity implements View.OnCl
 
     SignupPref pref;
     private ImageView iv_next;
+    private ImageView iv_back;
+
 
 
     private EditText edt_number_1, edt_number_2, edt_number_3, edt_number_4,
@@ -38,6 +39,9 @@ public class FourthSignUpActivity extends AppCompatActivity implements View.OnCl
 
         iv_next = (ImageView) findViewById(R.id.iv_next);
         iv_next.setOnClickListener(this);
+
+        iv_back = (ImageView) findViewById(R.id.iv_back);
+        iv_back.setOnClickListener(this);
 
         pref=SignupPref.getInstance(getApplicationContext());
 
@@ -71,49 +75,45 @@ public class FourthSignUpActivity extends AppCompatActivity implements View.OnCl
             edt_number_8.setText(phone_number.charAt(7));
         }
         now_input_num=1;
-
-
-        edt_number_8.setOnKeyListener(new View.OnKeyListener() {
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                // If the event is a key-down event on the "enter" button
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-                        (keyCode == KeyEvent.KEYCODE_ENTER) || (event.getAction() == KeyEvent.ACTION_DOWN) &&
-                        (keyCode == KeyEvent.FLAG_EDITOR_ACTION)) {
-                    // Perform action on key press
-                    onClick(edt_number_8);
-                    return true;
-                }
-                return false;
-            }
-        });
     }
 
     @Override
     public void onClick(View view) {
-        if(edt_number_1.getText().toString().length()==0 ||
-                edt_number_2.getText().toString().length()==0 ||
-                edt_number_3.getText().toString().length()==0||
-                edt_number_4.getText().toString().length()==0||
-                edt_number_5.getText().toString().length()==0||
-                edt_number_6.getText().toString().length()==0||
-                edt_number_7.getText().toString().length()==0||
-                edt_number_8.getText().toString().length()==0) {
-            Toast.makeText(getApplicationContext(),"전화번호 형식이 옳지 않습니다.", Toast.LENGTH_SHORT).show();
-            return ;
+        if(view.getId()==iv_back.getId()){
+            Intent intent = new Intent(FourthSignUpActivity.this, ThirdSignUpActivity.class);
+            System.out.println("backButton clicked");
+            startActivity(intent);
+            finish();
         }
-        String phone_number=edt_number_1.getText().toString()+
-                edt_number_2.getText().toString()+
-                edt_number_3.getText().toString()+
-                edt_number_4.getText().toString()+
-                edt_number_5.getText().toString()+
-                edt_number_6.getText().toString()+
-                edt_number_7.getText().toString()+
-                edt_number_8.getText().toString();
 
-        pref.addInfo("phone_number",phone_number);
-        Intent intent = new Intent(FourthSignUpActivity.this, FifthSignUpActivity.class);
-        startActivity(intent);
-        finish();
+        else{
+            if(edt_number_1.getText().toString().length()==0 ||
+                    edt_number_2.getText().toString().length()==0 ||
+                    edt_number_3.getText().toString().length()==0||
+                    edt_number_4.getText().toString().length()==0||
+                    edt_number_5.getText().toString().length()==0||
+                    edt_number_6.getText().toString().length()==0||
+                    edt_number_7.getText().toString().length()==0||
+                    edt_number_8.getText().toString().length()==0) {
+                Toast.makeText(getApplicationContext(),"전화번호 형식이 옳지 않습니다.", Toast.LENGTH_SHORT).show();
+                return ;
+            }
+
+            String phone_number=edt_number_1.getText().toString()+
+                    edt_number_2.getText().toString()+
+                    edt_number_3.getText().toString()+
+                    edt_number_4.getText().toString()+
+                    edt_number_5.getText().toString()+
+                    edt_number_6.getText().toString()+
+                    edt_number_7.getText().toString()+
+                    edt_number_8.getText().toString();
+
+            pref.addInfo("phone_number",phone_number);
+            Intent intent = new Intent(FourthSignUpActivity.this, FifthSignUpActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
     }
 
     @Override

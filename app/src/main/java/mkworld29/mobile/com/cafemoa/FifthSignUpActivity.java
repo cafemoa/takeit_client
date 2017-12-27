@@ -17,6 +17,9 @@ import mkworld29.mobile.com.cafemoa.prefs.SignupPref;
 public class FifthSignUpActivity extends AppCompatActivity implements View.OnClickListener{
     SignupPref pref;
     private ImageView iv_next;
+    private ImageView iv_back;
+
+
     private Button btn_man, btn_woman;
     private boolean is_man, is_woman;
 
@@ -35,6 +38,9 @@ public class FifthSignUpActivity extends AppCompatActivity implements View.OnCli
 
         iv_next = (ImageView) findViewById(R.id.iv_next);
         iv_next.setOnClickListener(this);
+
+        iv_back = (ImageView) findViewById(R.id.iv_back);
+        iv_back.setOnClickListener(this);
 
         btn_man = (Button) findViewById(R.id.btn_man);
         btn_man.setOnClickListener(this);
@@ -72,6 +78,15 @@ public class FifthSignUpActivity extends AppCompatActivity implements View.OnCli
             startActivity(intent);
             finish();
         }
+
+        else if(view.getId()==iv_back.getId()){
+            Intent intent = new Intent(FifthSignUpActivity.this, FourthSignUpActivity.class);
+            startActivity(intent);
+            System.out.println("backButton clicked");
+            finish();
+        }
+
+
         else if(view.getId() == btn_man.getId())
         {
             if(is_man) {    // 체크되어있으면

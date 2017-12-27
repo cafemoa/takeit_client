@@ -5,10 +5,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ import retrofit2.Retrofit;
 public class FirstSignUpActivity extends AppCompatActivity implements View.OnClickListener{
     SignupPref pref;
     private ImageView iv_next;
+    private ImageView iv_back;
     private EditText email;
     Retrofit retrofit;
     @Override
@@ -40,62 +42,64 @@ public class FirstSignUpActivity extends AppCompatActivity implements View.OnCli
         iv_next = (ImageView) findViewById(R.id.iv_next);
         email = (EditText)findViewById(R.id.sign_email);
         iv_next.setOnClickListener(this);
+
+        iv_back = (ImageView) findViewById(R.id.iv_back);
+        iv_back.setOnClickListener(this);
+
         if(!pref.getString("email").equals("")){
             email.setText(pref.getString("email"));
         }
-
-        email.setOnKeyListener(new View.OnKeyListener() {
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                // If the event is a key-down event on the "enter" button
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-                        (keyCode == KeyEvent.KEYCODE_ENTER) || (event.getAction() == KeyEvent.ACTION_DOWN) &&
-                        (keyCode == KeyEvent.FLAG_EDITOR_ACTION)) {
-                    // Perform action on key press
-                    onClick(email);
-                    return true;
-                }
-                return false;
-            }
-        });
     }
+
+    //back버튼 눌렀을 때 readyactivity로
 
     @Override
     public void onClick(View view) {
-        pref.addInfo("email", email.getText().toString());
-        if(!email.getText().toString().contains("@") ||  !email.getText().toString().contains(".")){
-            Toast.makeText(getApplicationContext(), "이메일 형식이 옳지 않습니다.", Toast.LENGTH_SHORT).show();
-            return ;
+        if(view.getId()==iv_back.getId()){
+            Intent intent = new Intent(FirstSignUpActivity.this, ReadyActivity.class);
+            System.out.println("backButton clicked");
+            startActivity(intent);
+            finish();
         }
-        retrofit= RetrofitInstance.getInstance(getApplicationContext());
-        RetrofitConnection.email_check service = retrofit.create(RetrofitConnection.email_check.class);
+        else{
+            pref.addInfo("email", email.getText().toString());
+            if(!email.getText().toString().contains("@") ||  !email.getText().toString().contains(".")){
+                Toast.makeText(getApplicationContext(), "이메일 형식이 옳지 않습니다.", Toast.LENGTH_SHORT).show();
+                return ;
+            }
+            retrofit= RetrofitInstance.getInstance(getApplicationContext());
+            RetrofitConnection.email_check service = retrofit.create(RetrofitConnection.email_check.class);
 
-        final Call<ResponseBody> repos = service.repoContributors(email.getText().toString());
-        repos.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if(response.code()==200) {
-                    if(!pref.getString("password").equals("")) {
-                        Intent intent = new Intent(FirstSignUpActivity.this, SecondSignUpActivity.class);
-                        startActivity(intent);
-                        finish();
+            final Call<ResponseBody> repos = service.repoContributors(email.getText().toString());
+            repos.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if(response.code()==200) {
+                        if(!pref.getString("password").equals("")) {
+                            Intent intent = new Intent(FirstSignUpActivity.this, SecondSignUpActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        else {
+                            Intent intent = new Intent(FirstSignUpActivity.this, SignupPasswordActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
                     }
-                    else {
-                        Intent intent = new Intent(FirstSignUpActivity.this, SignupPasswordActivity.class);
-                        startActivity(intent);
-                        finish();
+                    else{
+                        Toast.makeText(getApplicationContext(), "이미 존재하는 이메일 입니다.", Toast.LENGTH_SHORT).show();
+                        return ;
                     }
                 }
-                else{
-                    Toast.makeText(getApplicationContext(), "이미 존재하는 이메일 입니다.", Toast.LENGTH_SHORT).show();
-                    return ;
-                }
-            }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.d("TAG",t.getLocalizedMessage());
-            }
-        });
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Log.d("TAG",t.getLocalizedMessage());
+                }
+            });
+        }
+
+
     }
 
     @Override
