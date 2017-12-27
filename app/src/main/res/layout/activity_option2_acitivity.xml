@@ -72,6 +72,26 @@
 
 
         </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#ffffff"
+                android:letterSpacing="0.6"
+                android:text="사용가능 쿠폰 1장"
+                />
+
+
+        </LinearLayout>
 
 
     </RelativeLayout>

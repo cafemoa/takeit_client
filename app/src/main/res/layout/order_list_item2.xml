@@ -39,13 +39,16 @@
             android:layout_toLeftOf="@id/btn_order_coupon"
             android:layout_marginRight="10dp"/>
 
-        <Button
+        <ImageView
+            android:src="@drawable/order_coupon"
             android:id="@+id/btn_order_coupon"
             android:layout_width="45dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:visibility="visible"
-            android:text="쿠폰주문"/>
+            />
+
+
     </RelativeLayout>
 </LinearLayout>
