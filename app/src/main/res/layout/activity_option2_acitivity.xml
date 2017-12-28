@@ -86,7 +86,6 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:textColor="#ffffff"
-                android:letterSpacing="0.6"
                 android:text="사용가능 쿠폰 1장"
                 />
 
