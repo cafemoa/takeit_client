@@ -2,8 +2,6 @@ package mkworld29.mobile.com.cafemoa.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -23,7 +21,7 @@ import java.util.List;
 import mkworld29.mobile.com.cafemoa.Option2Acitivity;
 import mkworld29.mobile.com.cafemoa.R;
 import mkworld29.mobile.com.cafemoa.item.MainCafeItem;
-import mkworld29.mobile.com.cafemoa.item.OrderListItem2;
+import mkworld29.mobile.com.cafemoa.item.OrderListItem;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
 import retrofit2.Call;
@@ -114,8 +112,8 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
         }
     }
 
-    ArrayList<OrderListItem2> beverage_community(final View v, final MainCafeItem item){
-        final ArrayList<OrderListItem2> beverages=new ArrayList<>();
+    ArrayList<OrderListItem> beverage_community(final View v, final MainCafeItem item){
+        final ArrayList<OrderListItem> beverages=new ArrayList<>();
         Retrofit retrofit= RetrofitInstance.getInstance(context);
         RetrofitConnection.get_cafe_beverage service = retrofit.create(RetrofitConnection.get_cafe_beverage.class);
 
@@ -128,7 +126,7 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
 
                     for(int i=0; i<response.body().size(); i++){
                         RetrofitConnection.Beverage beverage=response.body().get(i);
-                        OrderListItem2 item=new OrderListItem2(beverage.name,"http://rest.takeitnow.kr"+beverage.image,beverage.price,beverage.is_best,beverage.type,beverage.pk);
+                        OrderListItem item=new OrderListItem(beverage.name,"http://rest.takeitnow.kr"+beverage.image,beverage.price,beverage.is_best,beverage.type,beverage.pk);
                         beverages.add(item);
                     }
                     Intent i = new Intent(v.getContext(), Option2Acitivity.class);

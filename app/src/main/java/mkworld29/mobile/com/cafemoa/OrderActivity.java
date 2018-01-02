@@ -6,10 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import mkworld29.mobile.com.cafemoa.adapter.OrderListAdapter;
 import mkworld29.mobile.com.cafemoa.adapter.OrderPagerAdapter;
 
 public class OrderActivity extends AppCompatActivity implements View.OnClickListener{
@@ -27,7 +25,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_order);
 
         mPager = (ViewPager) findViewById(R.id.vp_order);
-        mPager.setAdapter(new OrderPagerAdapter(getApplicationContext()));
+        mPager.setAdapter(new OrderPagerAdapter(getApplicationContext(),));
 
         iv_back = (ImageView) findViewById(R.id.iv_back);
 

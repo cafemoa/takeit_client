@@ -37,8 +37,6 @@
         <activity android:name=".PaymentActivity" />
         <activity android:name=".CouponDetailActivity" />
         <activity android:name=".AccessTermsActivity" />
-        <activity android:name=".OptionActivity" />
-        <activity android:name=".CoffeeOptionActivity" />
         <activity android:name=".BaskitActivity"/>
 
         <service android:name=".MyFirebaseMessagingService">
@@ -94,7 +92,7 @@
         <activity android:name=".OrderCompleteActivity" />
         <activity android:name=".Option2Acitivity">
         </activity>
-        <activity android:name=".CoffeOption2Activity" >
+        <activity android:name=".CoffeOptionActivity" >
         </activity>
         <activity android:name=".OrderListActivity" />
         <activity android:name=".PersonalEventActivity" />
