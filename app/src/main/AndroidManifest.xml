@@ -88,7 +88,6 @@
             android:name=".ReadyActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".OrderActivity" />
         <activity android:name=".OrderCompleteActivity" />
         <activity android:name=".Option2Acitivity">
         </activity>
