@@ -32,7 +32,6 @@
         <activity android:name=".LoginActivity">
         </activity>
         <activity android:name=".SignUpAcitivity" />
-        <activity android:name=".ReservationActivity" />
         <activity android:name=".CouponActivity" />
         <activity android:name=".PaymentActivity" />
         <activity android:name=".CouponDetailActivity" />
