@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import mkworld29.mobile.com.cafemoa.R;
+import mkworld29.mobile.com.cafemoa.item.OptionItem;
 import mkworld29.mobile.com.cafemoa.item.OrderListItem;
 
 /**
@@ -75,9 +76,9 @@ public class OrderListAdapter extends BaseAdapter{
         return listViewItemList;
     }
 
-    public void addItem(String content, String image, String price,boolean is_best,int type,int pk)
+    public void addItem(String content, String image, String price,boolean is_best,int type,int pk, ArrayList<OptionItem> options)
     {
-        OrderListItem item = new OrderListItem(content,image,price,is_best,type,pk);
+        OrderListItem item = new OrderListItem(content,image,price,is_best,type,pk,options);
         listViewItemList.add(item);
     }
 

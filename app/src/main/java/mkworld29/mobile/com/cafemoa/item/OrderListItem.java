@@ -3,35 +3,42 @@ package mkworld29.mobile.com.cafemoa.item;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
+import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
+
 /**
  * Created by parkjaemin on 2017. 10. 6..
  */
 
 public class OrderListItem implements Parcelable{
-    String content;
-    String img;
-    String price;
-    boolean is_best;
-    int pk;
-    int type;
+    private String name;
+    private String image;
+    private String price;
+    private boolean is_best;
+    private int pk;
+    private int type;
+    private ArrayList<OptionItem> options;
 
-    public OrderListItem(String c, String i, String price, boolean is_best, int type, int pk)
+    public OrderListItem(String c, String i, String price, boolean is_best, int type, int pk,ArrayList<OptionItem> options)
     {
-        this.content = c;
-        this.img = i;
+        this.name = c;
+        this.image = i;
         this.is_best = is_best;
         this.pk=pk;
         this.type=type;
         this.price=price;
+        this.options=options;
     }
 
     protected OrderListItem(Parcel in) {
-        content = in.readString();
-        img = in.readString();
+        name = in.readString();
+        image = in.readString();
         is_best = in.readByte() != 0;
         pk = in.readInt();
         type = in.readInt();
         price=in.readString();
+        options=in.readArrayList(OptionItem.class.getClassLoader());
     }
 
     public static final Creator<OrderListItem> CREATOR = new Creator<OrderListItem>() {
@@ -47,19 +54,19 @@ public class OrderListItem implements Parcelable{
     };
 
     public String getContent() {
-        return content;
+        return name;
     }
 
     public void setContent(String content) {
-        this.content = content;
+        this.name = content;
     }
 
     public String getImg() {
-        return img;
+        return image;
     }
 
     public void setImg(String img) {
-        this.img = img;
+        this.image = img;
     }
 
     public boolean is_best() {
@@ -81,11 +88,12 @@ public class OrderListItem implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(content);
-        dest.writeString(img);
+        dest.writeString(name);
+        dest.writeString(image);
         dest.writeByte((byte) (is_best ? 1 : 0));
         dest.writeInt(pk);
         dest.writeInt(type);
         dest.writeString(price);
+        dest.writeList(options);
     }
 }

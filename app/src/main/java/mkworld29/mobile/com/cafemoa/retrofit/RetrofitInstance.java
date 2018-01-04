@@ -40,11 +40,13 @@ public class RetrofitInstance {
             });
             OkHttpClient client = builder.build();
 
+
             retrofit = new Retrofit.Builder()
                     .baseUrl(API_URL) // 통신 url
                     .addConverterFactory(GsonConverterFactory.create()) // json통신 여부
                     .client(client)
                     .build();
+
         }
         return retrofit;
     }
