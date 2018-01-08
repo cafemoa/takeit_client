@@ -7,7 +7,12 @@ import java.util.ArrayList;
  */
 
 public class OptionItem{
-    public String content;
-    public int pk;
-    ArrayList<Integer> selections;
+    private String content;
+    private int pk;
+    ArrayList<Selection> selections;
+    public class Selection{
+        private String content;
+        private int pk;
+        private int add_price;
+    }
 }

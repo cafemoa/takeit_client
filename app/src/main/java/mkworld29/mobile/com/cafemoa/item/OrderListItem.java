@@ -11,7 +11,7 @@ import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
  * Created by parkjaemin on 2017. 10. 6..
  */
 
-public class OrderListItem implements Parcelable{
+public class OrderListItem{
     private String name;
     private String image;
     private String price;
@@ -41,18 +41,6 @@ public class OrderListItem implements Parcelable{
         options=in.readArrayList(OptionItem.class.getClassLoader());
     }
 
-    public static final Creator<OrderListItem> CREATOR = new Creator<OrderListItem>() {
-        @Override
-        public OrderListItem createFromParcel(Parcel in) {
-            return new OrderListItem(in);
-        }
-
-        @Override
-        public OrderListItem[] newArray(int size) {
-            return new OrderListItem[size];
-        }
-    };
-
     public String getContent() {
         return name;
     }
@@ -81,19 +69,4 @@ public class OrderListItem implements Parcelable{
     public int getType(){return type;}
     public String getPrice(){ return price; }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeString(image);
-        dest.writeByte((byte) (is_best ? 1 : 0));
-        dest.writeInt(pk);
-        dest.writeInt(type);
-        dest.writeString(price);
-        dest.writeList(options);
-    }
 }

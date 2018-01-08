@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -15,11 +16,21 @@ import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import mkworld29.mobile.com.cafemoa.entity.CoffeeOption;
 import mkworld29.mobile.com.cafemoa.item.BasketItem;
+import mkworld29.mobile.com.cafemoa.item.OptionItem;
+import mkworld29.mobile.com.cafemoa.item.OrderListItem;
 import mkworld29.mobile.com.cafemoa.prefs.BasketPref;
+import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
+import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class CoffeOptionActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -72,6 +83,25 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
             price = intent.getStringExtra("price");
             cafe_min_time=intent.getIntExtra("cafe_min_time",0);
         }
+
+        Retrofit retrofit= RetrofitInstance.getInstance(getApplicationContext());
+        RetrofitConnection.get_beverage_option service = retrofit.create(RetrofitConnection.get_beverage_option.class);
+
+        final Call<List<OptionItem>> repos = service.repoContributors(beverage_pk);
+        repos.enqueue(new Callback<List<OptionItem>>() {
+            @Override
+            public void onResponse(Call<List<OptionItem>> call, Response<List<OptionItem>> response) {
+                if(response.code()==200){
+                    Log.d("SIBAL", "SIBAL");
+                }else{
+                    Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<List<OptionItem>> call, Throwable t) {
+                Log.d("TAG",t.getLocalizedMessage());
+            }
+        });
 
         tv_price            =   (TextView) findViewById(R.id.tv_order_price);
         iv_back             =   (ImageView)findViewById(R.id.iv_back);
