@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="mkworld29.mobile.com.cafemoa.CoffeOption2Activity">
+    tools:context="mkworld29.mobile.com.cafemoa.CoffeOptionActivity">
 
     <ImageView
         android:id="@+id/iv_back"

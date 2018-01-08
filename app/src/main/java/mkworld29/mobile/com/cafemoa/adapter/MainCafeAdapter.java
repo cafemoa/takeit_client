@@ -2,8 +2,6 @@ package mkworld29.mobile.com.cafemoa.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -23,7 +21,7 @@ import java.util.List;
 import mkworld29.mobile.com.cafemoa.Option2Acitivity;
 import mkworld29.mobile.com.cafemoa.R;
 import mkworld29.mobile.com.cafemoa.item.MainCafeItem;
-import mkworld29.mobile.com.cafemoa.item.OrderListItem2;
+import mkworld29.mobile.com.cafemoa.item.OrderListItem;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
 import retrofit2.Call;
@@ -68,6 +66,7 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
         holder.cardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(item.getOpen()) beverage_community(v,item);
                 else Toast.makeText(context,"점주의 사정으로 인해 주문이 불가합니다.", Toast.LENGTH_SHORT).show();
             }
@@ -114,41 +113,14 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
         }
     }
 
-    ArrayList<OrderListItem2> beverage_community(final View v, final MainCafeItem item){
-        final ArrayList<OrderListItem2> beverages=new ArrayList<>();
-        Retrofit retrofit= RetrofitInstance.getInstance(context);
-        RetrofitConnection.get_cafe_beverage service = retrofit.create(RetrofitConnection.get_cafe_beverage.class);
+    void beverage_community(final View v, final MainCafeItem item){
+        Intent i = new Intent(v.getContext(), Option2Acitivity.class);
+        i.putExtra("cafe_pk",item.getPk());
+        i.putExtra("cafe_name", item.getName());
+        i.putExtra("cafe_image", item.getImage());
+        i.putExtra("cafe_location", item.getLocation());
+        i.putExtra("cafe_min_time", item.getMin_time());
+        v.getContext().startActivity(i);
 
-        final Call<List<RetrofitConnection.Beverage>> repos = service.repoContributors(item.getPk());
-
-        repos.enqueue(new Callback<List<RetrofitConnection.Beverage>>() {
-            @Override
-            public void onResponse(Call<List<RetrofitConnection.Beverage>> call, Response<List<RetrofitConnection.Beverage>> response) {
-                if(response.code()==200){
-
-                    for(int i=0; i<response.body().size(); i++){
-                        RetrofitConnection.Beverage beverage=response.body().get(i);
-                        OrderListItem2 item=new OrderListItem2(beverage.name,"http://rest.takeitnow.kr"+beverage.image,beverage.price,beverage.is_best,beverage.type,beverage.pk);
-                        beverages.add(item);
-                    }
-                    Intent i = new Intent(v.getContext(), Option2Acitivity.class);
-                    i.putExtra("cafe_pk",item.getPk());
-                    i.putExtra("cafe_name", item.getName());
-                    i.putExtra("cafe_image", item.getImage());
-                    i.putExtra("cafe_location", item.getLocation());
-                    i.putExtra("cafe_min_time", item.getMin_time());
-
-                    i.putParcelableArrayListExtra("beverages", beverages);
-                    v.getContext().startActivity(i);
-                }else{
-                    Toast.makeText(context, "Error : "+ response.code(), Toast.LENGTH_LONG).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<List<RetrofitConnection.Beverage>> call, Throwable t) {
-                Log.d("TAG",t.getLocalizedMessage());
-            }
-        });
-        return beverages;
     }
 }

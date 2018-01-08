@@ -144,7 +144,6 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
             rv.setAdapter(adapter);
         }
 
-
         tv_total.setText(String.valueOf(total));
     }
 

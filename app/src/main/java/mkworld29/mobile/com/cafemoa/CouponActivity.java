@@ -1,12 +1,7 @@
 package mkworld29.mobile.com.cafemoa;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Rect;
-import android.net.Uri;
-import android.os.Build;
-import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,28 +9,19 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.webkit.CookieManager;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import mkworld29.mobile.com.cafemoa.R;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
-import mkworld29.mobile.com.cafemoa.adapter.CardAdapter;
 import mkworld29.mobile.com.cafemoa.adapter.CouponAdapter;
 import mkworld29.mobile.com.cafemoa.adapter.StampAdapter;
 import mkworld29.mobile.com.cafemoa.entity.Coupon;
-import mkworld29.mobile.com.cafemoa.iamportsdk.InicisWebViewClient;
-import mkworld29.mobile.com.cafemoa.item.CardItem;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

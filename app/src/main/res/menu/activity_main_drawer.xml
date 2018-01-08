@@ -3,10 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_reservation"
-            android:icon="@drawable/nav_settings"
-            android:title="설정" />
+
         <item
             android:id="@+id/nav_coupon"
             android:icon="@drawable/side_bar_coupon"
@@ -22,7 +19,10 @@
             android:title="고객센터">
 
             </item>
-
+        <item
+            android:id="@+id/nav_reservation"
+            android:icon="@drawable/nav_settings"
+            android:title="설정" />
 
 </group>
 <!--
