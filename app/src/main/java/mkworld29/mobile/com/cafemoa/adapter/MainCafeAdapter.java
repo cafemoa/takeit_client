@@ -117,18 +117,12 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
         Retrofit retrofit= RetrofitInstance.getInstance(context);
         RetrofitConnection.get_cafe_beverage service = retrofit.create(RetrofitConnection.get_cafe_beverage.class);
 
-        final Call<List<RetrofitConnection.Beverage>> repos = service.repoContributors(item.getPk());
+        final Call<ArrayList<OrderListItem>> repos = service.repoContributors(item.getPk());
 
-        repos.enqueue(new Callback<List<RetrofitConnection.Beverage>>() {
+        repos.enqueue(new Callback<ArrayList<OrderListItem>>() {
             @Override
-            public void onResponse(Call<List<RetrofitConnection.Beverage>> call, Response<List<RetrofitConnection.Beverage>> response) {
+            public void onResponse(Call<ArrayList<OrderListItem>> call, Response<ArrayList<OrderListItem>> response) {
                 if(response.code()==200){
-
-                    for(int i=0; i<response.body().size(); i++){
-                        RetrofitConnection.Beverage beverage=response.body().get(i);
-                        OrderListItem item=new OrderListItem(beverage.name,"http://rest.takeitnow.kr"+beverage.image,beverage.price,beverage.is_best,beverage.type,beverage.pk);
-                        beverages.add(item);
-                    }
                     Intent i = new Intent(v.getContext(), Option2Acitivity.class);
                     i.putExtra("cafe_pk",item.getPk());
                     i.putExtra("cafe_name", item.getName());
@@ -136,14 +130,14 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
                     i.putExtra("cafe_location", item.getLocation());
                     i.putExtra("cafe_min_time", item.getMin_time());
 
-                    i.putParcelableArrayListExtra("beverages", beverages);
+                    i.putParcelableArrayListExtra("beverages", response.body());
                     v.getContext().startActivity(i);
                 }else{
                     Toast.makeText(context, "Error : "+ response.code(), Toast.LENGTH_LONG).show();
                 }
             }
             @Override
-            public void onFailure(Call<List<RetrofitConnection.Beverage>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<OrderListItem>> call, Throwable t) {
                 Log.d("TAG",t.getLocalizedMessage());
             }
         });

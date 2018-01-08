@@ -15,6 +15,7 @@ import org.simpleframework.xml.Root;
 import java.util.ArrayList;
 import java.util.List;
 
+import mkworld29.mobile.com.cafemoa.item.OrderListItem;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -57,7 +58,14 @@ public class RetrofitConnection {
         public int pk;
         public int type;
         public boolean is_best;
+        public ArrayList<Option> options;
+        public class Option{
+            public String content;
+            public int pk;
+            ArrayList<Integer> selections;
+        }
     }
+
 
     public class Coupon_info{
         public Cafe cafe;
@@ -324,7 +332,7 @@ public class RetrofitConnection {
 
     public interface get_cafe_beverage{
         @GET("get_cafe_beverage/{PK}")
-        Call<List<Beverage>> repoContributors(
+        Call<ArrayList<OrderListItem>> repoContributors(
                 @Path("PK") int pk
         );
     }

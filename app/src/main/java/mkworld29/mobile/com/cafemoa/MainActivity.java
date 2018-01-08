@@ -50,6 +50,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+//2018-01-03 이걸 롤백 버전으로
+
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         View.OnTouchListener ,
