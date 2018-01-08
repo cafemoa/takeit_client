@@ -25,8 +25,8 @@
         <TextView
             android:text="주문 내역"
             android:textStyle="bold"
-            android:textSize="28sp"
-            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textColor="#0c0c0c"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"/>
