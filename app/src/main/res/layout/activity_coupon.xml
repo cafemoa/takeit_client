@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,6 +10,7 @@
     android:background="#f5f5f5">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
@@ -23,11 +24,15 @@
 
 
     <View
+        android:id="@+id/divide"
+        android:layout_below="@id/appbar"
         android:layout_width="match_parent"
         android:layout_height="1sp"
         android:background="#acacac"/>
 
     <LinearLayout
+        android:id="@+id/ly_all"
+        android:layout_below="@id/divide"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -41,7 +46,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -54,7 +58,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:textColor="#fcfcfc"
+            android:textColor="#626466"
+            android:textStyle="bold"
             android:layout_centerInParent="true"
             android:text="카페이름"/>
 
@@ -64,19 +69,13 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:textColor="#fcfcfc"
-                android:text="사용가능 쿠폰 : "/>
 
             <TextView
                 android:id="@+id/tv_available_coupon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="13sp"
-                android:textColor="#fcfcfc"
+                android:textColor="#626466"
                 android:text="0"/>
 
             </LinearLayout>
@@ -87,11 +86,10 @@
             android:id="@+id/tv_cafe_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#fcfcfc"
+            android:textColor="#626466"
             android:gravity="right"
             android:textSize="10sp"
             android:layout_gravity="center"
-            android:layout_marginTop="5dp"
             android:text="카페주소"/>
 
 
@@ -108,6 +106,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/coupon_rv"
+        android:layout_below="@id/ly_all"
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="210dp"
@@ -116,10 +115,11 @@
         />
 
     <ImageView
+        android:layout_below="@id/coupon_rv"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:scaleType="fitXY"
-        android:src="@drawable/coupon_bottom"
-        android:layout_gravity="bottom" />
+        android:src="@drawable/coupon_bottom"/>
 
-</LinearLayout>
+</RelativeLayout>

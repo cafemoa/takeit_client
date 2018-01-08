@@ -33,21 +33,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="7sp"
-                    android:textColor="#fcfcfc"
-                    android:text="사용가능 쿠폰 : "/>
+                android:layout_centerVertical="true">
 
                 <TextView
                     android:id="@+id/tv_available_coupon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="7sp"
-                    android:textColor="#fcfcfc"
+                    android:textColor="##626466"
                     android:text="0"/>
 
             </LinearLayout>
