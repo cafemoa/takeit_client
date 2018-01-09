@@ -18,9 +18,8 @@ public class OrderListItem{
     private boolean is_best;
     private int pk;
     private int type;
-    private ArrayList<OptionItem> options;
 
-    public OrderListItem(String c, String i, String price, boolean is_best, int type, int pk,ArrayList<OptionItem> options)
+    public OrderListItem(String c, String i, String price, boolean is_best, int type, int pk)
     {
         this.name = c;
         this.image = i;
@@ -28,17 +27,6 @@ public class OrderListItem{
         this.pk=pk;
         this.type=type;
         this.price=price;
-        this.options=options;
-    }
-
-    protected OrderListItem(Parcel in) {
-        name = in.readString();
-        image = in.readString();
-        is_best = in.readByte() != 0;
-        pk = in.readInt();
-        type = in.readInt();
-        price=in.readString();
-        options=in.readArrayList(OptionItem.class.getClassLoader());
     }
 
     public String getContent() {

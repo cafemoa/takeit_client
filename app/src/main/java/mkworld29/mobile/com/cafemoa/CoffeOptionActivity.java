@@ -257,30 +257,6 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
                 amount++;
             tv_shots.setText(""+amount);
         }
-        else if(view.getId() == tv_hot.getId())
-        {
-            setFontDefaults(arr_cold);
-            setFontStyle(tv_hot, true);
-            is_cold = false;
-        }
-        else if(view.getId() == tv_ice.getId())
-        {
-            setFontDefaults(arr_cold);
-            setFontStyle(tv_ice, true);
-            is_cold = true;
-        }
-        else if(view.getId() == tv_whipping_true.getId())
-        {
-            setFontDefaults(arr_whipping);
-            setFontStyle(tv_whipping_true, true);
-            is_whipping = true;
-        }
-        else if(view.getId() == tv_whipping_false.getId())
-        {
-            setFontDefaults(arr_whipping);
-            setFontStyle(tv_whipping_false, true);
-            is_whipping = false;
-        }
         else if(view.getId() == btn_get.getId())
         {
             saveBasketItem();
@@ -318,7 +294,8 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
         cafeName = src_cafe_name;
         price = tv_price.getText().toString();
 
-        option = new CoffeeOption(shots, size, amount, is_cold, is_whipping, beverage_pk);
+        ArrayList<Integer> selections=new ArrayList<>();
+        option = new CoffeeOption(shots, size, amount, beverage_pk,selections);
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();

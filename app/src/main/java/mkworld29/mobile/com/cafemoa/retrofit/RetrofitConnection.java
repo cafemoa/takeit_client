@@ -119,16 +119,14 @@ public class RetrofitConnection {
 
     public static class Order_option{
         int beverage;
-        boolean whipping_cream;
-        boolean is_ice;
         int size;
         int shot_num;
         int amount;
+        ArrayList<Integer> selections;
 
-        public Order_option(int beverage, boolean whipping_cream,boolean is_ice,int size, int shot_num,int amount) {
+        public Order_option(int beverage,int size, int shot_num,int amount, ArrayList<Integer> selections){
             this.beverage = beverage;
-            this.whipping_cream = whipping_cream;
-            this.is_ice = is_ice;
+            this.selections=selections;
             this.size = size;
             this.shot_num = shot_num;
             this.amount=amount;
