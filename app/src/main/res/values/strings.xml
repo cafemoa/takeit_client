@@ -28,6 +28,16 @@
         <item>최근 5년</item>
     </string-array>
 
+    <string-array name="is_whipping">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+
+
+
+
+
 
     <string name="notification_title">TakeIt!</string>
 
