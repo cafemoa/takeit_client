@@ -15,6 +15,7 @@ import org.simpleframework.xml.Root;
 import java.util.ArrayList;
 import java.util.List;
 
+import mkworld29.mobile.com.cafemoa.item.OptionItem;
 import mkworld29.mobile.com.cafemoa.item.OrderListItem;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -118,16 +119,14 @@ public class RetrofitConnection {
 
     public static class Order_option{
         int beverage;
-        boolean whipping_cream;
-        boolean is_ice;
         int size;
         int shot_num;
         int amount;
+        ArrayList<Integer> selections;
 
-        public Order_option(int beverage, boolean whipping_cream,boolean is_ice,int size, int shot_num,int amount) {
+        public Order_option(int beverage,int size, int shot_num,int amount, ArrayList<Integer> selections){
             this.beverage = beverage;
-            this.whipping_cream = whipping_cream;
-            this.is_ice = is_ice;
+            this.selections=selections;
             this.size = size;
             this.shot_num = shot_num;
             this.amount=amount;
@@ -359,6 +358,13 @@ public class RetrofitConnection {
         @POST("email_check/")
         Call<ResponseBody> repoContributors(
                 @Field("email") String email
+        );
+    }
+
+    public interface get_beverage_option{
+        @GET("get_beverage_option/{PK}")
+        Call<List<OptionItem>> repoContributors(
+                @Path("PK") int pk
         );
     }
 

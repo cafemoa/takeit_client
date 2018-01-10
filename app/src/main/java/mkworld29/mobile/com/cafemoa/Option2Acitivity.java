@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -16,6 +18,12 @@ import java.util.ArrayList;
 import mkworld29.mobile.com.cafemoa.adapter.OrderPagerAdapter;
 import mkworld29.mobile.com.cafemoa.item.OrderListItem;
 import mkworld29.mobile.com.cafemoa.prefs.BasketPref;
+import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
+import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class Option2Acitivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -43,8 +51,6 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
         cafe_location=intent.getStringExtra("cafe_location");
         cafe_image=intent.getStringExtra("cafe_image");
         cafe_min_time=intent.getIntExtra("cafe_min_time", 0);
-
-        ArrayList<OrderListItem> beverages=intent.getParcelableArrayListExtra("beverages");
 
         iv_back=(ImageView)findViewById(R.id.iv_back);
         iv_back.setOnClickListener(new View.OnClickListener() {
@@ -74,17 +80,34 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
         adapter = new OrderPagerAdapter(getApplicationContext(),cafe_pk,cafe_min_time);
         adapter.setCafeName(tv_cafe_name.getText().toString());
 
-        for(int i=0; i<beverages.size(); i++){
-            OrderListItem item=beverages.get(i);
+        Retrofit retrofit= RetrofitInstance.getInstance(getApplicationContext());
+        RetrofitConnection.get_cafe_beverage service = retrofit.create(RetrofitConnection.get_cafe_beverage.class);
 
-            if(item.getType()==0) adapter.addItemPage0(item);
-            if(item.getType()==1) adapter.addItemPage1(item);
-            if(item.getType()==2) adapter.addItemPage2(item);
-            if(item.getType()==3) adapter.addItemPage3(item);
-            if(item.getType()==4) adapter.addItemPage4(item);
-        }
+        final Call<ArrayList<OrderListItem>> repos = service.repoContributors(cafe_pk);
+        repos.enqueue(new Callback<ArrayList<OrderListItem>>() {
+            @Override
+            public void onResponse(Call<ArrayList<OrderListItem>> call, Response<ArrayList<OrderListItem>> response) {
 
-        mPager.setAdapter(adapter);
+                if(response.code()==200){
+                    for(int i=0; i<response.body().size(); i++){
+                        OrderListItem item=response.body().get(i);
+
+                        if(item.getType()==0) adapter.addItemPage0(item);
+                        if(item.getType()==1) adapter.addItemPage1(item);
+                        if(item.getType()==2) adapter.addItemPage2(item);
+                        if(item.getType()==3) adapter.addItemPage3(item);
+                        if(item.getType()==4) adapter.addItemPage4(item);
+                    }
+                    mPager.setAdapter(adapter);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<ArrayList<OrderListItem>> call, Throwable t) {
+                Log.d("TAG",t.getLocalizedMessage());
+            }
+        });
 
         tv_cafe_name = (TextView) findViewById(R.id.tv_cafe_name);
         tv_coffe = (TextView) findViewById(R.id.tv_coffe_espresso);

@@ -76,9 +76,9 @@ public class OrderListAdapter extends BaseAdapter{
         return listViewItemList;
     }
 
-    public void addItem(String content, String image, String price,boolean is_best,int type,int pk, ArrayList<OptionItem> options)
+    public void addItem(String content, String image, String price,boolean is_best,int type,int pk)
     {
-        OrderListItem item = new OrderListItem(content,image,price,is_best,type,pk,options);
+        OrderListItem item = new OrderListItem(content,image,price,is_best,type,pk);
         listViewItemList.add(item);
     }
 

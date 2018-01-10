@@ -11,16 +11,15 @@ import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
  * Created by parkjaemin on 2017. 10. 6..
  */
 
-public class OrderListItem implements Parcelable{
+public class OrderListItem{
     private String name;
     private String image;
     private String price;
     private boolean is_best;
     private int pk;
     private int type;
-    private ArrayList<OptionItem> options;
 
-    public OrderListItem(String c, String i, String price, boolean is_best, int type, int pk,ArrayList<OptionItem> options)
+    public OrderListItem(String c, String i, String price, boolean is_best, int type, int pk)
     {
         this.name = c;
         this.image = i;
@@ -28,30 +27,7 @@ public class OrderListItem implements Parcelable{
         this.pk=pk;
         this.type=type;
         this.price=price;
-        this.options=options;
     }
-
-    protected OrderListItem(Parcel in) {
-        name = in.readString();
-        image = in.readString();
-        is_best = in.readByte() != 0;
-        pk = in.readInt();
-        type = in.readInt();
-        price=in.readString();
-        options=in.readArrayList(OptionItem.class.getClassLoader());
-    }
-
-    public static final Creator<OrderListItem> CREATOR = new Creator<OrderListItem>() {
-        @Override
-        public OrderListItem createFromParcel(Parcel in) {
-            return new OrderListItem(in);
-        }
-
-        @Override
-        public OrderListItem[] newArray(int size) {
-            return new OrderListItem[size];
-        }
-    };
 
     public String getContent() {
         return name;
@@ -81,19 +57,4 @@ public class OrderListItem implements Parcelable{
     public int getType(){return type;}
     public String getPrice(){ return price; }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeString(image);
-        dest.writeByte((byte) (is_best ? 1 : 0));
-        dest.writeInt(pk);
-        dest.writeInt(type);
-        dest.writeString(price);
-        dest.writeList(options);
-    }
 }

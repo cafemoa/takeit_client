@@ -66,6 +66,7 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
         holder.cardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(item.getOpen()) beverage_community(v,item);
                 else Toast.makeText(context,"점주의 사정으로 인해 주문이 불가합니다.", Toast.LENGTH_SHORT).show();
             }
@@ -112,35 +113,14 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
         }
     }
 
-    ArrayList<OrderListItem> beverage_community(final View v, final MainCafeItem item){
-        final ArrayList<OrderListItem> beverages=new ArrayList<>();
-        Retrofit retrofit= RetrofitInstance.getInstance(context);
-        RetrofitConnection.get_cafe_beverage service = retrofit.create(RetrofitConnection.get_cafe_beverage.class);
+    void beverage_community(final View v, final MainCafeItem item){
+        Intent i = new Intent(v.getContext(), Option2Acitivity.class);
+        i.putExtra("cafe_pk",item.getPk());
+        i.putExtra("cafe_name", item.getName());
+        i.putExtra("cafe_image", item.getImage());
+        i.putExtra("cafe_location", item.getLocation());
+        i.putExtra("cafe_min_time", item.getMin_time());
+        v.getContext().startActivity(i);
 
-        final Call<ArrayList<OrderListItem>> repos = service.repoContributors(item.getPk());
-
-        repos.enqueue(new Callback<ArrayList<OrderListItem>>() {
-            @Override
-            public void onResponse(Call<ArrayList<OrderListItem>> call, Response<ArrayList<OrderListItem>> response) {
-                if(response.code()==200){
-                    Intent i = new Intent(v.getContext(), Option2Acitivity.class);
-                    i.putExtra("cafe_pk",item.getPk());
-                    i.putExtra("cafe_name", item.getName());
-                    i.putExtra("cafe_image", item.getImage());
-                    i.putExtra("cafe_location", item.getLocation());
-                    i.putExtra("cafe_min_time", item.getMin_time());
-
-                    i.putParcelableArrayListExtra("beverages", response.body());
-                    v.getContext().startActivity(i);
-                }else{
-                    Toast.makeText(context, "Error : "+ response.code(), Toast.LENGTH_LONG).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<ArrayList<OrderListItem>> call, Throwable t) {
-                Log.d("TAG",t.getLocalizedMessage());
-            }
-        });
-        return beverages;
     }
 }

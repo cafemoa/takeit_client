@@ -34,6 +34,7 @@ import java.util.List;
 import mkworld29.mobile.com.cafemoa.adapter.BasketAdapter;
 import mkworld29.mobile.com.cafemoa.entity.CoffeeOption;
 import mkworld29.mobile.com.cafemoa.item.BasketItem;
+import mkworld29.mobile.com.cafemoa.item.OptionItem;
 import mkworld29.mobile.com.cafemoa.prefs.BasketPref;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
 import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
@@ -164,15 +165,14 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
                 CoffeeOption option=item.getOption();
                 int shots=option.getShots();
                 int size=option.getSize();
-                boolean is_ice=option.is_cold();
-                boolean is_whipping=option.is_whipping();
                 int beverage=option.getPk();
                 int amount=option.getAmounts();
+                ArrayList<Integer> selections=option.getSelections();
 
                 time=item.getPredict_time();
                 //Log.d("TAG", ""+shots+","+size+","+is_ice+","+is_whipping+","+beverage+","+amount+",");
 
-                options[i]=new RetrofitConnection.Order_option(beverage,is_whipping,is_ice,size,shots,amount);
+                options[i]=new RetrofitConnection.Order_option(beverage,size,shots,amount,selections);
             }
 
             //String time=BasketPref.getInstance(this).getBasket(ids[0]).getTime();
@@ -320,15 +320,13 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
             CoffeeOption option=item.getOption();
             int shots=option.getShots();
             int size=option.getSize();
-            boolean is_ice=option.is_cold();
-            boolean is_whipping=option.is_whipping();
             int beverage=option.getPk();
             int amount=option.getAmounts();
-
+            ArrayList<Integer> selections=option.getSelections();
             time=item.getPredict_time();
             //Log.d("TAG", ""+shots+","+size+","+is_ice+","+is_whipping+","+beverage+","+amount+",");
 
-            options[i]=new RetrofitConnection.Order_option(beverage,is_whipping,is_ice,size,shots,amount);
+            options[i]=new RetrofitConnection.Order_option(beverage,size,shots,amount,selections);
         }
 
         //String time=BasketPref.getInstance(this).getBasket(ids[0]).getTime();

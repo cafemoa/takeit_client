@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/takeit_client.iml" filepath="$PROJECT_DIR$/takeit_client.iml" />
+      <module fileurl="file://C:\Users\ABCla\Desktop\takeit_client\takeit_client.iml" filepath="C:\Users\ABCla\Desktop\takeit_client\takeit_client.iml" />
     </modules>
   </component>
 </project>

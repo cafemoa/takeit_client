@@ -70,17 +70,17 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
             holder.tv_shots.setText("샷 추가 없음");
         else holder.tv_shots.setText(String.valueOf(option.getShots())+"샷");
 
-        if(option.is_whipping())
-            holder.tv_is_whipping.setText(String.valueOf("휘핑 추가"));
-        else {
-            holder.tv_is_whipping.setVisibility(View.GONE);
-        }
-
-
-        if(option.is_cold())
-            holder.tv_is_cold.setText(String.valueOf("ICE"));
-        else
-            holder.tv_is_cold.setText(String.valueOf("HOT"));
+//        if(option.is_whipping())
+//            holder.tv_is_whipping.setText(String.valueOf("휘핑 추가"));
+//        else {
+//            holder.tv_is_whipping.setVisibility(View.GONE);
+//        }
+//
+//
+//        if(option.is_cold())
+//            holder.tv_is_cold.setText(String.valueOf("ICE"));
+//        else
+//            holder.tv_is_cold.setText(String.valueOf("HOT"));
 
         switch(option.getSize())
         {

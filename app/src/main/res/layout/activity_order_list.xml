@@ -11,7 +11,8 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        >
 
         <include layout="@layout/toolbar_order_list" />
 
@@ -23,32 +24,29 @@
         android:layout_height="1dp"
         android:background="#626466"/>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="주문내역"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_centerHorizontal="true"
-            />
-
-        <Spinner
-            android:layout_marginTop="10dp"
-            android:id="@+id/spinner_order_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="5dp"
-            android:entries="@array/order_list">
+            android:orientation="horizontal"
+            android:gravity="right"
+            >
 
 
-        </Spinner>
+
+            <Spinner
+                android:id="@+id/spinner_order_list"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:entries="@array/order_list">
+            </Spinner>
+        </LinearLayout>
+
         <ListView
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
@@ -62,7 +60,7 @@
         </ListView>
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
 </LinearLayout>
