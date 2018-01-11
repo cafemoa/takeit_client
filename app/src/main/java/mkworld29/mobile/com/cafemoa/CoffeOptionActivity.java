@@ -40,7 +40,6 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
     private TextView tv_size_s, tv_size_m,tv_size_l;
     private TextView tv_shots_minus, tv_shots, tv_shots_plus;
     private TextView tv_hot, tv_ice;
-    private TextView tv_whipping_true, tv_whipping_false;
     private TextView tv_price;
     private TextView tv_content;
     private TextView tv_amount_minus, tv_amount, tv_amount_plus;
@@ -92,7 +91,6 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onResponse(Call<List<OptionItem>> call, Response<List<OptionItem>> response) {
                 if(response.code()==200){
-                    Log.d("SIBAL", "SIBAL");
                 }else{
                     Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_LONG).show();
                 }
@@ -133,9 +131,6 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
         tv_hot              =   (TextView)findViewById(R.id.tv_order_hot);
         tv_ice              =   (TextView)findViewById(R.id.tv_order_ice);
 
-        tv_whipping_true    =   (TextView)findViewById(R.id.tv_order_whipping_true);
-        tv_whipping_false   =   (TextView)findViewById(R.id.tv_order_whipping_false);
-
 
         arr_amount = new TextView[2];
         arr_amount[0] = tv_amount_minus;
@@ -155,8 +150,6 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
         arr_cold[1] = tv_ice;
 
         arr_whipping = new TextView [2];
-        arr_whipping[0] = tv_whipping_true;
-        arr_whipping[1] = tv_whipping_false;
 
         edt_predict_arrive.setText(""+cafe_min_time);
 
@@ -191,13 +184,10 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
         tv_shots_plus.setOnClickListener(this);
         tv_ice.setOnClickListener(this);
         tv_hot.setOnClickListener(this);
-        tv_whipping_true.setOnClickListener(this);
-        tv_whipping_false.setOnClickListener(this);
         iv_back.setOnClickListener(this);
 
         onClick(tv_size_s);
         onClick(tv_ice);
-        onClick(tv_whipping_false);
     }
 
     @Override
@@ -266,8 +256,10 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
         else if(view.getId() == btn_order.getId())
         {
             saveBasketItem();
+
             Intent intent = new Intent(this, BaskitActivity.class);
             intent.putExtra("cafe_pk",cafe_pk);
+
             startActivity(intent);
             finish();
         }
@@ -292,9 +284,10 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
 
         content = src_content;
         cafeName = src_cafe_name;
-        price = tv_price.getText().toString();
+        price = tv_price.getText().toString().substring(0,tv_price.length()-1);
 
         ArrayList<Integer> selections=new ArrayList<>();
+        selections.add(1);
         option = new CoffeeOption(shots, size, amount, beverage_pk,selections);
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
