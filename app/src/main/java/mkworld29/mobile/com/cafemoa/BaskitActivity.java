@@ -250,7 +250,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     /**
-     * Converting dp to pixel
+     * Converting dp to pixelasd
      */
     private int dpToPx(int dp) {
         Resources r = getResources();
