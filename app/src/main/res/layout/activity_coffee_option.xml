@@ -6,256 +6,389 @@
     android:layout_height="match_parent"
     tools:context="mkworld29.mobile.com.cafemoa.CoffeeOptionActivity"
     android:orientation="vertical"
-    android:weightSum="5"
-    android:background="#ffffff">
-    
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+    android:padding="30dp"
+    android:background="#ffffff"
+    android:weightSum="17">
 
-
-        <include layout="@layout/toolbar"/>
-
-
-
-    </android.support.design.widget.AppBarLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight="1"
-    android:orientation="vertical"
-    android:elevation="2dp"
-    android:layout_marginTop="15dp"
-    android:layout_marginBottom="5dp">
-
-    <TextView
-        android:id="@+id/tv_cafe_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:text="카페이름"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:layout_marginLeft="20dp"
-        android:text="선택한 음료"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:orientation="vertical"
-        android:gravity="center">
-
-    <ImageView
-        android:id="@+id/iv_content"
-        android:layout_width="@dimen/selected_coffee_size"
-        android:layout_height="@dimen/selected_coffee_size"
-        android:src="@mipmap/ic_launcher"/>
-
-        <TextView
-            android:id="@+id/tv_content"
-            android:layout_width="@dimen/selected_coffee_size"
-            android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="아메리카노"/>
-
-    </LinearLayout>
-
-
-</LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:layout_marginLeft="20dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="사이즈"/>
-
-        <RadioGroup
-            android:id="@+id/rg_size"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <RadioButton
-                android:id="@+id/rb_sizeM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="M" />
-
-            <RadioButton
-                android:id="@+id/rb_sizeL"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="L" />
-
-            <RadioButton
-                android:id="@+id/rb_sizeXL"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="XL" />
-        </RadioGroup>
-
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:layout_marginLeft="20dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="휘핑"/>
-
-        <RadioGroup
-            android:id="@+id/rg_whipping"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/rb_whippingTrue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Y" />
-
-            <RadioButton
-                android:id="@+id/rb_whippingFalse"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="N" />
-
-        </RadioGroup>
-
-
-
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:layout_marginLeft="20dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="샷 수"/>
-
-        <Spinner
-            android:id="@+id/shots_spinner"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
-
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:layout_marginLeft="20dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="핫/아이스"
-            />
-
-
-        <RadioGroup
-            android:id="@+id/rg_temp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/rb_hot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hot" />
-
-            <RadioButton
-                android:id="@+id/rb_ice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ice" />
-
-        </RadioGroup>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:layout_marginLeft="20dp">
+        android:orientation="vertical">
 
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="총 금액"/>
-
-        <TextView
-            android:id="@+id/tv_price"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:layout_gravity="right"
-            android:gravity="right"
-            android:textStyle="bold"
-            android:text="1,500₩"
-            android:layout_marginRight="10dp"/>
+            android:textColor="#000000"
+            android:text="Menu"/>
 
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0000원"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv_amount_minus"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/option_minus"/>
+
+                <TextView
+                    android:id="@+id/tv_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:text="1"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:textSize="17sp"/>
+
+                <ImageView
+                    android:id="@+id/iv_account_plus"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/option_plus"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
+
+            <Button
+                android:id="@+id/btn_hot"
+                android:layout_width="130dp"
+                android:layout_height="35dp"
+                android:textColor="#fcfcfcfc"
+                android:background="#d8d7d7"
+                android:text="Hot"
+                android:layout_marginRight="10dp"
+                android:textSize="13sp"/>
+
+            <Button
+                android:id="@+id/btn_ice"
+                android:layout_width="130dp"
+                android:layout_height="35dp"
+                android:textSize="13sp"
+                android:background="#d8d7d7"
+                android:layout_marginLeft="10dp"
+                android:textColor="#fcfcfc"
+                android:text="Ice"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d5d4d4"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:text="사이즈"/>
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_gravity="center">
+
+                <Button
+                    android:id="@+id/btn_small"
+                    android:layout_width="75dp"
+                    android:layout_height="40dp"
+                    android:text="S"
+                    android:background="#d5d4d4"
+                    android:textColor="#fcfcfc"/>
+
+
+                <Button
+                    android:id="@+id/btn_medium"
+                    android:layout_width="75dp"
+                    android:layout_height="40dp"
+                    android:textColor="#fcfcfc"
+                    android:background="#d5d4d4"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:text="M"/>
+
+
+                <Button
+                    android:id="@+id/btn_large"
+                    android:layout_width="75dp"
+                    android:layout_height="40dp"
+                    android:textColor="#fcfcfc"
+                    android:background="#d5d4d4"
+                    android:text="L"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <View
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d5d4d4"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:text="샷추가"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv_shot_minus"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/option_minus"/>
+
+                <TextView
+                    android:id="@+id/tv_shot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:text="1"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:textSize="17sp"/>
+
+                <ImageView
+                    android:id="@+id/iv_shot_plus"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/option_plus"/>
+
+            </LinearLayout>
+
+    </LinearLayout>
+    </LinearLayout>
+
+        <View
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d5d4d4"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:text="추가선택"
+                android:textStyle="bold"/>
+
+
+            <ListView
+                android:id="@+id/lv_add_menu"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:dividerHeight="0dp"
+                android:layout_height="wrap_content"></ListView>
+        </LinearLayout>
+
+
+
+    <View
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d5d4d4"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="메뉴선택"
+            android:textStyle="bold"/>
+
+
+        <ListView
+            android:id="@+id/lv_add_option"
+            android:layout_marginTop="15dp"
+            android:dividerHeight="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+        </ListView>
+    </LinearLayout>
+
+
+    <View
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d5d4d4"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="도착시간을 설정해 주세요!"
+            android:textStyle="bold"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="약 "/>
+
+            <EditText
+                android:id="@+id/edt_predict_arrive"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:maxLength="3"
+                android:hint=""
+                android:inputType="numberSigned"
+                android:textSize="16sp"
+                android:layout_marginRight="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="분 후 도착 "/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#fd5739"
+                android:text="(필수!)"/>
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="2">
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:gravity="center">
 
         <Button
-            android:id="@+id/btn_submit"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="주문하기"/>
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:text="담기"
+            android:textColor="#fcfcfc"
+            android:textSize="13sp"
+            android:layout_marginRight="15dp"/>
+
+
 
         <Button
-            android:id="@+id/btn_add_basket"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="추가주문하기"/>
-
-
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:text="주문하기"
+            android:textColor="#fcfcfc"
+            android:textSize="13sp"
+            android:layout_marginLeft="15dp"/>
 
     </LinearLayout>
-
-
 
 </LinearLayout>

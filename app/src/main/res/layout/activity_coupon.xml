@@ -14,11 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
-
-
-
         <include layout="@layout/toolbar_coupon"/>
-
 
     </android.support.design.widget.AppBarLayout>
 
@@ -76,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="13sp"
                 android:textColor="#626466"
-                android:text="0"/>
+                android:text="0/16"/>
 
             </LinearLayout>
 

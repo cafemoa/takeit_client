@@ -8,10 +8,14 @@
 
     <ImageView
         android:id="@+id/iv_back"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:src="@drawable/baskit_arrow"
-        android:layout_marginTop="15dp"/>
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_above="@+id/tv_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:src="@drawable/baskit_arrow" />
 
     <LinearLayout
         android:id="@+id/lv_cafe_name"
@@ -50,8 +54,8 @@
         android:textStyle="bold"
 
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="40dp"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
 
     <LinearLayout
         android:id="@+id/lv_order_option"
@@ -120,75 +124,92 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp">
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
 
             <TextView
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="right"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="28dp"
+                android:gravity="left"
                 android:text="수량"
                 android:textColor="#0c0c0c"
                 android:textSize="17sp" />
 
 
             <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
                 android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
                 android:gravity="center">
 
                 <TextView
                     android:id="@+id/tv_order_amount_minus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_gravity="center"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center"
                     android:text=" - "
-                    android:textStyle="bold"
-                    android:textSize="30sp"
                     android:textColor="#0c0c0c"
-                    android:layout_marginRight="5dp"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_order_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
                     android:gravity="center"
                     android:text="1"
-                    android:textSize="20sp"
                     android:textColor="#0c0c0c"
-                    android:layout_marginRight="10dp"/>
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tv_order_amount_plus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_gravity="center"
-                    android:textSize="30sp"
                     android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:text="+"
                     android:textColor="#0c0c0c"
-                    android:text="+"/>
+                    android:textSize="30sp" />
 
             </LinearLayout>
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/linearLayout2"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/linearLayout2"
+                android:layout_marginTop="145dp"
+                android:entries="@array/is_whipping" />
 
 
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp">
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
 
             <TextView
+                android:id="@+id/textView2"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="right"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="28dp"
+                android:gravity="left"
                 android:text="사이즈"
                 android:textColor="#0c0c0c"
                 android:textSize="17sp" />
@@ -238,8 +259,8 @@
             <TextView
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="right"
+                android:layout_marginLeft="28dp"
+                android:gravity="left"
                 android:text="샷 추가"
                 android:textColor="#0c0c0c"
                 android:layout_centerVertical="true"
@@ -297,8 +318,8 @@
             <TextView
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="right"
+                android:layout_marginLeft="28dp"
+                android:gravity="left"
                 android:textColor="#0c0c0c"
                 android:layout_centerVertical="true"
                 android:text="Hot/Ice"
@@ -342,8 +363,8 @@
             <TextView
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="right"
+                android:layout_marginLeft="28dp"
+                android:gravity="left"
                 android:textColor="#0c0c0c"
                 android:text="휘핑크림"
                 android:layout_centerVertical="true"
@@ -356,24 +377,59 @@
                 android:layout_marginRight="15dp"
                 android:layout_centerVertical="true"
                 android:gravity="center">
-
-                <TextView
-                    android:id="@+id/tv_order_whipping_true"
+                <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="7dp"
-                    android:text="Yes"
-                    android:textColor="#acacac"
-                    android:textSize="25sp" />
+                    android:entries="@array/is_whipping"
+                    />
 
-                <TextView
-                    android:id="@+id/tv_order_whipping_false"
+
+                <!--<Spinner-->
+                    <!--android:id="@+id/spinner1"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:entries="@array/city"/>-->
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="28dp"
+                android:gravity="left"
+                android:textColor="#0c0c0c"
+                android:text="옵션"
+                android:layout_centerVertical="true"
+                android:textSize="17sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:layout_centerVertical="true"
+                android:gravity="center">
+
+                <!--<Spinner-->
+                <!--android:id="@+id/spinner1"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:entries="@array/city"/>-->
+
+                <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="7dp"
-                    android:text="No"
-                    android:textColor="#acacac"
-                    android:textSize="25sp" />
+                    android:entries="@array/is_whipping"
+                    />
+
+
+
 
 
             </LinearLayout>

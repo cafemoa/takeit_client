@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp">
+
+<TextView
+    android:id="@+id/tv_title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_marginLeft="15dp"
+    android:textSize="15sp"
+    android:text="옵션이름"/>
+
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_marginRight="15dp"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tv_add_price"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="+000원  "/>
+
+    <CheckBox
+        android:id="@+id/chk_whipping"
+        android:layout_width="25sp"
+        android:layout_height="25sp" />
+
+</LinearLayout>
+</RelativeLayout>

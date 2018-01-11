@@ -80,7 +80,7 @@
     <ImageView
         android:id="@+id/iv_wall"
         android:layout_width="match_parent"
-        android:layout_height="285dp"
+        android:layout_height="152dp"
         android:background="#9c9c9c9c"
         android:src="#9c9c9c9c"
         android:layout_margin="10dp"

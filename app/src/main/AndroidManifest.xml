@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mkworld29.mobile.com.cafemoa">
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -14,29 +15,24 @@
         android:roundIcon="@drawable/decoration"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name">
-        </activity>
-
+            android:label="@string/app_name"></activity>
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
-
-        <activity android:name=".LoginActivity">
-        </activity>
+        <activity android:name=".LoginActivity"></activity>
         <activity android:name=".SignUpAcitivity" />
         <activity android:name=".CouponActivity" />
         <activity android:name=".PaymentActivity" />
         <activity android:name=".CouponDetailActivity" />
         <activity android:name=".AccessTermsActivity" />
-        <activity android:name=".BaskitActivity"/>
+        <activity android:name=".BaskitActivity" />
 
         <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
@@ -48,6 +44,7 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@mipmap/ic_launcher" />
@@ -58,6 +55,7 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
+
         <provider
             android:name="com.zoyi.channel.plugin.android.global.ChannelFileProvider"
             android:authorities="mkworld29.mobile.com.cafemoa"
@@ -67,17 +65,15 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/ch_file_paths" />
         </provider>
+
         <activity android:name=".VeilActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
         </activity>
-        <activity android:name=".FirstSignUpActivity" >
-        </activity>
+        <activity android:name=".FirstSignUpActivity"></activity>
         <activity android:name=".SecondSignUpActivity" />
         <activity android:name=".ThirdSignUpActivity" />
         <activity android:name=".FourthSignUpActivity" />
@@ -85,22 +81,25 @@
         <activity android:name=".SixthSignUpActivity" />
         <activity
             android:name=".ReadyActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".OrderCompleteActivity" />
-        <activity android:name=".Option2Acitivity">
-        </activity>
-        <activity android:name=".CoffeOptionActivity" >
+        <activity android:name=".Option2Acitivity"></activity>
+        <activity android:name=".CoffeOptionActivity">
+
         </activity>
         <activity android:name=".OrderListActivity" />
         <activity android:name=".PersonalEventActivity" />
         <activity android:name=".SettingActivity" />
-        <activity android:name=".ProfileActivity"></activity>
-        <activity android:name=".SignupPasswordActivity">
-        </activity>
-        <activity android:name=".BaskitDeleteDialog" android:theme="@android:style/Theme.Dialog" />
-        <activity android:name=".PasswordChangeActivity"/>
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".SignupPasswordActivity"></activity>
+        <activity
+            android:name=".BaskitDeleteDialog"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".PasswordChangeActivity" />
+        <activity android:name=".CoffeeOptionActivity"> <intent-filter>
 
+        </intent-filter>
+        </activity>
     </application>
 
 </manifest>

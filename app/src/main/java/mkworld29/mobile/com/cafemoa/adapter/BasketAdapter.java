@@ -70,7 +70,6 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
             holder.tv_shots.setText("샷 추가 없음");
         else holder.tv_shots.setText(String.valueOf(option.getShots())+"샷");
 
-
         switch(option.getSize())
         {
             case 0:

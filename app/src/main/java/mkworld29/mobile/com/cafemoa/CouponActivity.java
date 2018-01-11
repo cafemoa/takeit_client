@@ -85,8 +85,6 @@ public class CouponActivity extends AppCompatActivity implements View.OnClickLis
 
                     tv_cafe_address.setText(item[0].getCafe_address());
                     tv_cafe_name.setText(item[0].getCafe_name());
-                    //iv_cafe_logo.setImageResource(item[0].getCafe_logo());
-
                     tv_available_coupon.setText(String.valueOf(item[0].getSum()/10));
 
                     StampAdapter stampAdapter = new StampAdapter(
