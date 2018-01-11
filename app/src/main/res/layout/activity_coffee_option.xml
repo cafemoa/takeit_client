@@ -1,19 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<LinearLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="mkworld29.mobile.com.cafemoa.CoffeeOptionActivity"
     android:orientation="vertical"
-    android:padding="30dp"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:paddingBottom="30dp"
     android:background="#ffffff"
     android:weightSum="17">
+
+    <LinearLayout
+        android:id="@+id/ly_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:gravity="left|center_vertical">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/back_button_arrow"/>
+
+    </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="vertical">
 
 
@@ -58,10 +79,10 @@
                     android:text="1"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:textSize="17sp"/>
+                    android:textSize="20sp"/>
 
                 <ImageView
-                    android:id="@+id/iv_account_plus"
+                    android:id="@+id/iv_amount_plus"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:src="@drawable/option_plus"/>
@@ -83,7 +104,7 @@
                 android:layout_width="130dp"
                 android:layout_height="35dp"
                 android:textColor="#fcfcfcfc"
-                android:background="#d8d7d7"
+                android:background="@drawable/gray_round_button"
                 android:text="Hot"
                 android:layout_marginRight="10dp"
                 android:textSize="13sp"/>
@@ -93,7 +114,7 @@
                 android:layout_width="130dp"
                 android:layout_height="35dp"
                 android:textSize="13sp"
-                android:background="#d8d7d7"
+                android:background="@drawable/red_round_button"
                 android:layout_marginLeft="10dp"
                 android:textColor="#fcfcfc"
                 android:text="Ice"/>
@@ -104,7 +125,7 @@
     </LinearLayout>
 
     <View
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="25dp"
         android:layout_marginBottom="15dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -145,7 +166,7 @@
                     android:layout_width="75dp"
                     android:layout_height="40dp"
                     android:text="S"
-                    android:background="#d5d4d4"
+                    android:background="@drawable/red_round_button"
                     android:textColor="#fcfcfc"/>
 
 
@@ -154,7 +175,7 @@
                     android:layout_width="75dp"
                     android:layout_height="40dp"
                     android:textColor="#fcfcfc"
-                    android:background="#d5d4d4"
+                    android:background="@drawable/gray_round_button"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:text="M"/>
@@ -165,7 +186,7 @@
                     android:layout_width="75dp"
                     android:layout_height="40dp"
                     android:textColor="#fcfcfc"
-                    android:background="#d5d4d4"
+                    android:background="@drawable/gray_round_button"
                     android:text="L"/>
 
             </LinearLayout>
@@ -175,7 +196,7 @@
 
 
     <View
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="25dp"
         android:layout_marginBottom="15dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -222,7 +243,7 @@
                     android:text="1"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:textSize="17sp"/>
+                    android:textSize="20sp"/>
 
                 <ImageView
                     android:id="@+id/iv_shot_plus"
@@ -236,7 +257,7 @@
     </LinearLayout>
 
         <View
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:layout_marginBottom="15dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -372,23 +393,28 @@
         android:gravity="center">
 
         <Button
-            android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:id="@+id/btn_take"
+            android:layout_width="120dp"
+            android:layout_height="35dp"
             android:text="담기"
             android:textColor="#fcfcfc"
             android:textSize="13sp"
+            android:background="@drawable/gray_round15_button"
             android:layout_marginRight="15dp"/>
 
 
 
         <Button
-            android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:id="@+id/btn_order"
+            android:layout_width="120dp"
+            android:layout_height="35dp"
             android:text="주문하기"
             android:textColor="#fcfcfc"
             android:textSize="13sp"
+            android:background="@drawable/red_round15_button"
             android:layout_marginLeft="15dp"/>
 
     </LinearLayout>
 
 </LinearLayout>
+</ScrollView>
