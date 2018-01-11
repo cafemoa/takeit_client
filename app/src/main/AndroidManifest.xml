@@ -96,10 +96,7 @@
             android:name=".BaskitDeleteDialog"
             android:theme="@android:style/Theme.Dialog" />
         <activity android:name=".PasswordChangeActivity" />
-        <activity android:name=".CoffeeOptionActivity"> <intent-filter>
 
-        </intent-filter>
-        </activity>
     </application>
 
 </manifest>
