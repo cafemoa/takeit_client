@@ -284,6 +284,7 @@ public class MainActivity extends AppCompatActivity
             intent = new Intent(this, OrderListActivity.class);
         } else if (id == R.id.nav_talk){
             //checkInVeil();
+            ChannelPlugin.showLauncher();
             ChannelPlugin.show(this);
         }
 

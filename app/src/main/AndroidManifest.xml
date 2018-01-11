@@ -70,6 +70,8 @@
         <activity
             android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
         </activity>
         <activity android:name=".FirstSignUpActivity"></activity>
         <activity android:name=".SecondSignUpActivity" />
@@ -94,12 +96,7 @@
             android:name=".BaskitDeleteDialog"
             android:theme="@android:style/Theme.Dialog" />
         <activity android:name=".PasswordChangeActivity" />
-        <activity android:name=".CoffeeOptionActivity"> <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
     </application>
 
 </manifest>
