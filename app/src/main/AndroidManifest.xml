@@ -85,7 +85,10 @@
         <activity android:name=".OrderCompleteActivity" />
         <activity android:name=".Option2Acitivity"></activity>
         <activity android:name=".CoffeOptionActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".OrderListActivity" />
         <activity android:name=".PersonalEventActivity" />
