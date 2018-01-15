@@ -1,5 +1,6 @@
 package mkworld29.mobile.com.cafemoa;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
@@ -14,6 +15,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -30,11 +32,15 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.zoyi.channel.plugin.android.ChannelException;
 import com.zoyi.channel.plugin.android.ChannelPlugin;
+import com.zoyi.channel.plugin.android.CheckIn;
 import com.zoyi.channel.plugin.android.OnChannelPluginChangedListener;
+import com.zoyi.channel.plugin.android.OnCheckInListener;
 import com.zoyi.channel.plugin.android.activity.settings.SettingsActivity;
 import com.zoyi.channel.plugin.android.push.ChannelPushClient;
 
@@ -65,6 +71,9 @@ public class MainActivity extends AppCompatActivity
     private Button imb_prev, imb_next;
     private RecyclerView recyclerView;
     private ArrayList<MainCafeItem> data=new ArrayList<>();
+    private TextView drawer_name;
+    private View viewToLoad;
+    private NavigationView nav_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,17 +82,43 @@ public class MainActivity extends AppCompatActivity
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
+        nav_view=(NavigationView) findViewById(R.id.nav_view);
+
         retrofit = RetrofitInstance.getInstance(getApplicationContext());
+        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        viewToLoad =inflater.inflate(R.layout.nav_header_main,null);
+        drawer_name=(TextView) viewToLoad.findViewById(R.id.drawer_name);
+
         establishView();
         //startRecyclerView();
         startFlipper();
         startNavigation();
         setCafeList();
+        ChannelPlugin.initialize(this.getApplication(),"4af61d65-9361-4b37-9130-0de3a492caa8");
         //ChannelPlugin.addOnChannelPluginChangedListener(this);
         ChannelPushClient.handlePushMessage(this);
 
+        RetrofitConnection.get_profile service = retrofit.create(RetrofitConnection.get_profile.class);
+        final Call<RetrofitConnection.Profile> repos = service.repoContributors();
+        repos.enqueue(new Callback<RetrofitConnection.Profile>() {
+            @Override
+            public void onResponse(Call<RetrofitConnection.Profile> call, Response<RetrofitConnection.Profile> response) {
+                if (response.code() == 200){
+                    drawer_name.setText(response.body().name);
+                    nav_view.addHeaderView(viewToLoad);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "아이디와 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<RetrofitConnection.Profile> call, Throwable t) {
+                Log.d("TAG", t.getLocalizedMessage());
+            }
+        });
     }
+
 
 
 
@@ -284,7 +319,6 @@ public class MainActivity extends AppCompatActivity
             intent = new Intent(this, OrderListActivity.class);
         } else if (id == R.id.nav_talk){
             //checkInVeil();
-            ChannelPlugin.showLauncher();
             ChannelPlugin.show(this);
         }
 
