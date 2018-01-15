@@ -70,9 +70,10 @@
         <activity
             android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </activity>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter></activity>
         <activity android:name=".FirstSignUpActivity"></activity>
         <activity android:name=".SecondSignUpActivity" />
         <activity android:name=".ThirdSignUpActivity" />
@@ -84,11 +85,8 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".OrderCompleteActivity" />
         <activity android:name=".Option2Acitivity"></activity>
-        <activity android:name=".CoffeOptionActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".CoffeeOptionActivity">
+
         </activity>
         <activity android:name=".OrderListActivity" />
         <activity android:name=".PersonalEventActivity" />
