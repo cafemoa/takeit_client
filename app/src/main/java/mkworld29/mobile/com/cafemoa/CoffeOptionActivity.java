@@ -319,7 +319,8 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void setDefaultPrice(int index){
-        defaultPrice = Integer.parseInt(price.split(" ")[index].split(":")[1]);
+        if(price != null)
+            defaultPrice = Integer.parseInt(price.split(" ")[index].split(":")[1]);
     }
 
     public boolean is_checked(TextView view)
