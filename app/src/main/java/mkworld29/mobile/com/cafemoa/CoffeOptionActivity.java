@@ -68,38 +68,8 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
 
         setContentView(R.layout.activity_coffe_option2);
 
-        Intent intent = getIntent();
 
-        size = 0;
-        is_cold = false;
 
-        if(intent != null) {
-            src_iv_content = intent.getStringExtra("iv_content");
-            src_content = intent.getStringExtra("content");
-            src_cafe_name = intent.getStringExtra("cafe_name");
-            beverage_pk = intent.getIntExtra("beverage_pk", 0);
-            cafe_pk = intent.getIntExtra("cafe_pk", 0);
-            price = intent.getStringExtra("price");
-            cafe_min_time=intent.getIntExtra("cafe_min_time",0);
-        }
-
-        Retrofit retrofit= RetrofitInstance.getInstance(getApplicationContext());
-        RetrofitConnection.get_beverage_option service = retrofit.create(RetrofitConnection.get_beverage_option.class);
-
-        final Call<List<OptionItem>> repos = service.repoContributors(beverage_pk);
-        repos.enqueue(new Callback<List<OptionItem>>() {
-            @Override
-            public void onResponse(Call<List<OptionItem>> call, Response<List<OptionItem>> response) {
-                if(response.code()==200){
-                }else{
-                    Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_LONG).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<List<OptionItem>> call, Throwable t) {
-                Log.d("TAG",t.getLocalizedMessage());
-            }
-        });
 
         tv_price            =   (TextView) findViewById(R.id.tv_order_price);
         iv_back             =   (ImageView)findViewById(R.id.iv_back);
@@ -270,33 +240,6 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
         tv_price.setText(String.valueOf(Integer.parseInt(tv_amount.getText().toString()) * defaultPrice) + "원");
     }
 
-    private void saveBasketItem()
-    {
-        String content;
-        String cafeName;
-        String price;
-        CoffeeOption option = null;
-        int shots, amount;
-
-        shots = Integer.parseInt(tv_shots.getText().toString());
-
-        amount = Integer.parseInt(tv_amount.getText().toString());
-
-        content = src_content;
-        cafeName = src_cafe_name;
-        price = tv_price.getText().toString().substring(0,tv_price.length()-1);
-
-        ArrayList<Integer> selections=new ArrayList<>();
-        selections.add(1);
-        option = new CoffeeOption(shots, size, amount, beverage_pk,selections);
-
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        BasketItem item = new BasketItem(src_iv_content, cafeName, content, price, dateFormat.format(date), amount, Integer.parseInt(edt_predict_arrive.getText().toString()), option);
-        BasketPref.getInstance(this).addBasket(item);
-
-
-    }
 
     public void setFontStyle(TextView view, boolean is_bold)
     {

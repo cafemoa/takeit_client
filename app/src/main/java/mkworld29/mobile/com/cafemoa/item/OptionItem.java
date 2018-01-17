@@ -9,10 +9,18 @@ import java.util.ArrayList;
 public class OptionItem{
     private String content;
     private int pk;
-    ArrayList<Selection> selections;
+    private ArrayList<Selection> selections;
     public class Selection{
         private String content;
         private int pk;
         private int add_price;
+        public String getContent() { return content; }
+        public int getPk(){ return pk; }
+        public int getAdd_price() {return add_price; }
     }
+
+    public int getPk() {return pk;}
+    public String getContent(){ return content; }
+    public ArrayList<Selection> getSelections() {return selections; }
+
 }

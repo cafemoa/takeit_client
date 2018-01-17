@@ -30,7 +30,7 @@
         android:text="+000원  "/>
 
     <CheckBox
-        android:id="@+id/chk_whipping"
+        android:id="@+id/is_checked"
         android:layout_width="25sp"
         android:layout_height="25sp" />
 
