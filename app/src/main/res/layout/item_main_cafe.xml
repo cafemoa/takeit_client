@@ -64,13 +64,11 @@
             android:id="@+id/main_cafe_tag"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-
             android:layout_below="@id/main_cafe_location"
             android:layout_marginTop="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#ababab"
-
             android:textSize="14sp"
             />
     </RelativeLayout>
@@ -81,26 +79,27 @@
         android:id="@+id/iv_wall"
         android:layout_width="match_parent"
         android:layout_height="152dp"
-        android:background="#9c9c9c9c"
-        android:src="#9c9c9c9c"
+        android:background="#acacacac"
+        android:src="#acacacac"
         android:layout_margin="10dp"
         android:visibility="visible"/>
 
     <LinearLayout
         android:id="@+id/ly_wall"
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="gone"
-        android:layout_centerInParent="true">
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/owner"/>
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
             android:src="@drawable/ready"/>
 
     </LinearLayout>
