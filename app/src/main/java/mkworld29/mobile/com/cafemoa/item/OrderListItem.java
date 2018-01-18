@@ -18,8 +18,9 @@ public class OrderListItem{
     private boolean is_best;
     private int pk;
     private int type;
+    private boolean have_shot;
 
-    public OrderListItem(String c, String i, String price, boolean is_best, int type, int pk)
+    public OrderListItem(String c, String i, String price, boolean is_best, int type, int pk, boolean have_shot)
     {
         this.name = c;
         this.image = i;
@@ -27,6 +28,7 @@ public class OrderListItem{
         this.pk=pk;
         this.type=type;
         this.price=price;
+        this.have_shot=have_shot;
     }
 
     public String getContent() {
@@ -57,4 +59,6 @@ public class OrderListItem{
     public int getType(){return type;}
     public String getPrice(){ return price; }
 
+    public boolean getHave_shot(){ return have_shot; }
+    public void setHave_shot(boolean have_shot){ this.have_shot=have_shot; }
 }
