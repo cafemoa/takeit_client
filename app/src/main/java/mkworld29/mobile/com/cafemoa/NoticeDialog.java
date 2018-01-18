@@ -93,6 +93,7 @@ public class NoticeDialog extends Dialog {
         listView.setFooterDividersEnabled(false);
 
         getWindow().setBackgroundDrawableResource(R.color.translucent_white);
+
         //getWindow().setLayout(dpToPx(getContext(),380), dpToPx(getContext(),600));
 
     }

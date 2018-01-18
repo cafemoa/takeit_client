@@ -40,7 +40,6 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
     private TextView tv_size_s, tv_size_m,tv_size_l;
     private TextView tv_shots_minus, tv_shots, tv_shots_plus;
     private TextView tv_hot, tv_ice;
-    private TextView tv_whipping_true, tv_whipping_false;
     private TextView tv_price;
     private TextView tv_content;
     private TextView tv_amount_minus, tv_amount, tv_amount_plus;
@@ -69,39 +68,8 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
 
         setContentView(R.layout.activity_coffe_option2);
 
-        Intent intent = getIntent();
 
-        size = 0;
-        is_cold = false;
 
-        if(intent != null) {
-            src_iv_content = intent.getStringExtra("iv_content");
-            src_content = intent.getStringExtra("content");
-            src_cafe_name = intent.getStringExtra("cafe_name");
-            beverage_pk = intent.getIntExtra("beverage_pk", 0);
-            cafe_pk = intent.getIntExtra("cafe_pk", 0);
-            price = intent.getStringExtra("price");
-            cafe_min_time=intent.getIntExtra("cafe_min_time",0);
-        }
-
-        Retrofit retrofit= RetrofitInstance.getInstance(getApplicationContext());
-        RetrofitConnection.get_beverage_option service = retrofit.create(RetrofitConnection.get_beverage_option.class);
-
-        final Call<List<OptionItem>> repos = service.repoContributors(beverage_pk);
-        repos.enqueue(new Callback<List<OptionItem>>() {
-            @Override
-            public void onResponse(Call<List<OptionItem>> call, Response<List<OptionItem>> response) {
-                if(response.code()==200){
-                    Log.d("SIBAL", "SIBAL");
-                }else{
-                    Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_LONG).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<List<OptionItem>> call, Throwable t) {
-                Log.d("TAG",t.getLocalizedMessage());
-            }
-        });
 
         tv_price            =   (TextView) findViewById(R.id.tv_order_price);
         iv_back             =   (ImageView)findViewById(R.id.iv_back);
@@ -133,9 +101,6 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
         tv_hot              =   (TextView)findViewById(R.id.tv_order_hot);
         tv_ice              =   (TextView)findViewById(R.id.tv_order_ice);
 
-        tv_whipping_true    =   (TextView)findViewById(R.id.tv_order_whipping_true);
-        tv_whipping_false   =   (TextView)findViewById(R.id.tv_order_whipping_false);
-
 
         arr_amount = new TextView[2];
         arr_amount[0] = tv_amount_minus;
@@ -155,8 +120,6 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
         arr_cold[1] = tv_ice;
 
         arr_whipping = new TextView [2];
-        arr_whipping[0] = tv_whipping_true;
-        arr_whipping[1] = tv_whipping_false;
 
         edt_predict_arrive.setText(""+cafe_min_time);
 
@@ -191,13 +154,10 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
         tv_shots_plus.setOnClickListener(this);
         tv_ice.setOnClickListener(this);
         tv_hot.setOnClickListener(this);
-        tv_whipping_true.setOnClickListener(this);
-        tv_whipping_false.setOnClickListener(this);
         iv_back.setOnClickListener(this);
 
         onClick(tv_size_s);
         onClick(tv_ice);
-        onClick(tv_whipping_false);
     }
 
     @Override
@@ -266,8 +226,10 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
         else if(view.getId() == btn_order.getId())
         {
             saveBasketItem();
+
             Intent intent = new Intent(this, BaskitActivity.class);
             intent.putExtra("cafe_pk",cafe_pk);
+
             startActivity(intent);
             finish();
         }
@@ -278,32 +240,6 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
         tv_price.setText(String.valueOf(Integer.parseInt(tv_amount.getText().toString()) * defaultPrice) + "원");
     }
 
-    private void saveBasketItem()
-    {
-        String content;
-        String cafeName;
-        String price;
-        CoffeeOption option = null;
-        int shots, amount;
-
-        shots = Integer.parseInt(tv_shots.getText().toString());
-
-        amount = Integer.parseInt(tv_amount.getText().toString());
-
-        content = src_content;
-        cafeName = src_cafe_name;
-        price = tv_price.getText().toString();
-
-        ArrayList<Integer> selections=new ArrayList<>();
-        option = new CoffeeOption(shots, size, amount, beverage_pk,selections);
-
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        BasketItem item = new BasketItem(src_iv_content, cafeName, content, price, dateFormat.format(date), amount, Integer.parseInt(edt_predict_arrive.getText().toString()), option);
-        BasketPref.getInstance(this).addBasket(item);
-
-
-    }
 
     public void setFontStyle(TextView view, boolean is_bold)
     {

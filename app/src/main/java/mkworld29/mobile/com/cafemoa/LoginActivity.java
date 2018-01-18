@@ -112,22 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(Call<RetrofitConnection.Token> call, Response<RetrofitConnection.Token> response) {
                         if (response.code() == 200){
                             sp.put("Authorization", response.body().token);
-
-                            CheckIn checkIn = CheckIn.create();
-
-                            ChannelPlugin.checkIn(checkIn, new OnCheckInListener() {
-                                @Override
-                                public void onSuccessed() {
-                                    send_fcmtoken();
-//                                    Intent i=new Intent(LoginActivity.this, MainActivity.class);
-//                                    startActivity(i);
-//                                    finish();
-                                }
-                                @Override
-                                public void onFailed(ChannelException exception) {
-                                    Toast.makeText(LoginActivity.this,"Check In Failed", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                            send_fcmtoken();
                         }
                         else{
                             Toast.makeText(getApplicationContext(), "아이디와 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();

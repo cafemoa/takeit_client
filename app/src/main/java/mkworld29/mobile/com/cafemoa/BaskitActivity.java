@@ -179,6 +179,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
             RetrofitConnection.Order_Info info=new RetrofitConnection.Order_Info(0,time,options);
             Gson gson = new Gson();
             String option_json = gson.toJson(info);
+            Log.d("SIBAL", option_json);
 
             RetrofitConnection.ready_payment service = retrofit.create(RetrofitConnection.ready_payment.class);
             RequestBody body = RequestBody.create(MediaType.parse("application/json"), option_json);

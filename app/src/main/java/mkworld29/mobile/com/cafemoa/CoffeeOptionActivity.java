@@ -1,7 +1,9 @@
 package mkworld29.mobile.com.cafemoa;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -11,21 +13,34 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import junit.framework.Test;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import mkworld29.mobile.com.cafemoa.adapter.CoffeeOptionAdapter;
 import mkworld29.mobile.com.cafemoa.adapter.CoffeeOptionListAdapter;
 import mkworld29.mobile.com.cafemoa.entity.CoffeeOption;
+import mkworld29.mobile.com.cafemoa.entity.MenuOption;
+import mkworld29.mobile.com.cafemoa.entity.MenuOptionList;
 import mkworld29.mobile.com.cafemoa.item.BasketItem;
+import mkworld29.mobile.com.cafemoa.item.OptionItem;
 import mkworld29.mobile.com.cafemoa.prefs.BasketPref;
+import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
+import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class CoffeeOptionActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private ListView lv_add_menu;
-    private ListView lv_add_option;
+    private ListView lv_add_option_list;
 
     private EditText edt_predict_arrive;
 
@@ -49,9 +64,14 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
     private int shot;
     boolean is_hot  = true;
     private int size = 0;
+    private boolean is_cold;
+    private String src_iv_content, src_content, src_cafe_name;
+    private int beverage_pk;
+    private int cafe_pk;
+    private String price;
+    private int cafe_min_time;
 
-    private CoffeeOptionListAdapter add_menu_adapter;
-    private CoffeeOptionListAdapter add_option_adapter;
+    private CoffeeOptionListAdapter add_option_list_adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,23 +80,55 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
 
         amount = shot = 1;
 
-        lv_add_menu = (ListView) findViewById(R.id.lv_add_menu);
-        lv_add_option = (ListView) findViewById(R.id.lv_add_option);
-
+        lv_add_option_list = (ListView) findViewById(R.id.add_option_list);
         edt_predict_arrive = (EditText) findViewById(R.id.edt_predict_arrive);
 
-        add_menu_adapter = new CoffeeOptionListAdapter();
-        add_option_adapter = new CoffeeOptionListAdapter();
+        Intent intent = getIntent();
 
-        lv_add_menu.setAdapter(add_menu_adapter);
-        lv_add_option.setAdapter(add_option_adapter);
+        size = 0;
+        is_cold = false;
 
-        add_menu_adapter.addItem("휘핑크림",500);
-        add_menu_adapter.addItem("악수",300);
-        add_option_adapter.addItem("딸기",0);
-        add_option_adapter.addItem("사과",0);
-        add_option_adapter.addItem("오렌지",0);
-        add_option_adapter.addItem("수박",0);
+        if(intent != null) {
+            src_iv_content = intent.getStringExtra("iv_content");
+            src_content = intent.getStringExtra("content");
+            src_cafe_name = intent.getStringExtra("cafe_name");
+            beverage_pk = intent.getIntExtra("beverage_pk", 0);
+            cafe_pk = intent.getIntExtra("cafe_pk", 0);
+            price = intent.getStringExtra("price");
+            cafe_min_time=intent.getIntExtra("cafe_min_time",0);
+        }
+
+        Retrofit retrofit = RetrofitInstance.getInstance(getApplicationContext());
+        RetrofitConnection.get_beverage_option service = retrofit.create(RetrofitConnection.get_beverage_option.class);
+
+        final Call<List<OptionItem>> repos = service.repoContributors(beverage_pk);
+        repos.enqueue(new Callback<List<OptionItem>>() {
+            @Override
+            public void onResponse(Call<List<OptionItem>> call, Response<List<OptionItem>> response) {
+                if(response.code()==200){
+                    add_option_list_adapter = new CoffeeOptionListAdapter();
+                    for(int i=0; i<response.body().size(); i++){
+                        OptionItem item=response.body().get(i);
+                        String content = item.getContent();
+                        List<OptionItem.Selection> selections=item.getSelections();
+                        CoffeeOptionAdapter tmp = new CoffeeOptionAdapter();
+                        for(int j=0; j<selections.size(); j++){
+                            OptionItem.Selection selection=selections.get(j);
+                            tmp.addItem(selection.getContent(),selection.getAdd_price(), selection.getPk());
+                        }
+                        add_option_list_adapter.addItem(content,tmp);
+                    }
+                    lv_add_option_list.setAdapter(add_option_list_adapter);
+
+                }else{
+                    Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<List<OptionItem>> call, Throwable t) {
+                Log.d("TAG",t.getLocalizedMessage());
+            }
+        });
 
         ly_back         = (LinearLayout)    findViewById(R.id.ly_back);
         iv_amount_minus = (ImageView)       findViewById(R.id.iv_amount_minus);
@@ -92,6 +144,8 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
         btn_large       = (Button)          findViewById(R.id.btn_large);
         btn_take        = (Button)          findViewById(R.id.btn_take);
         btn_order       = (Button)          findViewById(R.id.btn_order);
+        tv_price        = (TextView)        findViewById(R.id.tv_price);
+        tv_price.setText(price+"원");
 
         ly_back.setOnClickListener(this);
         iv_amount_plus.setOnClickListener(this);
@@ -108,11 +162,7 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
 
         tv_shot.setText(String.valueOf(shot));
 
-        setListViewHeightBasedOnChildren(lv_add_menu);
-        setListViewHeightBasedOnChildren(lv_add_option);
-
-        lv_add_menu.setDivider(null);
-        lv_add_option.setDivider(null);
+        setListViewHeightBasedOnChildren(lv_add_option_list);
 
         edt_predict_arrive.setFocusable(false);
 
@@ -140,7 +190,6 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
 
         params.height = totalHeight;
         listView.setLayoutParams(params);
-
         listView.requestLayout();
     }
 
@@ -233,6 +282,39 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
             view.setBackground( getResources().getDrawable(R.drawable.gray_round_button));
         }
     }
+
+    private void saveBasketItem()
+    {
+        String content;
+        String cafeName;
+        String price;
+        CoffeeOption option = null;
+        int shots, amount;
+
+        shots = Integer.parseInt(tv_shot.getText().toString());
+        amount = Integer.parseInt(tv_amount.getText().toString());
+
+        content = src_content;
+        cafeName = src_cafe_name;
+        price = tv_price.getText().toString().substring(0,tv_price.length()-1);
+
+        ArrayList<Integer> selections=new ArrayList<>();
+        ArrayList<MenuOptionList> optionList=add_option_list_adapter.getOptionList();
+        for(int i=0; i<optionList.size(); i++){
+            ArrayList<MenuOption> optionList1=optionList.get(i).getOptions().getOptionList();
+            for(int j=0; j<optionList1.size(); j++){
+                selections.add(optionList1.get(j).getPk());
+            }
+        }
+        selections.add(1);
+        option = new CoffeeOption(shots, size, amount, beverage_pk,selections);
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        BasketItem item = new BasketItem(src_iv_content, cafeName, content, price, dateFormat.format(date), amount, Integer.parseInt(edt_predict_arrive.getText().toString()), option);
+        BasketPref.getInstance(this).addBasket(item);
+    }
+
 
 //    private void saveBasketItem()
 //    {
