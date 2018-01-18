@@ -57,12 +57,14 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
 
     private TextView tv_price;
 
-    private Button btn_hot, btn_ice, btn_small, btn_medium,
+    private Button btn_small, btn_medium,
                                     btn_large, btn_take, btn_order;
+
+    private TextView tv_add_shot;
+    private View add_shot_divider;
 
     private int amount;
     private int shot;
-    boolean is_hot  = true;
     private int size = 0;
     private boolean is_cold;
     private String src_iv_content, src_content, src_cafe_name;
@@ -70,7 +72,9 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
     private int cafe_pk;
     private String price;
     private int cafe_min_time;
-
+    private boolean have_shot;
+    private int add_shot_price;
+    private int amount_price;
     private CoffeeOptionListAdapter add_option_list_adapter;
 
     @Override
@@ -78,7 +82,8 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coffee_option);
 
-        amount = shot = 1;
+        amount=shot=1;
+        amount_price=0;
 
         lv_add_option_list = (ListView) findViewById(R.id.add_option_list);
         edt_predict_arrive = (EditText) findViewById(R.id.edt_predict_arrive);
@@ -96,7 +101,55 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
             cafe_pk = intent.getIntExtra("cafe_pk", 0);
             price = intent.getStringExtra("price");
             cafe_min_time=intent.getIntExtra("cafe_min_time",0);
+            have_shot=intent.getBooleanExtra("have_shot", true);
+            add_shot_price=intent.getIntExtra("add_shot_price", 0);
         }
+
+        ly_back         = (LinearLayout)    findViewById(R.id.ly_back);
+        iv_amount_minus = (ImageView)       findViewById(R.id.iv_amount_minus);
+        iv_amount_plus  = (ImageView)       findViewById(R.id.iv_amount_plus);
+        iv_shot_minus   = (ImageView)       findViewById(R.id.iv_shot_minus);
+        iv_shot_plus    = (ImageView)       findViewById(R.id.iv_shot_plus);
+        tv_amount       = (TextView)        findViewById(R.id.tv_amount);
+        tv_shot         = (TextView)        findViewById(R.id.tv_shot);
+        btn_medium      = (Button)          findViewById(R.id.btn_medium);
+        btn_small       = (Button)          findViewById(R.id.btn_small);
+        btn_large       = (Button)          findViewById(R.id.btn_large);
+        btn_take        = (Button)          findViewById(R.id.btn_take);
+        btn_order       = (Button)          findViewById(R.id.btn_order);
+        tv_price        = (TextView)        findViewById(R.id.tv_price);
+        tv_add_shot     = (TextView)        findViewById(R.id.tv_add_shot);
+        add_shot_divider= (View)            findViewById(R.id.add_shot_divider);
+
+        if(!have_shot){
+            iv_shot_minus.setVisibility(View.GONE);
+            iv_shot_plus.setVisibility(View.GONE);
+            tv_shot.setVisibility(View.GONE);
+            tv_add_shot.setVisibility(View.GONE);
+            add_shot_divider.setVisibility(View.GONE);
+        }
+
+        if(price.split(" ").length>=1) {
+            btn_small.setOnClickListener(this);
+            btn_small.setText(price.split(" ")[0].split(":")[0]);
+        }
+        else
+            btn_small.setVisibility(View.GONE);
+
+        if(price.split(" ").length>=2) {
+            btn_medium.setOnClickListener(this);
+            btn_medium.setText(price.split(" ")[1].split(":")[0]);
+        }
+        else
+            btn_medium.setVisibility(View.GONE);
+
+        if(price.split(" ").length>=3) {
+            btn_large.setOnClickListener(this);
+            btn_large.setText(price.split(" ")[2].split(":")[0]);
+        }
+        else
+            btn_large.setVisibility(View.GONE);
+
 
         Retrofit retrofit = RetrofitInstance.getInstance(getApplicationContext());
         RetrofitConnection.get_beverage_option service = retrofit.create(RetrofitConnection.get_beverage_option.class);
@@ -112,6 +165,7 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
                         String content = item.getContent();
                         List<OptionItem.Selection> selections=item.getSelections();
                         CoffeeOptionAdapter tmp = new CoffeeOptionAdapter();
+
                         for(int j=0; j<selections.size(); j++){
                             OptionItem.Selection selection=selections.get(j);
                             tmp.addItem(selection.getContent(),selection.getAdd_price(), selection.getPk());
@@ -119,6 +173,7 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
                         add_option_list_adapter.addItem(content,tmp);
                     }
                     lv_add_option_list.setAdapter(add_option_list_adapter);
+                    setListViewHeightBasedOnChildren(lv_add_option_list);
 
                 }else{
                     Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_LONG).show();
@@ -130,30 +185,15 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
-        ly_back         = (LinearLayout)    findViewById(R.id.ly_back);
-        iv_amount_minus = (ImageView)       findViewById(R.id.iv_amount_minus);
-        iv_amount_plus  = (ImageView)       findViewById(R.id.iv_amount_plus);
-        iv_shot_minus   = (ImageView)       findViewById(R.id.iv_shot_minus);
-        iv_shot_plus    = (ImageView)       findViewById(R.id.iv_shot_plus);
-        tv_amount       = (TextView)        findViewById(R.id.tv_amount);
-        tv_shot         = (TextView)        findViewById(R.id.tv_shot);
-        btn_hot         = (Button)          findViewById(R.id.btn_hot);
-        btn_ice         = (Button)          findViewById(R.id.btn_ice);
-        btn_medium      = (Button)          findViewById(R.id.btn_medium);
-        btn_small       = (Button)          findViewById(R.id.btn_small);
-        btn_large       = (Button)          findViewById(R.id.btn_large);
-        btn_take        = (Button)          findViewById(R.id.btn_take);
-        btn_order       = (Button)          findViewById(R.id.btn_order);
-        tv_price        = (TextView)        findViewById(R.id.tv_price);
         tv_price.setText(price+"원");
+        edt_predict_arrive.setText(""+cafe_min_time);
 
         ly_back.setOnClickListener(this);
         iv_amount_plus.setOnClickListener(this);
         iv_amount_minus.setOnClickListener(this);
         iv_shot_minus.setOnClickListener(this);
         iv_shot_plus.setOnClickListener(this);
-        btn_hot.setOnClickListener(this);
-        btn_ice.setOnClickListener(this);
+
         btn_medium.setOnClickListener(this);
         btn_small.setOnClickListener(this);
         btn_large.setOnClickListener(this);
@@ -162,12 +202,10 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
 
         tv_shot.setText(String.valueOf(shot));
 
-        setListViewHeightBasedOnChildren(lv_add_option_list);
+        //setListViewHeightBasedOnChildren(lv_add_option_list);
 
         edt_predict_arrive.setFocusable(false);
-
-        onClick(btn_hot);
-        onClick(btn_small);
+        setAmount_price();
     }
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
@@ -195,7 +233,7 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View v) {
-
+        saveBasketItem();
         if(v.getId() == ly_back.getId())
         {
             finish();
@@ -204,33 +242,25 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
         {
             amount = (amount<=1)?amount:amount-1;
             tv_amount.setText(String.valueOf(amount));
+            setAmount_price();
         }
         else if(v.getId() == iv_amount_plus.getId())
         {
             amount = (amount>=5)?amount:amount+1;
             tv_amount.setText(String.valueOf(amount));
+            setAmount_price();
         }
         else if(v.getId() == iv_shot_minus.getId())
         {
             shot = (shot<=1)?shot:shot-1;
             tv_shot.setText(String.valueOf(shot));
+            setAmount_price();
         }
         else if(v.getId() == iv_shot_plus.getId())
         {
             shot = (shot>=5)?shot:shot+1;
             tv_shot.setText(String.valueOf(shot));
-        }
-        else if(v.getId() == btn_hot.getId())
-        {
-            if(is_hot == false) is_hot = true;
-            setDrawableRed(btn_hot);
-            setDrawableDefault(btn_ice);
-        }
-        else if(v.getId() == btn_ice.getId())
-        {
-            if(is_hot == true) is_hot = false;
-            setDrawableRed(btn_ice);
-            setDrawableDefault(btn_hot);
+            setAmount_price();
         }
         else if(v.getId() == btn_small.getId())
         {
@@ -238,6 +268,7 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
             setDrawableRed(btn_small);
             setDrawableDefault(btn_medium);
             setDrawableDefault(btn_large);
+            setAmount_price();
         }
         else if(v.getId() == btn_medium.getId())
         {
@@ -245,6 +276,7 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
             setDrawableRed(btn_medium);
             setDrawableDefault(btn_small);
             setDrawableDefault(btn_large);
+            setAmount_price();
         }
         else if(v.getId() == btn_large.getId())
         {
@@ -252,14 +284,20 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
             setDrawableRed(btn_large);
             setDrawableDefault(btn_small);
             setDrawableDefault(btn_medium);
+            setAmount_price();
         }
         else if(v.getId() == btn_take.getId())
         {
-
+            Toast.makeText(this, "장바구니에 상품을 성공적으로 담았습니다.",Toast.LENGTH_SHORT).show();
+            finish();
         }
         else if(v.getId() == btn_order.getId())
         {
+            Intent intent = new Intent(this, BaskitActivity.class);
+            intent.putExtra("cafe_pk",cafe_pk);
 
+            startActivity(intent);
+            finish();
         }
     }
 
@@ -297,16 +335,16 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
         content = src_content;
         cafeName = src_cafe_name;
         price = tv_price.getText().toString().substring(0,tv_price.length()-1);
-
-        ArrayList<Integer> selections=new ArrayList<>();
-        ArrayList<MenuOptionList> optionList=add_option_list_adapter.getOptionList();
-        for(int i=0; i<optionList.size(); i++){
-            ArrayList<MenuOption> optionList1=optionList.get(i).getOptions().getOptionList();
-            for(int j=0; j<optionList1.size(); j++){
-                selections.add(optionList1.get(j).getPk());
+        ArrayList<Integer> selections = new ArrayList<>();
+        try {
+            ArrayList<MenuOptionList> optionList = add_option_list_adapter.getOptionList();
+            for (int i = 0; i < optionList.size(); i++) {
+                ArrayList<MenuOption> optionList1 = optionList.get(i).getOptions().getOptionList();
+                for (int j = 0; j < optionList1.size(); j++) {
+                    selections.add(optionList1.get(j).getPk());
+                }
             }
-        }
-        selections.add(1);
+        }catch (NullPointerException e){}
         option = new CoffeeOption(shots, size, amount, beverage_pk,selections);
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -341,4 +379,22 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
 //
 //
 //    }
+    public void setAmount_price(){
+        amount_price=0;
+        try {
+            ArrayList<MenuOptionList> optionList = add_option_list_adapter.getOptionList();
+            for (int i = 0; i < optionList.size(); i++) {
+                ArrayList<MenuOption> optionList1 = optionList.get(i).getOptions().getOptionList();
+                for (int j = 0; j < optionList1.size(); j++) {
+                    amount_price+=optionList1.get(j).isIs_check()?
+                            optionList1.get(j).getPrice() : 0;
+                }
+            }
+        }catch (NullPointerException e){}
+        amount_price+=Integer.parseInt(price.split(" ")[size].split(":")[1]);
+        amount_price+=add_shot_price*shot;
+        amount_price*=amount;
+        tv_price.setText(amount_price+"원");
+    }
+    public int getAmount_price(){ return amount_price; }
 }

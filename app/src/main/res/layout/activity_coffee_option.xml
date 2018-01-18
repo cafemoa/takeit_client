@@ -99,25 +99,6 @@
             android:orientation="horizontal"
             android:layout_marginTop="15dp">
 
-            <Button
-                android:id="@+id/btn_hot"
-                android:layout_width="130dp"
-                android:layout_height="35dp"
-                android:textColor="#fcfcfcfc"
-                android:background="@drawable/gray_round_button"
-                android:text="Hot"
-                android:layout_marginRight="10dp"
-                android:textSize="13sp"/>
-
-            <Button
-                android:id="@+id/btn_ice"
-                android:layout_width="130dp"
-                android:layout_height="35dp"
-                android:textSize="13sp"
-                android:background="@drawable/red_round_button"
-                android:layout_marginLeft="10dp"
-                android:textColor="#fcfcfc"
-                android:text="Ice"/>
 
         </LinearLayout>
 
@@ -196,6 +177,7 @@
 
 
     <View
+        android:id="@+id/add_shot_divider"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="15dp"
         android:layout_width="match_parent"
@@ -215,6 +197,7 @@
             android:weightSum="2">
 
             <TextView
+                android:id="@+id/tv_add_shot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -256,12 +239,13 @@
     </LinearLayout>
     </LinearLayout>
 
-        <View
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#d5d4d4"/>
+    <View
+
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d5d4d4"/>
 
 
     <ListView
@@ -323,6 +307,13 @@
 
         </LinearLayout>
     </LinearLayout>
+    <View
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d5d4d4"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -166,6 +166,8 @@ public class OrderPagerAdapter extends PagerAdapter{
                 intent.putExtra("beverage_pk", ((OrderListItem) mAdapter.getItem(i)).getPk());
                 intent.putExtra("cafe_min_time",cafe_min_time);
                 intent.putExtra("price", item.getPrice());
+                intent.putExtra("have_shot", item.getHave_shot());
+                intent.putExtra("add_shot_price", item.getAdd_shot_price());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 v.getContext().startActivity(intent);
             }
