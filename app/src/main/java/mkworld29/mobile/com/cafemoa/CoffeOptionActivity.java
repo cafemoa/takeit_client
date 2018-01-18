@@ -219,13 +219,13 @@ public class CoffeOptionActivity extends AppCompatActivity implements View.OnCli
         }
         else if(view.getId() == btn_get.getId())
         {
-            saveBasketItem();
+            //saveBasketItem();
             Toast.makeText(this, "장바구니에 상품을 성공적으로 담았습니다.",Toast.LENGTH_SHORT).show();
             finish();
         }
         else if(view.getId() == btn_order.getId())
         {
-            saveBasketItem();
+            //saveBasketItem();
 
             Intent intent = new Intent(this, BaskitActivity.class);
             intent.putExtra("cafe_pk",cafe_pk);

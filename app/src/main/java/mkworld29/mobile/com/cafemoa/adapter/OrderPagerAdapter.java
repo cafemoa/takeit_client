@@ -13,6 +13,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import mkworld29.mobile.com.cafemoa.CoffeOptionActivity;
+import mkworld29.mobile.com.cafemoa.CoffeeOptionActivity;
 import mkworld29.mobile.com.cafemoa.R;
 import mkworld29.mobile.com.cafemoa.item.OrderListItem;
 
@@ -155,7 +156,7 @@ public class OrderPagerAdapter extends PagerAdapter{
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 OrderListItem item= (OrderListItem) mAdapter.getItem(i);
-                Intent intent = new Intent(v.getContext(), CoffeOptionActivity.class);
+                Intent intent = new Intent(v.getContext(), CoffeeOptionActivity.class);
                 String iv_content = item.getImg();
                 String content = item.getContent();
                 intent.putExtra("iv_content", iv_content);

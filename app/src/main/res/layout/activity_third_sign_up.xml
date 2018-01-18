@@ -139,7 +139,7 @@
                 android:textSize="23sp"
                 android:inputType="number"
                 android:maxLength="1"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="5dp"
                 android:background="#e5e5e5"/>
             <EditText
                 android:gravity="center"

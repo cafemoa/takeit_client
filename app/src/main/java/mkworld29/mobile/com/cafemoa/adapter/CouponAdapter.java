@@ -72,7 +72,6 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
         TextView tv_cafe_address;
         TextView tv_cafe_name;
         TextView tv_available_coupon;
-        ImageView iv_cafe_logo;
         GridView gridView;
         int sum;
         int pk;
@@ -85,7 +84,6 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
             tv_cafe_address = (TextView) v.findViewById(R.id.tv_cafe_address);
             tv_cafe_name = (TextView) v.findViewById(R.id.tv_cafe_name);
             tv_available_coupon = (TextView) v.findViewById(R.id.tv_available_coupon);
-            //iv_cafe_logo = (ImageView) v.findViewById(R.id.iv_cafe_logo);
 
             tv_cafe_address.setTextColor(Color.GRAY);
             tv_cafe_name.setTextColor(Color.GRAY);
