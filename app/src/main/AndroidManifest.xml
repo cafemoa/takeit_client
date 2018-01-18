@@ -74,6 +74,12 @@
         <activity
             android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
             </activity>
         <activity android:name=".FirstSignUpActivity"></activity>
         <activity android:name=".SecondSignUpActivity" />

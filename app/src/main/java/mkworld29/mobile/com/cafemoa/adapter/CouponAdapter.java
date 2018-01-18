@@ -87,8 +87,8 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
             tv_available_coupon = (TextView) v.findViewById(R.id.tv_available_coupon);
             //iv_cafe_logo = (ImageView) v.findViewById(R.id.iv_cafe_logo);
 
-            tv_cafe_address.setTextColor(Color.WHITE);
-            tv_cafe_name.setTextColor(Color.WHITE);
+            tv_cafe_address.setTextColor(Color.GRAY);
+            tv_cafe_name.setTextColor(Color.GRAY);
 
             gridView = (GridView) v.findViewById(R.id.gv);
             gridView.setNumColumns(5);
