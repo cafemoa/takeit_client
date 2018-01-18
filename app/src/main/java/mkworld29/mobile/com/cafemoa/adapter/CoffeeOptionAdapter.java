@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import mkworld29.mobile.com.cafemoa.CoffeeOptionActivity;
 import mkworld29.mobile.com.cafemoa.R;
 import mkworld29.mobile.com.cafemoa.entity.CoffeeOption;
 import mkworld29.mobile.com.cafemoa.entity.MenuOption;
@@ -65,6 +66,7 @@ public class CoffeeOptionAdapter extends BaseAdapter{
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 opt.setIs_check(isChecked);
+                ((CoffeeOptionActivity)context).setAmount_price();
             }
         });
         return convertView;

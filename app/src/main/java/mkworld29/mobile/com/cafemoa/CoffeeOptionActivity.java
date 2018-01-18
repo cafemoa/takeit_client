@@ -65,7 +65,6 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
 
     private int amount;
     private int shot;
-    boolean is_hot  = true;
     private int size = 0;
     private boolean is_cold;
     private String src_iv_content, src_content, src_cafe_name;
@@ -74,6 +73,8 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
     private String price;
     private int cafe_min_time;
     private boolean have_shot;
+    private int add_shot_price;
+    private int amount_price;
     private CoffeeOptionListAdapter add_option_list_adapter;
 
     @Override
@@ -81,7 +82,8 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coffee_option);
 
-        amount = shot = 1;
+        amount=shot=1;
+        amount_price=0;
 
         lv_add_option_list = (ListView) findViewById(R.id.add_option_list);
         edt_predict_arrive = (EditText) findViewById(R.id.edt_predict_arrive);
@@ -100,6 +102,7 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
             price = intent.getStringExtra("price");
             cafe_min_time=intent.getIntExtra("cafe_min_time",0);
             have_shot=intent.getBooleanExtra("have_shot", true);
+            add_shot_price=intent.getIntExtra("add_shot_price", 0);
         }
 
         ly_back         = (LinearLayout)    findViewById(R.id.ly_back);
@@ -202,7 +205,7 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
         //setListViewHeightBasedOnChildren(lv_add_option_list);
 
         edt_predict_arrive.setFocusable(false);
-
+        setAmount_price();
     }
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
@@ -239,21 +242,25 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
         {
             amount = (amount<=1)?amount:amount-1;
             tv_amount.setText(String.valueOf(amount));
+            setAmount_price();
         }
         else if(v.getId() == iv_amount_plus.getId())
         {
             amount = (amount>=5)?amount:amount+1;
             tv_amount.setText(String.valueOf(amount));
+            setAmount_price();
         }
         else if(v.getId() == iv_shot_minus.getId())
         {
             shot = (shot<=1)?shot:shot-1;
             tv_shot.setText(String.valueOf(shot));
+            setAmount_price();
         }
         else if(v.getId() == iv_shot_plus.getId())
         {
             shot = (shot>=5)?shot:shot+1;
             tv_shot.setText(String.valueOf(shot));
+            setAmount_price();
         }
         else if(v.getId() == btn_small.getId())
         {
@@ -261,6 +268,7 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
             setDrawableRed(btn_small);
             setDrawableDefault(btn_medium);
             setDrawableDefault(btn_large);
+            setAmount_price();
         }
         else if(v.getId() == btn_medium.getId())
         {
@@ -268,6 +276,7 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
             setDrawableRed(btn_medium);
             setDrawableDefault(btn_small);
             setDrawableDefault(btn_large);
+            setAmount_price();
         }
         else if(v.getId() == btn_large.getId())
         {
@@ -275,14 +284,20 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
             setDrawableRed(btn_large);
             setDrawableDefault(btn_small);
             setDrawableDefault(btn_medium);
+            setAmount_price();
         }
         else if(v.getId() == btn_take.getId())
         {
-
+            Toast.makeText(this, "장바구니에 상품을 성공적으로 담았습니다.",Toast.LENGTH_SHORT).show();
+            finish();
         }
         else if(v.getId() == btn_order.getId())
         {
+            Intent intent = new Intent(this, BaskitActivity.class);
+            intent.putExtra("cafe_pk",cafe_pk);
 
+            startActivity(intent);
+            finish();
         }
     }
 
@@ -364,4 +379,22 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
 //
 //
 //    }
+    public void setAmount_price(){
+        amount_price=0;
+        try {
+            ArrayList<MenuOptionList> optionList = add_option_list_adapter.getOptionList();
+            for (int i = 0; i < optionList.size(); i++) {
+                ArrayList<MenuOption> optionList1 = optionList.get(i).getOptions().getOptionList();
+                for (int j = 0; j < optionList1.size(); j++) {
+                    amount_price+=optionList1.get(j).isIs_check()?
+                            optionList1.get(j).getPrice() : 0;
+                }
+            }
+        }catch (NullPointerException e){}
+        amount_price+=Integer.parseInt(price.split(" ")[size].split(":")[1]);
+        amount_price+=add_shot_price*shot;
+        amount_price*=amount;
+        tv_price.setText(amount_price+"원");
+    }
+    public int getAmount_price(){ return amount_price; }
 }
