@@ -75,6 +75,8 @@ public class FourthSignUpActivity extends AppCompatActivity implements View.OnCl
             edt_number_8.setText(phone_number.charAt(7));
         }
         now_input_num=1;
+
+        edt_number_1.setFocusable(true);
     }
 
     @Override

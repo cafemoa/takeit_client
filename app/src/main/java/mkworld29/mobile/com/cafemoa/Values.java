@@ -15,11 +15,12 @@ public class Values {
 
     public Values()
     {
-        colors = new int[4];
+        colors = new int[5];
         colors[0] = Color.argb(255,255,214,80);      //레드
-        colors[1] = Color.argb(255,205,205,205);
-        colors[2] = Color.argb(255,88, 208, 196);
-        colors[3] = Color.argb(255,188, 186, 225);
+        colors[1] = Color.argb(255,50, 175, 219);
+        colors[2] = Color.argb(255,138, 186, 43);
+        colors[3] = Color.argb(255,13, 72, 145);
+        colors[4] = Color.argb(255,206, 205, 205);
     }
 
     public static Values getInstance()
