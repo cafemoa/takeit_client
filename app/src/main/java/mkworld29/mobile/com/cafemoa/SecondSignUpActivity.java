@@ -40,6 +40,8 @@ public class SecondSignUpActivity extends AppCompatActivity implements View.OnCl
         if(!pref.getString("name").equals("")){
             name.setText(pref.getString("name"));
         }
+
+        name.setFocusable(true);
     }
 
     @Override

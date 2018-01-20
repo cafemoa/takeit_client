@@ -62,6 +62,8 @@ public class ThirdSignUpActivity extends AppCompatActivity implements View.OnCli
             edt_number_5.setText(birth_num.charAt(4));
             edt_number_6.setText(birth_num.charAt(5));
         }
+
+        edt_number_1.setFocusable(true);
     }
 
     @Override

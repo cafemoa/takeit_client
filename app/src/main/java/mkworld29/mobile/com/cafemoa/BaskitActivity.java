@@ -82,9 +82,9 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
         mHeightPixels = metrics.heightPixels;
 
         btn_order = (Button) findViewById(R.id.btn_order);
-        //btn_add_order = (Button) findViewById(R.id.btn_add_order);
+        btn_add_order = (Button) findViewById(R.id.btn_addorder);
         btn_order.setOnClickListener(this);
-        //btn_add_order.setOnClickListener(this);
+        btn_add_order.setOnClickListener(this);
 
         tv_total = (TextView) findViewById(R.id.tv_total);
 
@@ -211,6 +211,10 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
                 }
             });
 
+        }
+        else if(view.getId() == btn_add_order.getId())
+        {
+            finish();
         }
     }
 
