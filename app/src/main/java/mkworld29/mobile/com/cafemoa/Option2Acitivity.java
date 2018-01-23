@@ -158,6 +158,7 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
         else if(view.getId() == iv_cart.getId())
         {
             Intent intent = new Intent(this, BaskitActivity.class);
+            intent.putExtra("cafe_pk", cafe_pk);
             startActivity(intent);
         }
     }
