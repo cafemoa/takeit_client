@@ -59,7 +59,7 @@ public class SignupPasswordActivity extends AppCompatActivity implements View.On
         iv_next.setOnClickListener(this);
         iv_back.setOnClickListener(this);
 
-
+        password.setFocusable(true);
     }
 
     @Override

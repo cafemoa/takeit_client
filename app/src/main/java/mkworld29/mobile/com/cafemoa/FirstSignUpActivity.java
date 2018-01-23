@@ -49,6 +49,8 @@ public class FirstSignUpActivity extends AppCompatActivity implements View.OnCli
         if(!pref.getString("email").equals("")){
             email.setText(pref.getString("email"));
         }
+
+        email.setFocusable(true);
     }
 
     //back버튼 눌렀을 때 readyactivity로

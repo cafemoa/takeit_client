@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class CouponActivity extends AppCompatActivity implements View.OnClickLis
     private TextView tv_cafe_address;
     private TextView tv_available_coupon;
     private ImageView iv_home, iv_cart, iv_alarm;
+    private LinearLayout ly_all;
     private GridView gv;
     Retrofit retrofit;
 
@@ -47,6 +49,7 @@ public class CouponActivity extends AppCompatActivity implements View.OnClickLis
 
         iv_home = (ImageView) findViewById(R.id.iv_home);
         iv_alarm = (ImageView) findViewById(R.id.iv_alarm);
+        ly_all = (LinearLayout) findViewById(R.id.ly_all);
 
         tv_cafe_address = (TextView)findViewById(R.id.tv_cafe_address);
         tv_cafe_name = (TextView)findViewById(R.id.tv_cafe_name);
@@ -63,21 +66,26 @@ public class CouponActivity extends AppCompatActivity implements View.OnClickLis
         repos.enqueue(new Callback<List<RetrofitConnection.Coupon_info>>() {
             @Override
             public void onResponse(Call<List<RetrofitConnection.Coupon_info>> call, Response<List<RetrofitConnection.Coupon_info>> response) {
-                if(response.code()==200){
-                    List<RetrofitConnection.Coupon_info> info=response.body();
-                    int coupon_num=info.size();
+                if (response.code() == 200) {
+
+                    List<RetrofitConnection.Coupon_info> info = response.body();
+                    int coupon_num = info.size();
+                    if(coupon_num <= 0)
+                        ly_all.setVisibility(View.GONE);
+                    else
+                        ly_all.setVisibility(View.VISIBLE);
                     List<Coupon> items = new ArrayList<>();
                     Coupon[] item = new Coupon[coupon_num];
-                    for(int i=0; i<coupon_num; i++){
-                        item[i] = new Coupon(info.get(i).cafe.name,info.get(i).cafe.locationString,R.mipmap.ic_launcher_round, info.get(i).coupon_progress,info.get(i).pk);
+                    for (int i = 0; i < coupon_num; i++) {
+                        item[i] = new Coupon(info.get(i).cafe.name, info.get(i).cafe.locationString, R.mipmap.ic_launcher_round, info.get(i).coupon_progress, info.get(i).pk);
                     }
 
-                    if(item.length <= 0) {
+                    if (item.length <= 0) {
                         gv.setVisibility(View.GONE);
                         return;
                     }
 
-                    RecyclerView rv = (RecyclerView)findViewById(R.id.coupon_rv);
+                    RecyclerView rv = (RecyclerView) findViewById(R.id.coupon_rv);
                     RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
                     rv.setLayoutManager(mLayoutManager);
                     rv.addItemDecoration(new SpacesItemDecoration(25));
@@ -85,28 +93,27 @@ public class CouponActivity extends AppCompatActivity implements View.OnClickLis
 
                     tv_cafe_address.setText(item[0].getCafe_address());
                     tv_cafe_name.setText(item[0].getCafe_name());
-                    tv_available_coupon.setText(String.valueOf(item[0].getSum()/10));
+                    tv_available_coupon.setText(String.valueOf(item[0].getSum() / 10));
 
                     StampAdapter stampAdapter = new StampAdapter(
                             getApplicationContext(),
-                            R.layout.item_stamp_on, item[0].getSum()%10,true);
+                            R.layout.item_stamp_on, item[0].getSum() % 10, true);
 
                     gv.setAdapter(stampAdapter);
 
-                    for(int i=1;i<coupon_num;i++)
+                    for (int i = 1; i < coupon_num; i++)
                         items.add(item[i]);
 
 
                     rv.setAdapter(new CouponAdapter(getApplicationContext(), items));
-                }else{
-                    Toast.makeText(getApplicationContext(), "Error : "+ response.code(), Toast.LENGTH_LONG).show();
+
                 }
             }
-
 
             @Override
             public void onFailure(Call<List<RetrofitConnection.Coupon_info>> call, Throwable t) {
                 Log.d("TAG",t.getLocalizedMessage());
+
             }
         });
 

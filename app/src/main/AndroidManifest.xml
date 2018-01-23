@@ -54,10 +54,6 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -89,6 +85,7 @@
         <activity android:name=".SixthSignUpActivity" />
         <activity
             android:name=".ReadyActivity"
+
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".OrderCompleteActivity" />
 

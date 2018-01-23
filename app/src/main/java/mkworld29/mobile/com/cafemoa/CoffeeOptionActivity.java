@@ -204,7 +204,7 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
 
         //setListViewHeightBasedOnChildren(lv_add_option_list);
 
-        edt_predict_arrive.setFocusable(false);
+        ly_back.setFocusable(true);
         setAmount_price();
     }
 

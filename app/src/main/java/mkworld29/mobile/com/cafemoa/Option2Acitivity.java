@@ -1,6 +1,8 @@
 package mkworld29.mobile.com.cafemoa;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -71,8 +73,8 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
         iv_cafe_image=(ImageView)findViewById(R.id.iv_order);
         Glide.with(getApplicationContext())
                 .load(cafe_image)
-                .placeholder(R.mipmap.ic_launcher)
-                .error(R.mipmap.ic_launcher)
+                .placeholder(new ColorDrawable(0xFCFCFCFC))
+                .error(new ColorDrawable(0xFCFCFCFC))
                 .into(iv_cafe_image);
 
         mPager = (ViewPager) findViewById(R.id.vp_order);

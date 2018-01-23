@@ -3,6 +3,7 @@ package mkworld29.mobile.com.cafemoa.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,7 @@ public class OrderListAdapter extends BaseAdapter{
     private ArrayList<OrderListItem> listViewItemList ;
 
     private TextView tv_content,tv_price;
-    private ImageView iv_best;
+    private ImageView iv_best, order_coupon;
 
     public OrderListAdapter()
     {
@@ -49,6 +50,9 @@ public class OrderListAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+        //여기서 쿠폰 개수를 받아와서 visibility 설정을 해줘야 함
+
         final Context context = parent.getContext();
 
         if(convertView == null) {
@@ -59,6 +63,7 @@ public class OrderListAdapter extends BaseAdapter{
         tv_content          =   (TextView)convertView.findViewById(R.id.tv_content);
         iv_best             =   (ImageView)convertView.findViewById(R.id.iv_best);
         tv_price            =   (TextView)convertView.findViewById(R.id.beverage_price);
+        order_coupon        =   (ImageView)convertView.findViewById(R.id.btn_order_coupon);
 
         tv_content.setText(listViewItemList.get(position).getContent());
         tv_price.setText(listViewItemList.get(position).getPrice());
@@ -67,6 +72,16 @@ public class OrderListAdapter extends BaseAdapter{
             iv_best.setVisibility(View.VISIBLE);
         else
             iv_best.setVisibility(View.GONE);
+
+
+
+        order_coupon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Todo related coupon
+
+            }
+        });
 
         return convertView;
     }
