@@ -83,7 +83,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
         mHeightPixels = metrics.heightPixels;
 
         btn_order = (Button) findViewById(R.id.btn_order);
-        btn_add_order = (Button) findViewById(R.id.btn_addorder);
+        btn_add_order = (Button) findViewById(R.id.add_order);
         btn_order.setOnClickListener(this);
         btn_add_order.setOnClickListener(this);
 
@@ -379,7 +379,6 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
                     try {
                         String source = response.body().string();
                         Serializer serializer = new Persister();
-                        Log.d("SIBAL", source);
                         Pay_request pay_request=serializer.read(Pay_request.class, source);
                         if(pay_request.resbody.response.data.error==5000){
                             Toast.makeText(getApplicationContext(), "이미 존재하는 주문번호입니다 : "+pay_request.resbody.response.data.orderno, Toast.LENGTH_SHORT).show();
@@ -408,7 +407,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
     public String create_payment_xml(String orderno,String payusernm, String usernm, String payhpno, String goodsnm, String payrequestamt, String payclosedt, String telno){
         String payment_xml="<root>\n" +
                 "  <reqhead>\n" +
-                "    <userinfo userid=\"xpdlzlt\" passwd=\"8286300117\"/>\n" +
+                "    <userinfo userid=\"xpdlzlt\" passwd=\"c3ptvezpogvmyzhgcxjactjyz05kqt09\"/>\n" +
                 "  </reqhead>\n" +
                 "  <reqbody>\n" +
                 "     <request method=\"pay_request\">\n" +
@@ -456,7 +455,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
     public String create_payment_check_xml(String order_num){
         String payment_xml="<root>\n" +
                 "  <reqhead>\n" +
-                "    <userinfo userid=\"xpdlzlt\" passwd=\"8286300117\"/>\n" +
+                "    <userinfo userid=\"xpdlzlt\" passwd=\"c3ptvezpogvmyzhgcxjactjyz05kqt09\"/>\n" +
                 "  </reqhead>\n" +
                 "  <reqbody>\n" +
                 "     <request  method=\"pay_detail\">\n" +

@@ -315,7 +315,7 @@ public class RetrofitConnection {
     }
 
     public interface thePay_pay_request{
-        @POST("http://1.234.19.61:7080/thepay_if/ProcRequest.action")
+        @POST("http://www.thepay.pro/thepay_if/ProcRequest.action")
         Call<ResponseBody> repoContributors(
                 @Body RequestBody body
         );
