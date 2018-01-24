@@ -334,7 +334,8 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
             for (int i = 0; i < optionList.size(); i++) {
                 ArrayList<MenuOption> optionList1 = optionList.get(i).getOptions().getOptionList();
                 for (int j = 0; j < optionList1.size(); j++) {
-                    selections.add(optionList1.get(j).getPk());
+                    if(optionList1.get(j).isIs_check())
+                        selections.add(optionList1.get(j).getPk());
                 }
             }
         }catch (NullPointerException e){}
