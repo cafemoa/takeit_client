@@ -111,7 +111,7 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
         btn_small       = (Button)          findViewById(R.id.btn_small);
         btn_large       = (Button)          findViewById(R.id.btn_large);
         btn_take        = (Button)          findViewById(R.id.btn_take);
-        btn_order       = (Button)          findViewById(R.id.btn_order);
+        btn_order       = (Button)          findViewById(R.id.btn_addorder);
         tv_price        = (TextView)        findViewById(R.id.tv_price);
         tv_add_shot     = (TextView)        findViewById(R.id.tv_add_shot);
         add_shot_divider= (View)            findViewById(R.id.add_shot_divider);
@@ -289,7 +289,6 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
         {
             Intent intent = new Intent(this, BaskitActivity.class);
             intent.putExtra("cafe_pk",cafe_pk);
-
             startActivity(intent);
             finish();
         }

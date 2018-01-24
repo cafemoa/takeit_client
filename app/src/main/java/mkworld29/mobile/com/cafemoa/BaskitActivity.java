@@ -72,6 +72,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
 
         Intent intent = getIntent();
         cafe_pk=intent.getIntExtra("cafe_pk", 0);
+
         retrofit=RetrofitInstance.getInstance(getApplicationContext());
         WindowManager w = getWindowManager();
         Display d = w.getDefaultDisplay();
@@ -82,7 +83,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
         mHeightPixels = metrics.heightPixels;
 
         btn_order = (Button) findViewById(R.id.btn_order);
-        btn_add_order = (Button) findViewById(R.id.btn_addorder);
+        btn_add_order = (Button) findViewById(R.id.add_order);
         btn_order.setOnClickListener(this);
         btn_add_order.setOnClickListener(this);
 
@@ -178,7 +179,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
             RetrofitConnection.Order_Info info=new RetrofitConnection.Order_Info(0,time,options);
             Gson gson = new Gson();
             String option_json = gson.toJson(info);
-            Log.d("SIBAL", option_json);
+
 
             RetrofitConnection.ready_payment service = retrofit.create(RetrofitConnection.ready_payment.class);
             RequestBody body = RequestBody.create(MediaType.parse("application/json"), option_json);
@@ -369,7 +370,6 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
         RetrofitConnection.thePay_pay_request service = retrofit.create(RetrofitConnection.thePay_pay_request.class);
         RequestBody body = RequestBody.create(MediaType.parse("application/xml"), payment_xml);
         final Call<ResponseBody> repos = service.repoContributors(body);
-
         repos.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -383,6 +383,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
                             return ;
                         }
                         else {
+
                             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(pay_request.resbody.response.data.payurl));
                             startActivityForResult(intent,1);
                         }
@@ -404,7 +405,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
     public String create_payment_xml(String orderno,String payusernm, String usernm, String payhpno, String goodsnm, String payrequestamt, String payclosedt, String telno){
         String payment_xml="<root>\n" +
                 "  <reqhead>\n" +
-                "    <userinfo userid=\"thepay1\" passwd=\"7110eda4d09e062aa5e4a390b0a572ac0d2c0220\"/>\n" +
+                "    <userinfo userid=\"xpdlzlt\" passwd=\"c3ptvezpogvmyzhgcxjactjyz05kqt09\"/>\n" +
                 "  </reqhead>\n" +
                 "  <reqbody>\n" +
                 "     <request method=\"pay_request\">\n" +
@@ -452,7 +453,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
     public String create_payment_check_xml(String order_num){
         String payment_xml="<root>\n" +
                 "  <reqhead>\n" +
-                "    <userinfo userid=\"thepay1\" passwd=\"7110eda4d09e062aa5e4a390b0a572ac0d2c0220\"/>\n" +
+                "    <userinfo userid=\"xpdlzlt\" passwd=\"c3ptvezpogvmyzhgcxjactjyz05kqt09\"/>\n" +
                 "  </reqhead>\n" +
                 "  <reqbody>\n" +
                 "     <request  method=\"pay_detail\">\n" +
