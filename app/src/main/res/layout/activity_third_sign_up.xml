@@ -96,6 +96,8 @@
                 android:layout_height="40dp"
                 android:textSize="23sp"
                 android:inputType="number"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:maxLength="1"
                 android:background="#e5e5e5"/>
 

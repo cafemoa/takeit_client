@@ -1,8 +1,7 @@
 package mkworld29.mobile.com.cafemoa.entity;
 
 import java.util.ArrayList;
-
-import mkworld29.mobile.com.cafemoa.item.OptionItem;
+import java.util.Map;
 
 /**
  * Created by parkjaemin on 2017. 8. 18..
@@ -15,6 +14,7 @@ public class CoffeeOption {
     private int amounts;
     private int pk;
     private ArrayList<Integer> selections;
+    private Map<Integer,Boolean> itemMap;
 
     public CoffeeOption(int shots, int size, int amounts, int pk,ArrayList<Integer> selections)
     {
@@ -24,6 +24,7 @@ public class CoffeeOption {
         this.amounts = amounts;
         this.pk=pk;
         this.selections=selections;
+
     }
 
     public int getAmounts() {
@@ -59,4 +60,6 @@ public class CoffeeOption {
     }
 
     public ArrayList<Integer> getSelections(){ return selections; }
+
+    public void setSelections(ArrayList<Integer> _s){this.selections = _s;}
 }
