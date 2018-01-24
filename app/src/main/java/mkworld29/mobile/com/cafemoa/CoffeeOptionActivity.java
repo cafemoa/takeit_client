@@ -169,6 +169,10 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
                         add_option_list_adapter.addItem(content,tmp);
                     }
                     lv_add_option_list.setAdapter(add_option_list_adapter);
+
+                    lv_add_option_list.setDivider(null);
+                    lv_add_option_list.setDividerHeight(30);
+
                     setListViewHeightBasedOnChildren(lv_add_option_list);
 
                 }else{
