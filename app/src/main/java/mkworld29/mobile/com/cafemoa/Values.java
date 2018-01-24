@@ -10,6 +10,7 @@ import android.graphics.Color;
 public class Values {
 
     private static Values instance = new Values();
+    public static int CoffeeOptionValue = 0;
 
     public int[] colors;
 

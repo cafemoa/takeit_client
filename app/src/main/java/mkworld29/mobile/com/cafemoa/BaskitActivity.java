@@ -169,7 +169,6 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
                 int amount=option.getAmounts();
                 ArrayList<Integer> selections=option.getSelections();
 
-                time=item.getPredict_time();
                 //Log.d("TAG", ""+shots+","+size+","+is_ice+","+is_whipping+","+beverage+","+amount+",");
 
                 options[i]=new RetrofitConnection.Order_option(beverage,size,shots,amount,selections);
@@ -328,7 +327,6 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
             int beverage=option.getPk();
             int amount=option.getAmounts();
             ArrayList<Integer> selections=option.getSelections();
-            time=item.getPredict_time();
             //Log.d("TAG", ""+shots+","+size+","+is_ice+","+is_whipping+","+beverage+","+amount+",");
 
             options[i]=new RetrofitConnection.Order_option(beverage,size,shots,amount,selections);

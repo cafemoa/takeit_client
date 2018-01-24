@@ -42,8 +42,6 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
 
     private ListView lv_add_option_list;
 
-    private EditText edt_predict_arrive;
-
     private LinearLayout ly_back;
 
     private ImageView iv_amount_minus,
@@ -71,7 +69,6 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
     private int beverage_pk;
     private int cafe_pk;
     private String price;
-    private int cafe_min_time;
     private boolean have_shot;
     private int add_shot_price;
     private int amount_price;
@@ -86,7 +83,6 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
         amount_price=0;
 
         lv_add_option_list = (ListView) findViewById(R.id.add_option_list);
-        edt_predict_arrive = (EditText) findViewById(R.id.edt_predict_arrive);
 
         Intent intent = getIntent();
 
@@ -100,7 +96,6 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
             beverage_pk = intent.getIntExtra("beverage_pk", 0);
             cafe_pk = intent.getIntExtra("cafe_pk", 0);
             price = intent.getStringExtra("price");
-            cafe_min_time=intent.getIntExtra("cafe_min_time",0);
             have_shot=intent.getBooleanExtra("have_shot", true);
             add_shot_price=intent.getIntExtra("add_shot_price", 0);
         }
@@ -186,7 +181,6 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
         });
 
         tv_price.setText(price+"원");
-        edt_predict_arrive.setText(""+cafe_min_time);
 
         ly_back.setOnClickListener(this);
         iv_amount_plus.setOnClickListener(this);
@@ -349,7 +343,7 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
-        BasketItem item = new BasketItem(src_iv_content, cafeName, content, price, dateFormat.format(date), amount, Integer.parseInt(edt_predict_arrive.getText().toString()), option);
+        BasketItem item = new BasketItem(src_iv_content, cafeName, content, price, dateFormat.format(date), amount, option);
         BasketPref.getInstance(this).addBasket(item);
     }
 

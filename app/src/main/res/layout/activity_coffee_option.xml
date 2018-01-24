@@ -255,58 +255,6 @@
         android:layout_height="wrap_content">
     </ListView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:text="도착시간을 설정해 주세요!"
-            android:textStyle="bold"/>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="15dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="약 "/>
-
-            <EditText
-                android:id="@+id/edt_predict_arrive"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:maxLength="3"
-                android:hint=""
-                android:inputType="numberSigned"
-                android:textSize="16sp"
-                android:layout_marginRight="10dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="분 후 도착 "/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="#fd5739"
-                android:text="(필수!)"/>
-
-        </LinearLayout>
-    </LinearLayout>
     <View
         android:layout_marginTop="25dp"
         android:layout_marginBottom="15dp"
@@ -335,7 +283,7 @@
 
 
         <Button
-            android:id="@+id/btn_addorder"
+            android:id="@+id/btn_order"
             android:layout_width="120dp"
             android:layout_height="35dp"
             android:text="주문하기"
