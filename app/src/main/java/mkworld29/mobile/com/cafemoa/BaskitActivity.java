@@ -83,7 +83,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
         mHeightPixels = metrics.heightPixels;
 
         btn_order = (Button) findViewById(R.id.btn_order);
-        btn_add_order = (Button) findViewById(R.id.add_order);
+        btn_add_order = (Button) findViewById(R.id.btn_order);
         btn_order.setOnClickListener(this);
         btn_add_order.setOnClickListener(this);
 
