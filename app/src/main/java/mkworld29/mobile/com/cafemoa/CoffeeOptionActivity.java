@@ -165,6 +165,7 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
                             OptionItem.Selection selection=selections.get(j);
                             tmp.addItem(selection.getContent(),selection.getAdd_price(), selection.getPk());
                         }
+                        tmp.setOne_selector(item.getOne_selector());
                         add_option_list_adapter.addItem(content,tmp);
                     }
                     lv_add_option_list.setAdapter(add_option_list_adapter);

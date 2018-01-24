@@ -5,7 +5,6 @@ package mkworld29.mobile.com.cafemoa.entity;
  */
 
 public class MenuOption {
-
     private String title;
     private int price;
     private int pk;
