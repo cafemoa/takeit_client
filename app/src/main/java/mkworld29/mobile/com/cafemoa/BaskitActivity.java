@@ -416,34 +416,10 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
                 "             goodsnm        = \""+goodsnm+"\" \n" +
                 "             payrequestamt  = \""+payrequestamt+"\" \n" +
                 "             payclosedt     = \""+payclosedt+"\" \n" +
-                "             birthdate      = \"\" \n" +
-                "             smssendyn      = \"Y\" \n" +
+                "             smssendyn      = \"N\" \n" +
                 "             paymethod      = \"0001\" \n" +
                 "             imsyn          = \"N\"\n" +
-                "             payitemnm1     = \"\" \n" +
-                "             payitemamt1    = \"\" \n" +
-                "             payitemnm2     = \"\" \n" +
-                "             payitemamt2    = \"\" \n" +
-                "             payitemnm3     = \"\"  \n" +
-                "             payitemamt3    = \"\" \n" +
-                "             payitemnm4     = \"\" \n" +
-                "             payitemamt4    = \"\" \n" +
-                "             payitemnm5     = \"\"  \n" +
-                "             payitemamt5    = \"\" \n" +
-                "             payitemnm6     = \"\"  \n" +
-                "             payitemamt6    = \"\" \n" +
-                "             payitemnm7     = \"\"  \n" +
-                "             payitemamt7    = \"\" \n" +
-                "             payitemnm8     = \"\"  \n" +
-                "             payitemamt8    = \"\" \n" +
-                "             etcremark      = \"기타사항\"  \n" +
-                "             base64yn       = \"\"\n" +
-                "             useretc1       = \"\"  \n" +
-                "             useretc2       = \"\"\n" +
-                "             useretc3       = \"\"\n" +
-                "             telno          = \""+telno+"\"\n" +
-                "             mediatype      = \"MC02\"    \n" +
-                "             imsurl         = \"http://www.thepay.kr\"/>\n" +
+                "             mediatype      = \"MC02\"/>\n" +
                 "     </request>\n" +
                 "  </reqbody>\n" +
                 "</root>\n";
