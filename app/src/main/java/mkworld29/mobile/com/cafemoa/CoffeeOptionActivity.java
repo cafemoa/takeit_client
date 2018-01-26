@@ -111,7 +111,7 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
         btn_small       = (Button)          findViewById(R.id.btn_small);
         btn_large       = (Button)          findViewById(R.id.btn_large);
         btn_take        = (Button)          findViewById(R.id.btn_take);
-        btn_order       = (Button)          findViewById(R.id.btn_addorder);
+        btn_order       = (Button)          findViewById(R.id.btn_order);
         tv_price        = (TextView)        findViewById(R.id.tv_price);
         tv_add_shot     = (TextView)        findViewById(R.id.tv_add_shot);
         add_shot_divider= (View)            findViewById(R.id.add_shot_divider);
@@ -165,9 +165,14 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
                             OptionItem.Selection selection=selections.get(j);
                             tmp.addItem(selection.getContent(),selection.getAdd_price(), selection.getPk());
                         }
+                        tmp.setOne_selector(item.getOne_selector());
                         add_option_list_adapter.addItem(content,tmp);
                     }
                     lv_add_option_list.setAdapter(add_option_list_adapter);
+
+                    lv_add_option_list.setDivider(null);
+                    lv_add_option_list.setDividerHeight(30);
+
                     setListViewHeightBasedOnChildren(lv_add_option_list);
 
                 }else{
@@ -332,7 +337,8 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
             for (int i = 0; i < optionList.size(); i++) {
                 ArrayList<MenuOption> optionList1 = optionList.get(i).getOptions().getOptionList();
                 for (int j = 0; j < optionList1.size(); j++) {
-                    selections.add(optionList1.get(j).getPk());
+                    if(optionList1.get(j).isIs_check())
+                        selections.add(optionList1.get(j).getPk());
                 }
             }
         }catch (NullPointerException e){}

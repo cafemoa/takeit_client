@@ -83,7 +83,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
         mHeightPixels = metrics.heightPixels;
 
         btn_order = (Button) findViewById(R.id.btn_order);
-        btn_add_order = (Button) findViewById(R.id.add_order);
+        btn_add_order = (Button) findViewById(R.id.btn_order);
         btn_order.setOnClickListener(this);
         btn_add_order.setOnClickListener(this);
 
@@ -193,6 +193,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
                         thepay_order_num=data.order_num;
                         String xml=create_payment_xml(data.order_num, data.cafe_name, data.user_name, data.user_phonenumber, data.menu_name, ""+data.amount_price, data.pay_closetime, data.cafe_phonenumber);
                         thePay_pay_request(xml);
+                        //order_request();
                     }
                     else if(response.code() == 202){
                         Toast.makeText(getApplicationContext(), "영업을 종료하였습니다.", Toast.LENGTH_SHORT).show();
@@ -337,7 +338,6 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
         RetrofitConnection.Order_Info info=new RetrofitConnection.Order_Info(0,time,options);
         Gson gson = new Gson();
         String option_json = gson.toJson(info);
-
         RetrofitConnection.payment_beverages service = retrofit.create(RetrofitConnection.payment_beverages.class);
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), option_json);
         final Call<RetrofitConnection.Payment_Complete> repos = service.repoContributors(cafe_pk,body);
@@ -416,34 +416,10 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
                 "             goodsnm        = \""+goodsnm+"\" \n" +
                 "             payrequestamt  = \""+payrequestamt+"\" \n" +
                 "             payclosedt     = \""+payclosedt+"\" \n" +
-                "             birthdate      = \"\" \n" +
-                "             smssendyn      = \"Y\" \n" +
+                "             smssendyn      = \"N\" \n" +
                 "             paymethod      = \"0001\" \n" +
                 "             imsyn          = \"N\"\n" +
-                "             payitemnm1     = \"\" \n" +
-                "             payitemamt1    = \"\" \n" +
-                "             payitemnm2     = \"\" \n" +
-                "             payitemamt2    = \"\" \n" +
-                "             payitemnm3     = \"\"  \n" +
-                "             payitemamt3    = \"\" \n" +
-                "             payitemnm4     = \"\" \n" +
-                "             payitemamt4    = \"\" \n" +
-                "             payitemnm5     = \"\"  \n" +
-                "             payitemamt5    = \"\" \n" +
-                "             payitemnm6     = \"\"  \n" +
-                "             payitemamt6    = \"\" \n" +
-                "             payitemnm7     = \"\"  \n" +
-                "             payitemamt7    = \"\" \n" +
-                "             payitemnm8     = \"\"  \n" +
-                "             payitemamt8    = \"\" \n" +
-                "             etcremark      = \"기타사항\"  \n" +
-                "             base64yn       = \"\"\n" +
-                "             useretc1       = \"\"  \n" +
-                "             useretc2       = \"\"\n" +
-                "             useretc3       = \"\"\n" +
-                "             telno          = \""+telno+"\"\n" +
-                "             mediatype      = \"MC02\"    \n" +
-                "             imsurl         = \"http://www.thepay.kr\"/>\n" +
+                "             mediatype      = \"MC02\"/>\n" +
                 "     </request>\n" +
                 "  </reqbody>\n" +
                 "</root>\n";

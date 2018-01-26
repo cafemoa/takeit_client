@@ -11,6 +11,7 @@ import mkworld29.mobile.com.cafemoa.adapter.CoffeeOptionAdapter;
 public class MenuOptionList {
     private String content;
     private CoffeeOptionAdapter optionAdapter;
+
     public MenuOptionList(String content,CoffeeOptionAdapter optionAdapter) {
         this.content=content;
         this.optionAdapter=optionAdapter;
@@ -23,6 +24,5 @@ public class MenuOptionList {
     public void setContent(String content) {
         this.content = content;
     }
-
     public CoffeeOptionAdapter getOptions(){ return optionAdapter; }
 }

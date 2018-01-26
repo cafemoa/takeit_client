@@ -33,6 +33,7 @@ public class CoffeeOptionAdapter extends BaseAdapter{
 
     public static ArrayList<Integer> arr_pk;
     public HashMap<Integer,Boolean> keyMap;
+    private boolean one_selector;
 
     public CoffeeOptionAdapter(){
         keyMap = new HashMap<Integer, Boolean>();
@@ -82,11 +83,17 @@ public class CoffeeOptionAdapter extends BaseAdapter{
             @Override
             public void onClick(View v) {
                 if(keyMap == null) return;
-
                 CheckBox box = (CheckBox) v;
 
-                opt.setIs_check(box.isChecked());
+                if(!one_selector){
+                    opt.setIs_check(box.isChecked());
+                    return ;
+                }
 
+                for(int i=0; i<optionList.size(); i++)
+                    optionList.get(i).setIs_check(false);
+
+                opt.setIs_check(box.isChecked());
                 Iterator<Map.Entry<Integer,Boolean>> iterator = keyMap.entrySet().iterator();
 
                 while(iterator.hasNext())
@@ -95,8 +102,9 @@ public class CoffeeOptionAdapter extends BaseAdapter{
                     if(entry.getKey() != opt.getPk()) {
                         keyMap.put(entry.getKey(), false);
                         CheckBox tmp = (CheckBox) _parent.findViewWithTag(String.valueOf(entry.getKey()));
-                        if(tmp != null)
+                        if(tmp != null) {
                             tmp.setChecked(false); // 여기서부터 고치자
+                        }
                     }
                 }
 
@@ -120,5 +128,5 @@ public class CoffeeOptionAdapter extends BaseAdapter{
 
     }
     public ArrayList<MenuOption> getOptionList(){ return optionList; }
-
+    public void setOne_selector(boolean one_selector){ this.one_selector=one_selector; }
 }
