@@ -81,6 +81,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
         public ViewHolder(View v) {
             super(v);
             _v = v;
+
             tv_cafe_address = (TextView) v.findViewById(R.id.tv_cafe_address);
             tv_cafe_name = (TextView) v.findViewById(R.id.tv_cafe_name);
             tv_available_coupon = (TextView) v.findViewById(R.id.tv_available_coupon);

@@ -181,13 +181,11 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
         });
 
         tv_price.setText(price+"원");
-
         ly_back.setOnClickListener(this);
         iv_amount_plus.setOnClickListener(this);
         iv_amount_minus.setOnClickListener(this);
         iv_shot_minus.setOnClickListener(this);
         iv_shot_plus.setOnClickListener(this);
-
         btn_medium.setOnClickListener(this);
         btn_small.setOnClickListener(this);
         btn_large.setOnClickListener(this);
@@ -372,6 +370,8 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
 //
 //
 //    }
+
+
     public void setAmount_price(){
         amount_price=0;
         try {
