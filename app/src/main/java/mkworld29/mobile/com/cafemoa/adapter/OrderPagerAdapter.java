@@ -41,7 +41,8 @@ public class OrderPagerAdapter extends PagerAdapter{
     private ArrayList<OrderListItem> page4=new ArrayList<>();
     View v = null;
     private int cafe_pk;
-    private int cafe_min_time;
+    private int cafe_coupon_num;
+    private int cafe_coupon_price;
 
 
     public void addItemPage0(OrderListItem item){page0.add(item);}
@@ -50,13 +51,14 @@ public class OrderPagerAdapter extends PagerAdapter{
     public void addItemPage3(OrderListItem item){page3.add(item);}
     public void addItemPage4(OrderListItem item){page4.add(item);}
 
-    public OrderPagerAdapter(Context c, int cafe_pk, int cafe_min_time)
+    public OrderPagerAdapter(Context c, int cafe_pk, int cafe_coupon_num,int cafe_coupon_price)
     {
         super();
         mContext = c;
         mInflater = LayoutInflater.from(c);
         this.cafe_pk=cafe_pk;
-        this.cafe_min_time=cafe_min_time;
+        this.cafe_coupon_num=cafe_coupon_num;
+        this.cafe_coupon_price=cafe_coupon_price;
     }
     public void setCafeName(String s)
     {
@@ -164,10 +166,11 @@ public class OrderPagerAdapter extends PagerAdapter{
                 intent.putExtra("cafe_name", cafe_name);
                 intent.putExtra("cafe_pk", cafe_pk);
                 intent.putExtra("beverage_pk", ((OrderListItem) mAdapter.getItem(i)).getPk());
-                intent.putExtra("cafe_min_time",cafe_min_time);
                 intent.putExtra("price", item.getPrice());
                 intent.putExtra("have_shot", item.getHave_shot());
                 intent.putExtra("add_shot_price", item.getAdd_shot_price());
+                intent.putExtra("cafe_coupon_num", cafe_coupon_num);
+                intent.putExtra("cafe_coupon_price", cafe_coupon_price);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 v.getContext().startActivity(intent);
             }

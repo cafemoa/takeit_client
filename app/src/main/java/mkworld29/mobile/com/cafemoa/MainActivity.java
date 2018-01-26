@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity
                     for(int i=0; i<response.body().size(); i++) {
                         RetrofitConnection.Cafe cafe=response.body().get(i);
                         //Log.d("TAG",cafe.cafe_image);
-                        data.add(new MainCafeItem(cafe.pk,cafe.name, cafe.locationString, cafe.tag, "http://rest.takeitnow.kr"+cafe.cafe_image, cafe.is_open,cafe.min_time));
+                        data.add(new MainCafeItem(cafe.pk,cafe.name, cafe.locationString, cafe.tag, cafe.cafe_image, cafe.is_open,cafe.min_time,cafe.coupon_num,cafe.coupon_price));
                     }
                     recyclerView.setAdapter(new MainCafeAdapter(getApplicationContext(), data, R.layout.activity_main));
                 }
@@ -372,10 +372,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private void checkInVeil() {
-                Intent intent = new Intent(MainActivity.this, VeilActivity.class);
-                startActivity(intent);
-    }
 
     @Override
     public void onClick(View v) {

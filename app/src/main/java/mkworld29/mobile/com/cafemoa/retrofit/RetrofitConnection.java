@@ -48,6 +48,8 @@ public class RetrofitConnection {
         public boolean is_open;
         public int pk;
         public int min_time;
+        public int coupon_num;
+        public int coupon_price;
 
         public List<Beverage> beverages;
     }

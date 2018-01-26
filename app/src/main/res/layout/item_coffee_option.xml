@@ -22,6 +22,7 @@
     android:layout_marginRight="15dp"
     android:gravity="center">
 
+
     <TextView
         android:id="@+id/tv_add_price"
         android:layout_width="60dp"
@@ -33,6 +34,5 @@
         android:id="@+id/is_checked"
         android:layout_width="25sp"
         android:layout_height="25sp" />
-
 </LinearLayout>
 </RelativeLayout>

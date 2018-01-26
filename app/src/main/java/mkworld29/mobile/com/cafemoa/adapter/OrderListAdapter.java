@@ -26,7 +26,7 @@ public class OrderListAdapter extends BaseAdapter{
     private ArrayList<OrderListItem> listViewItemList ;
 
     private TextView tv_content,tv_price;
-    private ImageView iv_best, order_coupon;
+    private ImageView iv_best;
 
     public OrderListAdapter()
     {
@@ -63,7 +63,7 @@ public class OrderListAdapter extends BaseAdapter{
         tv_content          =   (TextView)convertView.findViewById(R.id.tv_content);
         iv_best             =   (ImageView)convertView.findViewById(R.id.iv_best);
         tv_price            =   (TextView)convertView.findViewById(R.id.beverage_price);
-        order_coupon        =   (ImageView)convertView.findViewById(R.id.btn_order_coupon);
+
 
         tv_content.setText(listViewItemList.get(position).getContent());
         tv_price.setText(listViewItemList.get(position).getPrice());
@@ -72,16 +72,6 @@ public class OrderListAdapter extends BaseAdapter{
             iv_best.setVisibility(View.VISIBLE);
         else
             iv_best.setVisibility(View.GONE);
-
-
-
-        order_coupon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Todo related coupon
-
-            }
-        });
 
         return convertView;
     }
