@@ -136,6 +136,12 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        BasketPref.getInstance(this).removeAllBasket();
+    }
+
+    @Override
     public void onClick(View view) {
         if(view.getId() == tv_coffe.getId())
         {

@@ -94,66 +94,6 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
             }
         });
 
-        //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(holder._v.getContext(),
-          //      R.array.basket_option_array, android.R.layout.simple_spinner_item);
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        /*holder.spinner.setAdapter(adapter);
-        holder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(final AdapterView<?> adapterView, final View selectedView, int i, long l) {
-                switch (i)
-                {
-                     수정 선택 시
-                    case 0:
-                        break;
-                     삭제 선택 시
-                    case 1:
-
-                        LayoutInflater inflater = (LayoutInflater) adapterView.getContext()
-                                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-                        final View layout = inflater.inflate(R.layout.popup_delete,
-                                (ViewGroup) adapterView.findViewById(R.id.ly_popup_all));
-                        final PopupWindow pwindo = new PopupWindow(layout, BaskitActivity.mWidthPixels-100, BaskitActivity.mHeightPixels-500, true);
-                        pwindo.showAtLocation(layout, Gravity.CENTER, 0, 0);
-
-                        Button btn_yes  = (Button) layout.findViewById(R.id.btn_yes);
-                        Button btn_no   = (Button) layout.findViewById(R.id.btn_no);
-
-                        View.OnClickListener cancel_button_click_listener = new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                if(view.getId() == layout.findViewById(R.id.btn_yes).getId())
-                                {
-                                    BasketPref.getInstance(
-                                            adapterView.getContext()).deleteBasket(
-                                            basketList.get(position).getId()
-                                    );
-                                    ((View)adapterView.getParent()).setVisibility(View.GONE);
-                                    pwindo.dismiss();
-                                }
-                                else
-                                {
-                                    pwindo.dismiss();
-                                }
-                            }
-                        };
-                        btn_yes.setOnClickListener(cancel_button_click_listener);
-                        btn_no.setOnClickListener(cancel_button_click_listener);
-
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-        */
-
     }
 
 

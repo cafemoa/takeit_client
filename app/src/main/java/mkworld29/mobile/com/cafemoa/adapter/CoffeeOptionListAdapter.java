@@ -86,7 +86,8 @@ public class CoffeeOptionListAdapter extends BaseAdapter{
             View listItem = listAdapter.getView(i, null, listView);
             //listItem.measure(0, 0);
             listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
-            totalHeight += listItem.getMeasuredHeight();
+            totalHeight += 125
+            ;             // 이거 조절해보자잉
         }
         ViewGroup.LayoutParams params = listView.getLayoutParams();
 

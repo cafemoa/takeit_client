@@ -220,6 +220,7 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
             //listItem.measure(0, 0);
             listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
             totalHeight += listItem.getMeasuredHeight();
+
         }
         ViewGroup.LayoutParams params = listView.getLayoutParams();
 

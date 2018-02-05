@@ -79,7 +79,7 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
                     .setContentTitle("Take It!")
                     .setContentIntent(contentIntent)
                     .setContentText(msg)
-                    .setAutoCancel(true)
+                    .setAutoCancel(true)            //false 로 바꾸면됨!
                     .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                     .setVibrate(new long[]{1, 1000});
 
