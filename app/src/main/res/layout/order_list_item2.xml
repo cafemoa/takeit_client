@@ -30,23 +30,15 @@
             android:visibility="gone"
             android:layout_centerVertical="true"/>
 
-        <ImageView
-            android:src="@drawable/order_coupon"
-            android:id="@+id/btn_order_coupon"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:visibility="visible"
-            />
 
         <TextView
             android:id="@+id/beverage_price"
             android:text="R:2000 L:3000"
+            android:textColor="#0c0c0c"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/btn_order_coupon"
+            android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"/>
 
 

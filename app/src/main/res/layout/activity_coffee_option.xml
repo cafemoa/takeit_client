@@ -261,7 +261,58 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#d5d4d4"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <TextView
+        android:id="@+id/tv_coupon_use"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:text="사용 가능쿠폰"/>
+
+        <TextView
+            android:layout_toRightOf="@id/tv_coupon_use"
+            android:layout_alignBottom="@id/tv_coupon_use"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FF4444"
+            android:textStyle="bold"
+            android:textSize="10sp"
+            android:layout_marginLeft="5dp"
+            android:text="3000원 이상 구매시 사용 가능"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_coupon_use"
+            android:layout_marginTop="10dp"
+            android:text="10잔 주문 감사쿠폰"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_coupon_use"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            >
+        <TextView
+            android:id="@+id/tv_sale_price"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="-000원"/>
+
+        <CheckBox
+            android:id="@+id/cb_coupon_sale"
+            android:layout_width="25sp"
+            android:layout_height="25sp" />
+
+        </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -269,6 +320,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:gravity="center">
+
 
         <Button
             android:id="@+id/btn_take"
@@ -291,6 +343,7 @@
             android:textSize="13sp"
             android:background="@drawable/red_round15_button"
             android:layout_marginLeft="15dp"/>
+
 
     </LinearLayout>
 

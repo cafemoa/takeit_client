@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -60,6 +62,8 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
 
     private TextView tv_add_shot;
     private View add_shot_divider;
+    private CheckBox cb_coupon_sale;
+    private TextView tv_sale_price;
 
     private int amount;
     private int shot;
@@ -72,6 +76,8 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
     private boolean have_shot;
     private int add_shot_price;
     private int amount_price;
+    private int cafe_coupon_num;
+    private int cafe_coupon_price;
     private CoffeeOptionListAdapter add_option_list_adapter;
 
     @Override
@@ -98,6 +104,8 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
             price = intent.getStringExtra("price");
             have_shot=intent.getBooleanExtra("have_shot", true);
             add_shot_price=intent.getIntExtra("add_shot_price", 0);
+            cafe_coupon_num=intent.getIntExtra("cafe_coupon_num", 0);
+            cafe_coupon_price=intent.getIntExtra("cafe_coupon_price", 0);
         }
 
         ly_back         = (LinearLayout)    findViewById(R.id.ly_back);
@@ -115,7 +123,14 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
         tv_price        = (TextView)        findViewById(R.id.tv_price);
         tv_add_shot     = (TextView)        findViewById(R.id.tv_add_shot);
         add_shot_divider= (View)            findViewById(R.id.add_shot_divider);
+        cb_coupon_sale  = (CheckBox)        findViewById(R.id.cb_coupon_sale);
+        tv_sale_price   = (TextView)        findViewById(R.id.tv_sale_price);
 
+        if(cafe_coupon_num<10 || cafe_coupon_price<=0)
+            cb_coupon_sale.setEnabled(false);
+        tv_sale_price.setText("-"+cafe_coupon_price+"원");
+
+        cb_coupon_sale.setOnClickListener(this);
         if(!have_shot){
             iv_shot_minus.setVisibility(View.GONE);
             iv_shot_plus.setVisibility(View.GONE);
@@ -296,6 +311,14 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
             startActivity(intent);
             finish();
         }
+        else if(v.getId() == cb_coupon_sale.getId()){
+            if(amount_price!=0 && amount_price<3000){
+                Toast.makeText(getApplicationContext(),"3000원 이상 결제 가능합니다.", Toast.LENGTH_SHORT).show();
+                cb_coupon_sale.setChecked(false);
+            }
+
+            setAmount_price();
+        }
     }
 
     public void setDrawableRed(View view)
@@ -392,8 +415,11 @@ public class CoffeeOptionActivity extends AppCompatActivity implements View.OnCl
             }
         }catch (NullPointerException e){}
         amount_price+=Integer.parseInt(price.split(" ")[size].split(":")[1]);
-        amount_price+=add_shot_price*shot;
+        amount_price+=add_shot_price*(shot-1);
         amount_price*=amount;
+        if(cb_coupon_sale.isChecked()){
+            amount_price-=cafe_coupon_price;
+        }
         tv_price.setText(amount_price+"원");
     }
     public int getAmount_price(){ return amount_price; }

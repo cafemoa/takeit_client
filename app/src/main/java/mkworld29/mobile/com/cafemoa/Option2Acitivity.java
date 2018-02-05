@@ -33,12 +33,12 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
     private TextView tv_coffe, tv_smootie, tv_tea, tv_dessert, tv_etc;
     public TextView tv_cafe_name,tv_cafe_location;
     public ImageView iv_cafe_image, iv_cart;
+    public TextView tv_can_use_coupon;
     private ImageView iv_back;
     public OrderPagerAdapter adapter;
     private int cafe_pk;
     private String cafe_location,cafe_name,cafe_image;
-    private int cafe_min_time;
-
+    private int cafe_coupon_price, cafe_coupon_num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,8 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
         cafe_name=intent.getStringExtra("cafe_name");
         cafe_location=intent.getStringExtra("cafe_location");
         cafe_image=intent.getStringExtra("cafe_image");
-        cafe_min_time=intent.getIntExtra("cafe_min_time", 0);
+        cafe_coupon_num = intent.getIntExtra("coupon_num", 0);
+        cafe_coupon_price = intent.getIntExtra("coupon_price", 0);
 
         iv_back=(ImageView)findViewById(R.id.iv_back);
         iv_back.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +71,9 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
         tv_cafe_location = (TextView) findViewById(R.id.tv_cafe_location);
         tv_cafe_location.setText(cafe_location);
 
+        tv_can_use_coupon = (TextView) findViewById(R.id.tv_can_use_coupon);
+        tv_can_use_coupon.setText("사용 가능한 쿠폰 : "+cafe_coupon_num/10);
+
         iv_cafe_image=(ImageView)findViewById(R.id.iv_order);
         Glide.with(getApplicationContext())
                 .load(cafe_image)
@@ -79,7 +83,7 @@ public class Option2Acitivity extends AppCompatActivity implements View.OnClickL
 
         mPager = (ViewPager) findViewById(R.id.vp_order);
 
-        adapter = new OrderPagerAdapter(getApplicationContext(),cafe_pk,cafe_min_time);
+        adapter = new OrderPagerAdapter(getApplicationContext(),cafe_pk,cafe_coupon_num,cafe_coupon_price);
         adapter.setCafeName(tv_cafe_name.getText().toString());
 
         Retrofit retrofit= RetrofitInstance.getInstance(getApplicationContext());

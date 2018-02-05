@@ -22,12 +22,7 @@ import mkworld29.mobile.com.cafemoa.Option2Acitivity;
 import mkworld29.mobile.com.cafemoa.R;
 import mkworld29.mobile.com.cafemoa.item.MainCafeItem;
 import mkworld29.mobile.com.cafemoa.item.OrderListItem;
-import mkworld29.mobile.com.cafemoa.retrofit.RetrofitConnection;
-import mkworld29.mobile.com.cafemoa.retrofit.RetrofitInstance;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
+
 
 /**
  * Created by ABCla on 2017-10-07.
@@ -120,6 +115,8 @@ public class MainCafeAdapter extends RecyclerView.Adapter<MainCafeAdapter.ViewHo
         i.putExtra("cafe_image", item.getImage());
         i.putExtra("cafe_location", item.getLocation());
         i.putExtra("cafe_min_time", item.getMin_time());
+        i.putExtra("coupon_num", item.getCoupon_num());
+        i.putExtra("coupon_price", item.getCoupon_price());
         v.getContext().startActivity(i);
 
     }
