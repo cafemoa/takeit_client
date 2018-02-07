@@ -192,8 +192,8 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
                         RetrofitConnection.Payment_ready data = response.body();
                         thepay_order_num=data.order_num;
                         String xml=create_payment_xml(data.order_num, data.cafe_name, data.user_name, data.user_phonenumber, data.menu_name, ""+data.amount_price, data.pay_closetime, data.cafe_phonenumber);
-                        //thePay_pay_request(xml);
-                        order_request();
+                        thePay_pay_request(xml);
+                        //order_request();
                     }
                     else if(response.code() == 202){
                         Toast.makeText(getApplicationContext(), "영업을 종료하였습니다.", Toast.LENGTH_SHORT).show();
