@@ -176,7 +176,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
             }
 
             //String time=BasketPref.getInstance(this).getBasket(ids[0]).getTime();
-            RetrofitConnection.Order_Info info=new RetrofitConnection.Order_Info(0,time,options);
+            RetrofitConnection.Order_Info info=new RetrofitConnection.Order_Info(0,options);
             Gson gson = new Gson();
             String option_json = gson.toJson(info);
 
@@ -326,16 +326,16 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
             CoffeeOption option=item.getOption();
             int shots=option.getShots();
             int size=option.getSize();
-            int beverage=option.getPk();
+            int beverage_id=option.getPk();
             int amount=option.getAmounts();
             ArrayList<Integer> selections=option.getSelections();
             //Log.d("TAG", ""+shots+","+size+","+is_ice+","+is_whipping+","+beverage+","+amount+",");
 
-            options[i]=new RetrofitConnection.Order_option(beverage,size,shots,amount,selections);
+            options[i]=new RetrofitConnection.Order_option(beverage_id,size,shots,amount,selections);
         }
 
         //String time=BasketPref.getInstance(this).getBasket(ids[0]).getTime();
-        RetrofitConnection.Order_Info info=new RetrofitConnection.Order_Info(0,time,options);
+        RetrofitConnection.Order_Info info=new RetrofitConnection.Order_Info(0,options);
         Gson gson = new Gson();
         String option_json = gson.toJson(info);
         RetrofitConnection.payment_beverages service = retrofit.create(RetrofitConnection.payment_beverages.class);
@@ -349,7 +349,7 @@ public class BaskitActivity extends AppCompatActivity implements View.OnClickLis
                     Intent i = new Intent(getApplicationContext(), OrderCompleteActivity.class);
                     i.putExtra("order_num", response.body().order_num);
                     i.putExtra("payment_okay_date", response.body().order_time);
-                    i.putExtra("get_time", response.body().get_time);
+                    i.putExtra("remain_order", response.body().remain_order);
                     startActivity(i);
                     finish();
                 }

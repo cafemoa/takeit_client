@@ -97,7 +97,7 @@ public class RetrofitConnection {
     public class Payment_Complete{
         public int order_num;
         public String order_time;
-        public int get_time;
+        public int remain_order;
         public int amount_price;
         public String menu_name;
     }
@@ -121,14 +121,14 @@ public class RetrofitConnection {
     }
 
     public static class Order_option{
-        int beverage;
+        int beverage_id;
         int size;
         int shot_num;
         int amount;
         ArrayList<Integer> selections;
 
-        public Order_option(int beverage,int size, int shot_num,int amount, ArrayList<Integer> selections){
-            this.beverage = beverage;
+        public Order_option(int beverage_id,int size, int shot_num,int amount, ArrayList<Integer> selections){
+            this.beverage_id = beverage_id;
             this.selections=selections;
             this.size = size;
             this.shot_num = shot_num;
@@ -137,13 +137,11 @@ public class RetrofitConnection {
     }
 
     public static class Order_Info{
-        int payment_type;
-        int get_time;
-        Order_option[] options;
-        public Order_Info(int payment_type, int get_time,Order_option[] options){
-            this.payment_type=payment_type;
-            this.options=options;
-            this.get_time=get_time;
+        int use_coupon;
+        Order_option[] beverages;
+        public Order_Info(int use_coupon,Order_option[] beverages){
+            this.use_coupon=use_coupon;
+            this.beverages=beverages;
         }
     }
 

@@ -30,6 +30,7 @@ public class OrderCompleteActivity extends AppCompatActivity {
         String payment_okay_date=i.getStringExtra("payment_okay_date");
 
         String content = i.getStringExtra("content");
+        int remain_order=i.getIntExtra("remain_order",0);
 
         tv_payment_okay_date  = (TextView)findViewById(R.id.tv_payment_okay_date);
         tv_order_num          = (TextView)findViewById(R.id.tv_order_number);

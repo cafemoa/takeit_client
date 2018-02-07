@@ -117,7 +117,7 @@
             <TextView
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
-                android:text="Take It     대기인원"
+                android:text="TakeIt까지 남은 인원"
                 android:gravity="right"
                 android:textSize="11sp"
                 android:layout_centerVertical="true"
