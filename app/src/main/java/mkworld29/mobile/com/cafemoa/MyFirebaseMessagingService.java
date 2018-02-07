@@ -63,6 +63,7 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
         // message, here is where that should be initiated. See sendNotification method below.
 
         Map<String, String> messages = remoteMessage.getData();
+
         // [END receive_message]
         if (ChannelPushManager.isChannelPluginMessage(messages)) {
             ChannelPushManager.handlePush(this, messages);

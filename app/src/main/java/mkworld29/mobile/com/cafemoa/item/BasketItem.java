@@ -20,7 +20,7 @@ public class BasketItem {
     String price;
     String time;
     int amount;
-    CoffeeOption option;
+    CoffeeOption beverage;
 
     public BasketItem(String image,
                       String cafe_name,
@@ -28,14 +28,14 @@ public class BasketItem {
                       String price,
                       String time,
                       int amount,
-                      CoffeeOption option) {
+                      CoffeeOption beverage) {
         this.image_url = image;
         this.cafe_name = cafe_name;
         this.content = content;
         this.price = price;
         this.time = time;
         this.amount = amount;
-        this.option = option;
+        this.beverage = beverage;
     }
 
     public int getAmount() {
@@ -79,11 +79,11 @@ public class BasketItem {
     }
 
     public CoffeeOption getOption() {
-        return option;
+        return beverage;
     }
 
     public void setOption(CoffeeOption option) {
-        this.option = option;
+        this.beverage = option;
     }
 
     public String getId() {
