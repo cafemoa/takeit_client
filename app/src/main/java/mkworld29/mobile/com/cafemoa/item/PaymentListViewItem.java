@@ -10,14 +10,24 @@ public class PaymentListViewItem {
     private String cafe_address;
     private String price;
     private String time;
+    private int order_num;
 
-    public PaymentListViewItem(String content, String cafe_name, String cafe_address,String price, String time)
+    public PaymentListViewItem(String content, String cafe_name, String cafe_address,String price, String time,int order_num)
     {
         this.cafe_name = cafe_name;
         this.cafe_address = cafe_address;
         this.content = content;
         this.price = price;
         this.time = time;
+        this.order_num = order_num;
+    }
+
+    public int getOrder_num() {
+        return order_num;
+    }
+
+    public void setOrder_num(int order_num) {
+        this.order_num = order_num;
     }
 
     public String getCafe_name() {

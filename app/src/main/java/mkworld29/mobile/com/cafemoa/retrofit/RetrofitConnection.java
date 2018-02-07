@@ -91,6 +91,7 @@ public class RetrofitConnection {
         public int pk;
         public String orderer_username;
         public int beverage_pk;
+        public int order_num;
     }
 
     public class Payment_Complete{

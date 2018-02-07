@@ -95,7 +95,7 @@ public class OrderListActivity extends AppCompatActivity {
                     List<RetrofitConnection.Recent_payment> info=response.body();
                     for(int i=0; i<info.size(); i++){
                         RetrofitConnection.Recent_payment now_payment=info.get(i);
-                        adapter.addItem(now_payment.menu_name, now_payment.cafe_name, now_payment.cafe_location, now_payment.amount_price, now_payment.order_time); //이부분 고쳐줘
+                        adapter.addItem(now_payment.menu_name, now_payment.cafe_name, now_payment.cafe_location, now_payment.amount_price, now_payment.order_time, now_payment.order_num); //이부분 고쳐줘
                     }
                     listView.setAdapter(adapter);
                 }else{

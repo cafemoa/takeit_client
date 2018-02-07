@@ -22,7 +22,7 @@
     <LinearLayout
         android:layout_marginTop="12dp"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:orientation="vertical"
         android:gravity="center">
@@ -30,46 +30,25 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:gravity="center"
-            android:layout_height="wrap_content">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="23sp"
-        android:textColor="#0c0c0c"
-        android:text="주문이 "/>
-
-    <TextView
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#ffac47"
-        android:textSize="23sp"
-        android:text="정상적 "/>
-
-    <TextView
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="23sp"
-        android:textColor="#0c0c0c"
-        android:text="으로 완료 "/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:gravity="center">
+            android:orientation="vertical">
+
     <TextView
+        android:id="@+id/tv_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="23sp"
         android:textStyle="bold"
+        android:textSize="23sp"
         android:textColor="#0c0c0c"
-        android:text="되었습니다 "/>
+        android:text="아메리카노 외 3잔 "/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#0c0c0c"
+        android:text="주문이 정상적으로 완료되었습니다. "/>
 
         </LinearLayout>
 
@@ -78,6 +57,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="35dp"
         android:background="#acacac"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -137,7 +117,7 @@
             <TextView
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
-                android:text="TakeIt까지 남은시간"
+                android:text="Take It     대기인원"
                 android:gravity="right"
                 android:textSize="11sp"
                 android:layout_centerVertical="true"
@@ -147,11 +127,11 @@
 
 
             <TextView
-                android:id="@+id/tv_wait_time"
+                android:id="@+id/tv_remain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:text="00:07"
+                android:text="2명"
                 android:textColor="#ff2347"
                 android:gravity="center"
                 android:layout_centerVertical="true"
@@ -161,11 +141,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/tv_wait_time"
+                android:layout_toRightOf="@id/tv_remain"
                 android:text="남았어요!"
                 android:textSize="15sp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="15dp"
                 android:textColor="#0c0c0c"
                 />
 
@@ -174,7 +154,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
 
             <TextView
@@ -188,27 +168,37 @@
                 />
 
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_centerInParent="true"
+                >
+
             <TextView
                 android:id="@+id/tv_payment_about"
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:text="카드 간편결제"
-                android:textColor="#0c0c0c"
+                android:textColor="#030303"
                 android:gravity="left"
                 android:layout_centerHorizontal="true"/>
 
 
             <TextView
                 android:id="@+id/tv_payment_okay_date"
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:layout_below="@id/tv_payment_about"
                 android:text="승인일시:2017.09.17 17:00"
-                android:textColor="#0c0c0c"
+                android:textColor="#030303"
                 android:gravity="left"
                 android:layout_centerHorizontal="true"/>
+
+            </LinearLayout>
 
         </RelativeLayout>
 
@@ -216,19 +206,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             layout="@layout/item_coupon_detail"
+            android:layout_marginTop="25dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             />
 
 
         <TextView
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:layout_marginLeft="20dp"
             android:textSize="12dp"
             android:textColor="#ff0c0c"
-            android:text="음료특성상 환불 및 교환은 불가합니다."/>
+            android:text="* 음료특성상 환불 및 교환은 불가합니다."/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -237,7 +229,7 @@
             android:layout_marginLeft="20dp"
             android:textSize="12dp"
             android:textColor="#ff0c0c"
-            android:text="음료가 식거나 녹을 수 있으니 제시간에 와주세요."/>
+            android:text="* 음료가 식거나 녹을 수 있으니 제시간에 와주세요."/>
 
     </LinearLayout>
 

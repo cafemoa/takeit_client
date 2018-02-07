@@ -58,6 +58,13 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
         }
 
 
+        /***
+         *
+         * 1 : 점주한테
+         * 2: 제조중
+         * 3: 제조완료
+         *
+         */
 
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated. See sendNotification method below.
@@ -69,13 +76,15 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
         }
         else{
             msg = messages.get("message");
+            int code = Integer.parseInt(messages.get("code"));
+
             Intent intent = new Intent(this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
             PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
                     new Intent(this, MainActivity.class), 0);
 
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this).setSmallIcon(R.mipmap.ic_launcher)
+            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this).setSmallIcon(R.drawable.decoration)
                     .setContentTitle("Take It!")
                     .setContentIntent(contentIntent)
                     .setContentText(msg)
